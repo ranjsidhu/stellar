@@ -1,0 +1,25 @@
+.socials {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+}
+
+.socials > img {
+  height: 40px;
+  width: auto;
+}
+
+.socials > img:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .socials {
+    padding-bottom: 30px;
+  }
+
+  .socials > img {
+    height: 40px;
+    width: auto;
+  }
+}
