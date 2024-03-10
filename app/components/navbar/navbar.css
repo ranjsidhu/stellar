@@ -23,6 +23,21 @@
   padding: 1rem 1rem;
 }
 
+.hoverlist {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.link-wrapper:hover .hoverlist {
+  display: none;
+}
+
 .navLink:hover {
   color: white;
   background-color: black;

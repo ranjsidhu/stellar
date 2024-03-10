@@ -41,18 +41,26 @@ const Navbar = ({ onNavbarOpen }: { onNavbarOpen: Function }) => {
     return (
       <nav className={`nav ${isMobile} `}>
         {routes.map((route: Route, index: number) => (
-          <Link
-            key={route.id}
-            href={route.route}
-            className={`navLink ${isActiveRoute(
-              route.route
-            )}  ${borderBottom} ${isFirstRoute(index)}`}
-            onClick={() => {
-              dispatch(toggleMobileMenu({ visible: false }));
-            }}
-          >
-            {route.name}
-          </Link>
+          <div key={index} className="link-wrapper">
+            <Link
+              href={route.route}
+              className={`navLink ${isActiveRoute(
+                route.route
+              )}  ${borderBottom} ${isFirstRoute(index)}`}
+              onClick={() => {
+                dispatch(toggleMobileMenu({ visible: false }));
+              }}
+            >
+              {route.name}
+            </Link>
+            <div className="hoverlist">
+              <ul>
+                <li>listitem</li>
+                <li>listitem</li>
+                <li>listitem</li>
+              </ul>
+            </div>
+          </div>
         ))}
       </nav>
     );
