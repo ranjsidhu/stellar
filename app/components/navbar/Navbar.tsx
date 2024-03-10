@@ -6,7 +6,7 @@ import { toggleMobileMenu } from "@/lib/features/UI";
 import { RootState } from "@/lib/store";
 import { useSpring, animated } from "react-spring";
 import Link from "next/link";
-import routes from "../../static/routes";
+import { routes } from "../../constants";
 import "./navbar.css";
 
 type Route = {

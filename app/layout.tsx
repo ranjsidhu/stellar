@@ -10,15 +10,15 @@ const inter: NextFont = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://tutoringtosuccess.co.uk"),
   title: {
-    default: "Tutoring To Success",
-    template: "%s | Tutoring To Success",
+    default: "Stellar Recruitment",
+    template: "%s | Stellar Recruitment",
   },
   description: "Your journey to success starts here",
   twitter: {
     card: "summary_large_image",
   },
   openGraph: {
-    title: "Tutoring To Success",
+    title: "Stellar Recruitment",
     description: "Your journey to success starts here",
     images: [{ url: "/opengraph-image.png" }],
   },
@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Analytics />
+      {/* <Analytics /> */}
       <StoreProvider>
         <body className={inter.className}>{children}</body>
       </StoreProvider>
