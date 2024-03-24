@@ -1,0 +1,127 @@
+.header-wrapper {
+  width: 100%;
+  height: 20vh;
+  padding: 0 10%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #00150f;
+  z-index: 2;
+}
+
+.header-logo {
+  margin-right: auto;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.header-logo-image {
+  width: auto;
+  height: 80%;
+  aspect-ratio: auto;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.header-logo-image:hover {
+  cursor: pointer;
+}
+
+.header-navigation {
+  height: 60%;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header-button {
+  background: white;
+  color: #00150f;
+  display: inline-block;
+  padding: 10px 35px;
+  border-radius: 25px;
+  box-shadow: 0px 1px 10px -3px #000;
+  font-size: 0.9rem;
+  margin: 0 1rem 3rem 0;
+}
+
+.header-button:hover {
+  background: gold;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1480px) {
+  .header-navigation {
+    display: none;
+  }
+}
+
+.header-socials {
+  width: 100vw;
+  text-align: right;
+}
+
+/* Style all font awesome icons */
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+  cursor: pointer;
+}
+
+.fa-facebook:hover {
+  background: #3b5998;
+  color: white;
+}
+
+.fa-linkedin:hover {
+  background: #0077b5;
+  color: white;
+}
+
+.fa-instagram:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  color: white;
+}
+
+.fa-envelope:hover {
+  background: #00150f;
+  color: gold;
+}

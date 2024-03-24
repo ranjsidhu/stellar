@@ -8,7 +8,7 @@ import "./globals.css";
 const inter: NextFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tutoringtosuccess.co.uk"),
+  metadataBase: new URL("https://stellar-recruitment.co.uk"),
   title: {
     default: "Stellar Recruitment",
     template: "%s | Stellar Recruitment",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Stellar Recruitment",
     description: "Your journey to success starts here",
-    images: [{ url: "/opengraph-image.png" }],
+    images: [{ url: "/opengraph-image.jpg" }],
   },
 };
 

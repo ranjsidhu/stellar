@@ -7,45 +7,15 @@
   }
 }
 
-.images {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.svg-wrapper {
+  position: relative;
+  overflow: hidden;
 }
 
-.images > img {
-  height: 250px;
-  width: 310px;
-  animation: fadeIn 1s ease-in;
-  border-radius: 13px;
-  box-shadow: 6px 6px 23px 4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 6px 6px 23px 4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 6px 6px 23px 4px rgba(0, 0, 0, 0.75);
-}
-
-.img-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 5vh;
-}
-
-.quote {
-  padding: 20px;
-  border-left: 4px solid gold;
-  border-right: 4px solid gold;
-  font-style: italic;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3em;
-  text-align: center;
-}
-
-.carousel {
-  display: none;
+.svg {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 /* iPad Pro */

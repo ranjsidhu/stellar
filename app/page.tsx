@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Homepage from "./home/Homepage";
 
 export const metadata: Metadata = {
-  title: "Home | Tutoring To Success",
-  description:
-    "Elevate your child's education with Tutoring To Success in Wolverhampton, Willenhall, Wednesfield,  Tettenhall, Newbridge and the surrounding areas. Dedicated to providing top-quality educational experiences for GCSE, A-Level, KS1/KS2, and 11+. Join us for expert tutoring, personalized learning, and proven results—whether in-person or virtually through Zoom.",
+  title:
+    "Stellar Recruitment - Educational Recruitment Agency in West Midlands",
+  description: "Connecting talent with opportuninity in the West Midlands",
   alternates: {
-    canonical: "https://tutoringtosuccess.co.uk",
+    canonical: "https://stellar-recruitment.co.uk",
     types: {
-      www: "https://www.tutoringtosuccess.co.uk",
+      www: "https://www.stellar-recruitment.co.uk",
     },
   },
 };

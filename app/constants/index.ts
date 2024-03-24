@@ -1,73 +1,71 @@
-const links = [
-  {
-    name: "Home",
-    href: "/",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Bookings",
-    href: "/bookings",
-  },
-  // {
-  //   name: "Pricing",
-  //   href: "/pricing",
-  // },
-  {
-    name: "Testimonials",
-    href: "/testimonials",
-  },
-  {
-    name: "Offers",
-    href: "/offers",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
-  {
-    name: "Sitemap",
-    href: "/sitemap.xml",
-  },
-];
+type Route = {
+  route: string;
+  name: string;
+  subRoutes?: { name: string; route: string }[];
+};
 
-const routes = [
+const routes: Route[] = [
   {
-    id: 1,
-    route: "/",
-    name: "Home",
+    route: "/about-us",
+    name: "About Us",
+    subRoutes: [
+      { name: "Why choose us", route: "/why-us" },
+      {
+        name: "Values",
+        route: "/values",
+      },
+    ],
   },
   {
-    id: 2,
-    route: "/about/",
-    name: "About",
+    route: "/jobs",
+    name: "Jobs",
+    subRoutes: [
+      { name: "Regions", route: "/jobs/regions" },
+      { name: "Primary/Secondary", route: "/jobs/primary-secondary" },
+      { name: "Subject", route: "/jobs/subject" },
+      { name: "SEND", route: "/jobs/send" },
+      { name: "Cover/Supply", route: "/jobs/cover-supply" },
+      { name: "TA", route: "/jobs/ta" },
+      { name: "ECTs", route: "/jobs/ects" },
+    ],
   },
   {
-    id: 3,
-    route: "/bookings/",
-    name: "Bookings",
-  },
-  // {
-  //   id: 4,
-  //   route: "/pricing/",
-  //   name: "Pricing",
-  // },
-  {
-    id: 5,
-    route: "/testimonials/",
-    name: "Testimonials",
+    route: "/candidates",
+    name: "Candidates",
+    subRoutes: [
+      { name: "The process", route: "/candidates/the-process" },
+      { name: "The steps", route: "/candidates/the-steps" },
+      { name: "Testimonials", route: "/candidates/testimonials" },
+    ],
   },
   {
-    id: 6,
-    route: "/offers/",
-    name: "Offers",
+    route: "/schools",
+    name: "Schools",
+    subRoutes: [{ name: "Safeguarding", route: "/schools/safeguarding" }],
   },
   {
-    id: 7,
-    route: "/contact/",
-    name: "Contact",
+    route: "/graduates",
+    name: "Graduates",
+    subRoutes: [
+      { name: "Cover supervisors", route: "/graduates/cover" },
+      { name: "TA", route: "/jobs/ta" },
+    ],
+  },
+  {
+    route: "/referrals",
+    name: "Referrals",
+  },
+  {
+    route: "/contact-us",
+    name: "Contact Us",
+  },
+  {
+    route: "/blog",
+    name: "Blog",
+  },
+  {
+    route: "/faq",
+    name: "FAQs",
   },
 ];
 
@@ -83,4 +81,4 @@ const svgs = {
 const iframeLoc =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2423.4940235032795!2d-2.1624408226845357!3d52.59684063053694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48709b524d9dced7%3A0x9813f9de96f46667!2sTutoring%20To%20Success!5e0!3m2!1sen!2suk!4v1702931595578!5m2!1sen!2suk";
 
-export { links, svgs, iframeLoc, routes };
+export { svgs, iframeLoc, routes };

@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMobileMenu } from "@/lib/features/UI";
 import { RootState } from "@/lib/store";
-import LayoutMain from "./LayoutMain";
+import { Header } from "../../components";
 import "./layout.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -21,9 +21,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className={`${isOverlayVisible ? "overlay" : "hidden"}`}
         onClick={overlayClicked}
       ></div>
-      <LayoutMain>
-        <div>{children}</div>
-      </LayoutMain>
+      <Header />
+      {children}
+      {/* <PageFooter /> */}
     </div>
   );
 }
