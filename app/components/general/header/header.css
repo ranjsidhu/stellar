@@ -1,7 +1,7 @@
 .header-wrapper {
   width: 100%;
   height: 20vh;
-  padding: 0 10%;
+  padding: 0 8%;
   display: flex;
   justify-content: space-between;
   background-color: #00150f;
@@ -10,11 +10,11 @@
 
 .header-logo {
   margin-right: auto;
-  width: 25%;
+  width: 20%;
   height: 100%;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .header-logo-image {
@@ -60,7 +60,7 @@
 
 @media (max-width: 1480px) {
   .header-navigation {
-    display: none;
+    /* display: none; */
   }
 }
 

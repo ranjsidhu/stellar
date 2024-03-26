@@ -3,23 +3,40 @@
     opacity: 0;
   }
   to {
-    opacity: 1;
+    opacity: 0.7;
   }
 }
 
-.svg-wrapper {
-  position: relative;
-  overflow: hidden;
+.homepage-images {
+  width: 100%;
+  height: 50vh;
+  margin-top: 4vh;
+  overflow-x: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/stock/stock2.jpg") no-repeat center center/cover;
+  transition: opacity 0.5s ease;
+  animation: fadeIn 1s ease-in;
+  z-index: 0;
 }
 
-.svg {
-  position: relative;
+.homepage-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+  animation: fadeIn 1s ease-in;
+  color: white;
+  margin-top: 4vh;
   z-index: 1;
-  min-height: 100vh;
+}
+
+.homepage-hero-title {
+  text-align: center;
+  text-wrap: pretty;
 }
 
 /* iPad Pro */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .carousel {
     display: block;
     margin-top: 4vh;
@@ -33,10 +50,10 @@
     transition: opacity 0.5s ease;
     animation: fadeIn 1s ease-in;
   }
-}
+} */
 
 /* iPad Air */
-@media (max-width: 820px) {
+/* @media (max-width: 820px) {
   .carousel {
     display: block;
     margin-top: 4vh;
@@ -49,9 +66,9 @@
     width: 496px;
     animation: fadeIn 1s ease-in;
   }
-}
+} */
 
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
   .images {
     display: none;
   }
@@ -81,4 +98,4 @@
     width: 310px;
     animation: fadeIn 1s ease-in;
   }
-}
+} */

@@ -10,21 +10,18 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
-
   li {
     list-style-type: none;
+    padding: 5px 10px;
   }
 }
 
-.navbar-sub {
-  display: none;
+.navbar-route:hover {
+  cursor: pointer;
 }
 
-.navbar-name:hover + .navbar-sub,
-.navbar-sub:hover {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.navbar-sub {
+  display: block;
   position: absolute;
   background-color: #00150f;
   padding: 1rem;
@@ -33,14 +30,19 @@
   border: 1px solid gold;
   z-index: 2;
   margin-top: 0.5rem;
+
+  p {
+    padding: 5px;
+  }
+
+  p:hover {
+    cursor: pointer;
+    text-decoration: underline gold;
+  }
 }
 
-.navbar-sub:hover p:hover {
-  cursor: pointer;
-}
-
-@media (max-width: 1480px) {
+/* @media (max-width: 1480px) {
   .header-nav ul {
     display: none;
   }
-}
+} */
