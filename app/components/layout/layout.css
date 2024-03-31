@@ -1,5 +1,6 @@
 .container {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .not-found-title {

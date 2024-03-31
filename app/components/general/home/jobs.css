@@ -1,0 +1,61 @@
+.jobs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  width: 100%;
+  height: 40vh;
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+}
+
+.job-card {
+  width: 15%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: left;
+  color: #00150f;
+  transition: background-color 0.5s ease;
+}
+
+.job-card:hover {
+  cursor: pointer;
+  background-color: #00150f;
+  transition: background-color 0.5s ease;
+  box-shadow: 0 0 10px 0 gold;
+  color: white;
+
+  .job-hr {
+    border-color: gold;
+    width: 70%;
+    margin: 15px 0;
+  }
+}
+
+.job-role-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: auto;
+}
+
+.job-footer-wrapper {
+  margin-top: auto;
+}
+
+.job-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.job-hr {
+  border-color: #00150f;
+  width: 70%;
+  margin: 15px 0;
+}

@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     default: "Stellar Recruitment",
     template: "%s | Stellar Recruitment",
   },
-  description: "Your journey to success starts here",
+  description: "Connecting talent with opportunity",
   twitter: {
     card: "summary_large_image",
   },
   openGraph: {
     title: "Stellar Recruitment",
-    description: "Your journey to success starts here",
+    description: "Connecting talent with opportunity",
     images: [{ url: "/opengraph-image.jpg" }],
   },
 };

@@ -8,6 +8,9 @@
 }
 
 .homepage-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 50vh;
   margin-top: 4vh;
@@ -33,6 +36,17 @@
 .homepage-hero-title {
   text-align: center;
   text-wrap: pretty;
+  width: 80%;
+  margin-bottom: auto;
+}
+
+.homepage-search-wrapper {
+  background-color: #00150f;
+  margin-top: 5vh;
+  padding: 20px;
+  width: 50%;
+  border-radius: 12px;
+  opacity: 0.8;
 }
 
 /* iPad Pro */

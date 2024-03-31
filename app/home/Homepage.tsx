@@ -1,17 +1,29 @@
-import { Layout, Search } from "@/app/components";
+"use client";
+
+import { Layout, Search, Jobs } from "@/app/components";
+import { useFetchJobs } from "../hooks";
 import "./homepage.css";
 
 export default function Homepage() {
+  // useFetchJobs();
+
   return (
     <Layout>
       <div className="homepage-images">
         <div className="homepage-hero">
-          <h1 className="homepage-hero-title">
-            Connecting talent with opportunity
-          </h1>
+          <h2 className="homepage-hero-title">
+            Welcome to Stellar Recruitment, where stars align with schools and
+            educators! Whether you&apos;re a cover, supply, or classroom
+            teacher, count on us to connect you with exceptional opportunities.
+            Explore our website to discover how we can help you shine in your
+            teaching career. Let&apos;s make an impact in education together!
+          </h2>
         </div>
-        <Search source="home" />
+        <div className="homepage-search-wrapper">
+          <Search source="home" />
+        </div>
       </div>
+      <Jobs />
     </Layout>
   );
 }

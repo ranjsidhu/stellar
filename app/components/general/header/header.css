@@ -67,6 +67,11 @@
 .header-socials {
   width: 100vw;
   text-align: right;
+  margin-right: 5vw;
+}
+
+.fa:last-of-type {
+  margin-right: 2vw;
 }
 
 /* Style all font awesome icons */
