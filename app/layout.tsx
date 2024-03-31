@@ -3,6 +3,7 @@ import { NextFont } from "next/dist/compiled/@next/font";
 import { Inter } from "next/font/google";
 import Analytics from "./Analytics";
 import StoreProvider from "./StoreProvider";
+import { Layout } from "./components";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
@@ -33,7 +34,9 @@ export default function RootLayout({
     <html lang="en">
       {/* <Analytics /> */}
       <StoreProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Layout>{children}</Layout>
+        </body>
       </StoreProvider>
     </html>
   );

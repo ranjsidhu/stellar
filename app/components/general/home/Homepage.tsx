@@ -1,14 +1,14 @@
 "use client";
 
-import { Layout, Search, Jobs } from "@/app/components";
-import { useFetchJobs } from "../hooks";
+import { Search, Jobs } from "@/app/components";
+import { useFetchJobs } from "@/app/hooks";
 import "./homepage.css";
 
 export default function Homepage() {
   // useFetchJobs();
 
   return (
-    <Layout>
+    <>
       <div className="homepage-images">
         <div className="homepage-hero">
           <h2 className="homepage-hero-title">
@@ -24,6 +24,6 @@ export default function Homepage() {
         </div>
       </div>
       <Jobs />
-    </Layout>
+    </>
   );
 }
