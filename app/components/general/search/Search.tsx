@@ -19,6 +19,7 @@ export default function Search({ source }: SearchProps) {
 
   return (
     <div className="search-wrapper">
+      <p className="search-statement">Search current jobs for your next role</p>
       <div className="search-box">
         <input
           placeholder={placeholder}

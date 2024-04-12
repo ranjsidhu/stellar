@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NextFont } from "next/dist/compiled/@next/font";
 import { Inter } from "next/font/google";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Analytics from "./Analytics";
 import StoreProvider from "./StoreProvider";
 import { Layout } from "./components";
@@ -35,7 +36,9 @@ export default function RootLayout({
       {/* <Analytics /> */}
       <StoreProvider>
         <body className={inter.className}>
-          <Layout>{children}</Layout>
+          <AntdRegistry>
+            <Layout>{children}</Layout>
+          </AntdRegistry>
         </body>
       </StoreProvider>
     </html>

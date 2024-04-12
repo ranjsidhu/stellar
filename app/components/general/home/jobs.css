@@ -1,11 +1,26 @@
+.jobs-container-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.jobs-wrapper-title {
+  width: 100%;
+  color: #00150f;
+  padding: 4% 6%;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.jobs-wrapper-title:hover {
+  cursor: pointer;
+}
+
 .jobs-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-left: 6%;
   gap: 5%;
   width: 100%;
   height: 40vh;
-  margin-top: 4vh;
   margin-bottom: 2vh;
 }
 
@@ -48,7 +63,7 @@
 
 .job-description {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

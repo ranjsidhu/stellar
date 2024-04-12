@@ -1,6 +1,8 @@
 .container {
   min-height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .not-found-title {
@@ -27,6 +29,10 @@
 
 .hidden {
   display: none;
+}
+
+.layout-footer {
+  margin-top: auto;
 }
 
 @media (max-width: 360px) {

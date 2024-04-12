@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { routes } from "@/app/constants";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import "./navbar.css";
 
 export default function NavbarList() {
   const router = useRouter();
+  const pathname = usePathname();
   const [hoveredRoute, setHoveredRoute] = useState<string | null>(null);
 
   const handleHover = (route: string | null) => {
@@ -18,7 +19,9 @@ export default function NavbarList() {
     <ul>
       {routes.map(({ route, name, subRoutes }) => (
         <li
-          className="navbar-route"
+          className={`navbar-route${
+            !subRoutes && pathname === route ? "-active" : ""
+          }`}
           key={route}
           onMouseEnter={() => handleHover(route)}
           onMouseLeave={() => handleHover(null)}
@@ -37,7 +40,13 @@ export default function NavbarList() {
             {hoveredRoute === route && subRoutes && (
               <div className="navbar-sub">
                 {subRoutes.map(({ name, route }) => (
-                  <p key={name} onClick={() => router.push(route)}>
+                  <p
+                    className={`navbar-route${
+                      pathname === route ? "-active" : ""
+                    }`}
+                    key={name}
+                    onClick={() => router.push(route)}
+                  >
                     {name}
                   </p>
                 ))}
@@ -49,3 +58,17 @@ export default function NavbarList() {
     </ul>
   );
 }
+
+// TODO - remove this comment
+
+// const [formData, setFormData] = useState({
+//     name: "",
+//     contactNumber: "",
+//     friend: {
+//       name: "",
+//       job: "",
+//       phone: "",
+//       location: "",
+//       email: "",
+//     },
+//   });

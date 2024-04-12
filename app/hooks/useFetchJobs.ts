@@ -10,7 +10,7 @@ export const useFetchJobs = () => {
     const fetchJobs = async () => {
       const {
         data: { data: jobs },
-      } = await instance.get("/api/stellar/jobs");
+      } = await instance.get("/jobs");
       dispatch(setJobs(jobs));
     };
 

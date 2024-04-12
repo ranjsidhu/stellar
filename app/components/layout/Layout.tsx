@@ -1,13 +1,16 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMobileMenu } from "@/lib/features/UI";
 import { RootState } from "@/lib/store";
-import { Header } from "../../components";
+import { Header, Footer, Loading } from "../../components";
 import "./layout.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const dispatch = useDispatch();
+  const validPaths = ["/login", "/register"];
   const { isOverlayVisible } = useSelector((state: RootState) => state.UI);
 
   const overlayClicked = () => {
@@ -17,13 +20,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="container">
-      <div
-        className={`${isOverlayVisible ? "overlay" : "hidden"}`}
-        onClick={overlayClicked}
-      ></div>
-      <Header />
+      <Loading />
+      {!validPaths.includes(pathname) && <Header />}
       {children}
-      {/* <PageFooter /> */}
+      <div className="layout-footer">
+        <Footer />
+      </div>
     </div>
   );
 }

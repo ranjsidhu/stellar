@@ -21,6 +21,10 @@
   cursor: pointer;
 }
 
+.navbar-route-active {
+  color: gold;
+}
+
 .navbar-sub {
   display: block;
   position: absolute;

@@ -5,7 +5,7 @@ import "./not-found.css";
 
 export default function NotFound() {
   return (
-    <Layout>
+    <>
       <br />
       <h3 className="not-found-title">Not Found</h3>
       <br />
@@ -15,6 +15,6 @@ export default function NotFound() {
           Click <a href="/">here</a> to go back to the homepage
         </p>
       </div>
-    </Layout>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Navbar } from "@/app/components";
-import DARK from "@/app/assets/logos/Logo_dark.jpg";
+import { DARK } from "@/app/assets";
 import "./header.css";
 
 export default function Header() {
@@ -24,9 +24,30 @@ export default function Header() {
         </div>
         <div className="header-navigation">
           <div className="header-buttons">
-            <a className="header-button">Register </a>
-            <a className="header-button">Client Login</a>
-            <a className="header-button">Candidate Login</a>
+            <a
+              className="header-button"
+              onClick={() => {
+                router.push("/register");
+              }}
+            >
+              Register{" "}
+            </a>
+            <a
+              className="header-button"
+              onClick={() => {
+                router.push("/login?type=client");
+              }}
+            >
+              Client Login
+            </a>
+            <a
+              className="header-button"
+              onClick={() => {
+                router.push("/login?type=candidate");
+              }}
+            >
+              Candidate Login
+            </a>
             <a className="header-button">Call: 0123 456 789</a>
           </div>
           <Navbar />

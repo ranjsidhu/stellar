@@ -59,9 +59,9 @@
 }
 
 @media (max-width: 1480px) {
-  .header-navigation {
-    /* display: none; */
-  }
+  /* .header-navigation {
+    display: none;
+  } */
 }
 
 .header-socials {

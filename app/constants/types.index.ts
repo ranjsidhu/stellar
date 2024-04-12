@@ -2,4 +2,10 @@ type SearchProps = {
   source: string;
 };
 
-export type { SearchProps };
+type StepProps = {
+  title: string;
+  description: string;
+  index: number;
+};
+
+export type { SearchProps, StepProps };
