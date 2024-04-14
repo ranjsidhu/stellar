@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
 import instance from "../utils/instance";
 import "./referrals.css";
@@ -20,7 +19,11 @@ type FieldType = {
 const { Item } = Form;
 
 const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
-  console.log(values);
+  try {
+    await instance.post("/referrals", values);
+  } catch (error) {
+    alert("Failed to submit referral");
+  }
 };
 
 export default function Referrals() {
@@ -37,7 +40,7 @@ export default function Referrals() {
         name="referrerName"
         rules={[{ required: true, message: "Please enter your name" }]}
       >
-        <Input />
+        <Input autoComplete="given-name" />
       </Item>
 
       <Item
@@ -47,7 +50,7 @@ export default function Referrals() {
           { required: true, message: "Please enter your contact number" },
         ]}
       >
-        <Input />
+        <Input autoComplete="tel" />
       </Item>
 
       <Item
@@ -86,16 +89,12 @@ export default function Referrals() {
       </Item>
 
       <Item label="Friend's Email" name="referredFriendEmail">
-        <Input />
+        <Input type="email" />
       </Item>
 
       <br />
-      <Item  className="referrals-form-submit">
-        <Button
-          type="primary"
-          htmlType="submit"
-         
-        >
+      <Item className="referrals-form-submit">
+        <Button type="primary" htmlType="submit">
           Submit
         </Button>
       </Item>
