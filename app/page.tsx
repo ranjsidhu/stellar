@@ -3,8 +3,9 @@ import Homepage from "./components/general/home/Homepage";
 
 export const metadata: Metadata = {
   title:
-    "Stellar Recruitment - Leading Educational Recruitment Agency in West Midlands",
-  description: "Connecting talent with opportuninity in the West Midlands",
+    "Leading Educational Recruitment Agency in West Midlands - Stellar Recruitment",
+  description:
+    "Connecting talent with opportuninity in the West Midlands - Stellar Recruitment",
   alternates: {
     canonical: "https://stellar-recruitment.co.uk",
     types: {

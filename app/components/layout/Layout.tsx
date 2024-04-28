@@ -1,11 +1,13 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleMobileMenu } from "@/lib/features/UI";
-import { RootState } from "@/lib/store";
-import { Header, Footer, Loading } from "../../components";
 import "./layout.css";
+
+import { Footer, Header, Loading } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+
+import { RootState } from "@/lib/store";
+import { toggleMobileMenu } from "@/lib/features/UI";
+import { usePathname } from "next/navigation";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -21,7 +23,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="container">
       <Loading />
-      {!validPaths.includes(pathname) && <Header />}
+      <div className="header">
+        {!validPaths.includes(pathname) && <Header />}
+      </div>
+      {!validPaths.includes(pathname) && (
+        <div className="header-socials">
+          <a href="#" target="_blank" className="fa fa-facebook"></a>
+          <a href="#" target="_blank" className="fa fa-instagram"></a>
+          <a href="#" target="_blank" className="fa fa-linkedin"></a>
+          <a href="#" target="_blank" className="fa fa-envelope"></a>
+        </div>
+      )}
       {children}
       <div className="layout-footer">
         <Footer />

@@ -1,10 +1,11 @@
+import "./aboutus.css";
+
 import AboutUsText from "./AboutUsText";
 import Values from "./Values";
-import "./aboutus.css";
 
 export default function AboutUs() {
   return (
-    <>
+    <section>
       <div className="aboutus-hero">
         <h2>About Us</h2>
       </div>
@@ -16,6 +17,6 @@ export default function AboutUs() {
           <Values />
         </div>
       </div>
-    </>
+    </section>
   );
 }

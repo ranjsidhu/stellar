@@ -13,47 +13,23 @@
   margin-bottom: auto;
 }
 
+.register-image:hover {
+  cursor: pointer;
+}
+
 .register-form {
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5vh;
+  gap: 2vh;
   width: 100%;
-
-  button {
-    padding: 20px;
-    width: 20%;
-    border-radius: 10px;
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    color: #00150f;
-    box-shadow: 0px 1px 10px -3px #000;
-    transition: all 0.3s ease;
-  }
-  button:hover {
-    background: gold;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
 }
 
 .register-form-flex {
   display: flex;
   gap: 10%;
-
-  input {
-    padding: 20px;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 1rem;
-    box-shadow: 0px 1px 10px -3px #000;
-  }
 
   input:focus {
     outline: none;
@@ -92,4 +68,17 @@
   color: red;
   font-size: 1rem;
   margin-bottom: auto;
+}
+
+.register-form-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .ant-btn-primary {
+    background-color: #00150f;
+  }
+  .ant-btn-primary:hover {
+    background-color: #00150f !important;
+    color: gold !important;
+  }
 }

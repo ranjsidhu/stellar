@@ -1,8 +1,10 @@
 "use client";
 
-import { Search, Jobs } from "@/app/components";
-import { useFetchJobs } from "@/app/hooks";
 import "./homepage.css";
+
+import { Jobs, Search } from "@/app/components";
+
+import { useFetchJobs } from "@/app/hooks";
 
 export default function Homepage() {
   // useFetchJobs();
@@ -28,9 +30,7 @@ export default function Homepage() {
           Let&apos;s make an impact in education together!
         </h2>
       </div>
-
-      <div className="homepage-divider-image"></div>
-
+      <div className="homepage-divider-image" />
       <Jobs />
     </div>
   );

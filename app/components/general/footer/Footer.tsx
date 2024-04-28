@@ -1,5 +1,6 @@
-import { routes } from "@/app/constants";
 import "./footer.css";
+
+import { routes } from "@/app/constants";
 
 export default function Footer() {
   return (

@@ -1,5 +1,7 @@
 .process-wrapper {
-  width: 100%;
+  width: 95vw;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 40vh;
   margin-top: 4vh;
   overflow-x: hidden;
@@ -26,7 +28,6 @@
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
-  padding: 20px;
 }
 
 .process-statement {
@@ -43,6 +44,7 @@
   margin-top: 2%;
   gap: 2vh;
   width: 70%;
+  margin-bottom: 100px;
 }
 
 .step {
@@ -68,4 +70,34 @@
 .step-right {
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 430px) {
+  .process-hero {
+    height: 30vh;
+    font-size: 1.5em;
+  }
+
+  .process-statement {
+    width: 90%;
+    margin: 30px 0;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    gap: 2vh;
+    width: 90%;
+    margin-bottom: 100px;
+  }
+
+  .step {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    gap: 15px;
+  }
 }

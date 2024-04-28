@@ -1,4 +1,5 @@
-import Image from "next/image";
+import "./values.css";
+
 import {
   Accountable,
   Impact,
@@ -7,8 +8,9 @@ import {
   Reliable,
   Safe,
 } from "../assets";
+
+import Image from "next/image";
 import { aboutUsValues } from "../constants";
-import "./values.css";
 
 const images = [Accountable, Partnership, Reliable, Safe, Integrity, Impact];
 
@@ -17,15 +19,15 @@ export default function Values() {
     <div className="values-wrapper">
       <h2 className="values-title">VALUES</h2>
       {aboutUsValues.map(({ value, statement }, index) => (
-        <div key={index}>
+        <div key={index} className="value-wrapper">
           {index % 2 === 0 ? (
             <div className="value">
               <Image src={images[index]} alt={value} className="value-image" />
-              <p>{statement}</p>
+              <p className="value-statement">{statement}</p>
             </div>
           ) : (
             <div className="value">
-              <p>{statement}</p>
+              <p className="value-statement">{statement}</p>
               <Image
                 src={images[index]}
                 alt="value-image"

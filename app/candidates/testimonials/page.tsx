@@ -1,13 +1,16 @@
-import Testimonials from "./Testimonials";
 import "./testimonials.css";
+
+import Testimonials from "./Testimonials";
 
 export default function TestimonialsPage() {
   return (
-    <div className="testimonials-wrapper">
+    <section>
       <div className="testimonials-hero">
         <h2>Testimonials</h2>
       </div>
-      <Testimonials />
-    </div>
+      <div className="testimonials-wrapper">
+        <Testimonials />
+      </div>
+    </section>
   );
 }

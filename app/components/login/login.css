@@ -13,33 +13,17 @@
   margin-bottom: auto;
 }
 
+.login-image:hover {
+  cursor: pointer;
+}
+
 .login-form {
-  margin-bottom: auto;
   display: flex;
   flex-direction: column;
-  gap: 5vh;
+  gap: 2vh;
   justify-content: center;
+  align-items: center;
   width: 100%;
-
-  button {
-    padding: 20px;
-    width: 10%;
-    border-radius: 10px;
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    color: #00150f;
-    box-shadow: 0px 1px 10px -3px #000;
-    transition: all 0.3s ease;
-  }
-  button:hover {
-    background: gold;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
 }
 
 .login-form-input {
@@ -48,25 +32,7 @@
   align-items: center;
   justify-content: center;
   gap: 2vh;
-
-  input {
-    padding: 20px;
-    width: 30%;
-    border-radius: 10px;
-    font-size: 1rem;
-    box-shadow: 0px 1px 10px -3px #000;
-  }
-
-  input:focus {
-    outline: none;
-  }
-}
-
-.login-form-button {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .login-form-error {
@@ -74,4 +40,14 @@
   color: red;
   font-size: 1rem;
   margin-bottom: auto;
+}
+
+.login-form-submit {
+  .ant-btn-primary {
+    background-color: #00150f;
+  }
+  .ant-btn-primary:hover {
+    background-color: #00150f !important;
+    color: gold !important;
+  }
 }

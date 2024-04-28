@@ -1,9 +1,11 @@
 .header-wrapper {
-  width: 100%;
-  height: 20vh;
-  padding: 0 8%;
+  width: 95vw;
+  max-width: 1440px;
+  height: 220px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #00150f;
   z-index: 2;
 }
@@ -30,13 +32,17 @@
   cursor: pointer;
 }
 
+.header-hamburger {
+  display: none;
+}
+
 .header-navigation {
   height: 60%;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -58,20 +64,12 @@
   transition: all 0.3s ease;
 }
 
-@media (max-width: 1480px) {
-  /* .header-navigation {
-    display: none;
-  } */
-}
-
 .header-socials {
-  width: 100vw;
+  width: 95vw;
+  max-width: 1440px;
   text-align: right;
-  margin-right: 5vw;
-}
-
-.fa:last-of-type {
-  margin-right: 2vw;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Style all font awesome icons */
@@ -129,4 +127,63 @@
 .fa-envelope:hover {
   background: #00150f;
   color: gold;
+}
+
+@media screen and (max-width: 430px) {
+  .header-wrapper {
+    width: 100vw;
+    height: 100px;
+    padding: 0px 24px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00150f;
+    z-index: 2;
+  }
+
+  .header-navigation {
+    display: none;
+  }
+
+  .header-logo {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .header-logo-image {
+    width: auto;
+    height: 80%;
+    aspect-ratio: auto;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .header-hamburger {
+    display: block;
+  }
+
+  /* Hamburger styling */
+  .hamburger-container {
+    display: inline-flex;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .hamburger-bar {
+    width: 40px;
+    height: 4px;
+    background: gold;
+  }
+
+  .header-socials {
+    width: 100vw;
+  }
 }

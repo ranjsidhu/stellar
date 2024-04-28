@@ -1,8 +1,10 @@
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { Navbar } from "@/app/components";
-import { DARK } from "@/app/assets";
 import "./header.css";
+
+import { Hamburger, Navbar } from "@/app/components";
+
+import { DARK } from "@/app/assets";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const router = useRouter();
@@ -52,13 +54,10 @@ export default function Header() {
           </div>
           <Navbar />
         </div>
+        <div className="header-hamburger">
+          <Hamburger />
+        </div>
       </header>
-      <div className="header-socials">
-        <a href="#" target="_blank" className="fa fa-facebook"></a>
-        <a href="#" target="_blank" className="fa fa-instagram"></a>
-        <a href="#" target="_blank" className="fa fa-linkedin"></a>
-        <a href="#" target="_blank" className="fa fa-envelope"></a>
-      </div>
     </>
   );
 }

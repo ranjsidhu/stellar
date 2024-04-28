@@ -3,43 +3,45 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Form, Input, Button, type FormProps } from "antd";
 import { Letterhead } from "@/app/assets";
-import { initialRegisterState } from "@/app/constants";
 import instance from "@/app/utils/instance";
 import "./register.css";
 
+type RegisterType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export default function Register() {
+  const { Item } = Form;
   const router = useRouter();
-  const [registerData, setRegisterData] = useState(initialRegisterState);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (registerData.password !== registerData.confirmPassword) {
+  const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
+    if (values.password !== values.confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
     try {
       const res = await instance.post("/auth/register", {
-        ...registerData,
+        ...values,
         options: {
           data: {
-            first_name: registerData.firstName,
-            last_name: registerData.lastName,
+            first_name: values.firstName,
+            last_name: values.lastName,
           },
         },
       });
-      setRegisterData(initialRegisterState);
       router.push("/");
     } catch (error: any) {
       setError(error.response.data.error);
     }
-  };
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setRegisterData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return (
@@ -49,66 +51,69 @@ export default function Register() {
         priority
         alt="Letterhead image"
         className="register-image"
+        onClick={() => router.push("/")}
       />
-      <form onSubmit={handleSubmit} className="register-form">
+      <Form
+        name="basic"
+        layout="vertical"
+        onFinish={handleSubmit}
+        scrollToFirstError
+        className="register-form"
+      >
         {error && <div className="register-form-error">{error}</div>}
         <div className="register-form-flex">
-          <input
+          <Item
+            label="First Name"
             name="firstName"
-            type="text"
-            placeholder="First Name"
-            autoComplete="given-name"
-            required
-            onChange={onChangeHandler}
-          />
-          <input
+            rules={[
+              { required: true, message: "Please enter your first name" },
+            ]}
+          >
+            <Input autoComplete="given-name" />
+          </Item>
+
+          <Item
+            label="Last Name"
             name="lastName"
-            type="text"
-            placeholder="Last Name"
-            autoComplete="family-name"
-            required
-            onChange={onChangeHandler}
-          />
+            rules={[{ required: true, message: "Please enter your last name" }]}
+          >
+            <Input autoComplete="family-name" />
+          </Item>
         </div>
         <div className="register-form-flex">
-          <input
+          <Item
+            label="Email"
             name="email"
-            type="text"
-            placeholder="Email"
-            autoComplete="email"
-            required
-            onChange={onChangeHandler}
-          />
-          <input
-            name="phoneNumber"
-            type="text"
-            placeholder="Phone Number"
-            autoComplete="tel"
-            onChange={onChangeHandler}
-          />
+            rules={[{ required: true, message: "Please enter your email" }]}
+          >
+            <Input autoComplete="email" type="email" />
+          </Item>
+          <Item label="Phone Number" name="phoneNumber">
+            <Input autoComplete="tel" type="text" />
+          </Item>
         </div>
         <div className="register-form-flex">
-          <input
+          <Item
+            label="Password"
             name="password"
-            type="password"
-            placeholder="Password"
-            autoComplete="new-password"
-            required
-            onChange={onChangeHandler}
-          />
-          <input
+            rules={[{ required: true, message: "Please enter a password" }]}
+          >
+            <Input autoComplete="new-password" type="password" />
+          </Item>
+          <Item
+            label="Confirm Password"
             name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            autoComplete="new-password"
-            required
-            onChange={onChangeHandler}
-          />
+            rules={[{ required: true, message: "Please enter a password" }]}
+          >
+            <Input type="password" />
+          </Item>
         </div>
-        <div className="register-form-button">
-          <button type="submit">Register</button>
-        </div>
-      </form>
+        <Item className="register-form-submit">
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        </Item>
+      </Form>
     </div>
   );
 }
