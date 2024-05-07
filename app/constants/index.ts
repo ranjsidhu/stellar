@@ -1,3 +1,5 @@
+import { faqs } from "./faqs";
+
 type Route = {
   route: string;
   name: string;
@@ -29,10 +31,6 @@ const routes: Route[] = [
   {
     route: "/graduates",
     name: "Graduates",
-    subRoutes: [
-      { name: "Cover supervisors", route: "/graduates/cover" },
-      { name: "TA", route: "/jobs/ta" },
-    ],
   },
   {
     route: "/referrals",
@@ -42,12 +40,12 @@ const routes: Route[] = [
     route: "/contact-us",
     name: "Contact",
   },
+  // {
+  //   route: "/blog",
+  //   name: "Blog",
+  // },
   {
-    route: "/blog",
-    name: "Blog",
-  },
-  {
-    route: "/faq",
+    route: "/faqs",
     name: "FAQs",
   },
 ];
@@ -136,4 +134,5 @@ export {
   initialRegisterState,
   aboutUsValues,
   processSteps,
+  faqs,
 };
