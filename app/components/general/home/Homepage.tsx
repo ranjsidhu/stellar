@@ -1,21 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import { Jobs, Search } from "@/app/components";
 import { useFetchJobs } from "@/app/hooks";
 import "./homepage.css";
 
 export default function Homepage() {
-  useEffect(() => {
-    const testFetch = async () => {
-      const response = await fetch("/api/status");
-      const data = await response.json();
-      console.log(data);
-    };
-
-    testFetch();
-  }, []);
-  // useFetchJobs();
+  useFetchJobs();
 
   return (
     <div className="homepage-wrapper">
