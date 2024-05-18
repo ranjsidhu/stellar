@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <Analytics /> */}
+      <Analytics />
       <StoreProvider>
         <body className={inter.className}>
           <AntdRegistry>
