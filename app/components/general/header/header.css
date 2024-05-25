@@ -37,12 +37,20 @@
 }
 
 .header-navigation {
-  height: 60%;
+  height: 100%;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-buttons {
+  height: 112px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -54,7 +62,6 @@
   border-radius: 25px;
   box-shadow: 0px 1px 10px -3px #000;
   font-size: 0.9rem;
-  margin: 0 1rem 3rem 0;
 }
 
 .header-button:hover {
@@ -127,6 +134,65 @@
 .fa-envelope:hover {
   background: #00150f;
   color: gold;
+}
+
+@media screen and (max-width: 768px) {
+  .header-wrapper {
+    width: 100vw;
+    height: 100px;
+    padding: 0px 24px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00150f;
+    z-index: 2;
+  }
+
+  .header-navigation {
+    display: none;
+  }
+
+  .header-logo {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .header-logo-image {
+    width: auto;
+    height: 80%;
+    aspect-ratio: auto;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .header-hamburger {
+    display: block;
+  }
+
+  /* Hamburger styling */
+  .hamburger-container {
+    display: inline-flex;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .hamburger-bar {
+    width: 40px;
+    height: 4px;
+    background: gold;
+  }
+
+  .header-socials {
+    width: 100vw;
+  }
 }
 
 @media screen and (max-width: 430px) {

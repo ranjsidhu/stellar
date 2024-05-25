@@ -8,6 +8,8 @@ import Login from "./login/Login";
 import Navbar from "./general/navbar/Navbar";
 import Register from "./register/Register";
 import Search from "./general/search/Search";
+import NavButton from "./general/navbar/NavButton";
+import HeaderButtons from "./general/header/HeaderButtons";
 
 export {
   Header,
@@ -20,4 +22,6 @@ export {
   Footer,
   Loading,
   Hamburger,
+  NavButton,
+  HeaderButtons,
 };

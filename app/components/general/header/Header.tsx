@@ -1,10 +1,9 @@
 import "./header.css";
 
-import { Hamburger, Navbar } from "@/app/components";
-
-import { DARK } from "@/app/assets";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { DARK } from "@/app/assets";
+import { Hamburger, Navbar, HeaderButtons } from "@/app/components";
 
 export default function Header() {
   const router = useRouter();
@@ -25,38 +24,10 @@ export default function Header() {
           />
         </div>
         <div className="header-navigation">
-          <div className="header-buttons">
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/register");
-              }}
-            >
-              Register{" "}
-            </a>
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/login?type=client");
-              }}
-            >
-              Client Login
-            </a>
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/login?type=candidate");
-              }}
-            >
-              Candidate Login
-            </a>
-            <a className="header-button">Call: 0123 456 789</a>
-          </div>
+          <HeaderButtons />
           <Navbar />
         </div>
-        <div className="header-hamburger">
-          <Hamburger />
-        </div>
+        <Hamburger />
       </header>
     </>
   );
