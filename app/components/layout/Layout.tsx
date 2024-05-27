@@ -1,6 +1,7 @@
 "use client";
 
 import "./layout.css";
+import "./socials.css";
 
 import { Footer, Header, Loading } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
