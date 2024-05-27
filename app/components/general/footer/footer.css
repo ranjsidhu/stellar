@@ -1,3 +1,13 @@
+.layout-footer {
+  margin-top: auto;
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer {
   background-color: #00150f;
   color: white;
@@ -39,6 +49,14 @@
 }
 
 @media (max-width: 923px) {
+  .layout-footer {
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+    top: 0;
+    overflow-y: scroll;
+  }
+
   .footer {
     background-color: #00150f;
     color: white;

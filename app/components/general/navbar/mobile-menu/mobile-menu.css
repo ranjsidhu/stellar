@@ -4,10 +4,10 @@
   background-color: #00150f;
   color: white;
   min-height: 100vh;
-  margin-top: 40px;
 }
 
 .mobile-navbar-container {
+  margin-top: 40px;
   width: 100vw;
 }
 

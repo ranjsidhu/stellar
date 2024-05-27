@@ -1,47 +1,60 @@
 "use client";
 
-import { useState } from "react";
-import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { DARK } from "@/app/assets";
-import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
+import { Hamburger, Navbar, HeaderButtons } from "@/app/components";
 import "./header.css";
+import "./socials.css";
 
-export default function Header() {
+type HeaderProps = {
+  isMobileMenuOpen: boolean;
+  setIsMobileMenuOpen: (value: boolean) => void;
+};
+
+export default function Header({
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+}: HeaderProps) {
+  const pathname = usePathname();
   const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const validPaths = ["/login", "/register"];
+  const isValidPathname = validPaths.includes(pathname);
 
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-      </Head>
+      {!isValidPathname && (
+        <div className="header">
+          <header className="header-wrapper">
+            <div className="header-logo">
+              <Image
+                src={DARK}
+                alt="logo"
+                className="header-logo-image"
+                onClick={() => router.push("/")}
+                priority
+              />
+            </div>
+            <div className="header-navigation">
+              <HeaderButtons />
+              <Navbar />
+            </div>
+            <Hamburger
+              isMobileMenuOpen={isMobileMenuOpen}
+              setIsMobileMenuOpen={setIsMobileMenuOpen}
+            />
+          </header>
+        </div>
+      )}
 
-      <header className="header-wrapper">
-        <div className="header-logo">
-          <Image
-            src={DARK}
-            alt="logo"
-            className="header-logo-image"
-            onClick={() => router.push("/")}
-            priority
-          />
+      {!isValidPathname && !isMobileMenuOpen && (
+        <div className="header-socials">
+          <a href="#" target="_blank" className="fa fa-facebook"></a>
+          <a href="#" target="_blank" className="fa fa-instagram"></a>
+          <a href="#" target="_blank" className="fa fa-linkedin"></a>
+          <a href="#" target="_blank" className="fa fa-envelope"></a>
         </div>
-        <div className="header-navigation">
-          <HeaderButtons />
-          <Navbar />
-        </div>
-        <Hamburger
-          isMobileMenuOpen={isMobileMenuOpen}
-          setIsMobileMenuOpen={setIsMobileMenuOpen}
-        />
-      </header>
-      {isMobileMenuOpen && (
-        <MobileMenu setIsMobileMenuOpen={setIsMobileMenuOpen} />
       )}
     </>
   );
