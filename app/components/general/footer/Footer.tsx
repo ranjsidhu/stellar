@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./footer.css";
 
 import { routes } from "@/app/constants";
@@ -14,9 +15,9 @@ export default function Footer() {
           <div className="footer-flex-1">
             <div className="footer-links">
               {routes.map((route, index: number) => (
-                <div key={index}>
-                  <a href={route.route}>{route.name}</a>
-                </div>
+                <Link key={index} href={route.route} className="footer-link">
+                  {route.name}
+                </Link>
               ))}
             </div>
             <div className="footer-socials">

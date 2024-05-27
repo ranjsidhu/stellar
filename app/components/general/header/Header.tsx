@@ -1,19 +1,26 @@
-import "./header.css";
+"use client";
 
-import { Hamburger, Navbar } from "@/app/components";
-
-import { DARK } from "@/app/assets";
-import Image from "next/image";
+import { useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { DARK } from "@/app/assets";
+import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
+import "./header.css";
 
 export default function Header() {
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      />
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+      </Head>
+
       <header className="header-wrapper">
         <div className="header-logo">
           <Image
@@ -25,39 +32,17 @@ export default function Header() {
           />
         </div>
         <div className="header-navigation">
-          <div className="header-buttons">
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/register");
-              }}
-            >
-              Register{" "}
-            </a>
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/login?type=client");
-              }}
-            >
-              Client Login
-            </a>
-            <a
-              className="header-button"
-              onClick={() => {
-                router.push("/login?type=candidate");
-              }}
-            >
-              Candidate Login
-            </a>
-            <a className="header-button">Call: 0123 456 789</a>
-          </div>
+          <HeaderButtons />
           <Navbar />
         </div>
-        <div className="header-hamburger">
-          <Hamburger />
-        </div>
+        <Hamburger
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
       </header>
+      {isMobileMenuOpen && (
+        <MobileMenu setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      )}
     </>
   );
 }
