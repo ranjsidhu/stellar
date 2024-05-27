@@ -5,7 +5,7 @@ import { routes } from "@/app/constants";
 
 export default function Footer() {
   return (
-    <>
+    <div className="layout-footer">
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -41,6 +41,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

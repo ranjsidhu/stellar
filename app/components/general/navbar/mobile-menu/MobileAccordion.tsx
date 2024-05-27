@@ -21,18 +21,17 @@ export default function MobileAccordion({
 }: AccordionProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
-  const isExpanded = isActive ? "accordion-title-expanded" : "";
 
   const RenderIcon = () => {
     if (subRoutes) {
       return (
-        <div>
+        <>
           {isActive && subRoutes ? (
             <CaretUpIcon className="accordion-caret" />
           ) : (
             <CaretDownIcon className="accordion-caret" />
           )}
-        </div>
+        </>
       );
     }
     return <></>;
