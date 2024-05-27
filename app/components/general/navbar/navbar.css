@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   color: white;
+  height: 88px;
 }
 
 .nav-wrapper li {
@@ -12,6 +13,7 @@
 }
 
 .navbar-ul {
+  height: 100%;
   display: flex;
   gap: 2rem;
   align-items: center;
@@ -23,46 +25,52 @@
   }
 }
 
+.navbar-route {
+  height: 100%;
+  background: transparent;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border: 0;
+  position: relative;
+}
+
 .navbar-route:hover {
   cursor: pointer;
+  color: gold;
 }
 
 .navbar-route-active {
   color: gold;
 }
 
-.navbar-sub {
-  background-color: #00150f;
-  margin-top: 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 1px 10px -3px gold;
-  border: 1px solid gold;
-  left: 0;
-  opacity: 0;
+.nav-button-subroutes {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  padding: 1rem;
-  visibility: hidden;
-  z-index: 2;
+  top: 77px;
+  right: 0;
+  left: 0;
+  background-color: #00150f;
+  width: 150px;
 
-  li:hover {
+  .nav-button-subroute {
+    background-color: #00150f;
+    box-shadow: 0px 1px 10px -3px gold;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 27px;
+    text-align: left;
+  }
+
+  .nav-button-subroute:hover {
     cursor: pointer;
-    text-decoration: underline gold;
+    color: gold;
+    text-decoration: gold underline;
   }
 }
-
-li:hover ul.navbar-sub {
-  opacity: 1;
-  visibility: visible;
-  margin-top: 0.5rem;
-}
-
-.navbar-sub li {
-  float: none;
-  width: 100%;
-}
-
-/* @media (max-width: 1480px) {
-  .header-nav ul {
-    display: none;
-  }
-} */

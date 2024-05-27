@@ -9,7 +9,7 @@ export default function Homepage() {
 
   return (
     <div className="homepage-wrapper">
-      <div className="homepage-images">
+      <div className="homepage-hero-container">
         <div className="homepage-hero">
           <em className="homepage-hero-title">
             &quot;Connecting talent with opportunity&quot;

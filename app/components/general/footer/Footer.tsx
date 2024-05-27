@@ -1,10 +1,11 @@
+import Link from "next/link";
 import "./footer.css";
 
 import { routes } from "@/app/constants";
 
 export default function Footer() {
   return (
-    <>
+    <div className="layout-footer">
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,9 +15,9 @@ export default function Footer() {
           <div className="footer-flex-1">
             <div className="footer-links">
               {routes.map((route, index: number) => (
-                <div key={index}>
-                  <a href={route.route}>{route.name}</a>
-                </div>
+                <Link key={index} href={route.route} className="footer-link">
+                  {route.name}
+                </Link>
               ))}
             </div>
             <div className="footer-socials">
@@ -40,6 +41,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,64 @@
+.mobile-menu {
+  display: flex;
+  width: 100vw;
+  background-color: #00150f;
+  color: white;
+  min-height: 100vh;
+}
+
+.mobile-navbar-container {
+  margin-top: 40px;
+  width: 100vw;
+}
+
+.accordion-title {
+  width: auto;
+  height: 55px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  background-color: #00150f;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  border-top: 1px solid rgba(255, 215, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.accordion-content {
+  padding: 0 24px;
+  font-size: 18px;
+}
+
+.accordion-caret {
+  width: 24px;
+  height: 24px;
+}
+
+.accordion-dropdown-button {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 1025px) {
+  .accordion-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    padding: 0 24px;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .accordion-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    padding: 0 24px;
+    color: white;
+  }
+}
