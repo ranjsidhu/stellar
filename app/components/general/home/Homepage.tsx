@@ -6,20 +6,20 @@ import { useFetchJobs } from "@/app/hooks";
 import "./homepage.css";
 
 export default function Homepage() {
-  useEffect(() => {
-    const testFetch = async () => {
-      const response = await fetch("/api/status");
-      const data = await response.json();
-      console.log(data);
-    };
+  // useEffect(() => {
+  //   const testFetch = async () => {
+  //     const response = await fetch("/api/jobs");
+  //     const data = await response.json();
+  //     console.log(data);
+  //   };
 
-    testFetch();
-  }, []);
+  //   testFetch();
+  // }, []);
   // useFetchJobs();
 
   return (
     <div className="homepage-wrapper">
-      <div className="homepage-images">
+      <div className="homepage-hero-container">
         <div className="homepage-hero">
           <em className="homepage-hero-title">
             &quot;Connecting talent with opportunity&quot;
