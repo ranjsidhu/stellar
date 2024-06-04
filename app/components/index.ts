@@ -11,6 +11,7 @@ import Search from "./general/search/Search";
 import NavButton from "./general/navbar/NavButton";
 import HeaderButtons from "./general/header/HeaderButtons";
 import MobileMenu from "./general/navbar/mobile-menu/MobileMenu";
+import SectionLoading from "./general/loading/SectionLoading";
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   NavButton,
   HeaderButtons,
   MobileMenu,
+  SectionLoading,
 };
