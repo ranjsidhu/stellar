@@ -23,7 +23,7 @@ const Step = ({ title, index, description }: StepProps) => {
 
 export default function TheProcess() {
   return (
-    <section>
+    <section className="process-section">
       <div className="process-hero">
         <h2>Application and interview process</h2>
       </div>

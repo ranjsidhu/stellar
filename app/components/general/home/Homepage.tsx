@@ -1,12 +1,7 @@
-"use client";
-
 import { Jobs, Search } from "@/app/components";
-import { useFetchJobs } from "@/app/hooks";
 import "./homepage.css";
 
 export default function Homepage() {
-  useFetchJobs();
-
   return (
     <div className="homepage-wrapper">
       <div className="homepage-hero-container">
