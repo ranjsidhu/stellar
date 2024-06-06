@@ -1,33 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Spin } from "antd";
+import { useFetch } from "@/app/hooks";
 import { Job } from "@/app/types";
 import { SectionLoading } from "@/app/components";
 import "./jobs.css";
 
 export default function Jobs() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [jobs, setJobs] = useState<Job[]>([]);
-
-  useEffect(() => {
-    const getJobs = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("/api/jobs/5");
-        const data: { response: Job[]; message: string } =
-          await response.json();
-        setJobs(data.response);
-      } catch (error) {
-        return;
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getJobs();
-  }, []);
+  const { isLoading, data: jobs } = useFetch<Job>("/jobs/5");
 
   return (
     <div className="jobs-container-wrapper">

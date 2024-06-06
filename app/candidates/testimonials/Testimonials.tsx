@@ -1,30 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { SectionLoading } from "@/app/components";
 import { Testimonial } from "@/app/types";
+import { useFetch } from "@/app/hooks";
 import "./testimonials.css";
 
 export default function Testimonials() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-
-  useEffect(() => {
-    const getJobs = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("/api/testimonials/5");
-        const data: { response: Testimonial[]; message: string } =
-          await response.json();
-        setTestimonials(data.response);
-      } catch (error) {
-        return;
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getJobs();
-  }, []);
+  const { isLoading, data: testimonials } =
+    useFetch<Testimonial>("/testimonials/5");
 
   return (
     <div className="testimonials-list-wrapper">
