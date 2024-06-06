@@ -51,12 +51,3 @@
     transform: rotate(360deg);
   }
 }
-
-.section-loading-spinner:where(.css-dev-only-do-not-override-1kuana8).ant-spin
-  .ant-spin-dot-item {
-  background-color: gold;
-}
-
-.section-loading-spinner:where(.css-dev-only-do-not-override-1kuana8).ant-spin {
-  color: #00150f;
-}

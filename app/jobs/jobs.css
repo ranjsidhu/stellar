@@ -1,0 +1,31 @@
+.jobs-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: auto;
+}
+
+.jobs-filters-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 100px;
+}
+
+.jobs-grid {
+  /* 2 column grid */
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  place-items: flex-end;
+  align-self: flex-end;
+}
+
+.jobs-pagination {
+  margin: 100px 0;
+}

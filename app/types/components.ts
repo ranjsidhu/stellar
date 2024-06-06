@@ -19,4 +19,13 @@ type Testimonial = {
   is_deleted: boolean;
 };
 
-export { type Job, type Testimonial };
+type JobLocation = {
+  location: string;
+  location_count: number;
+};
+
+type JobProps = {
+  job: Job;
+};
+
+export { type Job, type Testimonial, type JobLocation, type JobProps };
