@@ -1,6 +1,7 @@
 const pluralise = (count: number, noun: string) =>
   `${count} ${noun}${count !== 1 ? "s" : ""}`;
 
+// Convert the date to hours, days, or months
 const calculateHours = (created_at: Date) => {
   const diffInHours =
     Math.abs(new Date().getTime() - new Date(created_at).getTime()) /
