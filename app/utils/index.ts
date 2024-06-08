@@ -22,4 +22,4 @@ const calculateHours = (created_at: Date) => {
   }
 };
 
-export { calculateHours };
+export { calculateHours, pluralise };

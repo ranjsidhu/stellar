@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { client } from "../../utils/db-client";
 
 export async function GET() {

@@ -2,17 +2,22 @@
 
 import { useState, useEffect } from "react";
 import { Pagination, PaginationProps } from "antd";
+import { CircularProgress } from "@mui/material";
 import { useFetch } from "@/app/hooks";
-import { JobLocation, Job } from "../types";
-import { SectionLoading, JobCard } from "../components";
+import { Job } from "../types";
+import { JobCard } from "../components";
+import Filters from "./Filters";
 import "./jobs.css";
 
 export default function Jobs() {
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const { isLoading, data: locations } =
-    useFetch<JobLocation>("/jobs/locations");
-  const { data: jobs } = useFetch<Job>("/jobs/1");
+  const [displayJobs, setDisplayJobs] = useState<Job[]>([]);
+  const { isLoading, data: jobs } = useFetch<Job>("/jobs/1");
+
+  useEffect(() => {
+    setDisplayJobs(jobs);
+  }, [jobs]);
 
   useEffect(() => {
     const getCount = async () => {
@@ -30,14 +35,13 @@ export default function Jobs() {
   return (
     <div className="jobs-wrapper">
       <div className="jobs-filters-grid">
-        <div className="jobs-filters"></div>
-        <SectionLoading loading={isLoading}>
-          <div className="jobs-grid">
-            {jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))}
-          </div>
-        </SectionLoading>
+        <Filters setDisplayJobs={setDisplayJobs} />
+        <p>Found {displayJobs.length} jobs</p>
+        <div className="jobs-grid">
+          {isLoading && <CircularProgress />}
+          {!isLoading &&
+            displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
+        </div>
       </div>
 
       <div className="jobs-pagination">
