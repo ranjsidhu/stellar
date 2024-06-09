@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { CircularProgress } from "@mui/material";
 import { useFetch } from "@/app/hooks";
 import { Job } from "../types";
-import { JobCard } from "../components";
+import { JobCard, Loading } from "../components";
 import Filters from "./Filters";
 import "./jobs.css";
 
@@ -35,26 +35,28 @@ export default function Jobs() {
   };
 
   return (
-    <div className="jobs-wrapper">
-      <div className="jobs-filters-grid">
-        <Filters setDisplayJobs={setDisplayJobs} />
-        <p>Found {displayJobs.length} jobs</p>
-        <div className="jobs-grid">
-          {isLoading && <CircularProgress />}
-          {!isLoading &&
-            displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
+    <Suspense fallback={<CircularProgress />}>
+      <div className="jobs-wrapper">
+        <div className="jobs-filters-grid">
+          <Filters setDisplayJobs={setDisplayJobs} />
+          <p>Found {displayJobs.length} jobs</p>
+          <div className="jobs-grid">
+            {isLoading && <CircularProgress />}
+            {!isLoading &&
+              displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
+          </div>
+        </div>
+
+        <div className="jobs-pagination">
+          <Pagination
+            showSizeChanger={false}
+            defaultCurrent={1}
+            current={currentPage}
+            onChange={useOnPaginationChange}
+            total={total}
+          />
         </div>
       </div>
-
-      <div className="jobs-pagination">
-        <Pagination
-          showSizeChanger={false}
-          defaultCurrent={1}
-          current={currentPage}
-          onChange={useOnPaginationChange}
-          total={total}
-        />
-      </div>
-    </div>
+    </Suspense>
   );
 }
