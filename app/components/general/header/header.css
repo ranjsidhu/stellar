@@ -16,7 +16,6 @@
   justify-content: space-between;
   align-items: center;
   background-color: #00150f;
-  z-index: 2;
 }
 
 .header-logo {
@@ -107,7 +106,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2;
   }
 
   .header-navigation {

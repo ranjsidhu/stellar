@@ -11,7 +11,7 @@
     url("../assets/stock/aboutus.jpg") no-repeat center center/cover;
   transition: opacity 0.5s ease;
   animation: fadeIn 1s ease-in;
-  z-index: 0;
+
   color: white;
   font-size: 2.5em;
   font-weight: bold;
