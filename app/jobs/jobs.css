@@ -40,3 +40,27 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 968px) {
+  .jobs-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 877px) {
+  .jobs-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .jobs-pagination {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+}

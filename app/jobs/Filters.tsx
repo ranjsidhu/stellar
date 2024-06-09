@@ -15,12 +15,21 @@ export default function Filters({ setDisplayJobs }: FiltersProps) {
   const { data: locations } = useFetch<JobLocation>("/jobs/locations");
 
   const getJobsByLocation = async (location: string) => {
-    await fetch(`/api/jobs/locations/${location}`).then((data) =>
-      data.json().then((res) => setDisplayJobs(res.response))
-    );
+    if (!location) {
+      resetFilters();
+    } else {
+      await fetch(`/api/jobs/locations/${location}`).then((data) =>
+        data.json().then((res) => setDisplayJobs(res.response))
+      );
+    }
   };
 
-  const searchJobs = async (query: string) => {
+  const searchJobs = async ({
+    target,
+  }: {
+    target: EventTarget & HTMLInputElement;
+  }) => {
+    const query = target.value;
     if (query.length === 0) {
       resetFilters();
     } else if (query.length >= 3) {
@@ -62,9 +71,7 @@ export default function Filters({ setDisplayJobs }: FiltersProps) {
       <Search
         allowClear
         placeholder="Birmingham, £100, Maths etc."
-        onChange={({ target }) => {
-          searchJobs(target.value);
-        }}
+        onChange={searchJobs}
         loading={searchLoading}
       />
     </div>

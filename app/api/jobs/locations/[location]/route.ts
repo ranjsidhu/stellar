@@ -13,7 +13,8 @@ export async function GET(
     const { data, error } = await client
       .from("jobs")
       .select()
-      .eq("location", location);
+      .eq("location", location)
+      .order("created_at", { ascending: false });
     if (error) {
       throw new Error(error.message);
     }

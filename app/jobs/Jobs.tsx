@@ -28,7 +28,9 @@ export default function Jobs() {
     getCount();
   }, []);
 
-  const onPaginationChange: PaginationProps["onChange"] = (page) => {
+  const useOnPaginationChange: PaginationProps["onChange"] = async (page) => {
+    const { data: jobs } = useFetch<Job>(`/jobs/${page}`);
+    setDisplayJobs(jobs);
     setCurrentPage(page);
   };
 
@@ -49,7 +51,7 @@ export default function Jobs() {
           showSizeChanger={false}
           defaultCurrent={1}
           current={currentPage}
-          onChange={onPaginationChange}
+          onChange={useOnPaginationChange}
           total={total}
         />
       </div>
