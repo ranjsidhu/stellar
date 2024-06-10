@@ -42,12 +42,15 @@ export default function JobDetails() {
             >
               Reference number: {jobDetails.reference_number}
             </Paragraph>
+
             <Paragraph className="job-location job-details-text">
               <DrawingPinIcon className="job-location-icon" />{" "}
               {jobDetails.location} |{"  "}
               <strong>{jobDetails.salary_range}</strong>
             </Paragraph>
+
             <br />
+
             <Title level={3}>Job description</Title>
             <Paragraph className="job-details-text">
               <Markdown>{jobDetails.description}</Markdown>
