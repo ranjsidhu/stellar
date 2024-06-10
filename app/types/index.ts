@@ -7,7 +7,7 @@ import {
   UpsertParams,
 } from "./db";
 
-import { Job, Testimonial } from "./components";
+import { Job, Testimonial, JobLocation, JobProps } from "./components";
 
 import { JobRequest } from "./requests";
 
@@ -21,4 +21,6 @@ export {
   type Job,
   type Testimonial,
   type JobRequest,
+  type JobLocation,
+  type JobProps,
 };

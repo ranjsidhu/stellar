@@ -1,3 +1,5 @@
-export default function Jobs() {
-  return <p>JOBS</p>;
+import Jobs from "./Jobs";
+
+export default function JobsPage() {
+  return <Jobs />;
 }
