@@ -26,8 +26,7 @@ export default function LatestJobs() {
                 key={job.id}
                 className="latest-job-card"
                 onClick={() => {
-                  // TODO: define function or route to job details page, add id to URL, parse on details page
-                  router.push(`/jobs?id=${job.id}`);
+                  router.push(`/job?reference=${job.reference_number}`);
                 }}
               >
                 <h3 className="latest-job-role-name">{job.role_name}</h3>

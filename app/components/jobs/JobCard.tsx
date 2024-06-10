@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { DrawingPinIcon } from "@radix-ui/react-icons";
 import { JobProps } from "@/app/types";
 import { calculateHours } from "@/app/utils";
+import Markdown from "markdown-to-jsx";
 import "./jobs-components.css";
 
 export default function JobCard({ job }: JobProps) {
@@ -23,7 +24,9 @@ export default function JobCard({ job }: JobProps) {
       </p>
 
       <div className="job-footer-wrapper">
-        <p className="job-description">{job.description}</p>
+        <p className="job-description">
+          <Markdown>{job.description}</Markdown>
+        </p>
       </div>
     </div>
   );
