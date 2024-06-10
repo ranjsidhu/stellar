@@ -1,4 +1,4 @@
-import { Jobs, Search } from "@/app/components";
+import { LatestJobs, Search } from "@/app/components";
 import "./homepage.css";
 
 export default function Homepage() {
@@ -24,7 +24,7 @@ export default function Homepage() {
         </h2>
       </div>
       <div className="homepage-divider-image" />
-      <Jobs />
+      <LatestJobs />
     </div>
   );
 }

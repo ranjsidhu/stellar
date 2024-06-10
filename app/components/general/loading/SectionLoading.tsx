@@ -1,5 +1,4 @@
 import { Spin } from "antd";
-import "./loading.css";
 
 type SectionLoadingProps = { loading: boolean; children: React.ReactNode };
 
@@ -8,12 +7,7 @@ export default function SectionLoading({
   children,
 }: SectionLoadingProps) {
   return (
-    <Spin
-      tip="loading"
-      spinning={loading}
-      size="large"
-      className="section-loading-spinner"
-    >
+    <Spin tip="loading" spinning={loading} size="large">
       {children}
     </Spin>
   );

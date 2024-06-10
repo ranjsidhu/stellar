@@ -1,11 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { SearchProps } from "@/app/constants/types.index";
 import "./search.css";
 
 export default function Search({ source }: SearchProps) {
+  const router = useRouter();
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const keydown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        router.push(`/jobs?search=${search}`);
+      }
+    };
+
+    document.addEventListener("keydown", keydown);
+  }, [router, search]);
 
   let placeholder = "";
   switch (source) {
@@ -31,7 +43,7 @@ export default function Search({ source }: SearchProps) {
         />
         <i
           className="fa fa-search search-icon"
-          onClick={() => console.log(search)}
+          onClick={() => router.push(`/jobs?search=${search}`)}
         />
       </div>
     </div>

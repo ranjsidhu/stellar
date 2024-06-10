@@ -1,11 +1,11 @@
-.jobs-container-wrapper {
+.latest-jobs-container-wrapper {
   display: flex;
   flex-direction: column;
   width: 95vw;
   max-width: 1440px;
 }
 
-.jobs-wrapper-title {
+.latest-jobs-wrapper-title {
   width: 100%;
   color: #00150f;
   margin: 4% 0;
@@ -13,11 +13,11 @@
   text-transform: uppercase;
 }
 
-.jobs-wrapper-title:hover {
+.latest-jobs-wrapper-title:hover {
   cursor: pointer;
 }
 
-.jobs-wrapper {
+.latest-jobs-wrapper {
   display: flex;
   gap: 5%;
   width: 100%;
@@ -25,7 +25,7 @@
   margin-bottom: 2vh;
 }
 
-.job-card {
+.latest-job-card {
   width: 15%;
   height: 70%;
   display: flex;
@@ -38,31 +38,31 @@
   transition: background-color 0.5s ease;
 }
 
-.job-card:hover {
+.latest-job-card:hover {
   cursor: pointer;
   background-color: #00150f;
   transition: background-color 0.5s ease;
   box-shadow: 0 0 10px 0 gold;
   color: white;
 
-  .job-hr {
+  .latest-job-hr {
     border-color: gold;
     width: 70%;
     margin: 15px 0;
   }
 }
 
-.job-role-name {
+.latest-job-role-name {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: auto;
 }
 
-.job-footer-wrapper {
+.latest-job-footer-wrapper {
   margin-top: auto;
 }
 
-.job-description {
+.latest-job-description {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -70,20 +70,20 @@
   text-overflow: ellipsis;
 }
 
-.job-hr {
+.latest-job-hr {
   border-color: #00150f;
   width: 70%;
   margin: 15px 0;
 }
 
 @media screen and (max-width: 430px) {
-  .jobs-container-wrapper {
+  .latest-jobs-container-wrapper {
     display: flex;
     flex-direction: column;
     width: 95vw;
   }
 
-  .jobs-wrapper {
+  .latest-jobs-wrapper {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -93,7 +93,7 @@
     margin-bottom: 5vh;
   }
 
-  .jobs-wrapper-title {
+  .latest-jobs-wrapper-title {
     width: 90vw;
     color: #00150f;
     margin: 4% 6%;
@@ -101,7 +101,7 @@
     text-transform: uppercase;
   }
 
-  .job-card {
+  .latest-job-card {
     width: 100%;
     height: 70%;
     display: flex;

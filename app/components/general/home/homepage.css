@@ -27,7 +27,6 @@
     url("../../../assets/stock/stock2.jpg") no-repeat center center/cover;
   transition: opacity 0.5s ease;
   animation: fadeIn 1s ease-in;
-  z-index: 0;
 }
 
 .homepage-hero {
@@ -38,7 +37,6 @@
   animation: fadeIn 1s ease-in;
   color: white;
   margin-top: 4vh;
-  z-index: 1;
   max-width: 1440px;
 }
 
@@ -91,7 +89,6 @@
     center/cover;
   transition: opacity 0.5s ease;
   animation: fadeIn 1s ease-in;
-  z-index: 0;
 }
 
 @media screen and (max-width: 430px) {
@@ -104,7 +101,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: #00150f;
-    z-index: 2;
   }
 
   .header-navigation {
@@ -154,6 +150,5 @@
       center/cover;
     transition: opacity 0.5s ease;
     animation: fadeIn 1s ease-in;
-    z-index: 0;
   }
 }
