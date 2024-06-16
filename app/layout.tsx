@@ -7,7 +7,6 @@ import Analytics from "./Analytics";
 import StoreProvider from "./StoreProvider";
 import { Layout } from "./components";
 import { getRole } from "./utils/supabase/server";
-import { UserProvider } from "./components/layout/UserProvider";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
@@ -49,9 +48,7 @@ export default async function RootLayout({
             }}
           >
             <AntdRegistry>
-              <UserProvider initialRole={initialRole}>
-                <Layout role={initialRole}>{children}</Layout>
-              </UserProvider>
+              <Layout role={initialRole}>{children}</Layout>
             </AntdRegistry>
           </ConfigProvider>
         </body>
