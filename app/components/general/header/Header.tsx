@@ -10,7 +10,7 @@ import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
 import "./header.css";
 import "./socials.css";
 
-export default function Header({ role }: { role: string | undefined }) {
+export default function Header({ role }: { role: string | undefined | null }) {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useAppDispatch();

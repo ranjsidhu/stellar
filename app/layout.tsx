@@ -6,7 +6,8 @@ import { ConfigProvider } from "antd";
 import Analytics from "./Analytics";
 import StoreProvider from "./StoreProvider";
 import { Layout } from "./components";
-import { createClient } from "./utils/supabase/server";
+import { getRole } from "./utils/supabase/server";
+import { UserProvider } from "./components/layout/UserProvider";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
@@ -28,17 +29,12 @@ export const metadata: Metadata = {
   },
 };
 
-const supabase = createClient();
-
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const role = user?.role;
+  const initialRole = await getRole();
 
   return (
     <html lang="en">
@@ -53,7 +49,9 @@ export default async function RootLayout({
             }}
           >
             <AntdRegistry>
-              <Layout role={role}>{children}</Layout>
+              <UserProvider initialRole={initialRole}>
+                <Layout role={initialRole}>{children}</Layout>
+              </UserProvider>
             </AntdRegistry>
           </ConfigProvider>
         </body>

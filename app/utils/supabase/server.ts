@@ -22,3 +22,11 @@ export function createClient() {
     }
   );
 }
+
+export async function getRole() {
+  const client = createClient();
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+  return user?.role || null;
+}

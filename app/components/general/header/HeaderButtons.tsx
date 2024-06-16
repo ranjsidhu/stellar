@@ -2,7 +2,11 @@ import { useAppDispatch } from "@/lib/hooks";
 import { clearSession, setAuthenticated } from "@/lib/features/Auth";
 import Link from "next/link";
 
-export default function HeaderButtons({ role }: { role: string | undefined }) {
+export default function HeaderButtons({
+  role,
+}: {
+  role: string | undefined | null;
+}) {
   const dispatch = useAppDispatch();
 
   const signOut = async () => {

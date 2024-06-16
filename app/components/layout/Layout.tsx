@@ -6,7 +6,7 @@ export default async function Layout({
   role,
 }: {
   children: React.ReactNode;
-  role: string | undefined;
+  role: string | undefined | null;
 }) {
   return (
     <div className="container">
