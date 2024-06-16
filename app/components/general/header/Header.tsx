@@ -1,26 +1,34 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import { useAppDispatch } from "@/lib/hooks";
+import { setAuthenticated } from "@/lib/features/Auth";
 import { DARK } from "@/app/assets";
-import { Hamburger, Navbar, HeaderButtons } from "@/app/components";
+import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
 import "./header.css";
 import "./socials.css";
 
-type HeaderProps = {
-  isMobileMenuOpen: boolean;
-  setIsMobileMenuOpen: (value: boolean) => void;
-};
-
-export default function Header({
-  isMobileMenuOpen,
-  setIsMobileMenuOpen,
-}: HeaderProps) {
+export default function Header({ role }: { role: string | undefined | null }) {
   const pathname = usePathname();
   const router = useRouter();
-
+  const dispatch = useAppDispatch();
   const validPaths = ["/login", "/register"];
   const isValidPathname = validPaths.includes(pathname);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  useEffect(() => {
+    if (role === "authenticated") {
+      dispatch(setAuthenticated(true));
+    }
+
+    // TODO - add error handling for if user is not authenticated
+    // else {
+    //   router.push("/login?authenticated=false");
+    // }
+  }, [dispatch, role, router]);
 
   return (
     <>
@@ -37,13 +45,10 @@ export default function Header({
               />
             </div>
             <div className="header-navigation">
-              <HeaderButtons />
+              <HeaderButtons role={role} />
               <Navbar />
             </div>
-            <Hamburger
-              isMobileMenuOpen={isMobileMenuOpen}
-              setIsMobileMenuOpen={setIsMobileMenuOpen}
-            />
+            <Hamburger isMobile={isMobileMenuOpen} toggleMenu={toggleMenu} />
           </header>
         </div>
       )}
@@ -56,6 +61,8 @@ export default function Header({
           <a href="#" target="_blank" className="fa fa-envelope"></a>
         </div>
       )}
+
+      {isMobileMenuOpen && <MobileMenu toggleMenu={toggleMenu} />}
     </>
   );
 }

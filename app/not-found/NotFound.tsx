@@ -1,6 +1,3 @@
-"use client";
-
-import Layout from "../components/layout/Layout";
 import "./not-found.css";
 
 export default function NotFound() {

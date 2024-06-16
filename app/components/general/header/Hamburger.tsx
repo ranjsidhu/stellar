@@ -1,19 +1,16 @@
 import "./header.css";
 
 export default function Hamburger({
-  isMobileMenuOpen,
-  setIsMobileMenuOpen,
+  isMobile,
+  toggleMenu,
 }: {
-  isMobileMenuOpen: boolean;
-  setIsMobileMenuOpen: (value: boolean) => void;
+  isMobile: boolean;
+  toggleMenu: () => void;
 }) {
-  const isOpen = isMobileMenuOpen ? "open" : "";
+  const isOpen = isMobile ? "open" : "";
 
   return (
-    <div
-      className="hamburger-container"
-      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-    >
+    <div className="hamburger-container" onClick={toggleMenu}>
       <div className={`hamburger-bar ${isOpen}`} />
       <div className={`hamburger-bar ${isOpen}`} />
       <div className={`hamburger-bar ${isOpen}`} />

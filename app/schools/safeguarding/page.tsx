@@ -1,6 +1,6 @@
 import "./safeguarding.css";
 
-export default function SafeGuardingPage() {
+export default function SafeguardingPage() {
   return (
     <section>
       <div className="safeguarding-hero">

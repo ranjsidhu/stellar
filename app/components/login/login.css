@@ -6,11 +6,12 @@
   justify-content: center;
   align-items: center;
 }
+
 .login-image {
-  height: auto;
-  width: 50%;
+  height: 20%;
+  width: auto;
   aspect-ratio: auto;
-  margin-bottom: auto;
+  margin-bottom: 200px;
 }
 
 .login-image:hover {
@@ -31,7 +32,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2vh;
   width: 100%;
 }
 
@@ -42,12 +42,14 @@
   margin-bottom: auto;
 }
 
-.login-form-submit {
-  .ant-btn-primary {
-    background-color: #00150f;
-  }
-  .ant-btn-primary:hover {
-    background-color: #00150f !important;
-    color: gold !important;
+.login-form-text-input {
+  width: 300px !important;
+  padding: 1rem !important;
+}
+
+@media screen and (max-width: 320px) {
+  .login-form-text-input {
+    width: 200px !important;
+    padding: 1rem !important;
   }
 }
