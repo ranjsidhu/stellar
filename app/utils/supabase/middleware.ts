@@ -8,7 +8,7 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const supabase = createServerClient(
+  createServerClient(
     process.env.NEXT_PUBLIC_DB_URL!,
     process.env.NEXT_PUBLIC_DB_API_ANON_KEY!,
     {
@@ -46,6 +46,5 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  await supabase.auth.getUser();
   return response;
 }

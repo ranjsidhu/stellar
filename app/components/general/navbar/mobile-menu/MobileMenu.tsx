@@ -2,11 +2,7 @@ import { routes } from "@/app/constants";
 import MobileAccordion from "./MobileAccordion";
 import "./mobile-menu.css";
 
-export default function MobileMenu({
-  setIsMobileMenuOpen,
-}: {
-  setIsMobileMenuOpen: (value: boolean) => void;
-}) {
+export default function MobileMenu({ toggleMenu }: { toggleMenu: () => void }) {
   return (
     <div className="mobile-menu">
       <nav className="mobile-navbar-container">
@@ -16,7 +12,7 @@ export default function MobileMenu({
             name={route.name}
             route={route.route}
             subRoutes={route.subRoutes}
-            setIsMobileMenuOpen={setIsMobileMenuOpen}
+            toggleMenu={toggleMenu}
           />
         ))}
       </nav>

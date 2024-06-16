@@ -1,26 +1,18 @@
-"use client";
-
-import { useState } from "react";
-import { Footer, Header, Loading, MobileMenu } from "../../components";
+import { Footer, Header } from "../../components";
 import "./layout.css";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
+export default async function Layout({
+  children,
+  role,
+}: {
+  children: React.ReactNode;
+  role: string | undefined;
+}) {
   return (
     <div className="container">
-      <Loading />
-      <Header
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-      {isMobileMenuOpen ? (
-        <MobileMenu setIsMobileMenuOpen={setIsMobileMenuOpen} />
-      ) : (
-        children
-      )}
-
-      {!isMobileMenuOpen && <Footer />}
+      <Header role={role} />
+      {children}
+      <Footer />
     </div>
   );
 }

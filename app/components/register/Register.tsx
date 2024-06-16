@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Form, Input, Button, type FormProps } from "antd";
 import { Letterhead } from "@/app/assets";
-import instance from "@/app/utils/instance";
 import "./register.css";
 
 type RegisterType = {
@@ -23,20 +22,19 @@ export default function Register() {
   const [error, setError] = useState("");
 
   const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
-    if (values.password !== values.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+    // if (values.password !== values.confirmPassword) {
+    //   setError("Passwords do not match");
+    //   return;
+    // }
 
     try {
-      const res = await instance.post("/auth/register", {
-        ...values,
-        options: {
-          data: {
-            first_name: values.firstName,
-            last_name: values.lastName,
-          },
-        },
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          first_name: values.firstName,
+          last_name: values.lastName,
+          phone_number: values.phoneNumber,
+        }),
       });
       router.push("/");
     } catch (error: any) {
@@ -92,7 +90,7 @@ export default function Register() {
             <Input autoComplete="tel" type="text" />
           </Item>
         </div>
-        <div className="register-form-flex">
+        {/* <div className="register-form-flex">
           <Item
             label="Password"
             name="password"
@@ -107,7 +105,7 @@ export default function Register() {
           >
             <Input type="password" />
           </Item>
-        </div>
+        </div> */}
         <Item className="register-form-submit">
           <Button type="primary" htmlType="submit">
             Register

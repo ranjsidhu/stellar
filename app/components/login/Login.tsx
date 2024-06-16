@@ -1,37 +1,85 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Form, Input, Button, type FormProps } from "antd";
-import { Letterhead } from "@/app/assets";
-import instance from "@/app/utils/instance";
+import { useAppSelector } from "@/lib/hooks";
+import { Form, Input, Button, type FormProps, notification } from "antd";
+import { LIGHT } from "@/app/assets";
+import { NotificationType } from "@/app/types";
 import "./login.css";
 
-export default function Login() {
-  const { Item } = Form;
-  const router = useRouter();
+const { Item } = Form;
 
-  const [error, setError] = useState("");
+export default function Login() {
+  const router = useRouter();
+  const [disabled, setDisabled] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const { authenticated } = useAppSelector((state) => state.Auth);
+
+  useEffect(() => {
+    if (authenticated) {
+      router.push("/");
+    }
+  }, [authenticated, router]);
+
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string
+  ) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
 
   const handleSubmit: FormProps<{
     email: string;
     password: string;
   }>["onFinish"] = async (values) => {
-    const { email, password } = values;
+    const { email } = values;
 
+    setDisabled(true);
     try {
-      const res = await instance.post("/login", { email, password });
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const json = await response.json();
+        const { message } = json;
+        throw new Error(message);
+      }
+
+      openNotification(
+        "success",
+        "Magic Link sent",
+        "Please check your email for a link to login"
+      );
+    } catch (error: any) {
+      if (error.message) {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An error occurred"
+        );
+      } else {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An unexpected error occurred"
+        );
+      }
     }
   };
 
   return (
     <div className="login-wrapper">
+      {contextHolder}
       <Image
-        src={Letterhead}
+        src={LIGHT}
         priority
         alt="Letterhead image"
         className="login-image"
@@ -44,28 +92,27 @@ export default function Login() {
         scrollToFirstError
         className="login-form"
       >
-        {error && <div className="login-form-error">{error}</div>}
-
         <div className="login-form-input">
           <Item
             label="Email"
             name="email"
             rules={[{ required: true, message: "Please enter your email" }]}
           >
-            <Input type="email" placeholder="Email" />
-          </Item>
-
-          <Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please enter your password" }]}
-          >
-            <Input type="password" placeholder="Password" />
+            <Input
+              type="email"
+              placeholder="Email"
+              className="login-form-text-input"
+            />
           </Item>
         </div>
 
         <Item className="login-form-submit">
-          <Button htmlType="submit" type="primary">
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="login-form-text-input"
+            disabled={disabled}
+          >
             Login
           </Button>
         </Item>
