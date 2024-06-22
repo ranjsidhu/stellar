@@ -18,6 +18,8 @@ export default function Search({ source }: SearchProps) {
     };
 
     document.addEventListener("keydown", keydown);
+    // Cleanup function to remove the event listener
+    return () => document.removeEventListener("keydown", keydown);
   }, [router, search, pathname]);
 
   let placeholder = "";

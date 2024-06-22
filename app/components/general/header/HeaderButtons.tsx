@@ -25,9 +25,14 @@ export default function HeaderButtons({
           Sign Out
         </button>
       ) : (
-        <Link href="/login" className="header-button">
-          Login
-        </Link>
+        <>
+          <Link href="/login" className="header-button">
+            Login
+          </Link>
+          <Link href="/register" className="header-button">
+            Register
+          </Link>
+        </>
       )}
     </div>
   );

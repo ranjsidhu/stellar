@@ -1,28 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { client } from "@/app/api/utils/db-client";
+import { createClient } from "@/app/utils/supabase/server";
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = createClient();
     const body = await req.json();
-    const { error } = await client.auth.signUp(
-      {
-        email: body.email,
-        password: body.password,
-      },
-      {
-        data: {
-          first_name: body.first_name,
-          last_name: body.last_name,
-          phone_number: body.phone_number || "",
-        },
-      }
-    );
+
+    const data = { email: body.email, password: body.password };
+    const { error } = await supabase.auth.signUp(data);
+
     if (error) throw new Error(error.message);
     revalidatePath("/", "layout");
-    redirect("/");
+    return NextResponse.json({ message: `Successfully registered` });
   } catch (error: any) {
-    redirect("/error");
+    return NextResponse.json({ message: error.message }, { status: 400 });
   }
 }

@@ -27,13 +27,13 @@ export default function NavButton({
     return (
       <ul className="nav-button-subroutes">
         {subRoutes?.map(({ name, route }) => (
-          <button
+          <div
             className="nav-button-subroute"
             key={name}
             onClick={() => router.push(route)}
           >
             {name}
-          </button>
+          </div>
         ))}
       </ul>
     );
