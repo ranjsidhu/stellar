@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/app/utils/supabase/server";
-import { access } from "fs";
 
 export async function POST(req: NextRequest) {
   try {

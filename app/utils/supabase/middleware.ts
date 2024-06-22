@@ -1,4 +1,8 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import {
+  createServerClient,
+  type CookieOptions,
+  createBrowserClient,
+} from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function updateSession(request: NextRequest) {
@@ -8,10 +12,16 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  createServerClient(
+  // TODO - hotfix swapped to browser client but should be server client pending @supabase/ssr v1 release
+  createBrowserClient(
     process.env.NEXT_PUBLIC_DB_URL!,
     process.env.NEXT_PUBLIC_DB_API_ANON_KEY!,
     {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false,
+      },
       cookies: {
         get(name: string) {
           return request.cookies.get(name)?.value;
