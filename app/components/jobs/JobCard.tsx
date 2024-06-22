@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { DrawingPinIcon } from "@radix-ui/react-icons";
 import { JobProps } from "@/app/types";
