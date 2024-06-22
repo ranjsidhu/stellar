@@ -23,11 +23,6 @@ export default function Header({ role }: { role: string | undefined | null }) {
     if (role === "authenticated") {
       dispatch(setAuthenticated(true));
     }
-
-    // TODO - add error handling for if user is not authenticated
-    // else {
-    //   router.push("/login?authenticated=false");
-    // }
   }, [dispatch, role, router]);
 
   return (

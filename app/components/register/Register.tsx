@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Form, Input, Button, type FormProps } from "antd";
-import { Letterhead } from "@/app/assets";
+import { useAppSelector } from "@/lib/hooks";
+import { Form, Input, Button, type FormProps, notification } from "antd";
+import { LIGHT } from "@/app/assets";
+import { NotificationType } from "@/app/types";
 import "./register.css";
 
 type RegisterType = {
@@ -17,38 +19,76 @@ type RegisterType = {
 };
 
 export default function Register() {
-  const { Item } = Form;
   const router = useRouter();
-  const [error, setError] = useState("");
+  const { Item } = Form;
+  const { useNotification } = notification;
+  const [api, contextHolder] = useNotification();
+  const { authenticated } = useAppSelector((state) => state.Auth);
+
+  useEffect(() => {
+    if (authenticated) {
+      router.push("/");
+    }
+  }, [authenticated, router]);
+
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string
+  ) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
 
   const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
-    // if (values.password !== values.confirmPassword) {
-    //   setError("Passwords do not match");
-    //   return;
-    // }
-
+    if (values.password !== values.confirmPassword) {
+      openNotification("error", "Error", "Passwords do not match");
+      return;
+    }
     try {
-      const res = await fetch("/api/auth/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({
           first_name: values.firstName,
           last_name: values.lastName,
           phone_number: values.phoneNumber,
+          email: values.email,
+          password: values.password,
         }),
       });
-      router.push("/");
+
+      if (!response.ok) {
+        const json = await response.json();
+        const { message } = json;
+        throw new Error(message);
+      }
     } catch (error: any) {
-      setError(error.response.data.error);
+      if (error.message) {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An error occurred"
+        );
+      } else {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An unexpected error occurred"
+        );
+      }
     }
   };
 
   return (
     <div className="login-wrapper">
+      {contextHolder}
       <Image
-        src={Letterhead}
+        src={LIGHT}
         priority
         alt="Letterhead image"
-        className="register-image"
+        className="login-image"
         onClick={() => router.push("/")}
       />
       <Form
@@ -58,7 +98,6 @@ export default function Register() {
         scrollToFirstError
         className="register-form"
       >
-        {error && <div className="register-form-error">{error}</div>}
         <div className="register-form-flex">
           <Item
             label="First Name"
@@ -67,7 +106,11 @@ export default function Register() {
               { required: true, message: "Please enter your first name" },
             ]}
           >
-            <Input autoComplete="given-name" />
+            <Input
+              placeholder="John"
+              autoComplete="given-name"
+              className="login-form-text-input"
+            />
           </Item>
 
           <Item
@@ -75,7 +118,11 @@ export default function Register() {
             name="lastName"
             rules={[{ required: true, message: "Please enter your last name" }]}
           >
-            <Input autoComplete="family-name" />
+            <Input
+              placeholder="Doe"
+              className="login-form-text-input"
+              autoComplete="family-name"
+            />
           </Item>
         </div>
         <div className="register-form-flex">
@@ -84,28 +131,52 @@ export default function Register() {
             name="email"
             rules={[{ required: true, message: "Please enter your email" }]}
           >
-            <Input autoComplete="email" type="email" />
+            <Input
+              placeholder="john.doe@example.com"
+              className="login-form-text-input"
+              autoComplete="email"
+              type="email"
+            />
           </Item>
           <Item label="Phone Number" name="phoneNumber">
-            <Input autoComplete="tel" type="text" />
+            <Input
+              placeholder="07312 345 677"
+              className="login-form-text-input"
+              autoComplete="tel"
+              type="text"
+            />
           </Item>
         </div>
-        {/* <div className="register-form-flex">
+
+        <div className="register-form-flex">
           <Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Please enter a password" }]}
+            rules={[{ required: true, message: "Please enter your password" }]}
           >
-            <Input autoComplete="new-password" type="password" />
+            <Input.Password
+              placeholder="Password"
+              className="login-form-text-input"
+              autoComplete="new-password"
+              type="password"
+            />
           </Item>
           <Item
             label="Confirm Password"
             name="confirmPassword"
-            rules={[{ required: true, message: "Please enter a password" }]}
+            rules={[
+              { required: true, message: "Please confirm your password" },
+            ]}
           >
-            <Input type="password" />
+            <Input.Password
+              placeholder="Confirm Password"
+              className="login-form-text-input"
+              autoComplete="new-password"
+              type="password"
+            />
           </Item>
-        </div> */}
+        </div>
+
         <Item className="register-form-submit">
           <Button type="primary" htmlType="submit">
             Register
