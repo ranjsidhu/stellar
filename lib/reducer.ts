@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import UI from "./features/UI";
-import Jobs from "./features/Jobs";
-import Testimonials from "./features/Testimonials";
+import Auth from "./features/Auth";
 
-const rootReducer = combineReducers({ UI, Jobs, Testimonials });
+const rootReducer = combineReducers({ UI, Auth });
 export default rootReducer;

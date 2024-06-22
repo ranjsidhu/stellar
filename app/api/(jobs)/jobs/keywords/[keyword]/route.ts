@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { client } from "../../../utils/db-client";
+import { client } from "../../../../utils/db-client";
 
 export async function GET(
   req: NextRequest,

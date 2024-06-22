@@ -1,17 +1,39 @@
-import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/lib/hooks";
+import { clearSession, setAuthenticated } from "@/lib/features/Auth";
 import Link from "next/link";
 
-export default function HeaderButtons() {
-  const router = useRouter();
+export default function HeaderButtons({
+  role,
+}: {
+  role: string | undefined | null;
+}) {
+  const dispatch = useAppDispatch();
+
+  const signOut = async () => {
+    fetch("/api/auth/signout", { method: "POST" }).then(() => {
+      dispatch(clearSession({}));
+      dispatch(setAuthenticated(false));
+      window.location.reload();
+      window.location.href = "/";
+    });
+  };
 
   return (
     <div className="header-buttons">
-      <Link href="/register" className="header-button">
-        Register
-      </Link>
-      <Link href="/login" className="header-button">
-        Login
-      </Link>
+      {role === "authenticated" ? (
+        <button className="header-button" onClick={signOut}>
+          Sign Out
+        </button>
+      ) : (
+        <>
+          <Link href="/login" className="header-button">
+            Login
+          </Link>
+          <Link href="/register" className="header-button">
+            Register
+          </Link>
+        </>
+      )}
     </div>
   );
 }

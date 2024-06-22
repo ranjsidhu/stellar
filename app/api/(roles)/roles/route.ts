@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client, create } = require("@/app/api/utils/db-client");
+const { create } = require("@/app/api/utils/db-client");
 
 export async function POST(req: NextRequest) {
   try {

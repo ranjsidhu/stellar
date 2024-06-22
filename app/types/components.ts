@@ -28,4 +28,12 @@ type JobProps = {
   job: Job;
 };
 
-export { type Job, type Testimonial, type JobLocation, type JobProps };
+type NotificationType = "success" | "info" | "warning" | "error";
+
+export {
+  type Job,
+  type Testimonial,
+  type JobLocation,
+  type JobProps,
+  type NotificationType,
+};

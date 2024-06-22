@@ -1,37 +1,109 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Form, Input, Button, type FormProps } from "antd";
-import { Letterhead } from "@/app/assets";
-import instance from "@/app/utils/instance";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { setUserDetails } from "@/lib/features/Auth";
+import { Form, Input, Button, type FormProps, notification } from "antd";
+import { LIGHT } from "@/app/assets";
+import { NotificationType } from "@/app/types";
+import { createClient } from "@/app/utils/supabase/client";
 import "./login.css";
 
-export default function Login() {
-  const { Item } = Form;
-  const router = useRouter();
+const { Item } = Form;
 
-  const [error, setError] = useState("");
+export default function Login() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { useNotification } = notification;
+  const [email, setEmail] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [api, contextHolder] = useNotification();
+  const { authenticated } = useAppSelector((state) => state.Auth);
+
+  useEffect(() => {
+    if (authenticated) {
+      router.push("/");
+    }
+  }, [authenticated, router]);
+
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string
+  ) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
+
+  const forgotPassword = async () => {
+    if (!email) {
+      openNotification("error", "Error", "Please enter your email");
+      return;
+    }
+    const supabase = createClient();
+    const redirectTo =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/update-password"
+        : "https://stellar-recruitment.co.uk/update-password";
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
+    if (!error) {
+      openNotification(
+        "success",
+        "Success",
+        "Password reset link has been sent to your email"
+      );
+    }
+  };
 
   const handleSubmit: FormProps<{
     email: string;
     password: string;
   }>["onFinish"] = async (values) => {
-    const { email, password } = values;
-
+    setDisabled(true);
     try {
-      const res = await instance.post("/login", { email, password });
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ ...values }),
+      });
+
+      if (!response.ok) {
+        const json = await response.json();
+        const { message } = json;
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      const { access_token, refresh_token, user_id } = data;
+      dispatch(setUserDetails({ access_token, refresh_token, user_id }));
+      router.push("/?authenticated=true");
+    } catch (error: any) {
+      if (error.message) {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An error occurred"
+        );
+      } else {
+        openNotification(
+          "error",
+          "Error",
+          error.message || "An unexpected error occurred"
+        );
+      }
     }
   };
 
   return (
     <div className="login-wrapper">
+      {contextHolder}
       <Image
-        src={Letterhead}
+        src={LIGHT}
         priority
         alt="Letterhead image"
         className="login-image"
@@ -44,29 +116,51 @@ export default function Login() {
         scrollToFirstError
         className="login-form"
       >
-        {error && <div className="login-form-error">{error}</div>}
-
         <div className="login-form-input">
           <Item
             label="Email"
             name="email"
             rules={[{ required: true, message: "Please enter your email" }]}
           >
-            <Input type="email" placeholder="Email" />
+            <Input
+              type="email"
+              placeholder="Email"
+              className="login-form-text-input"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Item>
-
           <Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Please enter your password" }]}
+            rules={[{ required: true, message: "Please enter your pasword" }]}
           >
-            <Input type="password" placeholder="Password" />
+            <Input.Password
+              type="password"
+              placeholder="Password"
+              className="login-form-text-input"
+              onChange={() => setDisabled(false)}
+            />
           </Item>
         </div>
 
         <Item className="login-form-submit">
-          <Button htmlType="submit" type="primary">
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="login-form-text-input"
+            disabled={disabled}
+          >
             Login
+          </Button>
+        </Item>
+
+        <Item>
+          <Button
+            type="default"
+            className="login-form-text-input"
+            onClick={forgotPassword}
+          >
+            Forgot Password
           </Button>
         </Item>
       </Form>

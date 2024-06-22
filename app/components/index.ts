@@ -3,7 +3,6 @@ import Hamburger from "./general/header/Hamburger";
 import Header from "./general/header/Header";
 import LatestJobs from "./general/home/LatestJobs";
 import Layout from "./layout/Layout";
-import Loading from "./general/loading/Loading";
 import Login from "./login/Login";
 import Navbar from "./general/navbar/Navbar";
 import Register from "./register/Register";
@@ -23,7 +22,6 @@ export {
   Login,
   Register,
   Footer,
-  Loading,
   Hamburger,
   NavButton,
   HeaderButtons,

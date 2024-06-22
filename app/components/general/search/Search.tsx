@@ -1,23 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { SearchProps } from "@/app/constants/types.index";
 import "./search.css";
 
 export default function Search({ source }: SearchProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const keydown = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && pathname === "/") {
         router.push(`/jobs?search=${search}`);
       }
     };
 
     document.addEventListener("keydown", keydown);
-  }, [router, search]);
+    // Cleanup function to remove the event listener
+    return () => document.removeEventListener("keydown", keydown);
+  }, [router, search, pathname]);
 
   let placeholder = "";
   switch (source) {
