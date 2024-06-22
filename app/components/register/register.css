@@ -6,11 +6,12 @@
   justify-content: center;
   align-items: center;
 }
+
 .register-image {
   height: auto;
-  width: 50%;
+  width: 300px;
   aspect-ratio: auto;
-  margin-bottom: auto;
+  margin-bottom: 200px;
 }
 
 .register-image:hover {
@@ -80,5 +81,42 @@
   .ant-btn-primary:hover {
     background-color: #00150f !important;
     color: gold !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .register-form {
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .register-wrapper {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .register-image {
+    height: auto;
+    width: 50%;
+    aspect-ratio: auto;
+    margin-bottom: 50px;
+  }
+
+  .register-form-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

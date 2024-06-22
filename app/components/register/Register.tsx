@@ -82,13 +82,13 @@ export default function Register() {
   };
 
   return (
-    <div className="login-wrapper">
+    <div className="register-wrapper">
       {contextHolder}
       <Image
         src={LIGHT}
         priority
         alt="Letterhead image"
-        className="login-image"
+        className="register-image"
         onClick={() => router.push("/")}
       />
       <Form
@@ -125,6 +125,7 @@ export default function Register() {
             />
           </Item>
         </div>
+
         <div className="register-form-flex">
           <Item
             label="Email"

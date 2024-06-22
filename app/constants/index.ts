@@ -24,7 +24,7 @@ const routes: Route[] = [
     ],
   },
   {
-    route: "/schools",
+    route: "/schools/safeguarding",
     name: "Schools",
     subRoutes: [{ name: "Safeguarding", route: "/schools/safeguarding" }],
   },
