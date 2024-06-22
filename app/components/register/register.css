@@ -1,17 +1,17 @@
 .register-wrapper {
   height: 80vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 50px 0;
 }
 
 .register-image {
   height: auto;
   width: 300px;
   aspect-ratio: auto;
-  margin-bottom: 200px;
 }
 
 .register-image:hover {

@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 import { Form, Input, Button, type FormProps, notification } from "antd";
-import { LIGHT } from "@/app/assets";
 import { createClient } from "../utils/supabase/client";
 import { NotificationType } from "../types";
 import "./update-password.css";
@@ -52,13 +49,6 @@ export default function UpdatePassword() {
   return (
     <div className="update-password-wrapper">
       {contextHolder}
-      <Image
-        src={LIGHT}
-        priority
-        alt="Letterhead image"
-        className="update-password-image"
-        onClick={() => router.push("/")}
-      />
       <Form
         name="basic"
         layout="vertical"
