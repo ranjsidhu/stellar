@@ -1,3 +1,5 @@
+"use server";
+
 import {
   createServerClient,
   type CookieOptions,
@@ -12,8 +14,7 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // TODO - hotfix swapped to browser client but should be server client pending @supabase/ssr v1 release
-  createBrowserClient(
+  createServerClient(
     process.env.NEXT_PUBLIC_DB_URL!,
     process.env.NEXT_PUBLIC_DB_API_ANON_KEY!,
     {
