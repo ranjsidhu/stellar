@@ -2,15 +2,15 @@ import { type NextRequest } from "next/server";
 import { updateSession } from "@/app/utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-  const cookieString = request.cookies.get(
-    "sb-vniqmzkibvuaaigqcrvd-auth-token"
-  );
-  if (cookieString) {
-    const cookieObject = JSON.parse(cookieString.value);
-    const accessToken = cookieObject.access_token;
-    requestHeaders.set("Authorization", `Bearer ${accessToken}`);
-  }
+  // const requestHeaders = new Headers(request.headers);
+  // const cookieString = request.cookies.get(
+  //   "sb-vniqmzkibvuaaigqcrvd-auth-token"
+  // );
+  // if (cookieString) {
+  //   const cookieObject = JSON.parse(cookieString.value);
+  //   const accessToken = cookieObject.access_token;
+  //   requestHeaders.set("Authorization", `Bearer ${accessToken}`);
+  // }
   return await updateSession(request);
 }
 
