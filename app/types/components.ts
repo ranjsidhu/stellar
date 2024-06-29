@@ -30,10 +30,21 @@ type JobProps = {
 
 type NotificationType = "success" | "info" | "warning" | "error";
 
+type RegisterType = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+  dob: Date | string;
+};
+
 export {
   type Job,
   type Testimonial,
   type JobLocation,
   type JobProps,
   type NotificationType,
+  type RegisterType,
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/lib/hooks";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { createClient } from "../utils/supabase/client";
 import { NotificationType } from "../types";
@@ -11,8 +10,6 @@ const { Item } = Form;
 
 export default function UpdatePassword() {
   const router = useRouter();
-  // TODO - if not authenticated redirect to home
-  const { authenticated } = useAppSelector((state) => state.Auth);
   const { useNotification } = notification;
   const [api, contextHolder] = useNotification();
 

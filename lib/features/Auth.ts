@@ -2,13 +2,46 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type InitialStateType = {
   authenticated: boolean;
-  // TODO - define user type for state
-  user: any;
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    dob: Date | string;
+    email: string;
+    phone: null | string;
+    first_line_address: string;
+    town: string;
+    city: string | null;
+    postcode: string;
+    role_id: number;
+    last_logged_in: Date | string | null;
+    created_at: Date | string;
+    updated_at: Date | string;
+    is_deleted: boolean | null;
+    deleted_at: Date | string | null;
+  };
 };
 
 const initialState: InitialStateType = {
   authenticated: false,
-  user: {},
+  user: {
+    id: -1,
+    first_name: "",
+    last_name: "",
+    dob: "",
+    email: "",
+    phone: "",
+    first_line_address: "",
+    town: "",
+    city: "",
+    postcode: "",
+    role_id: -1,
+    last_logged_in: "",
+    created_at: "",
+    updated_at: "",
+    is_deleted: false,
+    deleted_at: "",
+  },
 };
 
 const AuthSlice = createSlice({
@@ -23,7 +56,24 @@ const AuthSlice = createSlice({
     },
     clearSession(state, action) {
       state.authenticated = false;
-      state.user = {};
+      state.user = {
+        id: -1,
+        first_name: "",
+        last_name: "",
+        dob: "",
+        email: "",
+        phone: "",
+        first_line_address: "",
+        town: "",
+        city: "",
+        postcode: "",
+        role_id: -1,
+        last_logged_in: "",
+        created_at: "",
+        updated_at: "",
+        is_deleted: false,
+        deleted_at: "",
+      };
     },
   },
 });

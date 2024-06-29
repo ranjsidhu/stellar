@@ -1,35 +1,38 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useAppSelector } from "@/lib/hooks";
-import { Form, Input, Button, type FormProps, notification } from "antd";
+import {
+  Form,
+  Button,
+  Input,
+  type FormProps,
+  type DatePickerProps,
+  notification,
+  DatePicker,
+} from "antd";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { setUserDetails, setAuthenticated } from "@/lib/features/Auth";
 import { LIGHT } from "@/app/assets";
-import { NotificationType } from "@/app/types";
+import { NotificationType, RegisterType } from "@/app/types";
 import "./register.css";
 
-type RegisterType = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
-  confirmPassword: string;
-};
+const { Item } = Form;
 
 export default function Register() {
   const router = useRouter();
-  const { Item } = Form;
+  const dispatch = useAppDispatch();
+  const [formDob, setFormDob] = useState<Date | string | string[]>("");
   const { useNotification } = notification;
   const [api, contextHolder] = useNotification();
   const { authenticated } = useAppSelector((state) => state.Auth);
 
   useEffect(() => {
-    if (authenticated) {
+    if (authenticated && !formDob) {
       router.push("/");
     }
-  }, [authenticated, router]);
+  }, [authenticated, router, formDob]);
 
   const openNotification = (
     type: NotificationType,
@@ -42,18 +45,22 @@ export default function Register() {
     });
   };
 
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    setFormDob(dateString);
+  };
+
   const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
     if (values.password !== values.confirmPassword) {
       openNotification("error", "Error", "Passwords do not match");
       return;
     }
     try {
-      const response = await fetch("/api/auth/register", {
+      let response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({
-          first_name: values.firstName,
-          last_name: values.lastName,
-          phone_number: values.phoneNumber,
+          first_name: values.first_name,
+          last_name: values.last_name,
+          phone_number: values.phone,
           email: values.email,
           password: values.password,
         }),
@@ -64,6 +71,26 @@ export default function Register() {
         const { message } = json;
         throw new Error(message);
       }
+
+      openNotification("info", "Registering", "Creating your user profile...");
+
+      // Remove passwords
+      const { confirmPassword, password, ...filteredValues } = values;
+      response = await fetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({ ...filteredValues, dob: formDob }),
+      });
+
+      if (!response.ok) {
+        const json = await response.json();
+        const { message } = json;
+        throw new Error(message);
+      }
+
+      const user = await response.json();
+      dispatch(setUserDetails(user));
+      dispatch(setAuthenticated(true));
+      router.push("/?authenticated=true");
     } catch (error: any) {
       if (error.message) {
         openNotification(
@@ -101,7 +128,7 @@ export default function Register() {
         <div className="register-form-flex">
           <Item
             label="First Name"
-            name="firstName"
+            name="first_name"
             rules={[
               { required: true, message: "Please enter your first name" },
             ]}
@@ -115,7 +142,7 @@ export default function Register() {
 
           <Item
             label="Last Name"
-            name="lastName"
+            name="last_name"
             rules={[{ required: true, message: "Please enter your last name" }]}
           >
             <Input
@@ -123,6 +150,48 @@ export default function Register() {
               className="login-form-text-input"
               autoComplete="family-name"
             />
+          </Item>
+
+          <Item
+            label="Date of birth"
+            name="dob"
+            rules={[
+              { required: true, message: "Please enter your date of birth" },
+            ]}
+          >
+            <DatePicker className="login-form-text-input" onChange={onChange} />
+          </Item>
+        </div>
+
+        <div className="register-form-flex">
+          <Item
+            label="Address Line 1"
+            name="first_line_address"
+            rules={[
+              {
+                required: true,
+                message: "Please enter the first line",
+              },
+            ]}
+          >
+            <Input
+              className="login-form-text-input"
+              placeholder="123 Sesame Street"
+            />
+          </Item>
+          <Item
+            label="Town"
+            name="town"
+            rules={[{ required: true, message: "Please enter your town" }]}
+          >
+            <Input className="login-form-text-input" placeholder="Manhattan" />
+          </Item>
+          <Item
+            label="Postcode"
+            name="postcode"
+            rules={[{ required: true, message: "Please enter your postcode" }]}
+          >
+            <Input className="login-form-text-input" placeholder="SW1A 2JL" />
           </Item>
         </div>
 
@@ -139,7 +208,7 @@ export default function Register() {
               type="email"
             />
           </Item>
-          <Item label="Phone Number" name="phoneNumber">
+          <Item label="Phone Number" name="phone">
             <Input
               placeholder="07312 345 677"
               className="login-form-text-input"
@@ -148,7 +217,6 @@ export default function Register() {
             />
           </Item>
         </div>
-
         <div className="register-form-flex">
           <Item
             label="Password"
