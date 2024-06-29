@@ -6,7 +6,7 @@ import { ConfigProvider } from "antd";
 import Analytics from "./Analytics";
 import StoreProvider from "./StoreProvider";
 import { Layout } from "./components";
-import { getRole } from "./utils/supabase/server";
+import { getRole } from "./utils/supabase/supabase-utils";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
