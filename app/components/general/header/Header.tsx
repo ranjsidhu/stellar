@@ -57,7 +57,7 @@ export default function Header({ role }: { role: string | undefined | null }) {
         </div>
       )}
 
-      {isMobileMenuOpen && <MobileMenu toggleMenu={toggleMenu} />}
+      {isMobileMenuOpen && <MobileMenu toggleMenu={toggleMenu} role={role} />}
     </>
   );
 }
