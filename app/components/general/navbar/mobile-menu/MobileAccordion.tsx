@@ -8,9 +8,10 @@ import "./mobile-menu.css";
 
 type AccordionProps = {
   name: string;
-  route: string;
+  route?: string;
   subRoutes?: { name: string; route: string }[];
-  toggleMenu: () => void;
+  toggleMenu?: () => void;
+  handleOnClick?: () => void;
 };
 
 export default function MobileAccordion({
@@ -18,6 +19,7 @@ export default function MobileAccordion({
   route,
   subRoutes,
   toggleMenu,
+  handleOnClick,
 }: AccordionProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
@@ -39,10 +41,13 @@ export default function MobileAccordion({
 
   const onClickHandler = () => {
     if (route && !subRoutes) {
-      toggleMenu();
+      toggleMenu && toggleMenu();
       router.push(route);
     } else if (subRoutes) {
       setIsActive(!isActive);
+    }
+    if (handleOnClick) {
+      handleOnClick();
     }
   };
 
@@ -62,7 +67,7 @@ export default function MobileAccordion({
                 className="mobile-accordion-link"
                 href={c.route}
                 onClick={() => {
-                  toggleMenu();
+                  toggleMenu && toggleMenu();
                 }}
               >
                 {c.name}

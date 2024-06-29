@@ -1,6 +1,6 @@
 import { faqs } from "./faqs";
 
-type Route = {
+export type Route = {
   route: string;
   name: string;
   subRoutes?: { name: string; route: string }[];
