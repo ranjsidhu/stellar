@@ -29,7 +29,7 @@ export default function MobileMenu({
 
   const signOut = async () => {
     fetch("/api/auth/signout", { method: "POST" }).then(() => {
-      dispatch(clearSession({}));
+      dispatch(clearSession());
       dispatch(setAuthenticated(false));
       window.location.reload();
       window.location.href = "/";

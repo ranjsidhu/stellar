@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { createClient } from "../utils/supabase/client";
 import { NotificationType } from "../types";
@@ -9,7 +8,6 @@ import "./update-password.css";
 const { Item } = Form;
 
 export default function UpdatePassword() {
-  const router = useRouter();
   const { useNotification } = notification;
   const [api, contextHolder] = useNotification();
 
@@ -33,7 +31,7 @@ export default function UpdatePassword() {
       return;
     }
     const supabase = createClient();
-    const { data, error } = await supabase.auth.updateUser({
+    const { error } = await supabase.auth.updateUser({
       password: values.newPassword,
     });
     if (!error) {

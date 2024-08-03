@@ -1,11 +1,4 @@
-import {
-  RequestBody,
-  BaseParams,
-  CreateParams,
-  PatchParams,
-  CustomPatchParams,
-  UpsertParams,
-} from "./db";
+import { BaseParams, PatchParams, CustomPatchParams, UpsertParams } from "./db";
 
 import {
   Job,
@@ -20,9 +13,7 @@ import {
 import { JobRequest } from "./requests";
 
 export {
-  type RequestBody,
   type BaseParams,
-  type CreateParams,
   type PatchParams,
   type CustomPatchParams,
   type UpsertParams,
