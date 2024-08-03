@@ -1,4 +1,4 @@
-import { Col, Collapse } from "antd";
+import { Collapse } from "antd";
 import { faqs } from "../constants";
 import "./faqs.css";
 

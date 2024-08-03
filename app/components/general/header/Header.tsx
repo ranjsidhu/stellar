@@ -48,7 +48,7 @@ export default function Header({ role }: { role: string | undefined | null }) {
         </div>
       )}
 
-      {!isValidPathname && !isMobileMenuOpen && (
+      {!isValidPathname && !isMobileMenuOpen && pathname !== "/profile" && (
         <div className="header-socials">
           <a href="#" target="_blank" className="fa fa-facebook"></a>
           <a href="#" target="_blank" className="fa fa-instagram"></a>

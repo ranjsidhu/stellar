@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { setUserDetails } from "@/lib/features/Auth";
+import { setAuthenticated } from "@/lib/features/Auth";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";
@@ -49,7 +49,7 @@ export default function Login() {
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000/update-password"
         : "https://stellar-recruitment.co.uk/update-password";
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo,
     });
     if (!error) {
@@ -78,10 +78,11 @@ export default function Login() {
         throw new Error(message);
       }
 
-      const data = await response.json();
-      const { access_token, refresh_token, user_id } = data;
-      dispatch(setUserDetails({ access_token, refresh_token, user_id }));
-      router.push("/?authenticated=true");
+      response.json().then((data) => {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch(setAuthenticated(true));
+        router.push("/?authenticated=true");
+      });
     } catch (error: any) {
       if (error.message) {
         openNotification(

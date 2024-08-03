@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-
 import { LatestJobs, Search } from "@/app/components";
 import "./homepage.css";
 
@@ -9,6 +8,7 @@ export default function Homepage() {
   useEffect(() => {
     const url = window.location.href;
     if (url.includes("authenticated=true")) {
+      console.log("herereerere");
       window.location.href = "/";
     }
   }, []);

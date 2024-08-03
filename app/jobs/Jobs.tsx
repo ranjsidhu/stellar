@@ -37,15 +37,17 @@ export default function Jobs() {
   return (
     <Suspense fallback={<CircularProgress />}>
       <div className="jobs-wrapper">
-        <div className="jobs-filters-grid">
-          <Filters setDisplayJobs={setDisplayJobs} />
-          <p>Found {displayJobs.length} jobs</p>
-          <div className="jobs-grid">
-            {isLoading && <CircularProgress />}
-            {!isLoading &&
-              displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
+        {displayJobs && (
+          <div className="jobs-filters-grid">
+            <Filters setDisplayJobs={setDisplayJobs} />
+            <p>Found {displayJobs.length} jobs</p>
+            <div className="jobs-grid">
+              {isLoading && <CircularProgress />}
+              {!isLoading &&
+                displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="jobs-pagination">
           <Pagination

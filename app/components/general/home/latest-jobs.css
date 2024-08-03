@@ -15,6 +15,7 @@
 
 .latest-jobs-wrapper-title:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .latest-jobs-wrapper {
@@ -65,6 +66,7 @@
 .latest-job-description {
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

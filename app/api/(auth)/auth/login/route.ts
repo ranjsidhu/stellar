@@ -6,23 +6,40 @@ export async function POST(req: NextRequest) {
   try {
     const supabase = createClient();
     const body = await req.json();
+    const response = {
+      message: "Successfully logged in",
+      user: null,
+      response: {},
+    };
 
     const creds = { email: body.email, password: body.password };
-    const { error } = await supabase.auth.signInWithPassword(creds);
-
-    const { data } = await supabase.auth.refreshSession();
-    const { session, user } = data;
+    const { error, data } = await supabase.auth.signInWithPassword(creds);
 
     if (error) throw new Error(error.message);
+    response.response = data;
+
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .select()
+        .eq("email", creds.email)
+        .limit(1);
+
+      if (error) throw new Error(error.message);
+
+      response.user = data[0];
+    } catch (error) {
+      throw new Error("User does not exist or password is incorrect");
+    }
+
+    await supabase.auth.refreshSession();
+
     revalidatePath("/", "layout");
+
     return NextResponse.json({
-      message: `Email sent to ${body.email}`,
-      access_token: session?.access_token,
-      refresh_token: session?.refresh_token,
-      user_id: user?.id,
+      ...response,
     });
   } catch (error: any) {
-    // TODO - define login error handling
     if (error.message === "Invalid login credentials") {
       return NextResponse.json(
         { message: "User does not exist or password is incorrect" },

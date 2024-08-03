@@ -3,6 +3,8 @@ import "./footer.css";
 
 import { routes } from "@/app/constants";
 
+// TODO - needs refactoring - too many divs
+
 export default function Footer() {
   return (
     <div className="layout-footer">
