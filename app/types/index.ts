@@ -14,6 +14,7 @@ import {
   JobProps,
   NotificationType,
   RegisterType,
+  User,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -32,4 +33,5 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
+  type User,
 };

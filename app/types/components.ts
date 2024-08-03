@@ -40,6 +40,25 @@ type RegisterType = {
   dob: Date | string;
 };
 
+type User = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  dob: Date | string;
+  email: string;
+  phone: null | string;
+  first_line_address: string;
+  town: string;
+  city: string | null;
+  postcode: string;
+  role_id: number;
+  last_logged_in: Date | string | null;
+  created_at: Date | string;
+  updated_at: Date | string;
+  is_deleted: boolean | null;
+  deleted_at: Date | string | null;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -47,4 +66,5 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
+  type User,
 };

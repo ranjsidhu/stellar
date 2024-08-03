@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { setAuthenticated } from "@/lib/features/Auth";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";
@@ -14,6 +15,7 @@ const { Item } = Form;
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { useNotification } = notification;
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -76,7 +78,11 @@ export default function Login() {
         throw new Error(message);
       }
 
-      router.push("/?authenticated=true");
+      response.json().then((data) => {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch(setAuthenticated(true));
+        router.push("/?authenticated=true");
+      });
     } catch (error: any) {
       if (error.message) {
         openNotification(

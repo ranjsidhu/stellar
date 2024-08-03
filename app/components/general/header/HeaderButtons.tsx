@@ -21,9 +21,14 @@ export default function HeaderButtons({
   return (
     <div className="header-buttons">
       {role === "authenticated" ? (
-        <button className="header-button" onClick={signOut}>
-          Sign Out
-        </button>
+        <>
+          <Link href="/profile" className="header-button">
+            Account
+          </Link>
+          <button className="header-button" onClick={signOut}>
+            Sign Out
+          </button>
+        </>
       ) : (
         <>
           <Link href="/login" className="header-button">

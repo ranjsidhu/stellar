@@ -1,25 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "@/app/types";
 
 type InitialStateType = {
   authenticated: boolean;
-  user: {
-    id: number;
-    first_name: string;
-    last_name: string;
-    dob: Date | string;
-    email: string;
-    phone: null | string;
-    first_line_address: string;
-    town: string;
-    city: string | null;
-    postcode: string;
-    role_id: number;
-    last_logged_in: Date | string | null;
-    created_at: Date | string;
-    updated_at: Date | string;
-    is_deleted: boolean | null;
-    deleted_at: Date | string | null;
-  };
+  user: User;
 };
 
 const initialState: InitialStateType = {
@@ -74,6 +58,7 @@ const AuthSlice = createSlice({
         is_deleted: false,
         deleted_at: "",
       };
+      localStorage.removeItem("user");
     },
   },
 });

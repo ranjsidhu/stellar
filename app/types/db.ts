@@ -39,5 +39,4 @@ export {
   type PatchParams,
   type CustomPatchParams,
   type UpsertParams,
-  type Tables,
 };

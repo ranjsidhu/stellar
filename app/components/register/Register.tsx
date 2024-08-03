@@ -13,7 +13,7 @@ import {
   DatePicker,
 } from "antd";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { setUserDetails, setAuthenticated } from "@/lib/features/Auth";
+import { setAuthenticated } from "@/lib/features/Auth";
 import { LIGHT } from "@/app/assets";
 import { NotificationType, RegisterType } from "@/app/types";
 import "./register.css";
@@ -29,7 +29,7 @@ export default function Register() {
   const { authenticated } = useAppSelector((state) => state.Auth);
 
   useEffect(() => {
-    if (authenticated && !formDob) {
+    if (authenticated) {
       router.push("/");
     }
   }, [authenticated, router, formDob]);
@@ -75,6 +75,7 @@ export default function Register() {
       openNotification("info", "Registering", "Creating your user profile...");
 
       // Remove passwords
+      // eslint-disable-next-line no-unused-vars
       const { confirmPassword, password, ...filteredValues } = values;
       response = await fetch("/api/users", {
         method: "POST",
@@ -87,10 +88,11 @@ export default function Register() {
         throw new Error(message);
       }
 
-      const user = await response.json();
-      dispatch(setUserDetails(user));
-      dispatch(setAuthenticated(true));
-      router.push("/?authenticated=true");
+      response.json().then((data) => {
+        localStorage.setItem("user", JSON.stringify(data.response[0]));
+        dispatch(setAuthenticated(true));
+        router.push("/?authenticated=true");
+      });
     } catch (error: any) {
       if (error.message) {
         openNotification(
