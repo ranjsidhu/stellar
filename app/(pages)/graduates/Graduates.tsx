@@ -2,7 +2,7 @@
 
 import { Form, Input, Button, type FormProps } from "antd";
 import instance from "../../utils/instance";
-import "./graduates.css";
+import styles from "./Graduates.module.css";
 
 type FieldType = {
   name: string;
@@ -33,7 +33,7 @@ export default function Graduates() {
       layout="vertical"
       onFinish={handleSubmit}
       scrollToFirstError
-      className="graduates-form-form"
+      className={styles.graduatesFormForm}
     >
       <Item
         label="Your Name"
@@ -93,8 +93,12 @@ export default function Graduates() {
       </Item>
 
       <br />
-      <Item className="graduates-form-submit">
-        <Button type="primary" htmlType="submit">
+      <Item className={styles.graduatesFormSubmit}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={styles.graduatesFormSubmitBtn}
+        >
           Submit
         </Button>
       </Item>

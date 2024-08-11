@@ -1,4 +1,4 @@
-.graduates-wrapper {
+.graduatesWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.graduates-hero {
+.graduatesHero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,15 +28,16 @@
   padding: 20px;
 }
 
-.graduates-intro {
-  margin-top: 50px;
+.graduatesIntro {
   display: flex;
   flex-direction: column;
   text-align: center;
   gap: 10px;
+  max-width: 1440px;
+  margin: 50px auto 0 auto;
 }
 
-.graduates-form {
+.graduatesForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,17 +47,16 @@
   width: 100%;
 }
 
-.graduates-form-form {
+.graduatesFormForm {
   width: 60%;
   max-width: 550px;
 }
 
-.graduates-form-submit {
-  .ant-btn-primary {
-    background-color: #00150f;
-  }
-  .ant-btn-primary:hover {
-    background-color: #00150f !important;
-    color: gold !important;
-  }
+.graduatesFormSubmitBtn {
+  background-color: #00150f;
+}
+
+.graduatesFormSubmitBtn:hover {
+  background-color: #00150f !important;
+  color: gold !important;
 }

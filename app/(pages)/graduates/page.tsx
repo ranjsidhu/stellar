@@ -1,13 +1,13 @@
 import Graduates from "./Graduates";
-import "./graduates.css";
+import styles from "./Graduates.module.css";
 
 export default function GraduatesPage() {
   return (
-    <div className="graduates-wrapper">
-      <div className="graduates-hero">
+    <div className={styles.graduatesWrapper}>
+      <div className={styles.graduatesHero}>
         <h2>Graduates</h2>
       </div>
-      <div className="graduates-intro">
+      <div className={styles.graduatesIntro}>
         <p>
           Are you a graduate? Are you seeking a new role? Supply/cover
           supervisors could be the role for you! Cover teachers or supply
@@ -19,7 +19,7 @@ export default function GraduatesPage() {
           interested, please register your details below:
         </p>
       </div>
-      <div className="graduates-form">
+      <div className={styles.graduatesForm}>
         <Graduates />
       </div>
     </div>
