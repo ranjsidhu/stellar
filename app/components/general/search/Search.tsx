@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { SearchProps } from "@/app/constants/types.index";
+import { SearchProps } from "@/app/types";
 import "./search.css";
 
 export default function Search({ source }: SearchProps) {

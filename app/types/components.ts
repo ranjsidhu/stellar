@@ -59,6 +59,16 @@ type User = {
   deleted_at: Date | string | null;
 };
 
+type SearchProps = {
+  source: string;
+};
+
+type StepProps = {
+  title: string;
+  description: string;
+  index: number;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -67,4 +77,6 @@ export {
   type NotificationType,
   type RegisterType,
   type User,
+  type SearchProps,
+  type StepProps,
 };

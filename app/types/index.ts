@@ -8,6 +8,8 @@ import {
   NotificationType,
   RegisterType,
   User,
+  SearchProps,
+  StepProps,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -25,4 +27,6 @@ export {
   type NotificationType,
   type RegisterType,
   type User,
+  type SearchProps,
+  type StepProps,
 };

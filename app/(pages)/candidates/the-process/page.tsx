@@ -1,4 +1,4 @@
-import { StepProps } from "@/app/constants/types.index";
+import { StepProps } from "@/app/types";
 import { processSteps } from "@/app/constants";
 import styles from "./Process.module.css";
 
