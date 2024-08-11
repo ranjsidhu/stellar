@@ -1,10 +1,9 @@
-import { Collapse } from "antd";
+import { Accordion } from "@/app/components";
 import { faqs } from "../../constants";
 import styles from "./Faqs.module.css";
 
-const items = faqs.map((faq, index) => {
+const items = faqs.map((faq) => {
   return {
-    key: index,
     label: faq.question,
     children: <p>{faq.answer}</p>,
   };
@@ -18,7 +17,7 @@ export default function FAQsPage() {
       </div>
       <div className={styles.faqsWrapper}>
         <div className={styles.faqsAccordion}>
-          <Collapse items={items} />
+          <Accordion items={items} />
         </div>
       </div>
     </section>

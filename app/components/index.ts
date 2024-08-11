@@ -11,6 +11,7 @@ import Layout from "./(layout)/Layout/Layout";
 import NotFound from "./(display)/NotFound/NotFound";
 import Values from "./(display)/Values/Values";
 import Socials from "./(display)/Socials/Socials";
+import Accordion from "./(display)/Accordion/Accordion";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
@@ -48,4 +49,5 @@ export {
   Filters,
   Socials,
   Button,
+  Accordion,
 };
