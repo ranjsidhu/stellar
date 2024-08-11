@@ -1,12 +1,12 @@
-import "./not-found.css";
+import styles from "./NotFound.module.css";
 
 export default function NotFound() {
   return (
     <>
       <br />
-      <h3 className="not-found-title">Not Found</h3>
+      <h3 className={styles.notFoundTitle}>Not Found</h3>
       <br />
-      <div className="not-found">
+      <div className={styles.notFound}>
         <p>We haven&apos;t been able to find the page you requested</p>
         <p>
           Click <a href="/">here</a> to go back to the homepage

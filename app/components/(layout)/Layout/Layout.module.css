@@ -9,31 +9,9 @@
   align-items: center;
 }
 
-.app-children {
+.appChildren {
   width: 100vw;
   flex-grow: 1;
-}
-
-.not-found-title {
-  text-align: center;
-}
-
-.not-found {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.not-found a,
-.not-found a:visited {
-  text-decoration: underline;
-  color: black;
-}
-
-.not-found a {
-  cursor: pointer;
 }
 
 .hidden {
@@ -83,12 +61,5 @@
     bottom: 0;
     background-color: rgba(0, 0, 0);
     opacity: 0.8;
-  }
-}
-
-@media (max-width: 360px) {
-  .not-found p {
-    text-align: center;
-    text-wrap: balance;
   }
 }
