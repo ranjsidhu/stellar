@@ -6,9 +6,14 @@ import Image from "next/image";
 import { useAppDispatch } from "@/lib/hooks";
 import { setAuthenticated } from "@/lib/features/Auth";
 import { DARK } from "@/app/assets";
-import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
-import "./header.css";
-import "./socials.css";
+import {
+  Hamburger,
+  Navbar,
+  HeaderButtons,
+  MobileMenu,
+  Socials,
+} from "@/app/components";
+import styles from "./Header.module.css";
 
 export default function Header({ role }: { role: string | undefined | null }) {
   const pathname = usePathname();
@@ -28,18 +33,18 @@ export default function Header({ role }: { role: string | undefined | null }) {
   return (
     <>
       {!isValidPathname && (
-        <div className="header">
-          <header className="header-wrapper">
-            <div className="header-logo">
+        <div className={styles.header}>
+          <header className={styles.headerWrapper}>
+            <div className={styles.headerLogo}>
               <Image
                 src={DARK}
                 alt="logo"
-                className="header-logo-image"
+                className={styles.headerLogoImage}
                 onClick={() => router.push("/")}
                 priority
               />
             </div>
-            <div className="header-navigation">
+            <div className={styles.headerNavigation}>
               <HeaderButtons role={role} />
               <Navbar />
             </div>
@@ -49,12 +54,7 @@ export default function Header({ role }: { role: string | undefined | null }) {
       )}
 
       {!isValidPathname && !isMobileMenuOpen && pathname !== "/profile" && (
-        <div className="header-socials">
-          <a href="#" target="_blank" className="fa fa-facebook"></a>
-          <a href="#" target="_blank" className="fa fa-instagram"></a>
-          <a href="#" target="_blank" className="fa fa-linkedin"></a>
-          <a href="#" target="_blank" className="fa fa-envelope"></a>
-        </div>
+        <Socials className={styles.headerSocials} />
       )}
 
       {isMobileMenuOpen && <MobileMenu toggleMenu={toggleMenu} role={role} />}

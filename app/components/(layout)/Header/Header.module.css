@@ -7,7 +7,7 @@
   background-color: #00150f;
 }
 
-.header-wrapper {
+.headerWrapper {
   width: 95vw;
   max-width: 1440px;
   height: 220px;
@@ -18,7 +18,7 @@
   background-color: #00150f;
 }
 
-.header-logo {
+.headerLogo {
   margin-right: auto;
   width: 20%;
   height: 100%;
@@ -27,7 +27,7 @@
   justify-content: center;
 }
 
-.header-logo-image {
+.headerLogoImage {
   width: auto;
   height: 80%;
   aspect-ratio: auto;
@@ -36,15 +36,11 @@
   transition: all 0.3s ease;
 }
 
-.header-logo-image:hover {
+.headerLogoImage:hover {
   cursor: pointer;
 }
 
-.hamburger-container {
-  display: none;
-}
-
-.header-navigation {
+.headerNavigation {
   height: 100%;
   margin-top: auto;
   margin-bottom: auto;
@@ -54,33 +50,7 @@
   align-items: center;
 }
 
-.header-buttons {
-  height: 112px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-button {
-  background: white;
-  color: #00150f;
-  display: inline-block;
-  padding: 10px 35px;
-  border-radius: 25px;
-  box-shadow: 0px 1px 10px -3px #000;
-  font-size: 0.9rem;
-}
-
-.header-button:hover {
-  background: gold;
-  color: black;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.header-socials {
+.headerSocials {
   width: 95vw;
   max-width: 1440px;
   text-align: right;
@@ -98,7 +68,7 @@
     background-color: #00150f;
   }
 
-  .header-wrapper {
+  .headerWrapper {
     max-width: 95vw;
     height: 100px;
     padding: 0px 24px;
@@ -108,11 +78,11 @@
     align-items: center;
   }
 
-  .header-navigation {
+  .headerNavigation {
     display: none;
   }
 
-  .header-logo {
+  .headerLogo {
     width: 20%;
     height: 100%;
     display: flex;
@@ -120,7 +90,7 @@
     justify-content: flex-start;
   }
 
-  .header-logo-image {
+  .headerLogoImage {
     width: auto;
     height: 80%;
     aspect-ratio: auto;
@@ -129,36 +99,7 @@
     transition: all 0.3s ease;
   }
 
-  /* Hamburger styling */
-  .hamburger-container {
-    display: inline-flex;
-    height: 30px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    /* flex-shrink: 0; */
-  }
-
-  .hamburger-bar {
-    width: 40px;
-    height: 4px;
-    background: gold;
-    transition: 0.4s;
-  }
-
-  .hamburger-bar.open:nth-child(1) {
-    transform: rotate(-45deg) translate(-9px, 9px);
-  }
-
-  .hamburger-bar.open:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger-bar.open:nth-child(3) {
-    transform: rotate(45deg) translate(-9px, -9px);
-  }
-
-  .header-socials {
+  .headerSocials {
     width: 100vw;
   }
 }

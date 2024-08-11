@@ -35,6 +35,10 @@
   line-height: 1.75;
 }
 
+.footerSocials {
+  text-align: center;
+}
+
 @media (max-width: 923px) {
   .layoutFooter {
     color: white;

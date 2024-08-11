@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { socials } from "@/app/constants";
-import styles from "./Socials.module.css";
 
-export default function Socials() {
+type SocialsProps = {
+  className: string | undefined;
+};
+
+export default function Socials({ className }: SocialsProps) {
   return (
-    <div className={styles.socials}>
+    <div className={className}>
       {socials.map((social) => (
         <Link key={social} href="#" className={`fa fa-${social}`}></Link>
       ))}

@@ -19,7 +19,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <Socials />
+        <Socials className={styles.footerSocials} />
 
         <div className={styles.footerLegal}>
           <p>

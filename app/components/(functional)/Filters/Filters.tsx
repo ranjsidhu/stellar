@@ -3,9 +3,9 @@
 import { useState, SetStateAction, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Select, Input } from "antd";
-import { useFetch } from "../../hooks";
-import { JobLocation, Job } from "../../types";
-import { pluralise } from "../../utils";
+import { useFetch } from "@/app/hooks";
+import { JobLocation, Job } from "@/app/types";
+import { pluralise } from "@/app/utils";
 import styles from "./Filters.module.css";
 
 type FiltersProps = {
