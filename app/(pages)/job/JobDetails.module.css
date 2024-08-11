@@ -1,4 +1,4 @@
-.job-details-wrapper {
+.jobDetailsWrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -7,6 +7,10 @@
   padding: 3.5rem;
 }
 
-.job-details-text {
+.jobDetailsText {
   font-size: 16px !important;
+}
+
+.jobLocationIcon {
+  transform: rotate(315deg);
 }
