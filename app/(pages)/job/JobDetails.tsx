@@ -1,4 +1,5 @@
 "use client";
+
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CircularProgress } from "@mui/material";
@@ -31,8 +32,8 @@ export default function JobDetails() {
 
   return (
     <Suspense>
-      {loading && <CircularProgress />}
       <div className={styles.jobDetailsWrapper}>
+        {loading && <CircularProgress />}
         {!loading && jobDetails && (
           <div>
             <Title level={1}>{jobDetails.role_name}</Title>
