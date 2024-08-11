@@ -1,19 +1,20 @@
-import "./aboutus.css";
-
-import AboutUsText from "./AboutUsText";
-import Values from "./Values";
+import Values from "../../components/Values/Values";
+import { aboutUsText } from "@/app/constants";
+import styles from "./AboutUs.module.css";
 
 export default function AboutUs() {
   return (
     <section>
-      <div className="aboutus-hero">
+      <div className={styles.aboutUsHero}>
         <h2>About Us</h2>
       </div>
-      <div className="aboutus-wrapper">
-        <div className="aboutus-statement">
-          <AboutUsText />
+      <div className={styles.aboutUsWrapper}>
+        <div className={styles.aboutUsStatement}>
+          {aboutUsText.map((text, index) => (
+            <div key={index}>{text}</div>
+          ))}
         </div>
-        <div className="aboutus-values">
+        <div className={styles.aboutUsValues}>
           <Values />
         </div>
       </div>

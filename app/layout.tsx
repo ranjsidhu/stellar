@@ -4,8 +4,8 @@ import { NextFont } from "next/dist/compiled/@next/font";
 import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
-import { Layout, Analytics, StoreProvider } from "../components";
-import { getRole } from "../utils/supabase/supabase-utils";
+import { Layout, Analytics, StoreProvider } from "./components";
+import { getRole } from "./utils/supabase/supabase-utils";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
