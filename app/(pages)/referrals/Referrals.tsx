@@ -2,7 +2,7 @@
 
 import { Form, Input, Button, type FormProps } from "antd";
 import instance from "../../utils/instance";
-import "./referrals.css";
+import styles from "./Referrals.module.css";
 
 type FieldType = {
   name: string;
@@ -33,7 +33,7 @@ export default function Referrals() {
       layout="vertical"
       onFinish={handleSubmit}
       scrollToFirstError
-      className="referrals-form-form"
+      className={styles.referralsFormForm}
     >
       <Item
         label="Your Name"
@@ -93,8 +93,12 @@ export default function Referrals() {
       </Item>
 
       <br />
-      <Item className="referrals-form-submit">
-        <Button type="primary" htmlType="submit">
+      <Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={styles.referralsFormSubmitBtn}
+        >
           Submit
         </Button>
       </Item>

@@ -93,7 +93,7 @@ export default function Graduates() {
       </Item>
 
       <br />
-      <Item className={styles.graduatesFormSubmit}>
+      <Item>
         <Button
           type="primary"
           htmlType="submit"
