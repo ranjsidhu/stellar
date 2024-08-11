@@ -1,17 +1,17 @@
-import "./safeguarding.css";
+import styles from "./Safeguarding.module.css";
 
 export default function SafeguardingPage() {
   return (
     <section>
-      <div className="safeguarding-hero">
+      <div className={styles.safeguardingHero}>
         <h2>Safeguarding</h2>
       </div>
-      <div className="safeguarding-wrapper">
-        <div className="safeguarding-section">
-          <h2 className="safeguarding-title">
+      <div className={styles.safeguardingWrapper}>
+        <div className={styles.safeguardingSection}>
+          <h2 className={styles.safeguardingTitle}>
             Safeguarding guarantee for schools
           </h2>
-          <div>
+          <section>
             At Stellar Recruitment, we take pride in our commitment to keeping
             our supply staff abreast of any developments in the education
             sector. It&apos;s our responsibility to ensure they&apos;re equipped
@@ -23,11 +23,11 @@ export default function SafeguardingPage() {
             staff&apos;s continuous professional development not only benefits
             them but also enhances the quality of service we deliver to your
             school.
-          </div>
+          </section>
         </div>
-        <div className="safeguarding-section">
-          <h2 className="safeguarding-title">Duty of care</h2>
-          <div>
+        <div className={styles.safeguardingSection}>
+          <h2 className={styles.safeguardingTitle}>Duty of care</h2>
+          <section>
             All staff at Stellar Recruitment understand their duty of care
             towards every school they collaborate with, comprehending the
             pivotal role they play in safeguarding. Each member of our team has
@@ -38,7 +38,7 @@ export default function SafeguardingPage() {
             schools through continuous professional development (CPD). With our
             team at Stellar, you can rest assured that you and your school are
             in safe hands.
-          </div>
+          </section>
         </div>
       </div>
     </section>

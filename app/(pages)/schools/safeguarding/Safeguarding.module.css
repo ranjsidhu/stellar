@@ -1,4 +1,4 @@
-.safeguarding-hero {
+.safeguardingHero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@
   margin: 0 auto;
 }
 
-.safeguarding-wrapper {
+.safeguardingWrapper {
   width: 95vw;
   max-width: 1440px;
   margin: 50px auto;
@@ -29,7 +29,7 @@
   align-items: center;
 }
 
-.safeguarding-section {
+.safeguardingSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,13 +42,13 @@
   text-align: center;
 }
 
-.safeguarding-title {
+.safeguardingTitle {
   color: black;
   text-align: center;
 }
 
 @media screen and (max-width: 430px) {
-  .safeguarding-hero {
+  .safeguardingHero {
     height: 30vh;
     font-size: 1.5em;
   }
