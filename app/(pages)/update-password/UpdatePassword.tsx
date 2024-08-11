@@ -3,7 +3,7 @@
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { createClient } from "../../utils/supabase/client";
 import { NotificationType } from "../../types";
-import "./update-password.css";
+import styles from "./UpdatePassword.module.css";
 
 const { Item } = Form;
 
@@ -42,12 +42,12 @@ export default function UpdatePassword() {
   };
 
   return (
-    <div className="update-password-wrapper">
+    <div className={styles.updatePasswordWrapper}>
       {contextHolder}
       <Form
         name="basic"
         layout="vertical"
-        className="update-password-form"
+        className={styles.updatePasswordForm}
         onFinish={handleUpdatePassword}
         scrollToFirstError
       >
@@ -59,7 +59,7 @@ export default function UpdatePassword() {
           <Input.Password
             type="password"
             placeholder="New Password"
-            className="login-form-text-input"
+            className={styles.updatePasswordFormTextInput}
           />
         </Item>
         <Item
@@ -70,15 +70,15 @@ export default function UpdatePassword() {
           <Input.Password
             type="password"
             placeholder="New Password"
-            className="login-form-text-input"
+            className={styles.updatePasswordFormTextInput}
           />
         </Item>
 
-        <Item className="login-form-submit">
+        <Item>
           <Button
             htmlType="submit"
             type="primary"
-            className="login-form-text-input"
+            className={styles.updatePasswordFormTextInput}
           >
             Update Password
           </Button>
