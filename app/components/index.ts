@@ -1,4 +1,4 @@
-import Footer from "./general/footer/Footer";
+import Footer from "./(layout)/Footer/Footer";
 import Hamburger from "./general/header/Hamburger";
 import Header from "./general/header/Header";
 import LatestJobs from "./general/home/LatestJobs";
@@ -16,6 +16,7 @@ import StoreProvider from "./misc/StoreProvider";
 import NotFound from "./not-found/NotFound";
 import Values from "./Values/Values";
 import Filters from "./Filters/Filters";
+import Socials from "./Socials/Socials";
 
 export {
   Header,
@@ -36,4 +37,5 @@ export {
   NotFound,
   Values,
   Filters,
+  Socials,
 };

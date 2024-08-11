@@ -126,4 +126,6 @@ const aboutUsText = [
   "With our deep understanding of the education sector and our commitment to excellence, professionalism, and partnership, Stellar Recruitment strives to make a meaningful impact on the lives of students, educators, and schools alike. Join us in shaping the future of education, one placement at a time.",
 ];
 
-export { routes, aboutUsValues, processSteps, faqs, aboutUsText };
+const socials = ["facebook", "instagram", "linkedin", "envelope"];
+
+export { routes, aboutUsValues, processSteps, faqs, aboutUsText, socials };
