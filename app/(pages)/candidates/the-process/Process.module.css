@@ -1,4 +1,4 @@
-.process-wrapper {
+.processWrapper {
   width: 95vw;
   max-width: 1440px;
   margin: 0 auto;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.process-hero {
+.processHero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,13 +29,13 @@
   margin: 0 auto;
 }
 
-.process-statement {
+.processStatement {
   margin-top: 2%;
   width: 70%;
   text-align: center;
 }
 
-.process-steps {
+.processSteps {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,7 +53,7 @@
   gap: 5%;
 }
 
-.step-index {
+.stepIndex {
   background-color: #00150f;
   color: white;
   border: 1px solid gold;
@@ -66,23 +66,23 @@
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
-.step-right {
+.stepRight {
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 430px) {
-  .process-hero {
+  .processHero {
     height: 30vh;
     font-size: 1.5em;
   }
 
-  .process-statement {
+  .processStatement {
     width: 90%;
     margin: 30px 0;
   }
 
-  .process-steps {
+  .processSteps {
     display: flex;
     flex-direction: column;
     justify-content: center;

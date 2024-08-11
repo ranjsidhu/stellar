@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import AboutUs from "./AboutUs";
+
+import { Values } from "@/app/components";
+import { aboutUsText } from "@/app/constants";
+import styles from "./AboutUs.module.css";
 
 export const metadata: Metadata = {
   title:
@@ -14,5 +17,21 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUsPage() {
-  return <AboutUs />;
+  return (
+    <section>
+      <div className={styles.aboutUsHero}>
+        <h2>About Us</h2>
+      </div>
+      <div className={styles.aboutUsWrapper}>
+        <div className={styles.aboutUsStatement}>
+          {aboutUsText.map((text, index) => (
+            <div key={index}>{text}</div>
+          ))}
+        </div>
+        <div className={styles.aboutUsValues}>
+          <Values />
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,19 +1,18 @@
-import "./process.css";
-
 import { StepProps } from "@/app/constants/types.index";
 import { processSteps } from "@/app/constants";
+import styles from "./Process.module.css";
 
 const Step = ({ title, index, description }: StepProps) => {
   return (
-    <div className="step">
-      <div className="step-index">
+    <div className={styles.step}>
+      <div className={styles.stepIndex}>
         <p>{index + 1}</p>
       </div>
-      <div className="step-right">
-        <div className="step-title">
+      <div className={styles.stepRight}>
+        <div className={styles.stepTitle}>
           <h3>{title}</h3>
         </div>
-        <div className="step-description">
+        <div className={styles.stepDescription}>
           <p>{description}</p>
         </div>
       </div>
@@ -23,13 +22,13 @@ const Step = ({ title, index, description }: StepProps) => {
 
 export default function TheProcess() {
   return (
-    <section className="process-section">
-      <div className="process-hero">
+    <section className={styles.processSection}>
+      <div className={styles.processHero}>
         <h2>Application and interview process</h2>
       </div>
 
-      <div className="process-wrapper">
-        <p className="process-statement">
+      <div className={styles.processWrapper}>
+        <p className={styles.processStatement}>
           At Stellar Recruitment, we boast a highly efficient and streamlined
           application process that is both reliable and lightning-fast. Our
           paramount responsibility lies in meticulously ensuring that the
@@ -37,11 +36,11 @@ export default function TheProcess() {
           undergoes thorough vetting procedures upheld to the utmost quality
           standards.
         </p>
-        <p className="process-statement">
+        <p className={styles.processStatement}>
           Below are the stages that will take place before a candidate is sent
           out to a placement:
         </p>
-        <div className="process-steps">
+        <div className={styles.processSteps}>
           {processSteps.map(({ step, description }, index) => (
             <Step
               key={index}

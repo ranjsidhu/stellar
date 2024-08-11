@@ -1,4 +1,4 @@
-.testimonials-wrapper {
+.testimonialsWrapper {
   width: 95vw;
   max-width: 1440px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
   overflow-x: hidden;
 }
 
-.testimonials-hero {
+.testimonialsHero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@
   margin: 0 auto;
 }
 
-.testimonials-list-wrapper {
+.testimonialsListWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +46,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .testimonials-hero {
+  .testimonialsHero {
     height: 30vh;
     font-size: 1.5em;
   }

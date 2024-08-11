@@ -14,6 +14,7 @@ import JobCard from "./jobs/JobCard";
 import Analytics from "./misc/Analytics";
 import StoreProvider from "./misc/StoreProvider";
 import NotFound from "./not-found/NotFound";
+import Values from "./Values/Values";
 
 export {
   Header,
@@ -32,4 +33,5 @@ export {
   Analytics,
   StoreProvider,
   NotFound,
+  Values,
 };

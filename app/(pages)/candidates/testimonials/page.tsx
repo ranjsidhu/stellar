@@ -1,15 +1,14 @@
-import "./testimonials.css";
-
-import Testimonials from "./Testimonials";
+import TestimonialsList from "./TestimonialsList";
+import styles from "./Testimonials.module.css";
 
 export default function TestimonialsPage() {
   return (
     <section>
-      <div className="testimonials-hero">
+      <div className={styles.testimonialsHero}>
         <h2>Testimonials</h2>
       </div>
-      <div className="testimonials-wrapper">
-        <Testimonials />
+      <div className={styles.testimonialsWrapper}>
+        <TestimonialsList />
       </div>
     </section>
   );
