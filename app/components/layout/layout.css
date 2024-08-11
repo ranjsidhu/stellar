@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.app-children {
+  width: 100vw;
+  flex-grow: 1;
+}
+
 .not-found-title {
   text-align: center;
 }

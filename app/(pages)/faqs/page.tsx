@@ -1,6 +1,6 @@
 import { Collapse } from "antd";
 import { faqs } from "../../constants";
-import "./faqs.css";
+import styles from "./Faqs.module.css";
 
 const items = faqs.map((faq, index) => {
   return {
@@ -12,13 +12,15 @@ const items = faqs.map((faq, index) => {
 
 export default function FAQsPage() {
   return (
-    <div className="faqs-wrapper">
-      <div className="faqs-hero">
+    <section>
+      <div className={styles.faqsHero}>
         <h2>FAQs</h2>
       </div>
-      <div className="faq-accordion">
-        <Collapse items={items} />
+      <div className={styles.faqsWrapper}>
+        <div className={styles.faqsAccordion}>
+          <Collapse items={items} />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
