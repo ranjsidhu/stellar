@@ -1,22 +1,25 @@
-.referrals-wrapper {
-  width: 100%;
+.testimonials-wrapper {
+  width: 95vw;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
-.referrals-hero {
+.testimonials-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 40vh;
   margin-top: 4vh;
   overflow-x: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/stock/refer.jpg") no-repeat center center/cover;
+    url("../../../assets/stock/testimonials.jpg") no-repeat center center/cover;
   transition: opacity 0.5s ease;
   animation: fadeIn 1s ease-in;
   color: white;
@@ -25,38 +28,26 @@
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0 auto;
-  padding: 20px;
 }
 
-.referrals-intro {
-  margin-top: 50px;
+.testimonials-list-wrapper {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  gap: 10px;
-}
-
-.referrals-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 50px;
-  width: 100%;
+  align-items: center;
+  width: 80%;
+  margin: 20px;
+  min-height: 300px;
 }
 
-.referrals-form-form {
-  width: 60%;
-  max-width: 550px;
+.testimonial {
+  text-align: center;
+  padding: 15px;
 }
 
-.referrals-form-submit {
-  .ant-btn-primary {
-    background-color: #00150f;
-  }
-  .ant-btn-primary:hover {
-    background-color: #00150f !important;
-    color: gold !important;
+@media screen and (max-width: 430px) {
+  .testimonials-hero {
+    height: 30vh;
+    font-size: 1.5em;
   }
 }

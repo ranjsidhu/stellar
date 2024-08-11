@@ -1,8 +1,8 @@
 "use client";
 
 import { Form, Input, Button, type FormProps, notification } from "antd";
-import { createClient } from "../utils/supabase/client";
-import { NotificationType } from "../types";
+import { createClient } from "../../utils/supabase/client";
+import { NotificationType } from "../../types";
 import "./update-password.css";
 
 const { Item } = Form;

@@ -1,7 +1,7 @@
 "use client";
 
 import { Form, Input, Button, type FormProps } from "antd";
-import instance from "../utils/instance";
+import instance from "../../utils/instance";
 import "./graduates.css";
 
 type FieldType = {

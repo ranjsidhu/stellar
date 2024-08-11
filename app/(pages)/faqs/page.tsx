@@ -1,5 +1,5 @@
 import { Collapse } from "antd";
-import { faqs } from "../constants";
+import { faqs } from "../../constants";
 import "./faqs.css";
 
 const items = faqs.map((faq, index) => {

@@ -1,9 +1,9 @@
 import { useState, SetStateAction, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Select, Input } from "antd";
-import { useFetch } from "../hooks";
-import { JobLocation, Job } from "../types";
-import { pluralise } from "../utils";
+import { useFetch } from "../../hooks";
+import { JobLocation, Job } from "../../types";
+import { pluralise } from "../../utils";
 
 type FiltersProps = {
   setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;

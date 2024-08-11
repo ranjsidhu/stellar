@@ -4,8 +4,8 @@ import { useState, useEffect, Suspense } from "react";
 import { Pagination, PaginationProps } from "antd";
 import { CircularProgress } from "@mui/material";
 import { useFetch } from "@/app/hooks";
-import { Job } from "../types";
-import { JobCard } from "../components";
+import { Job } from "../../types";
+import { JobCard } from "../../components";
 import Filters from "./Filters";
 import "./jobs.css";
 

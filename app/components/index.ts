@@ -11,6 +11,9 @@ import HeaderButtons from "./general/header/HeaderButtons";
 import MobileMenu from "./general/navbar/mobile-menu/MobileMenu";
 import SectionLoading from "./general/loading/SectionLoading";
 import JobCard from "./jobs/JobCard";
+import Analytics from "./misc/Analytics";
+import StoreProvider from "./misc/StoreProvider";
+import NotFound from "./not-found/NotFound";
 
 export {
   Header,
@@ -26,4 +29,7 @@ export {
   MobileMenu,
   SectionLoading,
   JobCard,
+  Analytics,
+  StoreProvider,
+  NotFound,
 };

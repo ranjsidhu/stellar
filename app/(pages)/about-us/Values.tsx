@@ -7,10 +7,10 @@ import {
   Partnership,
   Reliable,
   Safe,
-} from "../assets";
+} from "../../assets";
 
 import Image from "next/image";
-import { aboutUsValues } from "../constants";
+import { aboutUsValues } from "../../constants";
 
 const images = [Accountable, Partnership, Reliable, Safe, Integrity, Impact];
 

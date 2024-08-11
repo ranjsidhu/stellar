@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import { DrawingPinIcon } from "@radix-ui/react-icons";
 import { Typography } from "antd";
 import Markdown from "markdown-to-jsx";
-import { Job } from "../types";
+import { Job } from "../../types";
 import "./job-details.css";
 
 const { Title, Paragraph } = Typography;
