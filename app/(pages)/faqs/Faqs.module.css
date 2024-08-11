@@ -1,5 +1,4 @@
 .faqsWrapper {
-  width: 95vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,5 +29,6 @@
 
 .faqsAccordion {
   width: 95%;
+  max-width: 1440px;
   margin: 50px auto 0 auto;
 }
