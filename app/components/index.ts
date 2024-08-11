@@ -15,6 +15,7 @@ import Analytics from "./misc/Analytics";
 import StoreProvider from "./misc/StoreProvider";
 import NotFound from "./not-found/NotFound";
 import Values from "./Values/Values";
+import Filters from "./Filters/Filters";
 
 export {
   Header,
@@ -34,4 +35,5 @@ export {
   StoreProvider,
   NotFound,
   Values,
+  Filters,
 };

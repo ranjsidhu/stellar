@@ -1,13 +1,14 @@
-.jobs-wrapper {
+.jobsWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: auto;
+  margin: auto;
+  max-width: 1440px;
 }
 
-.jobs-filters-grid {
+.jobsFiltersGrid {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -17,50 +18,22 @@
   margin-top: 100px;
 }
 
-.jobs-grid {
+.jobsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.jobs-pagination {
+.jobsPagination {
   margin: 100px 0;
 }
 
-.jobs-filters {
-  display: flex;
-  gap: 50px;
-}
-
-.filters-select {
-  width: 450px;
-}
-
-.filters-select-option {
-  display: flex;
-  justify-content: space-between;
-}
-
 @media screen and (max-width: 968px) {
-  .jobs-grid {
+  .jobsGrid {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-  }
-}
-
-@media screen and (max-width: 877px) {
-  .jobs-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .jobs-pagination {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
   }
 }

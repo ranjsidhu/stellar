@@ -1,9 +1,12 @@
+"use client";
+
 import { useState, SetStateAction, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Select, Input } from "antd";
 import { useFetch } from "../../hooks";
 import { JobLocation, Job } from "../../types";
 import { pluralise } from "../../utils";
+import styles from "./Filters.module.css";
 
 type FiltersProps = {
   setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
@@ -63,17 +66,17 @@ export default function Filters({ setDisplayJobs }: FiltersProps) {
   }, [search, searchJobs]);
 
   return (
-    <div className="jobs-filters">
+    <div className={styles.jobsFilters}>
       <Select
         allowClear
         showSearch
-        className="filters-select"
+        className={styles.filtersSelect}
         placeholder="Search by location"
         onChange={getJobsByLocation}
       >
         {locations.map((location) => (
           <Select.Option key={location.location}>
-            <div className="filters-select-option">
+            <div className={styles.filtersSelectOption}>
               <p>{location.location}</p>
               <p>{pluralise(location.location_count, "job")}</p>
             </div>

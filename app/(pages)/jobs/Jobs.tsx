@@ -5,9 +5,8 @@ import { Pagination, PaginationProps } from "antd";
 import { CircularProgress } from "@mui/material";
 import { useFetch } from "@/app/hooks";
 import { Job } from "../../types";
-import { JobCard } from "../../components";
-import Filters from "./Filters";
-import "./jobs.css";
+import { JobCard, Filters } from "../../components";
+import styles from "./Jobs.module.css";
 
 export default function Jobs() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,12 +35,12 @@ export default function Jobs() {
 
   return (
     <Suspense fallback={<CircularProgress />}>
-      <div className="jobs-wrapper">
+      <div className={styles.jobsWrapper}>
         {displayJobs && (
-          <div className="jobs-filters-grid">
+          <div className={styles.jobsFiltersGrid}>
             <Filters setDisplayJobs={setDisplayJobs} />
             <p>Found {displayJobs.length} jobs</p>
-            <div className="jobs-grid">
+            <div className={styles.jobsGrid}>
               {isLoading && <CircularProgress />}
               {!isLoading &&
                 displayJobs.map((job) => <JobCard key={job.id} job={job} />)}
@@ -49,7 +48,7 @@ export default function Jobs() {
           </div>
         )}
 
-        <div className="jobs-pagination">
+        <div className={styles.jobsPagination}>
           <Pagination
             showSizeChanger={false}
             defaultCurrent={1}
