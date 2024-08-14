@@ -1,13 +1,4 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.7;
-  }
-}
-
-.homepage-wrapper {
+.homepageWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +7,7 @@
   overflow-x: hidden;
 }
 
-.homepage-hero-container {
+.homepageHeroContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +20,7 @@
   animation: fadeIn 1s ease-in;
 }
 
-.homepage-hero {
+.homepageHero {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +31,7 @@
   max-width: 1440px;
 }
 
-.homepage-hero-title {
+.homepageHeroTitle {
   font-size: 2.5em;
   font-weight: bold;
   text-align: center;
@@ -52,7 +43,7 @@
   padding: 20px;
 }
 
-.homepage-search-wrapper {
+.homepageSearchWrapper {
   max-width: 1440px;
   background-color: #00150f;
   margin-top: 5vh;
@@ -62,22 +53,22 @@
   opacity: 0.8;
 }
 
-.homepage-statement-wrapper {
+.homepageStatementWrapper {
   display: flex;
   max-width: 1440px;
   justify-content: center;
   align-items: center;
   width: 90%;
   padding: 50px;
-
-  h2 {
-    text-align: center;
-    text-wrap: pretty;
-    line-height: 40px;
-  }
 }
 
-.homepage-divider-image {
+.homepageStatementWrapper h2 {
+  text-align: center;
+  text-wrap: pretty;
+  line-height: 40px;
+}
+
+.homepageDividerImage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +83,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .header-wrapper {
+  .headerWrapper {
     width: 100vw;
     height: 100px;
     padding: 0px 24px;
@@ -103,11 +94,7 @@
     background-color: #00150f;
   }
 
-  .header-navigation {
-    display: none;
-  }
-
-  .header-logo-image {
+  .homepageLogoImage {
     width: auto;
     height: 80%;
     aspect-ratio: auto;
@@ -116,7 +103,7 @@
     transition: all 0.3s ease;
   }
 
-  .homepage-hero-title {
+  .homepageHeroTitle {
     font-size: 2.5em;
     font-weight: bold;
     text-align: center;
@@ -128,7 +115,7 @@
     padding: 20px;
   }
 
-  .homepage-search-wrapper {
+  .homepageSearchWrapper {
     background-color: #00150f;
     margin-top: 5vh;
     padding: 20px;
@@ -137,7 +124,7 @@
     opacity: 0.8;
   }
 
-  .homepage-divider-image {
+  .homepageDividerImage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,5 +137,14 @@
       center/cover;
     transition: opacity 0.5s ease;
     animation: fadeIn 1s ease-in;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
   }
 }

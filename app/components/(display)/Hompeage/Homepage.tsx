@@ -2,30 +2,29 @@
 
 import { useEffect } from "react";
 import { LatestJobs, Search } from "@/app/components";
-import "./homepage.css";
+import styles from "./Homepage.module.css";
 
 export default function Homepage() {
   useEffect(() => {
     const url = window.location.href;
     if (url.includes("authenticated=true")) {
-      console.log("herereerere");
       window.location.href = "/";
     }
   }, []);
 
   return (
-    <div className="homepage-wrapper">
-      <div className="homepage-hero-container">
-        <div className="homepage-hero">
-          <em className="homepage-hero-title">
+    <div className={styles.homepageWrapper}>
+      <div className={styles.homepageHeroContainer}>
+        <div className={styles.homepageHero}>
+          <em className={styles.homepageHeroTitle}>
             &quot;Connecting talent with opportunity&quot;
           </em>
         </div>
-        <div className="homepage-search-wrapper">
+        <div className={styles.homepageSearchWrapper}>
           <Search source="home" />
         </div>
       </div>
-      <div className="homepage-statement-wrapper">
+      <div className={styles.homepageStatementWrapper}>
         <h2>
           Welcome to Stellar Recruitment, where stars align with schools and
           educators! Whether you&apos;re a cover, supply, or classroom teacher,
@@ -34,7 +33,7 @@ export default function Homepage() {
           Let&apos;s make an impact in education together!
         </h2>
       </div>
-      <div className="homepage-divider-image" />
+      <div className={styles.homepageDividerImage} />
       <LatestJobs />
     </div>
   );

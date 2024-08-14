@@ -12,6 +12,7 @@ import NotFound from "./(display)/NotFound/NotFound";
 import Values from "./(display)/Values/Values";
 import Socials from "./(display)/Socials/Socials";
 import Accordion from "./(display)/Accordion/Accordion";
+import Homepage from "./(display)/Hompeage/Homepage";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
@@ -50,4 +51,5 @@ export {
   Socials,
   Button,
   Accordion,
+  Homepage,
 };
