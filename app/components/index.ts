@@ -13,21 +13,22 @@ import Values from "./(display)/Values/Values";
 import Socials from "./(display)/Socials/Socials";
 import Accordion from "./(display)/Accordion/Accordion";
 import Homepage from "./(display)/Hompeage/Homepage";
+import LatestJobs from "./(display)/LatestJobs/LatestJobs";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
+import LatestJobCard from "./(functional)/LatestJobCard/LatestJobCard";
+import JobCard from "./(functional)/JobCard/JobCard";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
 import StoreProvider from "./(misc)/StoreProvider";
 
-import LatestJobs from "./general/home/LatestJobs";
 import Login from "./login/Login";
 import Navbar from "./general/navbar/Navbar";
 import Register from "./register/Register";
 import Search from "./general/search/Search";
 import MobileMenu from "./general/navbar/mobile-menu/MobileMenu";
-import JobCard from "./jobs/JobCard";
 
 export {
   Header,
@@ -52,4 +53,5 @@ export {
   Button,
   Accordion,
   Homepage,
+  LatestJobCard,
 };

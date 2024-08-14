@@ -1,4 +1,4 @@
-.job-card {
+.jobCard {
   width: 500px;
   height: 300px;
   display: flex;
@@ -12,46 +12,47 @@
   transition: background-color 0.5s ease;
 }
 
-.job-card:hover {
+.jobCard:hover {
   cursor: pointer;
   background-color: #00150f;
   transition: background-color 0.5s ease;
   box-shadow: 0 0 10px 0 gold;
   color: white;
-
-  .job-hr {
-    border-color: gold;
-    width: 70%;
-    margin: 15px 0;
-  }
 }
 
-.job-role-name {
+.jobCard:hover .jobHr {
+  border-color: gold;
+  width: 70%;
+  margin: 15px 0;
+}
+
+.jobRoleName {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.job-location-icon {
+.jobLocationIcon {
   transform: rotate(315deg);
 }
 
-.job-card-posted {
+.jobCardPosted {
   margin-bottom: auto;
 }
 
-.job-footer-wrapper {
+.jobFooterWrapper {
   margin-top: auto;
 }
 
-.job-description {
+.jobDescription {
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.job-actions {
+.jobActions {
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -60,7 +61,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .job-card {
+  .jobCard {
     width: 100%;
     height: 70%;
     display: flex;

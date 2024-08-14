@@ -2,25 +2,23 @@
 
 import { useRouter } from "next/navigation";
 import { useFetch } from "@/app/hooks";
-import { Job } from "@/app/types";
-import { SectionLoading } from "@/app/components";
-import LatestJobCard from "./LatestJobCard";
-import "./latest-jobs.css";
+import type { Job } from "@/app/types";
+import { SectionLoading, LatestJobCard } from "@/app/components";
+import styles from "./LatestJobs.module.css";
 
 export default function LatestJobs() {
   const router = useRouter();
   const { isLoading, data: jobs } = useFetch<Job>("/jobs/latest/5");
-
   return (
-    <div className="latest-jobs-container-wrapper">
+    <div className={styles.latestJobsContainerWrapper}>
       <p
-        className="latest-jobs-wrapper-title"
+        className={styles.latestJobsWrapperTitle}
         onClick={() => router.push("/jobs")}
       >
-        Latest jobs
+        Latest Jobs
       </p>
       <SectionLoading loading={isLoading}>
-        <div className="latest-jobs-wrapper">
+        <div className={styles.latestJobsWrapper}>
           {jobs && jobs.map((job) => <LatestJobCard key={job.id} job={job} />)}
         </div>
       </SectionLoading>

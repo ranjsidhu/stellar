@@ -1,11 +1,11 @@
-.latest-jobs-container-wrapper {
+.latestJobsContainerWrapper {
   display: flex;
   flex-direction: column;
   width: 95vw;
   max-width: 1440px;
 }
 
-.latest-jobs-wrapper-title {
+.latestJobsWrapperTitle {
   width: 100%;
   color: #00150f;
   margin: 4% 0;
@@ -13,12 +13,12 @@
   text-transform: uppercase;
 }
 
-.latest-jobs-wrapper-title:hover {
+.latestJobsWrapperTitle:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.latest-jobs-wrapper {
+.latestJobsWrapper {
   display: flex;
   gap: 5%;
   width: 100%;
@@ -26,7 +26,7 @@
   margin-bottom: 2vh;
 }
 
-.latest-job-card {
+.latestJobCard {
   width: 15%;
   height: 70%;
   display: flex;
@@ -39,31 +39,31 @@
   transition: background-color 0.5s ease;
 }
 
-.latest-job-card:hover {
+.latestJobCard:hover {
   cursor: pointer;
   background-color: #00150f;
   transition: background-color 0.5s ease;
   box-shadow: 0 0 10px 0 gold;
   color: white;
-
-  .latest-job-hr {
-    border-color: gold;
-    width: 70%;
-    margin: 15px 0;
-  }
 }
 
-.latest-job-role-name {
+.latestJobCard:hover .latestJobHr {
+  border-color: gold;
+  width: 70%;
+  margin: 15px 0;
+}
+
+.latestJobRoleName {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: auto;
 }
 
-.latest-job-footer-wrapper {
+.latestJobFooterWrapper {
   margin-top: auto;
 }
 
-.latest-job-description {
+.latestJobDescription {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
@@ -72,20 +72,20 @@
   text-overflow: ellipsis;
 }
 
-.latest-job-hr {
+.latestJobHr {
   border-color: #00150f;
   width: 70%;
   margin: 15px 0;
 }
 
 @media screen and (max-width: 430px) {
-  .latest-jobs-container-wrapper {
+  .latestJobsContainerWrapper {
     display: flex;
     flex-direction: column;
     width: 95vw;
   }
 
-  .latest-jobs-wrapper {
+  .latestJobsWrapper {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -95,7 +95,7 @@
     margin-bottom: 5vh;
   }
 
-  .latest-jobs-wrapper-title {
+  .latestJobsWrapperTitle {
     width: 90vw;
     color: #00150f;
     margin: 4% 6%;
@@ -103,7 +103,7 @@
     text-transform: uppercase;
   }
 
-  .latest-job-card {
+  .latestJobCard {
     width: 100%;
     height: 70%;
     display: flex;
