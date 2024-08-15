@@ -4,13 +4,8 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
+import type { NavButtonProps } from "@/app/types";
 import "./navbar.css";
-
-type NavButtonProps = {
-  children: React.ReactNode;
-  href: string;
-  subRoutes?: { name: string; route: string }[];
-};
 
 export default function NavButton({
   children,

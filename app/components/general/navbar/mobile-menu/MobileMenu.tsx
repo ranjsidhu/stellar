@@ -1,22 +1,10 @@
 "use client";
 
 import { useAppDispatch } from "@/lib/hooks";
-import { routes } from "@/app/constants";
+import { routes, authRoutes } from "@/app/constants";
 import MobileAccordion from "./MobileAccordion";
-import { Route } from "@/app/constants";
 import { clearSession, setAuthenticated } from "@/lib/features/Auth";
 import "./mobile-menu.css";
-
-const authRoutes: Route[] = [
-  {
-    route: "/login",
-    name: "Login",
-  },
-  {
-    route: "/register",
-    name: "Register",
-  },
-];
 
 export default function MobileMenu({
   toggleMenu,

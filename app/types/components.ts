@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 type Job = {
   id: number;
   role_name: string;
@@ -69,6 +71,34 @@ type StepProps = {
   index: number;
 };
 
+type Route = {
+  route: string;
+  name: string;
+  subRoutes?: { name: string; route: string }[];
+};
+
+type AccordionProps = {
+  name: string;
+  route?: string;
+  subRoutes?: { name: string; route: string }[];
+  toggleMenu?: () => void;
+  handleOnClick?: () => void;
+};
+
+type NavButtonProps = {
+  children: React.ReactNode;
+  href: string;
+  subRoutes?: { name: string; route: string }[];
+};
+
+type FiltersProps = {
+  setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
+};
+
+type LatestJobCardProps = {
+  job: Job;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -79,4 +109,9 @@ export {
   type User,
   type SearchProps,
   type StepProps,
+  type Route,
+  type AccordionProps,
+  type NavButtonProps,
+  type FiltersProps,
+  type LatestJobCardProps,
 };

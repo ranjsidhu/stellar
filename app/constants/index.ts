@@ -1,54 +1,7 @@
 import { faqs } from "./faqs";
-
-export type Route = {
-  route: string;
-  name: string;
-  subRoutes?: { name: string; route: string }[];
-};
-
-const routes: Route[] = [
-  {
-    route: "/about-us",
-    name: "About Us",
-  },
-  {
-    route: "/jobs",
-    name: "Jobs",
-  },
-  {
-    route: "/candidates/the-process",
-    name: "Candidates",
-    subRoutes: [
-      { name: "The process", route: "/candidates/the-process" },
-      { name: "Testimonials", route: "/candidates/testimonials" },
-    ],
-  },
-  {
-    route: "/schools/safeguarding",
-    name: "Schools",
-    subRoutes: [{ name: "Safeguarding", route: "/schools/safeguarding" }],
-  },
-  {
-    route: "/graduates",
-    name: "Graduates",
-  },
-  {
-    route: "/referrals",
-    name: "Referrals",
-  },
-  {
-    route: "/contact-us",
-    name: "Contact",
-  },
-  // {
-  //   route: "/blog",
-  //   name: "Blog",
-  // },
-  {
-    route: "/faqs",
-    name: "FAQs",
-  },
-];
+import { aboutUsText, aboutUsValues } from "./aboutus";
+import { processSteps } from "./candidates";
+import { authRoutes, routes } from "./routes";
 
 // const svgs = {
 //   email:
@@ -62,70 +15,14 @@ const routes: Route[] = [
 // const iframeLoc =
 //   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2423.4940235032795!2d-2.1624408226845357!3d52.59684063053694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48709b524d9dced7%3A0x9813f9de96f46667!2sTutoring%20To%20Success!5e0!3m2!1sen!2suk!4v1702931595578!5m2!1sen!2suk";
 
-const aboutUsValues = [
-  {
-    value: "Accountable",
-    statement:
-      "We aim to enhance the educational experience for all by not only contributing through our efforts but also by committing valuable resources such as time and expertise, while also holding our staff accountable for their actions and contributions.",
-  },
-  {
-    value: "Partnership",
-    statement:
-      "Partnerships are crucial in education, enabling collaboration among educators, administrators, parents, and communities. By developing resources and expertise, we create dynamic learning environments that foster academic success and holistic development for all students.",
-  },
-  {
-    value: "Reliable",
-    statement:
-      "We prioritize transparency and consistency. Set clear expectations, deliver on promises, address issues promptly, and seek feedback for improvement. By upholding these principles and maintaining open communication, we build trust and credibility.",
-  },
-  {
-    value: "Safe",
-    statement:
-      "We prioritize safety through rigorous compliance with regulations, comprehensive training, secure facilities, and a culture of respect. These measures ensure the well-being of all stakeholders, fostering a safe and supportive environment.",
-  },
-  {
-    value: "Integrity",
-    statement:
-      "Stellar adheres to ethical standards, being transparent, and fulfilling commitments. Through honesty, accountability, and fairness, it builds trust and credibility with clients, employees, and partners.",
-  },
-];
-
-const processSteps = [
-  {
-    step: "Register",
-    description:
-      "Register your details and upload your CV, we will contact you within 24-48 hours for a initial discussion.",
-  },
-  {
-    step: "Telephone Vetting",
-    description:
-      "We will schedule a telephone interview for you with one of our specialist education consultants. This session will typically last between 30 minutes to an hour, during which we'll delve into your experience and knowledge, as well as discuss your requirements. This helps us understand your needs better, enabling us to match you with suitable roles.",
-  },
-  {
-    step: "Online Application Form",
-    description:
-      "You'll receive an invitation to fill out our exclusive online application form. This user-friendly process will walk you through each step, ensuring we gather all the necessary reference and clearance details required to successfully complete our Safeguarding checks.",
-  },
-  {
-    step: "Face-to-Face Interview",
-    description:
-      "You will then be invited to a face-to-face interview to start the the process of getting you into a place of work. Here will we will check all the documents we have requested which are listed below.",
-  },
-  {
-    step: "Vetting Completion and Work",
-    description:
-      "Once all vetting is completed and our consultants have passed it off, we will then call you regarding opportunities we have!",
-  },
-];
-
-const aboutUsText = [
-  "Welcome to Stellar Recruitment, where our mission is to connect talented educators with exceptional learning environments. As an education recruitment agency, we are dedicated to fostering excellence in education by carefully matching passionate educators with fulfilling opportunities that align with their expertise, values, and aspirations.",
-  "At Stellar, we recognize the significance of building strong and collaborative relationships with schools. Effective communication and understanding the unique needs of each educational institution are crucial for successful placements and long-term partnerships. Through open and ongoing communication, we keep schools informed at every stage of the recruitment process, providing regular updates and feedback to ensure a smooth and efficient experience. We strive to be a trusted partner for schools, offering guidance, support, and personalised solutions to meet their staffing needs.",
-  "We understand that the interview process can be daunting for both schools and candidates. That’s why we provide comprehensive support every step of the way. Our experienced team assists schools throughout the interview process, helping them identify the best-fit candidates who align with their specific requirements and values. For candidates, we offer personalized support to ensure they are well-prepared and confident during interviews. Drawing upon the expertise of our team, which includes former educators and education professionals, we provide valuable insights, tips, and resources to help candidates showcase their skills, experience, and passion for teaching.",
-  "In addition to supporting candidates through the interview process, we are committed to helping them develop and enhance their teaching skills. Our team of experts offers ongoing support, mentorship, and professional development opportunities to help educators excel in their roles and deliver high-quality teaching that inspires and engages students.",
-  "With our deep understanding of the education sector and our commitment to excellence, professionalism, and partnership, Stellar Recruitment strives to make a meaningful impact on the lives of students, educators, and schools alike. Join us in shaping the future of education, one placement at a time.",
-];
-
 const socials = ["facebook", "instagram", "linkedin", "envelope"];
 
-export { routes, aboutUsValues, processSteps, faqs, aboutUsText, socials };
+export {
+  routes,
+  processSteps,
+  faqs,
+  socials,
+  aboutUsText,
+  aboutUsValues,
+  authRoutes,
+};

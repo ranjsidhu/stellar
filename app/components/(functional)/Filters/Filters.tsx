@@ -1,16 +1,12 @@
 "use client";
 
-import { useState, SetStateAction, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Select, Input } from "antd";
 import { useFetch } from "@/app/hooks";
-import { JobLocation, Job } from "@/app/types";
+import { JobLocation, FiltersProps } from "@/app/types";
 import { pluralise } from "@/app/utils";
 import styles from "./Filters.module.css";
-
-type FiltersProps = {
-  setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
-};
 
 const { Search } = Input;
 

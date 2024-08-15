@@ -1,13 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import type { Job } from "@/app/types";
+import type { LatestJobCardProps } from "@/app/types";
 import Markdown from "markdown-to-jsx";
 import styles from "./LatestJobCard.module.css";
-
-type LatestJobCardProps = {
-  job: Job;
-};
 
 export default function LatestJobCard({ job }: LatestJobCardProps) {
   const router = useRouter();

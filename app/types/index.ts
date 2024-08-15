@@ -10,6 +10,11 @@ import {
   User,
   SearchProps,
   StepProps,
+  Route,
+  AccordionProps,
+  NavButtonProps,
+  FiltersProps,
+  LatestJobCardProps,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -29,4 +34,9 @@ export {
   type User,
   type SearchProps,
   type StepProps,
+  type Route,
+  type AccordionProps,
+  type NavButtonProps,
+  type FiltersProps,
+  type LatestJobCardProps,
 };

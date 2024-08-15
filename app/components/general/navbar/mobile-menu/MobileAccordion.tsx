@@ -4,15 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
+import type { AccordionProps } from "@/app/types";
 import "./mobile-menu.css";
-
-type AccordionProps = {
-  name: string;
-  route?: string;
-  subRoutes?: { name: string; route: string }[];
-  toggleMenu?: () => void;
-  handleOnClick?: () => void;
-};
 
 export default function MobileAccordion({
   name,
