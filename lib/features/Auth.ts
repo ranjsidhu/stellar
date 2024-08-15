@@ -1,14 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "@/app/types";
 
 type InitialStateType = {
   authenticated: boolean;
-  // TODO - define user type for state
-  user: any;
+  user: User;
 };
 
 const initialState: InitialStateType = {
   authenticated: false,
-  user: {},
+  user: {
+    id: -1,
+    first_name: "",
+    last_name: "",
+    dob: "",
+    email: "",
+    phone: "",
+    first_line_address: "",
+    town: "",
+    city: "",
+    postcode: "",
+    role_id: -1,
+    last_logged_in: "",
+    created_at: "",
+    updated_at: "",
+    is_deleted: false,
+    deleted_at: "",
+  },
 };
 
 const AuthSlice = createSlice({
@@ -21,14 +38,31 @@ const AuthSlice = createSlice({
     setUserDetails(state, action) {
       state.user = action.payload;
     },
-    clearSession(state, action) {
+    clearSession(state) {
       state.authenticated = false;
-      state.user = {};
+      state.user = {
+        id: -1,
+        first_name: "",
+        last_name: "",
+        dob: "",
+        email: "",
+        phone: "",
+        first_line_address: "",
+        town: "",
+        city: "",
+        postcode: "",
+        role_id: -1,
+        last_logged_in: "",
+        created_at: "",
+        updated_at: "",
+        is_deleted: false,
+        deleted_at: "",
+      };
+      localStorage.removeItem("user");
     },
   },
 });
 
-export const { setAuthenticated, setUserDetails, clearSession } =
-  AuthSlice.actions;
+export const { setAuthenticated, clearSession } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

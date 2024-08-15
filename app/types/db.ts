@@ -5,11 +5,6 @@ type BaseParams = {
   table: Tables;
 };
 
-type CreateParams = {
-  body: RequestBody;
-  table: Tables;
-};
-
 type PatchParams = BaseParams & {
   id: number;
 };
@@ -33,11 +28,8 @@ type Tables =
   | "users";
 
 export {
-  type RequestBody,
   type BaseParams,
-  type CreateParams,
   type PatchParams,
   type CustomPatchParams,
   type UpsertParams,
-  type Tables,
 };

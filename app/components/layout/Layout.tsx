@@ -11,7 +11,7 @@ export default async function Layout({
   return (
     <div className="container">
       <Header role={role} />
-      {children}
+      <div className="app-children">{children}</div>
       <Footer />
     </div>
   );
