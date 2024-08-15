@@ -6,13 +6,13 @@ type HamburgerProps = {
 };
 
 export default function Hamburger({ isMobile, toggleMenu }: HamburgerProps) {
-  const isOpen = isMobile ? "open" : "";
+  const isOpen = isMobile ? styles.open : "";
 
   return (
     <div className={styles.hamburgerContainer} onClick={toggleMenu}>
-      <div className={`hamburger-bar ${isOpen}`} />
-      <div className={`hamburger-bar ${isOpen}`} />
-      <div className={`hamburger-bar ${isOpen}`} />
+      <div className={`${styles.hamburgerBar} ${isOpen}`} />
+      <div className={`${styles.hamburgerBar} ${isOpen}`} />
+      <div className={`${styles.hamburgerBar} ${isOpen}`} />
     </div>
   );
 }
