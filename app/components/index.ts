@@ -24,13 +24,12 @@ import MobileMenu from "./(functional)/MobileMenu/MobileMenu";
 import MobileAccordion from "./(functional)/MobileAccordion/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem/MenuItem";
 import Search from "./(functional)/Search/Search";
+import Login from "./(functional)/Login/Login";
+import Register from "./(functional)/Register/Register";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
 import StoreProvider from "./(misc)/StoreProvider";
-
-import Login from "./login/Login";
-import Register from "./register/Register";
 
 export {
   Header,

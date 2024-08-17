@@ -9,7 +9,7 @@ import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";
 import { createClient } from "@/app/utils/supabase/client";
-import "./login.css";
+import styles from "./Login.module.css";
 
 const { Item } = Form;
 
@@ -101,13 +101,13 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper">
+    <div className={styles.loginWrapper}>
       {contextHolder}
       <Image
         src={LIGHT}
         priority
         alt="Letterhead image"
-        className="login-image"
+        className={styles.loginImage}
         onClick={() => router.push("/")}
       />
       <Form
@@ -115,9 +115,9 @@ export default function Login() {
         layout="vertical"
         onFinish={handleSubmit}
         scrollToFirstError
-        className="login-form"
+        className={styles.loginForm}
       >
-        <div className="login-form-input">
+        <div className={styles.loginFormInput}>
           <Item
             label="Email"
             name="email"
@@ -126,7 +126,7 @@ export default function Login() {
             <Input
               type="email"
               placeholder="Email"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Item>
@@ -138,17 +138,17 @@ export default function Login() {
             <Input.Password
               type="password"
               placeholder="Password"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               onChange={() => setDisabled(false)}
             />
           </Item>
         </div>
 
-        <Item className="login-form-submit">
+        <Item>
           <Button
             htmlType="submit"
             type="primary"
-            className="login-form-text-input"
+            className={styles.loginFormTextInput}
             disabled={disabled}
           >
             Login
@@ -158,7 +158,7 @@ export default function Login() {
         <Item>
           <Button
             type="default"
-            className="login-form-text-input"
+            className={styles.loginFormTextInput}
             onClick={forgotPassword}
           >
             Forgot Password

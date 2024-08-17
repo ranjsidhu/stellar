@@ -1,4 +1,4 @@
-.login-wrapper {
+.loginWrapper {
   height: 80vh;
   width: 100vw;
   display: flex;
@@ -7,18 +7,18 @@
   align-items: center;
 }
 
-.login-image {
+.loginImage {
   height: 20%;
   width: auto;
   aspect-ratio: auto;
   margin-bottom: 200px;
 }
 
-.login-image:hover {
+.loginImage:hover {
   cursor: pointer;
 }
 
-.login-form {
+.loginForm {
   display: flex;
   flex-direction: column;
   gap: 2vh;
@@ -27,7 +27,7 @@
   width: 100%;
 }
 
-.login-form-input {
+.loginFormInput {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,20 +35,20 @@
   width: 100%;
 }
 
-.login-form-error {
+.loginFormError {
   text-align: center;
   color: red;
   font-size: 1rem;
   margin-bottom: auto;
 }
 
-.login-form-text-input {
+.loginFormTextInput {
   width: 300px !important;
   padding: 1rem !important;
 }
 
 @media screen and (max-width: 320px) {
-  .login-form-text-input {
+  .loginFormTextInput {
     width: 200px !important;
     padding: 1rem !important;
   }

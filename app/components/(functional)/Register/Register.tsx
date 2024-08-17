@@ -16,7 +16,7 @@ import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { setAuthenticated } from "@/lib/features/Auth";
 import { LIGHT } from "@/app/assets";
 import { NotificationType, RegisterType } from "@/app/types";
-import "./register.css";
+import styles from "./Register.module.css";
 
 const { Item } = Form;
 
@@ -111,13 +111,13 @@ export default function Register() {
   };
 
   return (
-    <div className="register-wrapper">
+    <div className={styles.registerWrapper}>
       {contextHolder}
       <Image
         src={LIGHT}
         priority
         alt="Letterhead image"
-        className="register-image"
+        className={styles.registerImage}
         onClick={() => router.push("/")}
       />
       <Form
@@ -125,9 +125,9 @@ export default function Register() {
         layout="vertical"
         onFinish={handleSubmit}
         scrollToFirstError
-        className="register-form"
+        className={styles.registerForm}
       >
-        <div className="register-form-flex">
+        <div className={styles.registerFormFlex}>
           <Item
             label="First Name"
             name="first_name"
@@ -138,7 +138,7 @@ export default function Register() {
             <Input
               placeholder="John"
               autoComplete="given-name"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
             />
           </Item>
 
@@ -149,7 +149,7 @@ export default function Register() {
           >
             <Input
               placeholder="Doe"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               autoComplete="family-name"
             />
           </Item>
@@ -161,11 +161,14 @@ export default function Register() {
               { required: true, message: "Please enter your date of birth" },
             ]}
           >
-            <DatePicker className="login-form-text-input" onChange={onChange} />
+            <DatePicker
+              className={styles.loginFormTextInput}
+              onChange={onChange}
+            />
           </Item>
         </div>
 
-        <div className="register-form-flex">
+        <div className={styles.registerFormFlex}>
           <Item
             label="Address Line 1"
             name="first_line_address"
@@ -177,7 +180,7 @@ export default function Register() {
             ]}
           >
             <Input
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               placeholder="123 Sesame Street"
             />
           </Item>
@@ -186,18 +189,24 @@ export default function Register() {
             name="town"
             rules={[{ required: true, message: "Please enter your town" }]}
           >
-            <Input className="login-form-text-input" placeholder="Manhattan" />
+            <Input
+              className={styles.loginFormTextInput}
+              placeholder="Manhattan"
+            />
           </Item>
           <Item
             label="Postcode"
             name="postcode"
             rules={[{ required: true, message: "Please enter your postcode" }]}
           >
-            <Input className="login-form-text-input" placeholder="SW1A 2JL" />
+            <Input
+              className={styles.loginFormTextInput}
+              placeholder="SW1A 2JL"
+            />
           </Item>
         </div>
 
-        <div className="register-form-flex">
+        <div className={styles.registerFormFlex}>
           <Item
             label="Email"
             name="email"
@@ -205,7 +214,7 @@ export default function Register() {
           >
             <Input
               placeholder="john.doe@example.com"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               autoComplete="email"
               type="email"
             />
@@ -213,13 +222,13 @@ export default function Register() {
           <Item label="Phone Number" name="phone">
             <Input
               placeholder="07312 345 677"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               autoComplete="tel"
               type="text"
             />
           </Item>
         </div>
-        <div className="register-form-flex">
+        <div className={styles.registerFormFlex}>
           <Item
             label="Password"
             name="password"
@@ -227,7 +236,7 @@ export default function Register() {
           >
             <Input.Password
               placeholder="Password"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               autoComplete="new-password"
               type="password"
             />
@@ -241,14 +250,14 @@ export default function Register() {
           >
             <Input.Password
               placeholder="Confirm Password"
-              className="login-form-text-input"
+              className={styles.loginFormTextInput}
               autoComplete="new-password"
               type="password"
             />
           </Item>
         </div>
 
-        <Item className="register-form-submit">
+        <Item className={styles.registerFormSubmit}>
           <Button type="primary" htmlType="submit">
             Register
           </Button>

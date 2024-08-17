@@ -1,4 +1,4 @@
-.register-wrapper {
+.registerWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,17 +7,17 @@
   gap: 200px;
 }
 
-.register-image {
+.registerImage {
   height: auto;
   width: 300px;
   aspect-ratio: auto;
 }
 
-.register-image:hover {
+.registerImage:hover {
   cursor: pointer;
 }
 
-.register-form {
+.registerForm {
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
@@ -27,63 +27,70 @@
   width: 100%;
 }
 
-.register-form-flex {
+.registerFormFlex {
   display: flex;
   gap: 10%;
-
-  input:focus {
-    outline: none;
-  }
 }
 
-.register-form-input {
+.registerFormFlex input:focus {
+  outline: none;
+}
+
+.registerFormInput {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  input {
-    padding: 20px;
-    width: 30%;
-    border-radius: 10px;
-    font-size: 1rem;
-    box-shadow: 0px 1px 10px -3px #000;
-  }
-
-  input:focus {
-    outline: none;
-  }
 }
 
-.register-form-button {
+.registerFormInput input {
+  padding: 20px;
+  width: 30%;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-shadow: 0px 1px 10px -3px #000;
+}
+
+.registerFormInput input:focus {
+  outline: none;
+}
+
+.registerFormButton {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.register-form-error {
+.registerFormError {
   text-align: center;
   color: red;
   font-size: 1rem;
   margin-bottom: auto;
 }
 
-.register-form-submit {
+.registerFormSubmit {
   display: flex;
   justify-content: center;
   align-items: center;
-  .ant-btn-primary {
-    background-color: #00150f;
-  }
-  .ant-btn-primary:hover {
-    background-color: #00150f !important;
-    color: gold !important;
-  }
+}
+
+.registerFormSubmit .ant-btn-primary {
+  background-color: #00150f;
+}
+
+.registerFormSubmit .ant-btn-primary:hover {
+  background-color: #00150f !important;
+  color: gold !important;
+}
+
+.loginFormTextInput {
+  width: 300px !important;
+  padding: 1rem !important;
 }
 
 @media screen and (max-width: 1280px) {
-  .register-form-flex {
+  .registerFormFlex {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,7 +99,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .register-form {
+  .registerForm {
     margin-bottom: auto;
     display: flex;
     flex-direction: column;
@@ -104,7 +111,7 @@
 }
 
 @media screen and (max-width: 775px) {
-  .register-wrapper {
+  .registerWrapper {
     height: 100%;
     width: 100vw;
     display: flex;
@@ -113,17 +120,24 @@
     align-items: center;
   }
 
-  .register-image {
+  .registerImage {
     height: auto;
     width: 50%;
     aspect-ratio: auto;
     margin-bottom: 50px;
   }
 
-  .register-form-flex {
+  .registerFormFlex {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .loginFormTextInput {
+    width: 200px !important;
+    padding: 1rem !important;
   }
 }
