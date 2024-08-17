@@ -2,6 +2,7 @@
 import Footer from "./(layout)/Footer/Footer";
 import Hamburger from "./(layout)/Hamburger/Hamburger";
 import Header from "./(layout)/Header/Header";
+import Navbar from "./(layout)/Navbar/Navbar";
 
 // DISPLAY
 import Button from "./(display)/Button/Button";
@@ -21,13 +22,13 @@ import LatestJobCard from "./(functional)/LatestJobCard/LatestJobCard";
 import JobCard from "./(functional)/JobCard/JobCard";
 import MobileMenu from "./(functional)/MobileMenu/MobileMenu";
 import MobileAccordion from "./(functional)/MobileAccordion/MobileAccordion";
+import MenuItem from "./(functional)/MenuItem/MenuItem";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
 import StoreProvider from "./(misc)/StoreProvider";
 
 import Login from "./login/Login";
-import Navbar from "./general/navbar/Navbar";
 import Register from "./register/Register";
 import Search from "./general/search/Search";
 
@@ -56,4 +57,5 @@ export {
   Homepage,
   LatestJobCard,
   MobileAccordion,
+  MenuItem,
 };

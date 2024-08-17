@@ -91,6 +91,12 @@ type NavButtonProps = {
   subRoutes?: { name: string; route: string }[];
 };
 
+type MenuItemProps = {
+  children: React.ReactNode;
+  href: string;
+  subRoutes?: { name: string; route: string }[];
+};
+
 type FiltersProps = {
   setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
 };
@@ -120,4 +126,5 @@ export {
   type FiltersProps,
   type LatestJobCardProps,
   type MobileMenuProps,
+  type MenuItemProps,
 };

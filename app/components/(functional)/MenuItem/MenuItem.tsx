@@ -4,27 +4,23 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
-import type { NavButtonProps } from "@/app/types";
-import "./navbar.css";
+import type { MenuItemProps } from "@/app/types";
+import styles from "./MenuItem.module.css";
 
-export default function NavButton({
-  children,
-  href,
-  subRoutes,
-}: NavButtonProps) {
+export default function MenuItem({ children, href, subRoutes }: MenuItemProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isHovered, setIsHovered] = useState(false);
 
-  const isActive = !subRoutes && pathname === href ? "navbar-route-active" : "";
+  const isActive = !subRoutes && pathname === href ? styles.menuItemActive : "";
 
   const Subroutes = () => {
     return (
-      <ul className="nav-button-subroutes">
+      <ul className={styles.menuItemSubroutes}>
         {subRoutes?.map(({ name, route }) => (
           <div
-            className="nav-button-subroute"
             key={name}
+            className={styles.menuItemSubroute}
             onClick={() => router.push(route)}
           >
             {name}
@@ -36,7 +32,7 @@ export default function NavButton({
 
   return (
     <button
-      className={`navbar-route ${isActive}`}
+      className={`${styles.menuItem} ${isActive}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
