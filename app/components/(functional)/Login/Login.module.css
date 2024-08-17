@@ -1,0 +1,55 @@
+.loginWrapper {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginImage {
+  height: 20%;
+  width: auto;
+  aspect-ratio: auto;
+  margin-bottom: 200px;
+}
+
+.loginImage:hover {
+  cursor: pointer;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loginFormInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.loginFormError {
+  text-align: center;
+  color: red;
+  font-size: 1rem;
+  margin-bottom: auto;
+}
+
+.loginFormTextInput {
+  width: 300px !important;
+  padding: 1rem !important;
+}
+
+@media screen and (max-width: 320px) {
+  .loginFormTextInput {
+    width: 200px !important;
+    padding: 1rem !important;
+  }
+}

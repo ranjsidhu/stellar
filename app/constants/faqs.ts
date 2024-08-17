@@ -1,9 +1,4 @@
-type FAQ = {
-  question: string;
-  answer: string;
-};
-
-const faqs: FAQ[] = [
+const faqs = [
   {
     question: "How does your recruitment process work?",
     answer:

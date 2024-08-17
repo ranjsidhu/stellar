@@ -4,16 +4,19 @@ import { NextFont } from "next/dist/compiled/@next/font";
 import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
-import Analytics from "./Analytics";
-import StoreProvider from "./StoreProvider";
-import { Layout } from "./components";
+import { Layout, Analytics, StoreProvider } from "./components";
 import { getRole } from "./utils/supabase/supabase-utils";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
 
+const metadataURL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://stellar-recruitment.co.uk";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stellar-recruitment.co.uk"),
+  metadataBase: new URL(metadataURL),
   title: {
     default: "Stellar Recruitment",
     template: "%s | Stellar Recruitment",

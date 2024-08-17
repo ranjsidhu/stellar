@@ -1,0 +1,16 @@
+.primary {
+  background: white;
+  color: #00150f;
+  display: inline-block;
+  padding: 10px 35px;
+  border-radius: 25px;
+  box-shadow: 0px 1px 10px -3px #000;
+  font-size: 0.9rem;
+}
+
+.primary:hover {
+  background: gold;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
