@@ -1,18 +1,13 @@
 "use client";
 
 import { useAppDispatch } from "@/lib/hooks";
+import { MobileAccordion } from "@/app/components";
 import { routes, authRoutes } from "@/app/constants";
-import MobileAccordion from "./MobileAccordion";
+import { MobileMenuProps } from "@/app/types";
 import { clearSession, setAuthenticated } from "@/lib/features/Auth";
-import "./mobile-menu.css";
+import styles from "./MobileMenu.module.css";
 
-export default function MobileMenu({
-  toggleMenu,
-  role,
-}: {
-  toggleMenu: () => void;
-  role: string | null | undefined;
-}) {
+export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
   const dispatch = useAppDispatch();
 
   const signOut = async () => {
@@ -25,8 +20,8 @@ export default function MobileMenu({
   };
 
   return (
-    <div className="mobile-menu">
-      <nav className="mobile-navbar-container">
+    <div className={styles.mobileMenu}>
+      <nav className={styles.mobileNavbarContainer}>
         {routes.map((route) => (
           <MobileAccordion
             key={route.name}
@@ -36,7 +31,6 @@ export default function MobileMenu({
             toggleMenu={toggleMenu}
           />
         ))}
-
         {(!role || role !== "authenticated") &&
           authRoutes.map((route) => (
             <MobileAccordion

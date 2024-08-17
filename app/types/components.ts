@@ -99,6 +99,11 @@ type LatestJobCardProps = {
   job: Job;
 };
 
+type MobileMenuProps = {
+  toggleMenu: () => void;
+  role: string | null | undefined;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -114,4 +119,5 @@ export {
   type NavButtonProps,
   type FiltersProps,
   type LatestJobCardProps,
+  type MobileMenuProps,
 };

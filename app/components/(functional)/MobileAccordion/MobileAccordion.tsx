@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
 import type { AccordionProps } from "@/app/types";
-import "./mobile-menu.css";
+import styles from "./MobileAccordion.module.css";
 
 export default function MobileAccordion({
   name,
@@ -22,14 +22,13 @@ export default function MobileAccordion({
       return (
         <>
           {isActive && subRoutes ? (
-            <CaretUpIcon className="accordion-caret" />
+            <CaretUpIcon className={styles.accordionCaret} />
           ) : (
-            <CaretDownIcon className="accordion-caret" />
+            <CaretDownIcon className={styles.accordionCaret} />
           )}
         </>
       );
     }
-    return <></>;
   };
 
   const onClickHandler = () => {
@@ -45,23 +44,21 @@ export default function MobileAccordion({
   };
 
   return (
-    <div className="accordion-item" onClick={onClickHandler}>
+    <div className={styles.accordionItem} onClick={onClickHandler}>
       {/* Title */}
-      <div className={`accordion-title`}>
+      <div className={styles.accordionTitle}>
         {name}
         <RenderIcon />
       </div>
       {/* Subroutes */}
       {isActive && subRoutes && (
-        <div className="accordion-content">
+        <div className={styles.accordionContent}>
           {subRoutes.map((c) => (
-            <div key={c.name} className="accordion-dropdown-button">
+            <div key={c.name} className={styles.accordionDropdownButton}>
               <Link
-                className="mobile-accordion-link"
+                className={styles.mobileAccordionLink}
                 href={c.route}
-                onClick={() => {
-                  toggleMenu && toggleMenu();
-                }}
+                onClick={() => toggleMenu && toggleMenu()}
               >
                 {c.name}
               </Link>

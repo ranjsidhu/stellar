@@ -1,0 +1,12 @@
+.mobileMenu {
+  display: flex;
+  width: 100vw;
+  background-color: #00150f;
+  color: white;
+  min-height: 100vh;
+}
+
+.mobileNavbarContainer {
+  margin-top: 40px;
+  width: 100vw;
+}

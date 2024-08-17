@@ -19,6 +19,8 @@ import LatestJobs from "./(display)/LatestJobs/LatestJobs";
 import Filters from "./(functional)/Filters/Filters";
 import LatestJobCard from "./(functional)/LatestJobCard/LatestJobCard";
 import JobCard from "./(functional)/JobCard/JobCard";
+import MobileMenu from "./(functional)/MobileMenu/MobileMenu";
+import MobileAccordion from "./(functional)/MobileAccordion/MobileAccordion";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -28,7 +30,6 @@ import Login from "./login/Login";
 import Navbar from "./general/navbar/Navbar";
 import Register from "./register/Register";
 import Search from "./general/search/Search";
-import MobileMenu from "./general/navbar/mobile-menu/MobileMenu";
 
 export {
   Header,
@@ -54,4 +55,5 @@ export {
   Accordion,
   Homepage,
   LatestJobCard,
+  MobileAccordion,
 };

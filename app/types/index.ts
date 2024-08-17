@@ -15,6 +15,7 @@ import {
   NavButtonProps,
   FiltersProps,
   LatestJobCardProps,
+  MobileMenuProps,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -39,4 +40,5 @@ export {
   type NavButtonProps,
   type FiltersProps,
   type LatestJobCardProps,
+  type MobileMenuProps,
 };
