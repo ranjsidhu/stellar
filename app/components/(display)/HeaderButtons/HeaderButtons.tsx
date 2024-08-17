@@ -26,7 +26,7 @@ export default function HeaderButtons({ role }: HeaderButtonsProps) {
     return (
       <>
         <Button type="primary" onClick={() => router.push("/profile")}>
-          Account
+          Profile
         </Button>
         <Button type="primary" onClick={signOut}>
           Sign Out
