@@ -1,0 +1,8 @@
+.headerButtons {
+  height: 112px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
