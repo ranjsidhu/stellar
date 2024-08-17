@@ -85,12 +85,6 @@ type AccordionProps = {
   handleOnClick?: () => void;
 };
 
-type NavButtonProps = {
-  children: React.ReactNode;
-  href: string;
-  subRoutes?: { name: string; route: string }[];
-};
-
 type MenuItemProps = {
   children: React.ReactNode;
   href: string;
@@ -122,7 +116,6 @@ export {
   type StepProps,
   type Route,
   type AccordionProps,
-  type NavButtonProps,
   type FiltersProps,
   type LatestJobCardProps,
   type MobileMenuProps,
