@@ -23,6 +23,7 @@ import JobCard from "./(functional)/JobCard/JobCard";
 import MobileMenu from "./(functional)/MobileMenu/MobileMenu";
 import MobileAccordion from "./(functional)/MobileAccordion/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem/MenuItem";
+import Search from "./(functional)/Search/Search";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -30,7 +31,6 @@ import StoreProvider from "./(misc)/StoreProvider";
 
 import Login from "./login/Login";
 import Register from "./register/Register";
-import Search from "./general/search/Search";
 
 export {
   Header,

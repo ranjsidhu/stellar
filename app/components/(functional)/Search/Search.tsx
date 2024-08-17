@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { SearchProps } from "@/app/types";
-import "./search.css";
+import styles from "./Search.module.css";
 
 export default function Search({ source }: SearchProps) {
   const router = useRouter();
@@ -33,19 +33,21 @@ export default function Search({ source }: SearchProps) {
   }
 
   return (
-    <div className="search-wrapper">
-      <p className="search-statement">Search current jobs for your next role</p>
-      <div className="search-box">
+    <div className={styles.searchWrapper}>
+      <p className={styles.searchStatement}>
+        Search current jobs for your next role
+      </p>
+      <div className={styles.searchBox}>
         <input
           placeholder={placeholder}
-          className="search-box-input"
+          className={styles.searchBoxInput}
           value={search}
           onChange={({ target }) => {
             setSearch(target.value);
           }}
         />
         <i
-          className="fa fa-search search-icon"
+          className={`fa fa-search ${styles.searchIcon}`}
           onClick={() => router.push(`/jobs?search=${search}`)}
         />
       </div>
