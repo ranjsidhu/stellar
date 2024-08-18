@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
@@ -12,13 +12,11 @@ import {
   notification,
   DatePicker,
 } from "antd";
-import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
+import { useAppDispatch } from "@/app/redux/hooks";
 import { setAuthenticated } from "@/app/redux/features/Auth";
 import { LIGHT } from "@/app/assets";
 import { NotificationType, RegisterType } from "@/app/types";
 import styles from "./Register.module.css";
-
-const { Item } = Form;
 
 export default function Register() {
   const router = useRouter();
@@ -26,13 +24,6 @@ export default function Register() {
   const [formDob, setFormDob] = useState<Date | string | string[]>("");
   const { useNotification } = notification;
   const [api, contextHolder] = useNotification();
-  const { authenticated } = useAppSelector((state) => state.Auth);
-
-  useEffect(() => {
-    if (authenticated) {
-      router.push("/");
-    }
-  }, [authenticated, router, formDob]);
 
   const openNotification = (
     type: NotificationType,
@@ -88,8 +79,7 @@ export default function Register() {
         throw new Error(message);
       }
 
-      response.json().then((data) => {
-        localStorage.setItem("user", JSON.stringify(data.response[0]));
+      response.json().then(() => {
         dispatch(setAuthenticated(true));
         router.push("/?authenticated=true");
       });
@@ -128,7 +118,7 @@ export default function Register() {
         className={styles.registerForm}
       >
         <div className={styles.registerFormFlex}>
-          <Item
+          <Form.Item
             label="First Name"
             name="first_name"
             rules={[
@@ -140,9 +130,9 @@ export default function Register() {
               autoComplete="given-name"
               className={styles.loginFormTextInput}
             />
-          </Item>
+          </Form.Item>
 
-          <Item
+          <Form.Item
             label="Last Name"
             name="last_name"
             rules={[{ required: true, message: "Please enter your last name" }]}
@@ -152,9 +142,9 @@ export default function Register() {
               className={styles.loginFormTextInput}
               autoComplete="family-name"
             />
-          </Item>
+          </Form.Item>
 
-          <Item
+          <Form.Item
             label="Date of birth"
             name="dob"
             rules={[
@@ -165,11 +155,11 @@ export default function Register() {
               className={styles.loginFormTextInput}
               onChange={onChange}
             />
-          </Item>
+          </Form.Item>
         </div>
 
         <div className={styles.registerFormFlex}>
-          <Item
+          <Form.Item
             label="Address Line 1"
             name="first_line_address"
             rules={[
@@ -183,8 +173,8 @@ export default function Register() {
               className={styles.loginFormTextInput}
               placeholder="123 Sesame Street"
             />
-          </Item>
-          <Item
+          </Form.Item>
+          <Form.Item
             label="Town"
             name="town"
             rules={[{ required: true, message: "Please enter your town" }]}
@@ -193,8 +183,8 @@ export default function Register() {
               className={styles.loginFormTextInput}
               placeholder="Manhattan"
             />
-          </Item>
-          <Item
+          </Form.Item>
+          <Form.Item
             label="Postcode"
             name="postcode"
             rules={[{ required: true, message: "Please enter your postcode" }]}
@@ -203,11 +193,11 @@ export default function Register() {
               className={styles.loginFormTextInput}
               placeholder="SW1A 2JL"
             />
-          </Item>
+          </Form.Item>
         </div>
 
         <div className={styles.registerFormFlex}>
-          <Item
+          <Form.Item
             label="Email"
             name="email"
             rules={[{ required: true, message: "Please enter your email" }]}
@@ -218,18 +208,18 @@ export default function Register() {
               autoComplete="email"
               type="email"
             />
-          </Item>
-          <Item label="Phone Number" name="phone">
+          </Form.Item>
+          <Form.Item label="Phone Number" name="phone">
             <Input
               placeholder="07312 345 677"
               className={styles.loginFormTextInput}
               autoComplete="tel"
               type="text"
             />
-          </Item>
+          </Form.Item>
         </div>
         <div className={styles.registerFormFlex}>
-          <Item
+          <Form.Item
             label="Password"
             name="password"
             rules={[{ required: true, message: "Please enter your password" }]}
@@ -240,8 +230,8 @@ export default function Register() {
               autoComplete="new-password"
               type="password"
             />
-          </Item>
-          <Item
+          </Form.Item>
+          <Form.Item
             label="Confirm Password"
             name="confirmPassword"
             rules={[
@@ -254,14 +244,14 @@ export default function Register() {
               autoComplete="new-password"
               type="password"
             />
-          </Item>
+          </Form.Item>
         </div>
 
-        <Item className={styles.registerFormSubmit}>
+        <Form.Item className={styles.registerFormSubmit}>
           <Button type="primary" htmlType="submit">
             Register
           </Button>
-        </Item>
+        </Form.Item>
       </Form>
     </div>
   );

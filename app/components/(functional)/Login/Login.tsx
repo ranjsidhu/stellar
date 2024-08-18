@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
-import { setAuthenticated } from "@/app/redux/features/Auth";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { setAuthenticated, setUserDetails } from "@/app/redux/features/Auth";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";
 import { createClient } from "@/app/utils/supabase/client";
 import styles from "./Login.module.css";
-
-const { Item } = Form;
 
 export default function Login() {
   const router = useRouter();
@@ -20,13 +18,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [api, contextHolder] = useNotification();
-  const { authenticated } = useAppSelector((state) => state.Auth);
-
-  useEffect(() => {
-    if (authenticated) {
-      router.push("/");
-    }
-  }, [authenticated, router]);
 
   const openNotification = (
     type: NotificationType,
@@ -79,7 +70,7 @@ export default function Login() {
       }
 
       response.json().then((data) => {
-        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch(setUserDetails(data.user));
         dispatch(setAuthenticated(true));
         router.push("/?authenticated=true");
       });
@@ -118,7 +109,7 @@ export default function Login() {
         className={styles.loginForm}
       >
         <div className={styles.loginFormInput}>
-          <Item
+          <Form.Item
             label="Email"
             name="email"
             rules={[{ required: true, message: "Please enter your email" }]}
@@ -129,8 +120,8 @@ export default function Login() {
               className={styles.loginFormTextInput}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </Item>
-          <Item
+          </Form.Item>
+          <Form.Item
             label="Password"
             name="password"
             rules={[{ required: true, message: "Please enter your pasword" }]}
@@ -141,10 +132,10 @@ export default function Login() {
               className={styles.loginFormTextInput}
               onChange={() => setDisabled(false)}
             />
-          </Item>
+          </Form.Item>
         </div>
 
-        <Item>
+        <Form.Item>
           <Button
             htmlType="submit"
             type="primary"
@@ -153,9 +144,9 @@ export default function Login() {
           >
             Login
           </Button>
-        </Item>
+        </Form.Item>
 
-        <Item>
+        <Form.Item>
           <Button
             type="default"
             className={styles.loginFormTextInput}
@@ -163,7 +154,7 @@ export default function Login() {
           >
             Forgot Password
           </Button>
-        </Item>
+        </Form.Item>
       </Form>
     </div>
   );

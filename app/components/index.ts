@@ -30,6 +30,7 @@ import Register from "./(functional)/Register/Register";
 // MISC
 import Analytics from "./(misc)/Analytics";
 import StoreProvider from "./(misc)/StoreProvider";
+import Redirect from "./(misc)/Redirect";
 
 export {
   Header,
@@ -57,4 +58,5 @@ export {
   LatestJobCard,
   MobileAccordion,
   MenuItem,
+  Redirect,
 };

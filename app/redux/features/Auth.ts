@@ -33,10 +33,10 @@ const AuthSlice = createSlice({
   initialState,
   reducers: {
     setAuthenticated(state, action) {
-      state.authenticated = action.payload;
+      return { ...state, authenticated: action.payload };
     },
     setUserDetails(state, action) {
-      state.user = action.payload;
+      return { ...state, user: action.payload };
     },
     clearSession(state) {
       state.authenticated = false;
@@ -58,11 +58,11 @@ const AuthSlice = createSlice({
         is_deleted: false,
         deleted_at: "",
       };
-      localStorage.removeItem("user");
     },
   },
 });
 
-export const { setAuthenticated, clearSession } = AuthSlice.actions;
+export const { setAuthenticated, clearSession, setUserDetails } =
+  AuthSlice.actions;
 
 export default AuthSlice.reducer;
