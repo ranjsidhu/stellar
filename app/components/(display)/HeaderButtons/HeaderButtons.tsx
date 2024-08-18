@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/lib/hooks";
-import { clearSession, setAuthenticated } from "@/lib/features/Auth";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { clearSession, setAuthenticated } from "@/app/redux/features/Auth";
 import { Button } from "@/app/components";
 import styles from "./HeaderButtons.module.css";
 

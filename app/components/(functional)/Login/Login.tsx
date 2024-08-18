@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { setAuthenticated } from "@/lib/features/Auth";
+import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
+import { setAuthenticated } from "@/app/redux/features/Auth";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";

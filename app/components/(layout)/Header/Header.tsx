@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import { useAppDispatch } from "@/lib/hooks";
-import { setAuthenticated } from "@/lib/features/Auth";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { setAuthenticated } from "@/app/redux/features/Auth";
 import { DARK } from "@/app/assets";
 import {
   Hamburger,

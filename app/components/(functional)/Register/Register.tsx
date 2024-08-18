@@ -12,8 +12,8 @@ import {
   notification,
   DatePicker,
 } from "antd";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { setAuthenticated } from "@/lib/features/Auth";
+import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
+import { setAuthenticated } from "@/app/redux/features/Auth";
 import { LIGHT } from "@/app/assets";
 import { NotificationType, RegisterType } from "@/app/types";
 import styles from "./Register.module.css";
