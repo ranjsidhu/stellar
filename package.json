@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
@@ -29,6 +30,8 @@
     "sharp": "^0.33.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
     "@types/cookie": "^0.6.0",
     "@types/node": "^22.0.2",
     "@types/react": "^18",
@@ -36,6 +39,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.5",
     "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.1.5",
     "typescript": "^5"
   }
 }
