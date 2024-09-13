@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 type Job = {
   id: number;
   role_name: string;
@@ -59,6 +61,49 @@ type User = {
   deleted_at: Date | string | null;
 };
 
+type SearchProps = {
+  source: string;
+};
+
+type StepProps = {
+  title: string;
+  description: string;
+  index: number;
+};
+
+type Route = {
+  route: string;
+  name: string;
+  subRoutes?: { name: string; route: string }[];
+};
+
+type AccordionProps = {
+  name: string;
+  route?: string;
+  subRoutes?: { name: string; route: string }[];
+  toggleMenu?: () => void;
+  handleOnClick?: () => void;
+};
+
+type MenuItemProps = {
+  children: React.ReactNode;
+  href: string;
+  subRoutes?: { name: string; route: string }[];
+};
+
+type FiltersProps = {
+  setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
+};
+
+type LatestJobCardProps = {
+  job: Job;
+};
+
+type MobileMenuProps = {
+  toggleMenu: () => void;
+  role: string | null | undefined;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -67,4 +112,12 @@ export {
   type NotificationType,
   type RegisterType,
   type User,
+  type SearchProps,
+  type StepProps,
+  type Route,
+  type AccordionProps,
+  type FiltersProps,
+  type LatestJobCardProps,
+  type MobileMenuProps,
+  type MenuItemProps,
 };

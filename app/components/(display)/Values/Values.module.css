@@ -1,0 +1,63 @@
+.valuesTitle {
+  color: black;
+  text-align: center;
+}
+
+.value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  margin: 50px;
+}
+
+.value p {
+  width: 30%;
+  font-size: 1.3rem;
+}
+
+.valueImage {
+  height: 150px;
+  transform: scale(2.5);
+  width: auto;
+}
+
+@media screen and (max-width: 430px) {
+  .valuesWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .valueWrapper {
+    width: 95vw;
+    margin: 0 auto;
+  }
+
+  .valuesTitle {
+    color: black;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .value p {
+    width: 90%;
+    font-size: 1.1rem;
+  }
+
+  .valueStatement {
+    width: 90%;
+  }
+
+  .valueImage {
+    transform: scale(1);
+  }
+}

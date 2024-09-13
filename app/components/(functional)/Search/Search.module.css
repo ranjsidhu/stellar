@@ -1,0 +1,41 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  opacity: 1;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.searchStatement {
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.searchBoxInput {
+  border: 1px solid #00150f;
+  border-radius: 20px;
+  padding: 10px;
+  width: 55%;
+  font-size: 1rem;
+}
+
+.searchBoxInput:focus {
+  outline: none;
+}
+
+.searchIcon {
+  color: gold;
+}
+
+.searchIcon:hover {
+  cursor: pointer;
+}

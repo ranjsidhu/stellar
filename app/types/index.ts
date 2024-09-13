@@ -8,6 +8,14 @@ import {
   NotificationType,
   RegisterType,
   User,
+  SearchProps,
+  StepProps,
+  Route,
+  AccordionProps,
+  FiltersProps,
+  LatestJobCardProps,
+  MobileMenuProps,
+  MenuItemProps,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -24,5 +32,14 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
+  // eslint-disable-next-line import/no-unused-modules
   type User,
+  type SearchProps,
+  type StepProps,
+  type Route,
+  type AccordionProps,
+  type FiltersProps,
+  type LatestJobCardProps,
+  type MobileMenuProps,
+  type MenuItemProps,
 };

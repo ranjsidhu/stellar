@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
 
     if (error) throw new Error(error.message);
     response.response = data;
+    const session = data.session;
 
     try {
       const { data, error } = await supabase
@@ -32,12 +33,14 @@ export async function POST(req: NextRequest) {
       throw new Error("User does not exist or password is incorrect");
     }
 
+    await supabase.auth.setSession(session);
     await supabase.auth.refreshSession();
 
     revalidatePath("/", "layout");
 
     return NextResponse.json({
       ...response,
+      session,
     });
   } catch (error: any) {
     if (error.message === "Invalid login credentials") {
@@ -46,6 +49,6 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    return NextResponse.json({ message: error.message }, { status: 400 });
+    return NextResponse.json({ message: error.message }, { status: 403 });
   }
 }

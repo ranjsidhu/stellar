@@ -1,0 +1,60 @@
+.referralsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.referralsHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40vh;
+  margin-top: 4vh;
+  overflow-x: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/stock/refer.jpg") no-repeat center center/cover;
+  transition: opacity 0.5s ease;
+  animation: fadeIn 1s ease-in;
+  color: white;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.referralsIntro {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+}
+
+.referralsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.referralsFormForm {
+  width: 60%;
+  max-width: 550px;
+}
+
+.referralsFormSubmitBtn {
+  background-color: #00150f;
+}
+.referralsFormSubmitBtn:hover {
+  background-color: #00150f !important;
+  color: gold !important;
+}
