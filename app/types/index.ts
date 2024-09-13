@@ -32,6 +32,7 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
+  // eslint-disable-next-line import/no-unused-modules
   type User,
   type SearchProps,
   type StepProps,
