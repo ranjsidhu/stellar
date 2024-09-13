@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useAppDispatch } from "@/app/redux/hooks";
-import { setAuthenticated, setUserDetails } from "@/app/redux/features/Auth";
+import { setSession } from "@/app/redux/features/Auth";
 import { Form, Input, Button, type FormProps, notification } from "antd";
 import { LIGHT } from "@/app/assets";
 import { NotificationType } from "@/app/types";
 import { createClient } from "@/app/utils/supabase/client";
+import { setItem } from "@/app/utils/storage";
 import styles from "./Login.module.css";
 
 export default function Login() {
   const router = useRouter();
+  const params = useSearchParams();
+  const RETURN_URL = params.get("return") || "";
   const dispatch = useAppDispatch();
   const { useNotification } = notification;
   const [email, setEmail] = useState("");
@@ -69,11 +72,15 @@ export default function Login() {
         throw new Error(message);
       }
 
-      response.json().then((data) => {
-        dispatch(setUserDetails(data.user));
-        dispatch(setAuthenticated(true));
-        router.push("/?authenticated=true");
-      });
+      response
+        .json()
+        .then((data) => {
+          setItem("userDetails", data.user);
+          dispatch(setSession(data.session));
+        })
+        .then(() => {
+          router.push(`${RETURN_URL}/`);
+        });
     } catch (error: any) {
       if (error.message) {
         openNotification(

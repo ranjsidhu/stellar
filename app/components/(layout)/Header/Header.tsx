@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import { useAppDispatch } from "@/app/redux/hooks";
-import { setAuthenticated } from "@/app/redux/features/Auth";
 import { DARK } from "@/app/assets";
 import {
   Hamburger,
@@ -18,17 +16,10 @@ import styles from "./Header.module.css";
 export default function Header({ role }: { role: string | undefined | null }) {
   const pathname = usePathname();
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const validPaths = ["/login", "/register"];
   const isValidPathname = validPaths.includes(pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
-  useEffect(() => {
-    if (role === "authenticated") {
-      dispatch(setAuthenticated(true));
-    }
-  }, [dispatch, role, router]);
 
   return (
     <>
@@ -45,7 +36,7 @@ export default function Header({ role }: { role: string | undefined | null }) {
               />
             </div>
             <div className={styles.headerNavigation}>
-              <HeaderButtons role={role} />
+              <HeaderButtons />
               <Navbar />
             </div>
             <Hamburger isMobile={isMobileMenuOpen} toggleMenu={toggleMenu} />

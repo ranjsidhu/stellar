@@ -1,68 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "@/app/types";
+import type { Session } from "@supabase/supabase-js";
+import { removeItem } from "@/app/utils/storage";
 
 type InitialStateType = {
-  authenticated: boolean;
-  user: User;
+  session: Session | null;
 };
 
 const initialState: InitialStateType = {
-  authenticated: false,
-  user: {
-    id: -1,
-    first_name: "",
-    last_name: "",
-    dob: "",
-    email: "",
-    phone: "",
-    first_line_address: "",
-    town: "",
-    city: "",
-    postcode: "",
-    role_id: -1,
-    last_logged_in: "",
-    created_at: "",
-    updated_at: "",
-    is_deleted: false,
-    deleted_at: "",
-  },
+  session: null,
 };
 
 const AuthSlice = createSlice({
   name: "Auth",
   initialState,
   reducers: {
-    setAuthenticated(state, action) {
-      return { ...state, authenticated: action.payload };
-    },
-    setUserDetails(state, action) {
-      return { ...state, user: action.payload };
+    setSession(state, action) {
+      return { ...state, session: action.payload };
     },
     clearSession(state) {
-      state.authenticated = false;
-      state.user = {
-        id: -1,
-        first_name: "",
-        last_name: "",
-        dob: "",
-        email: "",
-        phone: "",
-        first_line_address: "",
-        town: "",
-        city: "",
-        postcode: "",
-        role_id: -1,
-        last_logged_in: "",
-        created_at: "",
-        updated_at: "",
-        is_deleted: false,
-        deleted_at: "",
-      };
+      removeItem("userDetails");
+      state.session = null;
     },
   },
 });
 
-export const { setAuthenticated, clearSession, setUserDetails } =
-  AuthSlice.actions;
+export const { clearSession, setSession } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

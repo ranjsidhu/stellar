@@ -12,15 +12,12 @@ import {
   notification,
   DatePicker,
 } from "antd";
-import { useAppDispatch } from "@/app/redux/hooks";
-import { setAuthenticated } from "@/app/redux/features/Auth";
 import { LIGHT } from "@/app/assets";
 import { NotificationType, RegisterType } from "@/app/types";
 import styles from "./Register.module.css";
 
 export default function Register() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [formDob, setFormDob] = useState<Date | string | string[]>("");
   const { useNotification } = notification;
   const [api, contextHolder] = useNotification();
@@ -80,8 +77,7 @@ export default function Register() {
       }
 
       response.json().then(() => {
-        dispatch(setAuthenticated(true));
-        router.push("/?authenticated=true");
+        router.push("/");
       });
     } catch (error: any) {
       if (error.message) {

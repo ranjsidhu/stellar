@@ -2,22 +2,23 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useUser } from "@/app/redux/hooks";
+import { getItem } from "@/app/utils/storage";
 import type { User } from "@/app/types";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
   const router = useRouter();
   const [details, setDetails] = useState<User | null>(null);
-  const userDetails: User = useUser();
 
   useEffect(() => {
-    if (!userDetails?.id) {
-      router.push("/login");
+    const userDetails = getItem("userDetails");
+    const parsedUserDetails: User | null = userDetails ? userDetails : null;
+    if (!parsedUserDetails?.id || parsedUserDetails?.id === -1) {
+      router.push("/login?return=profile");
       return;
     }
-    setDetails(userDetails);
-  }, [router, userDetails]);
+    setDetails(parsedUserDetails);
+  }, [router]);
 
   return (
     <div className={styles.profileWrapper}>

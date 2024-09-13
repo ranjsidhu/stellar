@@ -1,17 +1,7 @@
-"use client";
-
-import { useEffect } from "react";
 import { LatestJobs, Search } from "@/app/components";
 import styles from "./Homepage.module.css";
 
 export default function Homepage() {
-  useEffect(() => {
-    const url = window.location.href;
-    if (url.includes("authenticated=true")) {
-      window.location.href = "/";
-    }
-  }, []);
-
   return (
     <div className={styles.homepageWrapper}>
       <div className={styles.homepageHeroContainer}>
