@@ -1,16 +1,8 @@
+/* eslint-disable import/no-unused-modules */
 import { type NextRequest } from "next/server";
 import { updateSession } from "@/app/utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
-  // const requestHeaders = new Headers(request.headers);
-  // const cookieString = request.cookies.get(
-  //   "sb-vniqmzkibvuaaigqcrvd-auth-token"
-  // );
-  // if (cookieString) {
-  //   const cookieObject = JSON.parse(cookieString.value);
-  //   const accessToken = cookieObject.access_token;
-  //   requestHeaders.set("Authorization", `Bearer ${accessToken}`);
-  // }
   return await updateSession(request);
 }
 
@@ -21,7 +13,6 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
      */
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],

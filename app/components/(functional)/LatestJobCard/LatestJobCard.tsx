@@ -25,6 +25,7 @@ export default function LatestJobCard({ job }: LatestJobCardProps) {
       <div className={styles.latestJobFooterWrapper}>
         <hr className={styles.latestJobHr} />
         <p className={styles.latestJobDescription}>
+          {/* TODO - write valid markdown to avoid <element> cannot be a descendent of <element> errors */}
           <Markdown>{job.description}</Markdown>
         </p>
       </div>

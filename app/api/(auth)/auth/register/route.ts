@@ -7,8 +7,9 @@ export async function POST(req: NextRequest) {
     const supabase = createClient();
     const body = await req.json();
 
-    const data = { email: body.email, password: body.password };
-    const { error } = await supabase.auth.signUp(data);
+    const creds = { email: body.email, password: body.password };
+    const { error } = await supabase.auth.signUp(creds);
+    await supabase.auth.refreshSession();
 
     if (error) throw new Error(error.message);
     revalidatePath("/", "layout");

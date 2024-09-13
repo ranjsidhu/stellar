@@ -1,4 +1,4 @@
-import { Footer, Header } from "../..";
+import { Footer, Header, Redirect } from "../..";
 import styles from "./Layout.module.css";
 
 export default async function Layout({
@@ -10,8 +10,9 @@ export default async function Layout({
 }) {
   return (
     <div className={styles.container}>
+      <Redirect />
       <Header role={role} />
-      <div className={styles.appChildren}>{children}</div>
+      <main className={styles.appChildren}>{children}</main>
       <Footer />
     </div>
   );

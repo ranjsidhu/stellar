@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.4.0",
     "@ant-design/nextjs-registry": "^1.0.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",

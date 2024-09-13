@@ -1,10 +1,10 @@
 "use client";
 
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch } from "@/app/redux/hooks";
 import { MobileAccordion } from "@/app/components";
 import { routes, authRoutes } from "@/app/constants";
 import { MobileMenuProps } from "@/app/types";
-import { clearSession, setAuthenticated } from "@/lib/features/Auth";
+import { clearSession } from "@/app/redux/features/Auth";
 import styles from "./MobileMenu.module.css";
 
 export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
@@ -13,7 +13,6 @@ export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
   const signOut = async () => {
     fetch("/api/auth/signout", { method: "POST" }).then(() => {
       dispatch(clearSession());
-      dispatch(setAuthenticated(false));
       window.location.reload();
       window.location.href = "/";
     });
