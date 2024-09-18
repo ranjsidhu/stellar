@@ -4,6 +4,7 @@
 // import { useEffect, useState } from "react";
 // import { getItem } from "@/app/utils/storage";
 // import type { User } from "@/app/types";
+import { FileUpload } from "@/app/components";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
@@ -28,6 +29,7 @@ export default function Profile() {
             {key}: {value?.toString()}
           </div>
         ))} */}
+      <FileUpload route="/cv" />
     </div>
   );
 }
