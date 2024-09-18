@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     try {
       const { data, error } = await supabase
         .from("users")
-        .select()
+        .select(`*, roles (name)`)
         .eq("email", creds.email)
         .limit(1);
 

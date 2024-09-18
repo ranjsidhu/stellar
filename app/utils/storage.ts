@@ -27,5 +27,4 @@ const removeItem = (key: string) => {
   }
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export { getItem, setItem, removeItem };
