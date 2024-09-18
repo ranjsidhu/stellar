@@ -3,12 +3,6 @@ import { createClient } from "@/app/utils/supabase/server";
 
 const { NEXT_PUBLIC_CV_BUCKET } = process.env;
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(req: NextRequest) {
   try {
     const supabase = createClient();
