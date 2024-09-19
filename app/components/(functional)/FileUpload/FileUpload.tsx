@@ -2,6 +2,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import { Button, Upload } from "antd";
 import { v4 as uuidv4 } from "uuid";
+import { getUserId } from "@/app/utils/storage";
 
 type FileUploadProps = {
   route: string;
@@ -14,13 +15,13 @@ export default function FileUpload({ route }: FileUploadProps) {
         const rawFile = info.file.originFileObj;
         if (!rawFile) return;
 
-        const id = uuidv4();
         const formdata = new FormData();
         const filename = info.file.name;
-        formdata.append("id", id);
-        formdata.append("name", filename);
+        formdata.append("id", uuidv4());
+        formdata.append("filename", filename);
         formdata.append("file", rawFile);
         formdata.append("type", filename.split(".").pop()!);
+        formdata.append("user_id", getUserId());
 
         //   TODO - add error handling
         fetch(`/api/bucket${route}`, {

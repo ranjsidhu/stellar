@@ -1,4 +1,10 @@
-import { BaseParams, PatchParams, CustomPatchParams, UpsertParams } from "./db";
+import {
+  BaseParams,
+  PatchParams,
+  CustomPatchParams,
+  UpsertParams,
+  DeleteParams,
+} from "./db";
 
 import {
   Job,
@@ -42,4 +48,5 @@ export {
   type LatestJobCardProps,
   type MobileMenuProps,
   type MenuItemProps,
+  type DeleteParams,
 };

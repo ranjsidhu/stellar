@@ -3,6 +3,7 @@ import {
   PatchParams,
   CustomPatchParams,
   UpsertParams,
+  DeleteParams,
 } from "@/app/types";
 
 const { createClient } = require("@supabase/supabase-js");
@@ -16,6 +17,7 @@ const create = async ({ body, table }: BaseParams) => {
 };
 
 const update = async ({ body, table, id }: PatchParams) => {
+  delete body.id;
   const { data, error } = await client
     .from(table)
     .update({ ...body, updated_at: new Date().toISOString() })
@@ -30,6 +32,7 @@ const custom_update = async ({
   updateColumn,
   updateValue,
 }: CustomPatchParams) => {
+  delete body.id;
   const { data, error } = await client
     .from(table)
     .update({ ...body, updated_at: new Date().toISOString() })
@@ -43,4 +46,13 @@ const upsert = async ({ table, values }: UpsertParams) => {
   return { data, error };
 };
 
-export { client, create, update, custom_update, upsert };
+const delete_row = async ({ table, id }: DeleteParams) => {
+  const { data, error } = await client
+    .from(table)
+    .delete()
+    .eq("id", id)
+    .select();
+  return { data, error };
+};
+
+export { client, create, update, custom_update, upsert, delete_row };
