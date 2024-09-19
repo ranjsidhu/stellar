@@ -1,4 +1,10 @@
-import { BaseParams, PatchParams, CustomPatchParams, UpsertParams } from "./db";
+import {
+  BaseParams,
+  PatchParams,
+  CustomPatchParams,
+  UpsertParams,
+  DeleteParams,
+} from "./db";
 
 import {
   Job,
@@ -32,6 +38,7 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
+  // eslint-disable-next-line import/no-unused-modules
   type User,
   type SearchProps,
   type StepProps,
@@ -41,4 +48,5 @@ export {
   type LatestJobCardProps,
   type MobileMenuProps,
   type MenuItemProps,
+  type DeleteParams,
 };
