@@ -26,6 +26,7 @@ import MenuItem from "./(functional)/MenuItem/MenuItem";
 import Search from "./(functional)/Search/Search";
 import Login from "./(functional)/Login/Login";
 import Register from "./(functional)/Register/Register";
+import FileUpload from "./(functional)/FileUpload/FileUpload";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -59,4 +60,6 @@ export {
   MobileAccordion,
   MenuItem,
   Redirect,
+  // eslint-disable-next-line import/no-unused-modules
+  FileUpload,
 };
