@@ -49,5 +49,16 @@ const getUserRole = () => {
   }
 };
 
+const getUserEmail = () => {
+  try {
+    const user = getItem("userDetails");
+    if (!user) return null;
+    return user.email;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 // eslint-disable-next-line import/no-unused-modules
-export { getItem, setItem, removeItem, getUserId, getUserRole };
+export { getItem, setItem, removeItem, getUserId, getUserRole, getUserEmail };
