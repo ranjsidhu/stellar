@@ -41,6 +41,7 @@ export default function Profile() {
 
   return (
     <div className={styles.profileWrapper}>
+      <p>Coming soon....</p>
       {/* {details &&
         Object.entries(details).map(([key, value]) => (
           <div key={key}>

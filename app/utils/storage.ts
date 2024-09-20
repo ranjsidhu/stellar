@@ -38,5 +38,16 @@ const getUserId = () => {
   }
 };
 
+const getUserRole = () => {
+  try {
+    const user = getItem("userDetails");
+    if (!user) return null;
+    return user.roles.name || "Candidate";
+  } catch (error) {
+    console.error(error);
+    return "Candidate";
+  }
+};
+
 // eslint-disable-next-line import/no-unused-modules
-export { getItem, setItem, removeItem, getUserId };
+export { getItem, setItem, removeItem, getUserId, getUserRole };

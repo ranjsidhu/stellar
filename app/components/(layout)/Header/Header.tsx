@@ -16,14 +16,14 @@ import styles from "./Header.module.css";
 export default function Header({ role }: { role: string | undefined | null }) {
   const pathname = usePathname();
   const router = useRouter();
-  const validPaths = ["/login", "/register"];
-  const isValidPathname = validPaths.includes(pathname);
+  const hideOn = ["/login", "/register"];
+  const isHidden = hideOn.includes(pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
     <>
-      {!isValidPathname && (
+      {!isHidden && (
         <div className={styles.header}>
           <header className={styles.headerWrapper}>
             <div className={styles.headerLogo}>
@@ -44,8 +44,8 @@ export default function Header({ role }: { role: string | undefined | null }) {
         </div>
       )}
 
-      {!isValidPathname && !isMobileMenuOpen && pathname !== "/profile" && (
-        <Socials className={styles.headerSocials} />
+      {!isHidden && !isMobileMenuOpen && (
+        <Socials className={styles.headerSocials} pathname={pathname} />
       )}
 
       {isMobileMenuOpen && <MobileMenu toggleMenu={toggleMenu} role={role} />}
