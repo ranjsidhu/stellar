@@ -11,15 +11,21 @@ import styles from "./Profile.module.css";
 export default function Profile() {
   // const router = useRouter();
   // const [details, setDetails] = useState<User | null>(null);
+  // const [role, setRole] = useState<String>("");
 
   // useEffect(() => {
   //   const userDetails = getItem("userDetails");
   //   const parsedUserDetails: User | null = userDetails ? userDetails : null;
-  //   if (!parsedUserDetails?.id || parsedUserDetails?.id === -1) {
+  //   const invalidDetails =
+  //     !parsedUserDetails?.id ||
+  //     parsedUserDetails?.id === -1 ||
+  //     !parsedUserDetails?.roles;
+  //   if (invalidDetails) {
   //     router.push("/login?return=profile");
   //     return;
   //   }
   //   setDetails(parsedUserDetails);
+  //   setRole(parsedUserDetails.roles.name);
   // }, [router]);
 
   // const handleClick = async () => {
@@ -35,6 +41,7 @@ export default function Profile() {
 
   return (
     <div className={styles.profileWrapper}>
+      <p>Coming soon....</p>
       {/* {details &&
         Object.entries(details).map(([key, value]) => (
           <div key={key}>

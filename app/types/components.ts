@@ -54,6 +54,7 @@ type User = {
   city: string | null;
   postcode: string;
   role_id: number;
+  roles: { name: string };
   last_logged_in: Date | string | null;
   created_at: Date | string;
   updated_at: Date | string;
