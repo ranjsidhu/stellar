@@ -28,21 +28,29 @@ export default function Redirect() {
           .then((data) => {
             setItem("userDetails", data);
             role = data.roles.name;
-            if (role !== previousRole) window.location.reload();
+            if (role !== previousRole) {
+              window.location.reload();
+            } else {
+              role = previousRole;
+            }
+          })
+          .finally(async () => {
+            const { data } = await supabase.auth.getSession();
+            const { session } = data;
+            dispatch(setSession(session));
+
+            if (
+              (pathname === "/login" || pathname === "/register") &&
+              session
+            ) {
+              router.push("/");
+              return;
+            }
+
+            if (adminRoutes.includes(pathname) && role !== "Admin") {
+              router.push("/");
+            }
           });
-      }
-      const { data } = await supabase.auth.getSession();
-      const { session } = data;
-      dispatch(setSession(session));
-
-      // If already logged in, redirect to home page
-      if ((pathname === "/login" || pathname === "/register") && session) {
-        router.push("/");
-        return;
-      }
-
-      if (adminRoutes.includes(pathname) && role !== "Admin") {
-        router.push("/");
       }
     };
 
