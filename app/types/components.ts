@@ -105,6 +105,12 @@ type MobileMenuProps = {
   role: string | null | undefined;
 };
 
+type AdminCardProps = {
+  title: string;
+  description: string;
+  route: string;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -121,4 +127,5 @@ export {
   type LatestJobCardProps,
   type MobileMenuProps,
   type MenuItemProps,
+  type AdminCardProps,
 };

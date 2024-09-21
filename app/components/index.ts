@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 // LAYOUT
 import Footer from "./(layout)/Footer/Footer";
 import Hamburger from "./(layout)/Hamburger/Hamburger";
@@ -27,6 +28,8 @@ import Search from "./(functional)/Search/Search";
 import Login from "./(functional)/Login/Login";
 import Register from "./(functional)/Register/Register";
 import FileUpload from "./(functional)/FileUpload/FileUpload";
+import AdminCard from "./(functional)/AdminCard/AdminCard";
+import Table from "./(functional)/Table/Table";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -60,6 +63,7 @@ export {
   MobileAccordion,
   MenuItem,
   Redirect,
-  // eslint-disable-next-line import/no-unused-modules
   FileUpload,
+  AdminCard,
+  Table,
 };

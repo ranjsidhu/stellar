@@ -22,6 +22,7 @@ import {
   LatestJobCardProps,
   MobileMenuProps,
   MenuItemProps,
+  AdminCardProps,
 } from "./components";
 
 import { JobRequest } from "./requests";
@@ -49,4 +50,5 @@ export {
   type MobileMenuProps,
   type MenuItemProps,
   type DeleteParams,
+  type AdminCardProps,
 };

@@ -32,7 +32,9 @@ type Tables =
   | "testimonials"
   | "users"
   | "file_types"
-  | "user_documents";
+  | "user_documents"
+  | "graduates"
+  | "university_levels";
 
 export {
   type BaseParams,

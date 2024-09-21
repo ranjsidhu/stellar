@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/app/redux/hooks";
 import { createClient } from "@/app/utils/supabase/client";
 import { setSession } from "@/app/redux/features/Auth";
 import { getUserEmail, setItem, getUserRole } from "@/app/utils/storage";
+import { ADMIN_CARDS } from "@/app/constants/admin";
 
 export default function Redirect() {
   const supabase = createClient();
@@ -15,7 +16,7 @@ export default function Redirect() {
 
   useEffect(() => {
     const validateSession = async () => {
-      const adminRoutes = ["/admin"];
+      const adminRoutes = [...ADMIN_CARDS.map((card) => card.route), "/admin"];
       const previousRole = getUserRole();
       let role = "";
       const email = getUserEmail();
