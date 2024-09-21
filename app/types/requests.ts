@@ -6,4 +6,12 @@ type JobRequest = {
   description: string;
 };
 
-export { type JobRequest };
+type UniLevelType = {
+  id: number;
+  name: string;
+  created_at: Date;
+  updated_at: Date;
+  is_deleted: boolean;
+};
+
+export { type JobRequest, type UniLevelType };

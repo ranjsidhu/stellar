@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { socials } from "@/app/constants";
+import { ADMIN_CARDS } from "@/app/constants/admin";
 
 type SocialsProps = {
   className: string | undefined;
@@ -7,7 +8,8 @@ type SocialsProps = {
 };
 
 export default function Socials({ className, pathname }: SocialsProps) {
-  const hideOn = ["/admin", "/profile"];
+  const adminRoutes = ADMIN_CARDS.map((card) => card.route);
+  const hideOn = [...adminRoutes, "/admin", "/profile"];
   return (
     <>
       {pathname && hideOn.includes(pathname) && <></>}

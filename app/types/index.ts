@@ -22,9 +22,10 @@ import {
   LatestJobCardProps,
   MobileMenuProps,
   MenuItemProps,
+  AdminCardProps,
 } from "./components";
 
-import { JobRequest } from "./requests";
+import { JobRequest, UniLevelType } from "./requests";
 
 export {
   type BaseParams,
@@ -49,4 +50,6 @@ export {
   type MobileMenuProps,
   type MenuItemProps,
   type DeleteParams,
+  type AdminCardProps,
+  type UniLevelType,
 };

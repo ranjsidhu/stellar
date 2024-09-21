@@ -1,7 +1,18 @@
 .adminWrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 95vw;
+  margin: 0 auto;
+}
+
+.adminCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
 }
