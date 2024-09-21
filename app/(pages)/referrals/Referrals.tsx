@@ -1,7 +1,7 @@
 "use client";
 
-import { Form, Input, Button, type FormProps } from "antd";
-import instance from "../../utils/instance";
+import { Form, Input, Button, type FormProps, notification } from "antd";
+import { NotificationType } from "../../types";
 import styles from "./Referrals.module.css";
 
 type FieldType = {
@@ -18,23 +18,50 @@ type FieldType = {
 
 const { Item } = Form;
 
-const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
-  try {
-    await instance.post("/referrals", values);
-  } catch (error) {
-    alert("Failed to submit referral");
-  }
-};
-
 export default function Referrals() {
+  const [form] = Form.useForm();
+  const { useNotification } = notification;
+  const [api, contextHolder] = useNotification();
+
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string
+  ) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
+
+  const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      fetch("/api/referrals", {
+        method: "POST",
+        body: JSON.stringify(values),
+      }).then(() => {
+        form.resetFields();
+        openNotification(
+          "success",
+          "Success",
+          "Referral submitted successfully"
+        );
+      });
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <Form
+      form={form}
       name="basic"
       layout="vertical"
       onFinish={handleSubmit}
       scrollToFirstError
       className={styles.referralsFormForm}
     >
+      {contextHolder}
       <Item
         label="Your Name"
         name="referrerName"
@@ -44,10 +71,10 @@ export default function Referrals() {
       </Item>
 
       <Item
-        label="Your Contact Number"
+        label="Your Contact Details (Email or Phone)"
         name="referrerContactNumber"
         rules={[
-          { required: true, message: "Please enter your contact number" },
+          { required: true, message: "Please enter your contact details" },
         ]}
       >
         <Input autoComplete="tel" />
@@ -72,24 +99,30 @@ export default function Referrals() {
       </Item>
 
       <Item
-        label="Friend's Contact Number"
+        label="Friend's Contact Details (Email or Phone)"
         name="referredFriendContactNumber"
         rules={[
           {
             required: true,
-            message: "Please enter your friend's contact number",
+            message: "Please enter your friend's contact details",
           },
         ]}
       >
         <Input />
       </Item>
 
-      <Item label="Friend's Location" name="referredFriendLocation">
-        <Input />
+      <Item
+        label="Friend's Email"
+        name="referredFriendEmail"
+        rules={[
+          { required: true, message: "Please enter your friend's job title" },
+        ]}
+      >
+        <Input type="email" />
       </Item>
 
-      <Item label="Friend's Email" name="referredFriendEmail">
-        <Input type="email" />
+      <Item label="Friend's Location" name="referredFriendLocation">
+        <Input />
       </Item>
 
       <br />

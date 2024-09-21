@@ -22,6 +22,9 @@ const referralsColumns = [
     title: "Referred At",
     dataIndex: "created_at",
     key: "created_at",
+    render: (date: string) => (
+      <span>{date ? new Date(date).toLocaleString() : "Not Provided"}</span>
+    ),
   },
   {
     title: "Referrer Name",
