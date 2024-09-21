@@ -22,4 +22,16 @@ const calculateHours = (created_at: Date) => {
   }
 };
 
-export { calculateHours, pluralise };
+const downloadFile = async (blob: Blob, filename: string) => {
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.URL.revokeObjectURL(url);
+};
+
+// eslint-disable-next-line import/no-unused-modules
+export { calculateHours, pluralise, downloadFile };

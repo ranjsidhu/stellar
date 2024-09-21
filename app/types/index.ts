@@ -1,4 +1,10 @@
-import { BaseParams, PatchParams, CustomPatchParams, UpsertParams } from "./db";
+import {
+  BaseParams,
+  PatchParams,
+  CustomPatchParams,
+  UpsertParams,
+  DeleteParams,
+} from "./db";
 
 import {
   Job,
@@ -16,9 +22,10 @@ import {
   LatestJobCardProps,
   MobileMenuProps,
   MenuItemProps,
+  AdminCardProps,
 } from "./components";
 
-import { JobRequest } from "./requests";
+import { JobRequest, UniLevelType } from "./requests";
 
 export {
   type BaseParams,
@@ -42,4 +49,7 @@ export {
   type LatestJobCardProps,
   type MobileMenuProps,
   type MenuItemProps,
+  type DeleteParams,
+  type AdminCardProps,
+  type UniLevelType,
 };

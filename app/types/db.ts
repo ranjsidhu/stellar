@@ -9,6 +9,11 @@ type PatchParams = BaseParams & {
   id: number;
 };
 
+type DeleteParams = {
+  id: number;
+  table: Tables;
+};
+
 type CustomPatchParams = BaseParams & {
   updateColumn: string;
   updateValue: number | string | Date;
@@ -25,11 +30,16 @@ type Tables =
   | "roles"
   | "schools"
   | "testimonials"
-  | "users";
+  | "users"
+  | "file_types"
+  | "user_documents"
+  | "graduates"
+  | "university_levels";
 
 export {
   type BaseParams,
   type PatchParams,
   type CustomPatchParams,
   type UpsertParams,
+  type DeleteParams,
 };

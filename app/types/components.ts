@@ -54,6 +54,7 @@ type User = {
   city: string | null;
   postcode: string;
   role_id: number;
+  roles: { name: string };
   last_logged_in: Date | string | null;
   created_at: Date | string;
   updated_at: Date | string;
@@ -104,6 +105,12 @@ type MobileMenuProps = {
   role: string | null | undefined;
 };
 
+type AdminCardProps = {
+  title: string;
+  description: string;
+  route: string;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -120,4 +127,5 @@ export {
   type LatestJobCardProps,
   type MobileMenuProps,
   type MenuItemProps,
+  type AdminCardProps,
 };

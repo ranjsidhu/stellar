@@ -1,16 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { clearSession } from "@/app/redux/features/Auth";
 import { Button } from "@/app/components";
-
+import { getUserRole } from "@/app/utils/storage";
 import styles from "./HeaderButtons.module.css";
 
 export default function HeaderButtons() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { session } = useAppSelector((state) => state.Auth);
+  const [role, setRole] = useState("");
 
   const signOut = async () => {
     await fetch("/api/auth/signout", { method: "POST" });
@@ -19,10 +21,20 @@ export default function HeaderButtons() {
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    const userRole = getUserRole();
+    setRole(userRole);
+  }, []);
+
   // TODO - add skeleton buttons to hide state hydration
   const AuthenticatedButtons = () => {
     return (
       <>
+        {role === "Admin" && (
+          <Button type="primary" onClick={() => router.push("/admin")}>
+            Admin
+          </Button>
+        )}
         <Button type="primary" onClick={() => router.push("/profile")}>
           Profile
         </Button>
