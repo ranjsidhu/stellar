@@ -8,7 +8,6 @@ export type GraduatesType = {
   in_progress: boolean;
   estimated_completion_date: string;
   university_levels: { name: string };
-  resolved: boolean;
   created_at: Date | string;
   updated_at: Date | string;
 };

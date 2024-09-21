@@ -1,7 +1,17 @@
 "use client";
 
-import { Form, Input, Button, type FormProps } from "antd";
-import instance from "../../utils/instance";
+import { useEffect, useState } from "react";
+import {
+  Form,
+  Input,
+  Button,
+  type FormProps,
+  notification,
+  DatePicker,
+  Select,
+  Switch,
+} from "antd";
+import { NotificationType, UniLevelType } from "../../types";
 import styles from "./Graduates.module.css";
 
 type FieldType = {
@@ -18,78 +28,131 @@ type FieldType = {
 
 const { Item } = Form;
 
-const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
-  try {
-    await instance.post("/graduates", values);
-  } catch (error) {
-    alert("Failed to submit referral");
-  }
-};
-
 export default function Graduates() {
+  const [form] = Form.useForm();
+  const { useNotification } = notification;
+  const [api, contextHolder] = useNotification();
+  const [uniLevels, setUniLevels] = useState<UniLevelType[]>([]);
+
+  useEffect(() => {
+    const fetchUniLevels = async () => {
+      try {
+        fetch("/api/university_levels", { cache: "force-cache" })
+          .then((res) => res.json())
+          .then((data) => setUniLevels(data.response));
+      } catch (error: any) {
+        console.error(error.message);
+      }
+    };
+
+    fetchUniLevels();
+  }, []);
+
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string
+  ) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
+
+  const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      fetch("/api/graduates", {
+        method: "POST",
+        body: JSON.stringify({
+          ...values,
+        }),
+      }).then(() => {
+        form.resetFields();
+        openNotification(
+          "success",
+          "Success",
+          "Graduate query submitted successfully"
+        );
+      });
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <Form
+      form={form}
       name="basic"
       layout="vertical"
       onFinish={handleSubmit}
       scrollToFirstError
       className={styles.graduatesFormForm}
     >
+      {contextHolder}
       <Item
         label="Your Name"
-        name="referrerName"
+        name="full_name"
         rules={[{ required: true, message: "Please enter your name" }]}
       >
         <Input autoComplete="given-name" />
       </Item>
 
       <Item
-        label="Your Contact Number"
-        name="referrerContactNumber"
-        rules={[
-          { required: true, message: "Please enter your contact number" },
-        ]}
+        label="Your Email"
+        name="email"
+        rules={[{ required: true, message: "Please enter your email" }]}
       >
+        <Input autoComplete="email" />
+      </Item>
+
+      <Item label="Your Contact Number" name="contact_number">
         <Input autoComplete="tel" />
       </Item>
 
       <Item
-        label="Friend's Name"
-        name="referredFriendName"
-        rules={[{ required: true, message: "Please enter your friend's name" }]}
+        label="Course"
+        name="course"
+        rules={[{ required: true, message: "Please enter your course" }]}
       >
         <Input />
       </Item>
 
       <Item
-        label="Friend's Job Title"
-        name="referredFriendJob"
-        rules={[
-          { required: true, message: "Please enter your friend's job title" },
-        ]}
+        label="Institution"
+        name="institution"
+        rules={[{ required: true, message: "Please enter your institution" }]}
       >
-        <Input placeholder="E.g. Qualified Teacher, Teaching Assistant, Caretaker" />
+        <Input />
+      </Item>
+
+      <Item label="Course in progress?" name="in_progress">
+        <Switch />
       </Item>
 
       <Item
-        label="Friend's Contact Number"
-        name="referredFriendContactNumber"
-        rules={[
-          {
-            required: true,
-            message: "Please enter your friend's contact number",
-          },
-        ]}
+        label="Estimated Completion Date"
+        help="If you have graduated, please enter the date you graduated"
+        name="estimated_completion_date"
+        rules={[{ required: true }]}
       >
-        <Input />
+        <DatePicker className={styles.loginFormTextInput} />
       </Item>
 
-      <Item label="Friend's Location" name="referredFriendLocation">
-        <Input />
-      </Item>
+      <br />
 
-      <Item label="Friend's Email" name="referredFriendEmail">
-        <Input type="email" />
+      <Item
+        label="Academic Level"
+        name="university_level_id"
+        rules={[{ required: true, message: "Please choose an academic level" }]}
+      >
+        <Select
+          placeholder="Please choose an academic level"
+          options={uniLevels.map((level) => ({
+            ...level,
+            value: level.id,
+            label: level.name,
+          }))}
+        />
       </Item>
 
       <br />
