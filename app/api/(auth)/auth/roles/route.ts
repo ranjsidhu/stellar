@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { client } from "../../../utils/db-client";
 
-export default async function GET() {
+export async function GET() {
   try {
     const { data, error } = await client.from("roles").select("*");
     if (error) throw new Error(error.message);
