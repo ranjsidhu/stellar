@@ -1,33 +1,19 @@
 "use client";
 
-import { Form, Input, Button, type FormProps, notification } from "antd";
+import { Form, Input, Button, type FormProps } from "antd";
 import { createClient } from "../../utils/supabase/client";
-import { NotificationType } from "../../types";
+import { notify } from "@/app/components";
 import styles from "./UpdatePassword.module.css";
 
 const { Item } = Form;
 
 export default function UpdatePassword() {
-  const { useNotification } = notification;
-  const [api, contextHolder] = useNotification();
-
-  const openNotification = (
-    type: NotificationType,
-    message: string,
-    description: string
-  ) => {
-    api[type]({
-      message,
-      description,
-    });
-  };
-
   const handleUpdatePassword: FormProps<{
     newPassword: string;
     confirmNewPassword: string;
   }>["onFinish"] = async (values) => {
     if (values.newPassword !== values.confirmNewPassword) {
-      openNotification("error", "Error", "Passwords do not match");
+      notify("error", "Error", "Passwords do not match");
       return;
     }
     const supabase = createClient();
@@ -35,15 +21,14 @@ export default function UpdatePassword() {
       password: values.newPassword,
     });
     if (!error) {
-      openNotification("success", "Success", "Password updated successfully");
+      notify("success", "Success", "Password updated successfully");
     } else {
-      openNotification("error", "Error", error.message);
+      notify("error", "Error", error.message);
     }
   };
 
   return (
     <div className={styles.updatePasswordWrapper}>
-      {contextHolder}
       <Form
         name="basic"
         layout="vertical"

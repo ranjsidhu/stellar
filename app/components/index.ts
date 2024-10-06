@@ -16,6 +16,8 @@ import Socials from "./(display)/Socials/Socials";
 import Accordion from "./(display)/Accordion/Accordion";
 import Homepage from "./(display)/Hompeage/Homepage";
 import LatestJobs from "./(display)/LatestJobs/LatestJobs";
+import Notification from "./(display)/Notification/Notification";
+import { notify } from "./(display)/Notification/Notification";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
@@ -66,4 +68,6 @@ export {
   FileUpload,
   AdminCard,
   Table,
+  Notification,
+  notify,
 };

@@ -9,29 +9,16 @@ import {
   Input,
   type FormProps,
   type DatePickerProps,
-  notification,
   DatePicker,
 } from "antd";
 import { LIGHT } from "@/app/assets";
-import { NotificationType, RegisterType } from "@/app/types";
+import { RegisterType } from "@/app/types";
+import { notify } from "@/app/components";
 import styles from "./Register.module.css";
 
 export default function Register() {
   const router = useRouter();
   const [formDob, setFormDob] = useState<Date | string | string[]>("");
-  const { useNotification } = notification;
-  const [api, contextHolder] = useNotification();
-
-  const openNotification = (
-    type: NotificationType,
-    message: string,
-    description: string
-  ) => {
-    api[type]({
-      message,
-      description,
-    });
-  };
 
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     setFormDob(dateString);
@@ -39,7 +26,7 @@ export default function Register() {
 
   const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
     if (values.password !== values.confirmPassword) {
-      openNotification("error", "Error", "Passwords do not match");
+      notify("error", "Error", "Passwords do not match");
       return;
     }
     try {
@@ -60,7 +47,7 @@ export default function Register() {
         throw new Error(message);
       }
 
-      openNotification("info", "Registering", "Creating your user profile...");
+      notify("info", "Registering", "Creating your user profile...");
 
       // Remove passwords
       // eslint-disable-next-line no-unused-vars
@@ -81,13 +68,9 @@ export default function Register() {
       });
     } catch (error: any) {
       if (error.message) {
-        openNotification(
-          "error",
-          "Error",
-          error.message || "An error occurred"
-        );
+        notify("error", "Error", error.message || "An error occurred");
       } else {
-        openNotification(
+        notify(
           "error",
           "Error",
           error.message || "An unexpected error occurred"
@@ -98,7 +81,6 @@ export default function Register() {
 
   return (
     <div className={styles.registerWrapper}>
-      {contextHolder}
       <Image
         src={LIGHT}
         priority
