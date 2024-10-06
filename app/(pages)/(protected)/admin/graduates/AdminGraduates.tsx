@@ -17,7 +17,9 @@ export default function AdminGraduates() {
       try {
         const res = await fetch("/api/graduates");
         const data = await res.json();
-        setGraduates(data.response);
+        setGraduates(
+          data.response.map((grad: any) => ({ ...grad, key: grad.id }))
+        );
         setLoading(false);
       } catch (error: any) {
         console.error("Failed to fetch graduates:", error);

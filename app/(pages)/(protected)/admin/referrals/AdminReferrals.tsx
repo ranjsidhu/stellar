@@ -17,7 +17,9 @@ export default function AdminReferrals() {
       try {
         const res = await fetch("/api/referrals");
         const { data } = await res.json();
-        setReferrals(data);
+        setReferrals(
+          data.map((referral: any) => ({ ...referral, key: referral.id }))
+        );
         setLoading(false);
       } catch (error: any) {
         console.error("Failed to fetch referrals:", error);
