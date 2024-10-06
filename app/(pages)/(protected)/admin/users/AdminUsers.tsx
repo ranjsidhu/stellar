@@ -15,7 +15,7 @@ export default function AdminUsers() {
       try {
         const res = await fetch("/api/admin/users");
         const data = await res.json();
-        setUsers(data.response);
+        setUsers(data.response.map((user: any) => ({ ...user, key: user.id })));
         setLoading(false);
       } catch (error: any) {
         console.error("Failed to fetch admin users:", error);
