@@ -3,6 +3,7 @@ import type { UploadProps } from "antd";
 import { Button, Upload } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { getUserId } from "@/app/utils/storage";
+import { notify } from "@/app/components";
 
 type FileUploadProps = {
   route: string;
@@ -23,13 +24,17 @@ export default function FileUpload({ route }: FileUploadProps) {
         formdata.append("type", filename.split(".").pop()!);
         formdata.append("user_id", getUserId());
 
-        //   TODO - add error handling
         fetch(`/api/bucket${route}`, {
           method: "POST",
           body: formdata,
           signal: AbortSignal.timeout(10000),
-        });
-        //   Add success message
+        })
+          .then(() =>
+            notify("success", "File Uploaded", "File has been uploaded")
+          )
+          .catch(() =>
+            notify("error", "File Upload Failed", "Failed to upload file")
+          );
       }
     },
     maxCount: 1,

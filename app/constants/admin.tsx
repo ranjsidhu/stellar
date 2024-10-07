@@ -1,5 +1,6 @@
 import { Select } from "antd";
 import { AdminCardProps } from "../types";
+import { notify } from "../components";
 
 const roles = [
   {
@@ -36,7 +37,13 @@ const dropdownOnChange = (value: number | string | any, record: any) => {
   updateRole(
     role ? Number(role.id) : Number(process.env.NEXT_PUBLIC_CANDIDATE_ROLE_ID),
     record.id
-  );
+  )
+    .then(() => {
+      notify("success", "Role Updated", "User role has been updated");
+    })
+    .catch(() => {
+      notify("error", "Role Update Failed", "Failed to update user role");
+    });
 };
 
 const ADMIN_CARDS: AdminCardProps[] = [
