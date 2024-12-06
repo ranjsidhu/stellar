@@ -12,11 +12,12 @@ export default function Jobs() {
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [displayJobs, setDisplayJobs] = useState<Job[]>([]);
-  const { isLoading, data: jobs } = useFetch<Job>("/jobs/1");
+  const [page, setPage] = useState(1);
+  const { data: currentJobs, isLoading } = useFetch<Job>(`/jobs/${page}`);
 
   useEffect(() => {
-    setDisplayJobs(jobs);
-  }, [jobs]);
+    setDisplayJobs(currentJobs);
+  }, [currentJobs]);
 
   useEffect(() => {
     const getCount = async () => {
@@ -27,10 +28,9 @@ export default function Jobs() {
     getCount();
   }, []);
 
-  const useOnPaginationChange: PaginationProps["onChange"] = async (page) => {
-    const { data: jobs } = useFetch<Job>(`/jobs/${page}`);
-    setDisplayJobs(jobs);
-    setCurrentPage(page);
+  const onPaginationChange: PaginationProps["onChange"] = (newPage) => {
+    setPage(newPage);
+    setCurrentPage(newPage);
   };
 
   return (
@@ -53,7 +53,7 @@ export default function Jobs() {
             showSizeChanger={false}
             defaultCurrent={1}
             current={currentPage}
-            onChange={useOnPaginationChange}
+            onChange={onPaginationChange}
             total={total}
           />
         </div>

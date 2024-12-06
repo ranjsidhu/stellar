@@ -15,7 +15,7 @@ const baseURL =
 
 export async function POST(req: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const body = await req.formData();
     const id = body.get("id");
     const filename = body.get("filename");

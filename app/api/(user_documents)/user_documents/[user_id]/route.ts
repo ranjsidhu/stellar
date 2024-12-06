@@ -3,10 +3,10 @@ const { client } = require("@/app/api/utils/db-client");
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { user_id: number } }
+  { params }: { params: Promise<{ user_id: string }> }
 ) {
   try {
-    const { user_id } = params;
+    const { user_id } = await params;
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }

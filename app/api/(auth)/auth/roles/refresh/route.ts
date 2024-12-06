@@ -4,7 +4,7 @@ import { createClient } from "@/app/utils/supabase/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error }: { data: any; error: any } = await supabase
       .from("users")
       .select(`*, roles (name)`)

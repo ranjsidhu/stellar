@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./NotFound.module.css";
 
 export default function NotFound() {
@@ -9,7 +10,7 @@ export default function NotFound() {
       <div className={styles.notFound}>
         <p>We haven&apos;t been able to find the page you requested</p>
         <p>
-          Click <a href="/">here</a> to go back to the homepage
+          Click <Link href="/">here</Link> to go back to the homepage
         </p>
       </div>
     </>
