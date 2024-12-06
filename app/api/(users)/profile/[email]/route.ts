@@ -3,15 +3,16 @@ import { createClient } from "@/app/utils/supabase/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { email: string } }
+  { params }: { params: Promise<{ email: string }> }
 ) {
   try {
     const supabase = await createClient();
+    const { email } = await params;
 
     const { data, error } = await supabase
       .from("users")
       .select()
-      .eq("email", params.email)
+      .eq("email", email)
       .limit(1);
 
     if (error) throw new Error(error.message);

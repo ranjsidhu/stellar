@@ -3,7 +3,7 @@ import { client } from "../../../../utils/db-client";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { keyword: string } }
+  { params }: { params: Promise<{ keyword: string }> }
 ) {
   try {
     const { keyword } = await params;

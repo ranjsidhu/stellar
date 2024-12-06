@@ -3,7 +3,7 @@ const { client } = require("@/app/api/utils/db-client");
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { location: string } }
+  { params }: { params: Promise<{ location: string }> }
 ) {
   try {
     const { location } = await params;
