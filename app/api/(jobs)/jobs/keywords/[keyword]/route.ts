@@ -6,8 +6,9 @@ export async function GET(
   { params }: { params: { keyword: string } }
 ) {
   try {
+    const { keyword } = await params;
     const { data, error } = await client.rpc("search_jobs_by_keywords", {
-      query: params.keyword,
+      query: keyword,
     });
 
     if (error) throw new Error(error.message);

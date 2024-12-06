@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { range: number } }
 ) {
   try {
-    const range = params.range;
+    const { range } = await params;
     if (!range) {
       throw new Error("The range is undefined");
     }

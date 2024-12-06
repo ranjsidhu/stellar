@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { email: string } }
 ) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const { data, error } = await supabase
       .from("users")

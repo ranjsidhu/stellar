@@ -4,7 +4,7 @@ import { createClient } from "@/app/utils/supabase/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const body = await req.json();
     const response = {
       message: "Successfully logged in",

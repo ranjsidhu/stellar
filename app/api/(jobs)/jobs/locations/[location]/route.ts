@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { location: string } }
 ) {
   try {
-    const location = params.location;
+    const { location } = await params;
     if (!location) {
       throw new Error("The location is undefined");
     }

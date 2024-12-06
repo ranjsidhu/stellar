@@ -10,7 +10,7 @@ export async function GET(
   try {
     const { id } = params;
     if (!id) throw new Error("No file id provided");
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data, error } = await supabase.storage
       .from(NEXT_PUBLIC_CV_BUCKET!)
       .download(id);

@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { limit: number } }
 ) {
   try {
-    const limit = params.limit;
+    const { limit } = await params;
     if (!limit) {
       throw new Error("The limit is undefined");
     }

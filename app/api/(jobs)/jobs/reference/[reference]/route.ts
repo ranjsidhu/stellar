@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { reference: string } }
 ) {
   try {
-    const reference = params.reference;
+    const { reference } = await params;
     const { data, error } = await client
       .from("jobs")
       .select()
