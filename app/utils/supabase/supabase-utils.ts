@@ -3,7 +3,7 @@
 import { createClient } from "./server";
 
 export async function getRole() {
-  const client = createClient();
+  const client = await createClient();
   const {
     data: { user },
   } = await client.auth.getUser();

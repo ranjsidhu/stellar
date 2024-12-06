@@ -3,10 +3,10 @@ const { client } = require("@/app/api/utils/db-client");
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { location: string } }
+  { params }: { params: Promise<{ location: string }> }
 ) {
   try {
-    const location = params.location;
+    const { location } = await params;
     if (!location) {
       throw new Error("The location is undefined");
     }
