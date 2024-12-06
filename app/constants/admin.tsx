@@ -67,6 +67,11 @@ const ADMIN_CARDS: AdminCardProps[] = [
     description: "View and manage user accounts",
     route: "/admin/users",
   },
+  {
+    title: "Manage Jobs",
+    description: "View and manage active jobs",
+    route: "/admin/jobs",
+  },
 ];
 
 const ADMIN_USERS_COLUMNS = [

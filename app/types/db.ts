@@ -34,7 +34,10 @@ type Tables =
   | "file_types"
   | "user_documents"
   | "graduates"
-  | "university_levels";
+  | "university_levels"
+  | "job_status"
+  | "application_status"
+  | "user_applications";
 
 export {
   type BaseParams,
