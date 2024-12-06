@@ -3,10 +3,10 @@ import { client } from "@/app/api/utils/db-client";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { reference: string } }
+  { params }: { params: Promise<{ reference: string }> }
 ) {
   try {
-    const reference = params.reference;
+    const { reference } = await params;
     const { data, error } = await client
       .from("jobs")
       .select()
