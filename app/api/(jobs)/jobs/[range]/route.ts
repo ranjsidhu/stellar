@@ -3,14 +3,14 @@ const { client } = require("@/app/api/utils/db-client");
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { range: number } }
+  { params }: { params: { range: string } }
 ) {
   try {
     const { range } = await params;
     if (!range) {
       throw new Error("The range is undefined");
     }
-    const MIN = range * 10 - 10;
+    const MIN = Number(range) * 10 - 10;
     const MAX = MIN + 9;
     const { data, error } = await client
       .from("jobs")
