@@ -1,7 +1,7 @@
 "use client";
 
-import { Form, Input, Button, type FormProps, notification } from "antd";
-import { NotificationType } from "../../types";
+import { Form, Input, Button, type FormProps } from "antd";
+import { notify } from "@/app/components";
 import styles from "./Referrals.module.css";
 
 type FieldType = {
@@ -20,19 +20,6 @@ const { Item } = Form;
 
 export default function Referrals() {
   const [form] = Form.useForm();
-  const { useNotification } = notification;
-  const [api, contextHolder] = useNotification();
-
-  const openNotification = (
-    type: NotificationType,
-    message: string,
-    description: string
-  ) => {
-    api[type]({
-      message,
-      description,
-    });
-  };
 
   const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
     try {
@@ -41,11 +28,7 @@ export default function Referrals() {
         body: JSON.stringify(values),
       }).then(() => {
         form.resetFields();
-        openNotification(
-          "success",
-          "Success",
-          "Referral submitted successfully"
-        );
+        notify("success", "Success", "Referral submitted successfully");
       });
     } catch (error: any) {
       console.error(error.message);
@@ -61,7 +44,6 @@ export default function Referrals() {
       scrollToFirstError
       className={styles.referralsFormForm}
     >
-      {contextHolder}
       <Item
         label="Your Name"
         name="referrerName"

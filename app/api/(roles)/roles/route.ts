@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { create } = require("@/app/api/utils/db-client");
+import { update, create } from "../../utils/db-client";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,5 +15,28 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     return NextResponse.json({ error });
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  try {
+    const { user_id, role_id } = await req.json();
+    if (!user_id || !role_id) {
+      throw new Error("User ID and Role ID are required");
+    }
+
+    const { data, error } = await update({
+      body: { role_id },
+      table: "users",
+      id: user_id,
+    });
+
+    if (error) throw new Error(error.message);
+    return NextResponse.json({
+      message: "Successfully updated user role",
+      response: { ...data },
+    });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message });
   }
 }

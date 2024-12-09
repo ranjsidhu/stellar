@@ -1,3 +1,6 @@
+import { NotificationInstance } from "antd/es/notification/interface";
+import { NotificationType } from "../types";
+
 const pluralise = (count: number, noun: string) =>
   `${count} ${noun}${count !== 1 ? "s" : ""}`;
 
@@ -33,5 +36,17 @@ const downloadFile = async (blob: Blob, filename: string) => {
   window.URL.revokeObjectURL(url);
 };
 
+const openNotification = (
+  type: NotificationType,
+  message: string,
+  description: string,
+  api: NotificationInstance
+) => {
+  api[type]({
+    message,
+    description,
+  });
+};
+
 // eslint-disable-next-line import/no-unused-modules
-export { calculateHours, pluralise, downloadFile };
+export { calculateHours, pluralise, downloadFile, openNotification };
