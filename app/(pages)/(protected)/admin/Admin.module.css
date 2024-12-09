@@ -16,3 +16,12 @@
   width: 100%;
   max-width: 1440px;
 }
+
+@media screen and (max-width: 530px) {
+  .adminWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

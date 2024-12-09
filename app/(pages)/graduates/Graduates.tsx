@@ -6,12 +6,12 @@ import {
   Input,
   Button,
   type FormProps,
-  notification,
   DatePicker,
   Select,
   Switch,
 } from "antd";
-import { NotificationType, UniLevelType } from "../../types";
+import { UniLevelType } from "../../types";
+import { notify } from "@/app/components";
 import styles from "./Graduates.module.css";
 
 type FieldType = {
@@ -30,8 +30,6 @@ const { Item } = Form;
 
 export default function Graduates() {
   const [form] = Form.useForm();
-  const { useNotification } = notification;
-  const [api, contextHolder] = useNotification();
   const [uniLevels, setUniLevels] = useState<UniLevelType[]>([]);
 
   useEffect(() => {
@@ -48,17 +46,6 @@ export default function Graduates() {
     fetchUniLevels();
   }, []);
 
-  const openNotification = (
-    type: NotificationType,
-    message: string,
-    description: string
-  ) => {
-    api[type]({
-      message,
-      description,
-    });
-  };
-
   const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
     try {
       fetch("/api/graduates", {
@@ -68,11 +55,7 @@ export default function Graduates() {
         }),
       }).then(() => {
         form.resetFields();
-        openNotification(
-          "success",
-          "Success",
-          "Graduate query submitted successfully"
-        );
+        notify("success", "Success", "Graduate query submitted successfully");
       });
     } catch (error: any) {
       console.error(error.message);
@@ -88,7 +71,6 @@ export default function Graduates() {
       scrollToFirstError
       className={styles.graduatesFormForm}
     >
-      {contextHolder}
       <Item
         label="Your Name"
         name="full_name"

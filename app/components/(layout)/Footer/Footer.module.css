@@ -46,6 +46,7 @@
     position: relative;
     top: 0;
     overflow-y: scroll;
+    margin: 0;
   }
 
   .footer {
