@@ -37,7 +37,8 @@ type Tables =
   | "university_levels"
   | "job_status"
   | "application_status"
-  | "user_applications";
+  | "user_applications"
+  | "config_tables";
 
 export {
   type BaseParams,
