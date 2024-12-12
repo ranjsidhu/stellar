@@ -6,6 +6,7 @@ export async function GET() {
     const { data, error } = await client
       .from("config_tables")
       .select()
+      .eq("is_enabled", true)
       .order("id", { ascending: true });
     if (error) throw new Error(error.message);
     return NextResponse.json({

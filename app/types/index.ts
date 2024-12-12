@@ -23,6 +23,7 @@ import {
   MobileMenuProps,
   MenuItemProps,
   AdminCardProps,
+  ConfigTable,
 } from "./components";
 
 import { JobRequest, UniLevelType } from "./requests";
@@ -52,4 +53,5 @@ export {
   type DeleteParams,
   type AdminCardProps,
   type UniLevelType,
+  type ConfigTable,
 };
