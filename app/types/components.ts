@@ -111,6 +111,16 @@ type AdminCardProps = {
   route: string;
 };
 
+type ConfigTable = {
+  id: number;
+  table_name: string;
+  ui_name: string;
+  description: string;
+  is_enabled: boolean;
+  created_at: Date;
+  updated_at: Date;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -128,4 +138,5 @@ export {
   type MobileMenuProps,
   type MenuItemProps,
   type AdminCardProps,
+  type ConfigTable,
 };

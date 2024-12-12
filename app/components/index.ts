@@ -4,6 +4,7 @@ import Footer from "./(layout)/Footer/Footer";
 import Hamburger from "./(layout)/Hamburger/Hamburger";
 import Header from "./(layout)/Header/Header";
 import Navbar from "./(layout)/Navbar/Navbar";
+import PageLayout from "./(layout)/PageLayout/PageLayout";
 
 // DISPLAY
 import Button from "./(display)/Button/Button";
@@ -70,4 +71,5 @@ export {
   Table,
   Notification,
   notify,
+  PageLayout,
 };

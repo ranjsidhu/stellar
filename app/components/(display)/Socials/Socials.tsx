@@ -9,12 +9,17 @@ type SocialsProps = {
 
 export default function Socials({ className, pathname }: SocialsProps) {
   const adminRoutes = ADMIN_CARDS.map((card) => card.route);
-  const hideOn = [...adminRoutes, "/admin", "/profile"];
+  const hideOn = [...adminRoutes, "/admin", "/profile", "/admin/configuration"];
+
+  const shouldHide = (path: string) => {
+    return hideOn.includes(path) || path.startsWith("/admin");
+  };
+
   return (
     <>
-      {pathname && hideOn.includes(pathname) && <></>}
+      {pathname && shouldHide(pathname) && <></>}
       {!pathname ||
-        (!hideOn.includes(pathname) && (
+        (!shouldHide(pathname) && !hideOn.includes(pathname) && (
           <div className={className}>
             {socials.map((social) => (
               <Link key={social} href="#" className={`fa fa-${social}`}></Link>
