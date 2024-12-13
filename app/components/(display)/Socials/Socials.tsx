@@ -22,7 +22,12 @@ export default function Socials({ className, pathname }: SocialsProps) {
         (!shouldHide(pathname) && !hideOn.includes(pathname) && (
           <div className={className}>
             {socials.map((social) => (
-              <Link key={social} href="#" className={`fa fa-${social}`}></Link>
+              <Link
+                key={social.className}
+                href={social.href}
+                className={`fa fa-${social.className}`}
+                target="_blank"
+              ></Link>
             ))}
           </div>
         ))}
