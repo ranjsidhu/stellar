@@ -15,6 +15,10 @@ export default function AdminConfigDetails({ table }: { table: string }) {
   const [tableData, setTableData] = useState<BasicTable[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const refreshTableData = () => {
+    setTableData([]);
+  };
+
   useEffect(() => {
     const fetchTableData = async () => {
       if (!table) return;
@@ -43,13 +47,14 @@ export default function AdminConfigDetails({ table }: { table: string }) {
     <PageLayout>
       <SectionLoading loading={loading}>
         <div className={styles.adminConfigDetailsGrid}>
-          {/* TODO - make a new card component which has a pencil for edit and bin for delete */}
-          {tableData.map((data) => (
+          {tableData.map(({ name, id, created_at }) => (
             <AdminConfigCard
-              key={data.id}
-              title={data.name}
-              route={`/${table.replace("_", "-")}/${data.id}`}
-              description={calculateHours(data.created_at, "Created")}
+              key={id}
+              title={name}
+              route={`/${table.replace("_", "-")}/${id}`}
+              description={calculateHours(created_at, "Created")}
+              table={table}
+              refreshTableData={refreshTableData}
             />
           ))}
         </div>

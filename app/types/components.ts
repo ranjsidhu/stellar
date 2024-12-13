@@ -111,6 +111,11 @@ type AdminCardProps = {
   route: string;
 };
 
+type AdminConfigCardProps = AdminCardProps & {
+  table: string;
+  refreshTableData: () => void;
+};
+
 type ConfigTable = {
   id: number;
   table_name: string;
@@ -139,4 +144,5 @@ export {
   type MenuItemProps,
   type AdminCardProps,
   type ConfigTable,
+  type AdminConfigCardProps,
 };

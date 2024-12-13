@@ -25,6 +25,7 @@ import {
   MenuItemProps,
   AdminCardProps,
   ConfigTable,
+  AdminConfigCardProps,
 } from "./components";
 
 import { JobRequest, UniLevelType } from "./requests";
@@ -56,4 +57,5 @@ export {
   type UniLevelType,
   type ConfigTable,
   type BasicTable,
+  type AdminConfigCardProps,
 };
