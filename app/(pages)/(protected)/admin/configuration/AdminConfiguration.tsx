@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { ConfigTable } from "@/app/types";
-import { AdminCard, notify, SectionLoading } from "@/app/components";
+import {
+  AdminCard,
+  notify,
+  PageLayout,
+  SectionLoading,
+} from "@/app/components";
 import styles from "./AdminConfiguration.module.css";
 
 export default function AdminConfiguration() {
@@ -37,20 +42,22 @@ export default function AdminConfiguration() {
 
   return (
     <SectionLoading loading={loading}>
-      <div className={styles.adminConfigWrapper}>
-        {config.length > 0 &&
-          config.map((card) => (
-            <AdminCard
-              key={card.id}
-              route={`/admin/configuration/${card.table_name.replace(
-                "_",
-                "-"
-              )}`}
-              title={card.ui_name}
-              description={card.description}
-            />
-          ))}
-      </div>
+      <PageLayout>
+        <div className={styles.adminConfigWrapper}>
+          {config.length > 0 &&
+            config.map((card) => (
+              <AdminCard
+                key={card.id}
+                route={`/admin/configuration/${card.table_name.replace(
+                  "_",
+                  "-"
+                )}`}
+                title={card.ui_name}
+                description={card.description}
+              />
+            ))}
+        </div>
+      </PageLayout>
     </SectionLoading>
   );
 }
