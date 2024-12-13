@@ -3,7 +3,11 @@ import { create, client, update, delete_row } from "../../utils/db-client";
 
 export async function GET() {
   try {
-    const { data, error } = await client.from("application_status").select();
+    const { data, error } = await client
+      .from("application_status")
+      .select()
+      .eq("is_deleted", false)
+      .order("id", { ascending: true });
     if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully fetched application statuses",
