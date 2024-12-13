@@ -33,6 +33,7 @@ import Register from "./(functional)/Register/Register";
 import FileUpload from "./(functional)/FileUpload/FileUpload";
 import AdminCard from "./(functional)/AdminCard/AdminCard";
 import Table from "./(functional)/Table/Table";
+import AdminConfigCard from "./(functional)/AdminConfigCard/AdminConfigCard";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -72,4 +73,5 @@ export {
   Notification,
   notify,
   PageLayout,
+  AdminConfigCard,
 };

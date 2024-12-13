@@ -31,7 +31,7 @@ export default function Referrals() {
         notify("success", "Success", "Referral submitted successfully");
       });
     } catch (error: any) {
-      console.error(error.message);
+      notify("error", "Error", error.message);
     }
   };
 

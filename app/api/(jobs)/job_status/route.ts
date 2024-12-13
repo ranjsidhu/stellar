@@ -32,6 +32,7 @@ export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
     const { id } = body;
+    delete body.id;
     const { data, error } = await update({ body, table: "job_status", id });
     if (error) throw new Error(error.message);
     return NextResponse.json({

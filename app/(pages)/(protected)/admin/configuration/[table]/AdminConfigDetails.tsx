@@ -1,17 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AdminCard, PageLayout, SectionLoading } from "@/app/components";
+import {
+  AdminConfigCard,
+  PageLayout,
+  SectionLoading,
+  notify,
+} from "@/app/components";
+import type { BasicTable } from "@/app/types";
 import { calculateHours } from "@/app/utils";
-import { notify } from "@/app/components";
 import styles from "./AdminConfigDetails.module.css";
-
-type BasicTable = {
-  id: number;
-  name: string;
-  created_at: Date;
-  updated_at: Date;
-};
 
 export default function AdminConfigDetails({ table }: { table: string }) {
   const [tableData, setTableData] = useState<BasicTable[]>([]);
@@ -47,7 +45,7 @@ export default function AdminConfigDetails({ table }: { table: string }) {
         <div className={styles.adminConfigDetailsGrid}>
           {/* TODO - make a new card component which has a pencil for edit and bin for delete */}
           {tableData.map((data) => (
-            <AdminCard
+            <AdminConfigCard
               key={data.id}
               title={data.name}
               route={`/admin/configuration/edit/${table.replace("_", "-")}/${

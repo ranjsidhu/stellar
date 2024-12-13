@@ -1,4 +1,17 @@
-import { PageLayout } from "@/app/components";
+"use client";
+
+import { revalidateTag } from "next/cache";
+import { useEffect, useState } from "react";
+import { Form, Input, Button, type FormProps } from "antd";
+import { notify, PageLayout, SectionLoading } from "@/app/components";
+import type { BasicTable } from "@/app/types";
+
+const initialEditData = {
+  id: null,
+  name: "",
+  created_at: new Date(),
+  updated_at: new Date(),
+};
 
 export default function AdminConfigEdit({
   table,
@@ -7,9 +20,81 @@ export default function AdminConfigEdit({
   table: string;
   id: number;
 }) {
+  const [editData, setEditData] = useState<BasicTable>({
+    ...initialEditData,
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [form] = Form.useForm();
+  const { Item } = Form;
+
+  useEffect(() => {
+    const fetchEditData = async () => {
+      if (!table || !id) {
+        notify("error", "Error", "Table or ID not found");
+        return;
+      }
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/${table}/${id}`, {
+          next: {
+            tags: [table],
+            revalidate: 600,
+          },
+        });
+        const data = await response.json();
+        setEditData(data.response[0]);
+      } catch (error: any) {
+        notify("error", "Error", error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEditData();
+  }, [id, table]);
+
+  const handleSubmit: FormProps<BasicTable>["onFinish"] = (values) => {
+    try {
+      setLoading(true);
+      fetch(`/api/${table}`, {
+        method: "PUT",
+        body: JSON.stringify({ ...values, id }),
+      })
+        .then(() => notify("success", "Success", "Record updated successfully"))
+        .catch((error: any) => notify("error", "Error", error.message))
+        .finally(() => {
+          setLoading(false);
+          revalidateTag(table);
+        });
+    } catch (error: any) {
+      notify("error", "Error", error.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <PageLayout>
-      {table} | {id}
+      <SectionLoading loading={loading}>
+        <Form
+          form={form}
+          layout="vertical"
+          scrollToFirstError
+          onFinish={handleSubmit}
+        >
+          <Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please enter a value" }]}
+          >
+            <Input placeholder={editData.name} disabled={!editData.name} />
+          </Item>
+          <Item>
+            <Button type="primary" htmlType="submit" disabled={!editData.name}>
+              Save
+            </Button>
+          </Item>
+        </Form>
+      </SectionLoading>
     </PageLayout>
   );
 }
