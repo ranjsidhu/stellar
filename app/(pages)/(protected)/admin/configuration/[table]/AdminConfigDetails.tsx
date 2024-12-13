@@ -48,9 +48,7 @@ export default function AdminConfigDetails({ table }: { table: string }) {
             <AdminConfigCard
               key={data.id}
               title={data.name}
-              route={`/admin/configuration/edit/${table.replace("_", "-")}/${
-                data.id
-              }`}
+              route={`/${table.replace("_", "-")}/${data.id}`}
               description={calculateHours(data.created_at, "Created")}
             />
           ))}

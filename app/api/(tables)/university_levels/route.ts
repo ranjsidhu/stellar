@@ -3,7 +3,11 @@ import { client, create, update } from "../..//utils/db-client";
 
 export async function GET() {
   try {
-    const { data, error } = await client.from("university_levels").select("*");
+    const { data, error } = await client
+      .from("university_levels")
+      .select("*")
+      .eq("is_deleted", false)
+      .order("id", { ascending: true });
     if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully fetched university levels",
