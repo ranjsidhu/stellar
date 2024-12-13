@@ -19,13 +19,7 @@ export default function AdminConfiguration() {
       if (config.length > 0) return;
       setLoading(true);
       try {
-        const response = await fetch("/api/config_tables", {
-          cache: "force-cache",
-          next: {
-            tags: ["config_tables"],
-            revalidate: 600,
-          },
-        });
+        const response = await fetch("/api/config_tables", {});
         const data = await response.json();
         setConfig(data.response);
         setLoading(false);
