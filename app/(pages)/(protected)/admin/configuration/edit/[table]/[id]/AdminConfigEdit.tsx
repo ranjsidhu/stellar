@@ -1,10 +1,12 @@
 "use client";
 
 import { revalidateTag } from "next/cache";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
 import { notify, PageLayout, SectionLoading } from "@/app/components";
 import type { BasicTable } from "@/app/types";
+import styles from "./AdminConfigEdit.module.css";
 
 const initialEditData = {
   id: null,
@@ -23,6 +25,7 @@ export default function AdminConfigEdit({
   const [editData, setEditData] = useState<BasicTable>({
     ...initialEditData,
   });
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [form] = Form.useForm();
   const { Item } = Form;
@@ -88,11 +91,22 @@ export default function AdminConfigEdit({
           >
             <Input placeholder={editData.name} disabled={!editData.name} />
           </Item>
-          <Item>
-            <Button type="primary" htmlType="submit" disabled={!editData.name}>
-              Save
-            </Button>
-          </Item>
+          <div className={styles.flexButtons}>
+            <Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={!editData.name}
+              >
+                Save
+              </Button>
+            </Item>
+            <Item>
+              <Button disabled={!editData.name} onClick={() => router.back()}>
+                Cancel
+              </Button>
+            </Item>
+          </div>
         </Form>
       </SectionLoading>
     </PageLayout>
