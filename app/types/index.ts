@@ -4,6 +4,7 @@ import {
   CustomPatchParams,
   UpsertParams,
   DeleteParams,
+  BasicTable,
 } from "./db";
 
 import {
@@ -54,4 +55,5 @@ export {
   type AdminCardProps,
   type UniLevelType,
   type ConfigTable,
+  type BasicTable,
 };

@@ -24,6 +24,13 @@ type UpsertParams = {
   values: { [key: string]: number | string | Date };
 };
 
+type BasicTable = {
+  id: number | null;
+  name: string;
+  created_at: Date;
+  updated_at: Date;
+};
+
 type Tables =
   | "jobs"
   | "referrals"
@@ -46,4 +53,5 @@ export {
   type CustomPatchParams,
   type UpsertParams,
   type DeleteParams,
+  type BasicTable,
 };

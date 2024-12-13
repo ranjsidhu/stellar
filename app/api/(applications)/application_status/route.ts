@@ -6,7 +6,7 @@ export async function GET() {
     const { data, error } = await client.from("application_status").select();
     if (error) throw new Error(error.message);
     return NextResponse.json({
-      message: "Successfully fetched application types",
+      message: "Successfully fetched application statuses",
       response: data,
     });
   } catch (error: any) {
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const { data, error } = await create({ body, table: "application_status" });
     if (error) throw new Error(error.message);
     return NextResponse.json({
-      message: "Successfully created application type",
+      message: "Successfully created application status",
       response: { ...data },
     });
   } catch (error: any) {
@@ -32,6 +32,7 @@ export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
     const { id } = body;
+    delete body.id;
     const { data, error } = await update({
       body,
       table: "application_status",
@@ -39,7 +40,7 @@ export async function PUT(req: NextRequest) {
     });
     if (error) throw new Error(error.message);
     return NextResponse.json({
-      message: "Successfully updated application type",
+      message: "Successfully updated application status",
       response: { ...data },
     });
   } catch (error: any) {
@@ -57,7 +58,7 @@ export async function DELETE(req: NextRequest) {
     });
     if (error) throw new Error(error.message);
     return NextResponse.json({
-      message: "Successfully deleted application type",
+      message: "Successfully deleted application status",
       response: { ...data },
     });
   } catch (error: any) {
