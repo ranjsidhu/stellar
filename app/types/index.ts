@@ -4,6 +4,7 @@ import {
   CustomPatchParams,
   UpsertParams,
   DeleteParams,
+  BasicTable,
 } from "./db";
 
 import {
@@ -23,6 +24,8 @@ import {
   MobileMenuProps,
   MenuItemProps,
   AdminCardProps,
+  ConfigTable,
+  AdminConfigCardProps,
 } from "./components";
 
 import { JobRequest, UniLevelType } from "./requests";
@@ -52,4 +55,7 @@ export {
   type DeleteParams,
   type AdminCardProps,
   type UniLevelType,
+  type ConfigTable,
+  type BasicTable,
+  type AdminConfigCardProps,
 };

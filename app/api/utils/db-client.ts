@@ -17,7 +17,6 @@ const create = async ({ body, table }: BaseParams) => {
 };
 
 const update = async ({ body, table, id }: PatchParams) => {
-  delete body.id;
   const { data, error } = await client
     .from(table)
     .update({ ...body, updated_at: new Date().toISOString() })

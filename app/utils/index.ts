@@ -5,7 +5,7 @@ const pluralise = (count: number, noun: string) =>
   `${count} ${noun}${count !== 1 ? "s" : ""}`;
 
 // Convert the date to hours, days, or months
-const calculateHours = (created_at: Date) => {
+const calculateHours = (created_at: Date, noun = "Posted") => {
   const diffInHours =
     Math.abs(new Date().getTime() - new Date(created_at).getTime()) /
     (1000 * 60 * 60);
@@ -15,13 +15,13 @@ const calculateHours = (created_at: Date) => {
   const roundedMonths = Math.round(roundedDays / 30);
 
   if (roundedHours < 1) {
-    return `Posted about ${pluralise(roundedMinutes, "minute")} ago`;
+    return `${noun} about ${pluralise(roundedMinutes, "minute")} ago`;
   } else if (roundedHours < 24) {
-    return `Posted about ${pluralise(roundedHours, "hour")} ago`;
+    return `${noun} about ${pluralise(roundedHours, "hour")} ago`;
   } else if (roundedDays < 30) {
-    return `Posted ${pluralise(roundedDays, "day")} ago`;
+    return `${noun} ${pluralise(roundedDays, "day")} ago`;
   } else {
-    return `Posted ${pluralise(roundedMonths, "month")} ago`;
+    return `${noun} ${pluralise(roundedMonths, "month")} ago`;
   }
 };
 

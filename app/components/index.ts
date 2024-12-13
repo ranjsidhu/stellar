@@ -4,6 +4,7 @@ import Footer from "./(layout)/Footer/Footer";
 import Hamburger from "./(layout)/Hamburger/Hamburger";
 import Header from "./(layout)/Header/Header";
 import Navbar from "./(layout)/Navbar/Navbar";
+import PageLayout from "./(layout)/PageLayout/PageLayout";
 
 // DISPLAY
 import Button from "./(display)/Button/Button";
@@ -32,6 +33,7 @@ import Register from "./(functional)/Register/Register";
 import FileUpload from "./(functional)/FileUpload/FileUpload";
 import AdminCard from "./(functional)/AdminCard/AdminCard";
 import Table from "./(functional)/Table/Table";
+import AdminConfigCard from "./(functional)/AdminConfigCard/AdminConfigCard";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -70,4 +72,6 @@ export {
   Table,
   Notification,
   notify,
+  PageLayout,
+  AdminConfigCard,
 };

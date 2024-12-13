@@ -1,0 +1,20 @@
+.adminConfigDetailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px 0;
+  place-items: center;
+}
+
+.adminConfigDetailsAdd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminConfigDetailsAdd:hover {
+  cursor: pointer;
+}
+
+.addIcon {
+  padding: 0 10px;
+}
