@@ -14,4 +14,11 @@ type UniLevelType = {
   is_deleted: boolean;
 };
 
-export { type JobRequest, type UniLevelType };
+type UserDocumentType = {
+  file_id: string;
+  file_types: { name: string };
+  filename: string;
+  id: number;
+};
+
+export { type JobRequest, type UniLevelType, type UserDocumentType };

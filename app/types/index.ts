@@ -30,7 +30,7 @@ import {
   ProfileTab,
 } from "./components";
 
-import { JobRequest, UniLevelType } from "./requests";
+import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
 
 export {
   type BaseParams,
@@ -62,4 +62,5 @@ export {
   type AdminConfigCardProps,
   type TabKey,
   type ProfileTab,
+  type UserDocumentType,
 };
