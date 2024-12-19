@@ -131,7 +131,7 @@ type TabKey = "profile" | "applications" | "documents" | "settings";
 interface ProfileTab {
   label: string;
   key: TabKey;
-  children: TabKey;
+  children: React.ReactNode;
   icon: React.ReactNode;
 }
 
@@ -154,6 +154,5 @@ export {
   type AdminCardProps,
   type ConfigTable,
   type AdminConfigCardProps,
-  type TabKey,
   type ProfileTab,
 };

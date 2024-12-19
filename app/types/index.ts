@@ -26,7 +26,6 @@ import {
   AdminCardProps,
   ConfigTable,
   AdminConfigCardProps,
-  TabKey,
   ProfileTab,
 } from "./components";
 
@@ -60,7 +59,6 @@ export {
   type ConfigTable,
   type BasicTable,
   type AdminConfigCardProps,
-  type TabKey,
   type ProfileTab,
   type UserDocumentType,
 };

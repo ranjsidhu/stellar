@@ -1,3 +1,3 @@
 export default function UserApplications() {
-  return <>Coming soon...</>;
+  return <>Coming soon applications...</>;
 }

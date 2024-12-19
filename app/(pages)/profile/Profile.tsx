@@ -3,11 +3,7 @@
 import { Tabs } from "antd";
 import { PageLayout } from "@/app/components";
 import { PROFILE_TABS } from "@/app/constants";
-import type { TabKey } from "@/app/types";
-import UserProfile from "./user/(profile)/UserProfile";
-import UserApplications from "./user/UserApplications";
-import UserDocuments from "./user/UserDocuments";
-import UserSettings from "./user/UserSettings";
+
 // import { downloadFile } from "@/app/utils";
 
 export default function Profile() {
@@ -22,23 +18,15 @@ export default function Profile() {
   //   );
   // };
 
-  const TAB_CONTENT_MAP: Record<TabKey, React.FC> = {
-    profile: UserProfile,
-    applications: UserApplications,
-    documents: UserDocuments,
-    settings: UserSettings,
-  };
-
   return (
     <PageLayout>
       <Tabs
         tabPosition="top"
         items={PROFILE_TABS.map((tab) => {
-          const TabComponent = TAB_CONTENT_MAP[tab.children];
           return {
             label: tab.label,
             key: tab.key,
-            children: <TabComponent />,
+            children: tab.children,
             icon: tab.icon,
           };
         })}
