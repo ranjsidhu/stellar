@@ -26,6 +26,8 @@ import {
   AdminCardProps,
   ConfigTable,
   AdminConfigCardProps,
+  TabKey,
+  ProfileTab,
 } from "./components";
 
 import { JobRequest, UniLevelType } from "./requests";
@@ -58,4 +60,6 @@ export {
   type ConfigTable,
   type BasicTable,
   type AdminConfigCardProps,
+  type TabKey,
+  type ProfileTab,
 };

@@ -1,35 +1,18 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
-// import { useEffect, useState } from "react";
-// import { getItem } from "@/app/utils/storage";
-// import type { User } from "@/app/types";
-// import { FileUpload } from "@/app/components";
+import { Tabs } from "antd";
+import { PageLayout } from "@/app/components";
+import { PROFILE_TABS } from "@/app/constants";
+import type { TabKey } from "@/app/types";
+import UserProfile from "./user/(profile)/UserProfile";
+import UserApplications from "./user/UserApplications";
+import UserDocuments from "./user/UserDocuments";
+import UserSettings from "./user/UserSettings";
 // import { downloadFile } from "@/app/utils";
-import styles from "./Profile.module.css";
 
 export default function Profile() {
-  // const router = useRouter();
-  // const [details, setDetails] = useState<User | null>(null);
-  // const [role, setRole] = useState<String>("");
-
-  // useEffect(() => {
-  //   const userDetails = getItem("userDetails");
-  //   const parsedUserDetails: User | null = userDetails ? userDetails : null;
-  //   const invalidDetails =
-  //     !parsedUserDetails?.id ||
-  //     parsedUserDetails?.id === -1 ||
-  //     !parsedUserDetails?.roles;
-  //   if (invalidDetails) {
-  //     router.push("/login?return=profile");
-  //     return;
-  //   }
-  //   setDetails(parsedUserDetails);
-  //   setRole(parsedUserDetails.roles.name);
-  // }, [router]);
-
   // const handleClick = async () => {
-  //   fetch("/api/bucket/cv/4557e907-a4ed-4509-859c-f19399133c32.docx").then(
+  //   fetch("/api/bucket/cv/6d655c14-ea3b-48f1-bacb-b149cd652ceb.docx").then(
   //     (res) => {
   //       res.blob().then((data) => {
   //         const filename = res.headers.get("X-Filename") || "download.docx";
@@ -39,17 +22,27 @@ export default function Profile() {
   //   );
   // };
 
+  const TAB_CONTENT_MAP: Record<TabKey, React.FC> = {
+    profile: UserProfile,
+    applications: UserApplications,
+    documents: UserDocuments,
+    settings: UserSettings,
+  };
+
   return (
-    <div className={styles.profileWrapper}>
-      <p>Coming soon....</p>
-      {/* {details &&
-        Object.entries(details).map(([key, value]) => (
-          <div key={key}>
-            {key}: {value?.toString()}
-          </div>
-        ))} */}
-      {/* <FileUpload route="/cv" /> */}
-      {/* <button onClick={handleClick}>Click me</button> */}
-    </div>
+    <PageLayout>
+      <Tabs
+        tabPosition="top"
+        items={PROFILE_TABS.map((tab) => {
+          const TabComponent = TAB_CONTENT_MAP[tab.children];
+          return {
+            label: tab.label,
+            key: tab.key,
+            children: <TabComponent />,
+            icon: tab.icon,
+          };
+        })}
+      />
+    </PageLayout>
   );
 }

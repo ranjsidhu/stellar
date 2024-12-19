@@ -126,6 +126,15 @@ type ConfigTable = {
   updated_at: Date;
 };
 
+type TabKey = "profile" | "applications" | "documents" | "settings";
+
+interface ProfileTab {
+  label: string;
+  key: TabKey;
+  children: TabKey;
+  icon: React.ReactNode;
+}
+
 export {
   type Job,
   type Testimonial,
@@ -145,4 +154,6 @@ export {
   type AdminCardProps,
   type ConfigTable,
   type AdminConfigCardProps,
+  type TabKey,
+  type ProfileTab,
 };
