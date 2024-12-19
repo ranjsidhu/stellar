@@ -1,10 +1,10 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 import { DrawingPinIcon } from "@radix-ui/react-icons";
-import { Typography } from "antd";
+import { Typography, Button } from "antd";
 import Markdown from "markdown-to-jsx";
 import { Job } from "../../types";
 import styles from "./JobDetails.module.css";
@@ -15,6 +15,7 @@ export default function JobDetails() {
   const [loading, setLoading] = useState(false);
   const [jobDetails, setJobDetails] = useState<Job>();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const reference = searchParams.get("reference");
 
   useEffect(() => {
@@ -56,6 +57,16 @@ export default function JobDetails() {
             <Paragraph className={styles.jobDetailsText}>
               <Markdown>{jobDetails.description}</Markdown>
             </Paragraph>
+            <Button
+              type="primary"
+              onClick={() =>
+                router.push(
+                  `/job/apply?reference=${jobDetails.reference_number}&title=${jobDetails.role_name}&description=${jobDetails.description}&id=${jobDetails.id}`
+                )
+              }
+            >
+              Apply
+            </Button>
           </div>
         )}
       </div>
