@@ -49,6 +49,15 @@ export default function JobApply({
     try {
       setLoading(true);
       const user_id = getUserId();
+      const checkResponse = await fetch(
+        `/api/user_applications/${user_id}/${id}`
+      );
+      const checkData = await checkResponse.json();
+      if (checkData.applied) {
+        notify("warning", "Error", "You have already applied for this job");
+        return;
+      }
+
       fetch("/api/user_applications", {
         method: "POST",
         body: JSON.stringify({
