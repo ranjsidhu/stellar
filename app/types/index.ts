@@ -28,7 +28,7 @@ import {
   AdminConfigCardProps,
 } from "./components";
 
-import { JobRequest, UniLevelType } from "./requests";
+import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
 
 export {
   type BaseParams,
@@ -58,4 +58,5 @@ export {
   type ConfigTable,
   type BasicTable,
   type AdminConfigCardProps,
+  type UserDocumentType,
 };

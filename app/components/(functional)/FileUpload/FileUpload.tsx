@@ -24,7 +24,7 @@ export default function FileUpload({ route }: FileUploadProps) {
         formdata.append("type", filename.split(".").pop()!);
         formdata.append("user_id", getUserId());
 
-        fetch(`/api/bucket${route}`, {
+        fetch(`/api/bucket/${route}`, {
           method: "POST",
           body: formdata,
           signal: AbortSignal.timeout(10000),
