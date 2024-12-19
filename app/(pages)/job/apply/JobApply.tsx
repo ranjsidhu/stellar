@@ -115,11 +115,3 @@ export default function JobApply({
     </SectionLoading>
   );
 }
-
-// {id} | {reference} | {status.name} | {status.id}
-//         {userDocuments.length &&
-//           userDocuments.map((doc) => (
-//             <div key={doc.id}>
-//               {doc.filename} | {doc.file_id} | {doc.id} | {doc.file_types.name}
-//             </div>
-//           ))}

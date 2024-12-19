@@ -1,16 +1,15 @@
 import JobApply from "./JobApply";
 
-export default async function JobApplyPage({
-  searchParams,
-}: {
-  searchParams: {
-    reference: string;
+type Props = {
+  searchParams: Promise<{
     id: string;
     title: string;
     description: string;
-  };
-}) {
-  const {  id, title, description } = await searchParams;
+  }>;
+};
+
+export default async function JobApplyPage({ searchParams }: Props) {
+  const { id, title, description } = await searchParams;
 
   const fetchSubmittedStatus = async () => {
     const res = await fetch(
@@ -24,11 +23,6 @@ export default async function JobApplyPage({
   const status = await fetchSubmittedStatus();
 
   return (
-    <JobApply
-      id={id}
-      status={status}
-      title={title}
-      description={description}
-    />
+    <JobApply id={id} status={status} title={title} description={description} />
   );
 }
