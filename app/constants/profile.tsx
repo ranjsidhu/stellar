@@ -12,7 +12,7 @@ import {
 import UserProfile from "../(pages)/profile/user/(profile)/UserProfile";
 import UserApplications from "../(pages)/profile/user/UserApplications";
 import UserDocuments from "../(pages)/profile/user/(documents)/UserDocuments";
-import UserSettings from "../(pages)/profile/user/UserSettings";
+import UserSettings from "../(pages)/profile/user//UserSettings";
 import { ProfileTab } from "../types";
 
 const PROFILE_TABS: ProfileTab[] = [
