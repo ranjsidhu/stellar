@@ -2,7 +2,7 @@ import { faqs } from "./faqs";
 import { aboutUsText, aboutUsValues } from "./aboutus";
 import { processSteps } from "./candidates";
 import { authRoutes, routes } from "./routes";
-import { PROFILE_TABS } from "./profile";
+import { PROFILE_TABS, getFileIcon } from "./profile";
 
 // const svgs = {
 //   email:
@@ -35,4 +35,5 @@ export {
   aboutUsValues,
   authRoutes,
   PROFILE_TABS,
+  getFileIcon,
 };

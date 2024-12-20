@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { SetStateAction } from "react";
 
 type Job = {
@@ -135,6 +136,24 @@ interface ProfileTab {
   icon: React.ReactNode;
 }
 
+type FileType = {
+  name: string;
+};
+
+type Document = {
+  id: number;
+  filename: string;
+  file_id: string;
+  file_types: FileType;
+};
+
+type DocumentCardProps = {
+  document: Document;
+  onDownload?: (document: Document) => void;
+  onDelete?: (document: Document) => void;
+  onPreview?: (document: Document) => void;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -155,4 +174,5 @@ export {
   type ConfigTable,
   type AdminConfigCardProps,
   type ProfileTab,
+  type DocumentCardProps,
 };

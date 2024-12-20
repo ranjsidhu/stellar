@@ -65,8 +65,13 @@ export async function POST(req: NextRequest) {
       throw new Error(errorData.message || "Failed to update user documents");
     }
 
+    const userDocumentsData = await userDocumentsResponse.json();
+
     return NextResponse.json({
       message: "File uploaded sucessfully",
+      id: userDocumentsData.response[0].id,
+      file_id: userDocumentsData.response[0].file_id,
+      filename: userDocumentsData.response[0].filename,
     });
   } catch (error) {
     return NextResponse.json(
