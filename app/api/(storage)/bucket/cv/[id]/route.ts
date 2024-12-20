@@ -56,7 +56,6 @@ export async function DELETE(
       .delete()
       .eq("id", dbID);
     if (dbError) throw new Error(dbError.message);
-    console.log("🚀 ~ body:", dbID);
     const { error } = await supabase.storage
       .from(NEXT_PUBLIC_CV_BUCKET!)
       .remove([id]);
