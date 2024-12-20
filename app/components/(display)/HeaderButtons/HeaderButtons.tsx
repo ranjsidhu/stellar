@@ -26,7 +26,6 @@ export default function HeaderButtons() {
     setRole(userRole);
   }, []);
 
-  // TODO - add skeleton buttons to hide state hydration
   const AuthenticatedButtons = () => {
     return (
       <>

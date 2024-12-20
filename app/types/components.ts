@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { SetStateAction } from "react";
 
 type Job = {
@@ -126,6 +127,45 @@ type ConfigTable = {
   updated_at: Date;
 };
 
+type TabKey = "profile" | "applications" | "documents" | "settings";
+
+interface ProfileTab {
+  label: string;
+  key: TabKey;
+  children: React.ReactNode;
+  icon: React.ReactNode;
+}
+
+type FileType = {
+  name: string;
+};
+
+type Document = {
+  id: number;
+  filename: string;
+  file_id: string;
+  file_types: FileType;
+};
+
+type Application = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  application_status: { name: string };
+  jobs: {
+    id: number;
+    role_name: string;
+    reference_number: string;
+  };
+};
+
+type DocumentCardProps = {
+  document: Document;
+  onDownload?: (document: Document) => void;
+  onDelete?: (document: Document) => void;
+  onPreview?: (document: Document) => void;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -145,4 +185,7 @@ export {
   type AdminCardProps,
   type ConfigTable,
   type AdminConfigCardProps,
+  type ProfileTab,
+  type DocumentCardProps,
+  type Application,
 };

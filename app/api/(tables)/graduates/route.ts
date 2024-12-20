@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { client, create } from "../..//utils/db-client";
+import { client, create } from "../../utils/db-client";
 import { GraduatesType } from "@/app/constants/tables/graduates";
 
 export async function GET() {

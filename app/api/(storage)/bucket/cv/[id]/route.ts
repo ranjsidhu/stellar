@@ -41,3 +41,29 @@ export async function GET(
     return NextResponse.json({ error: error.message });
   }
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    if (!id) throw new Error("No file id provided");
+    const { id: dbID } = await req.json();
+    const supabase = await createClient();
+    const { error: dbError } = await supabase
+      .from("user_documents")
+      .delete()
+      .eq("id", dbID);
+    if (dbError) throw new Error(dbError.message);
+    const { error } = await supabase.storage
+      .from(NEXT_PUBLIC_CV_BUCKET!)
+      .remove([id]);
+
+    if (error) throw new Error(error.message);
+
+    return NextResponse.json({ message: "Document deleted successfully" });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message });
+  }
+}
