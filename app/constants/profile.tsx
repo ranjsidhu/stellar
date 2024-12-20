@@ -63,4 +63,37 @@ const getFileIcon = (filename: string) => {
   }
 };
 
-export { PROFILE_TABS, getFileIcon };
+const getStatusColor = (status: string): string => {
+  switch (status.toLowerCase()) {
+    case "submitted":
+      return "blue"; // Initial status
+    case "screening":
+      return "processing"; // In progress
+    case "shortlisted":
+      return "cyan"; // Positive progress
+    case "interviewing":
+      return "geekblue"; // Active stage
+    case "assessment":
+      return "purple"; // Active evaluation
+    case "reference check":
+      return "volcano"; // Verification stage
+    case "offer pending":
+      return "magenta"; // Pre-offer
+    case "offered":
+      return "gold"; // Offer made
+    case "accepted":
+      return "success"; // Positive outcome
+    case "rejected":
+      return "error"; // Negative outcome
+    case "withdrawn":
+      return "default"; // Cancelled
+    case "on hold":
+      return "warning"; // Paused
+    case "waitlisted":
+      return "orange"; // In queue
+    default:
+      return "default";
+  }
+};
+
+export { PROFILE_TABS, getFileIcon, getStatusColor };

@@ -147,6 +147,18 @@ type Document = {
   file_types: FileType;
 };
 
+type Application = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  application_status: { name: string };
+  jobs: {
+    id: number;
+    role_name: string;
+    reference_number: string;
+  };
+};
+
 type DocumentCardProps = {
   document: Document;
   onDownload?: (document: Document) => void;
@@ -175,4 +187,5 @@ export {
   type AdminConfigCardProps,
   type ProfileTab,
   type DocumentCardProps,
+  type Application,
 };

@@ -2,7 +2,7 @@ import { faqs } from "./faqs";
 import { aboutUsText, aboutUsValues } from "./aboutus";
 import { processSteps } from "./candidates";
 import { authRoutes, routes } from "./routes";
-import { PROFILE_TABS, getFileIcon } from "./profile";
+import { PROFILE_TABS, getFileIcon, getStatusColor } from "./profile";
 
 const socials = [
   { className: "facebook", href: "https://www.facebook.com/en-gb" },
@@ -24,4 +24,5 @@ export {
   authRoutes,
   PROFILE_TABS,
   getFileIcon,
+  getStatusColor,
 };

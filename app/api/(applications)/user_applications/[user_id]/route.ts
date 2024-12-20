@@ -12,8 +12,12 @@ export async function GET(
     }
     const { data, error } = await client
       .from("user_applications")
-      .select("*, jobs(*), application_status(name)")
-      .eq("user_id", user_id);
+      .select(
+        "id, created_at, updated_at, jobs(id, role_name, reference_number), application_status(name)"
+      )
+      .eq("user_id", user_id)
+      .eq("is_deleted", false)
+      .order("created_at", { ascending: false });
     if (error) {
       throw new Error(error.message);
     }

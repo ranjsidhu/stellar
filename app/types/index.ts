@@ -28,6 +28,7 @@ import {
   AdminConfigCardProps,
   ProfileTab,
   DocumentCardProps,
+  Application,
 } from "./components";
 
 import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
@@ -62,4 +63,5 @@ export {
   type ProfileTab,
   type UserDocumentType,
   type DocumentCardProps,
+  type Application,
 };
