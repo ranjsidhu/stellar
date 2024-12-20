@@ -12,7 +12,7 @@ export async function GET(
     }
     const { data, error } = await client
       .from("user_documents")
-      .select("*, file_types(name)")
+      .select("id, filename, file_id, file_types(name)")
       .eq("user_id", user_id);
     if (error) {
       throw new Error(error.message);

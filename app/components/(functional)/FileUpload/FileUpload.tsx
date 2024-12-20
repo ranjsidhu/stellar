@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import { Button, Upload } from "antd";
@@ -7,11 +10,18 @@ import { notify } from "@/app/components";
 
 type FileUploadProps = {
   route: string;
+  // eslint-disable-next-line no-unused-vars
+  onSuccess?: (id: number, file_id: string, filename: string) => void;
 };
 
-export default function FileUpload({ route }: FileUploadProps) {
+export default function FileUpload({ route, onSuccess }: FileUploadProps) {
+  const [fileList, setFileList] = useState<any[]>([]);
+
   const props: UploadProps = {
+    fileList,
     onChange(info) {
+      setFileList(info.fileList);
+
       if (info.file.status === "done") {
         const rawFile = info.file.originFileObj;
         if (!rawFile) return;
@@ -24,20 +34,30 @@ export default function FileUpload({ route }: FileUploadProps) {
         formdata.append("type", filename.split(".").pop()!);
         formdata.append("user_id", getUserId());
 
-        fetch(`/api/bucket${route}`, {
+        fetch(`/api/bucket/${route}`, {
           method: "POST",
           body: formdata,
           signal: AbortSignal.timeout(10000),
         })
-          .then(() =>
-            notify("success", "File Uploaded", "File has been uploaded")
-          )
-          .catch(() =>
-            notify("error", "File Upload Failed", "Failed to upload file")
-          );
+          .then((res) => res.json())
+          .then(({ id, file_id, filename }) => {
+            if (onSuccess) {
+              onSuccess(id, file_id, filename);
+            }
+            setFileList([]);
+            notify("success", "File Uploaded", "File has been uploaded");
+          })
+          .catch(() => {
+            notify("error", "File Upload Failed", "Failed to upload file");
+            setFileList([]);
+          });
       }
     },
     maxCount: 1,
+    showUploadList: {
+      showRemoveIcon: false,
+      showPreviewIcon: false,
+    },
   };
 
   return (

@@ -48,5 +48,4 @@ const openNotification = (
   });
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export { calculateHours, pluralise, downloadFile, openNotification };

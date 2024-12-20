@@ -9,7 +9,13 @@ type SocialsProps = {
 
 export default function Socials({ className, pathname }: SocialsProps) {
   const adminRoutes = ADMIN_CARDS.map((card) => card.route);
-  const hideOn = [...adminRoutes, "/admin", "/profile", "/admin/configuration"];
+  const hideOn = [
+    ...adminRoutes,
+    "/admin",
+    "/profile",
+    "/admin/configuration",
+    "/job/apply",
+  ];
 
   const shouldHide = (path: string) => {
     return hideOn.includes(path) || path.startsWith("/admin");

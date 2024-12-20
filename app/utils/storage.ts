@@ -60,5 +60,4 @@ const getUserEmail = () => {
   }
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export { getItem, setItem, removeItem, getUserId, getUserRole, getUserEmail };

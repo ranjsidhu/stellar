@@ -26,9 +26,12 @@ import {
   AdminCardProps,
   ConfigTable,
   AdminConfigCardProps,
+  ProfileTab,
+  DocumentCardProps,
+  Application,
 } from "./components";
 
-import { JobRequest, UniLevelType } from "./requests";
+import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
 
 export {
   type BaseParams,
@@ -42,7 +45,6 @@ export {
   type JobProps,
   type NotificationType,
   type RegisterType,
-  // eslint-disable-next-line import/no-unused-modules
   type User,
   type SearchProps,
   type StepProps,
@@ -58,4 +60,8 @@ export {
   type ConfigTable,
   type BasicTable,
   type AdminConfigCardProps,
+  type ProfileTab,
+  type UserDocumentType,
+  type DocumentCardProps,
+  type Application,
 };
