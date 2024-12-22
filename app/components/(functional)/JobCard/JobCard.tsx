@@ -15,7 +15,13 @@ export default function JobCard({ job }: JobProps) {
   return (
     <div
       className={styles.jobCard}
-      onClick={() => router.push(`/job?reference=${job.reference_number}`)}
+      onClick={() => {
+        if (window.location.href.includes("/admin/jobs")) {
+          router.push(`/admin/jobs/${job.reference_number}`);
+          return;
+        }
+        router.push(`/job?reference=${job.reference_number}`);
+      }}
     >
       <h3 className={styles.jobRoleName}>{job.role_name}</h3>
       <p className={styles.jobCardPosted}>{calculateHours(job.created_at)}</p>

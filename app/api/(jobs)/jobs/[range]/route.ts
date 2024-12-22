@@ -16,6 +16,7 @@ export async function GET(
       .from("jobs")
       .select()
       .range(MIN, MAX)
+      .eq("is_deleted", false)
       .order("created_at", { ascending: false });
 
     if (error) {
