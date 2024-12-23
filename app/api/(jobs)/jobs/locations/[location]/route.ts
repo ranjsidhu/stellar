@@ -14,6 +14,7 @@ export async function GET(
       .from("jobs")
       .select()
       .eq("location", location)
+      .eq("is_deleted", false)
       .order("created_at", { ascending: false });
     if (error) {
       throw new Error(error.message);

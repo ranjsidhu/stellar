@@ -5,7 +5,8 @@ export async function GET() {
   try {
     const { count, error } = await client
       .from("jobs")
-      .select("", { count: "exact", head: true });
+      .select("", { count: "exact", head: true })
+      .eq("is_deleted", false);
     if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully fetched job count",
