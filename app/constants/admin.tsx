@@ -58,8 +58,8 @@ const ADMIN_CARDS: AdminCardProps[] = [
     route: "/admin/jobs",
   },
   {
-    title: "View Graduates and Referrals",
-    description: "View and manage graduates",
+    title: "Graduates and Referrals",
+    description: "View and manage graduates and referrals",
     route: "/admin/grads-and-refs",
   },
   {
