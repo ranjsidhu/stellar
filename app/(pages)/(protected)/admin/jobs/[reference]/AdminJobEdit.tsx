@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { SectionLoading, notify } from "@/app/components";
-import { Job, BasicTable } from "@/app/types";
+import { Job, AdminJob } from "@/app/types";
 import {
   Form,
   Input,
@@ -22,12 +22,7 @@ import { updateJob } from "./serveractions";
 const { TextArea } = Input;
 const { Title } = Typography;
 
-type AdminJobEditProps = {
-  job: Job & { job_status: { name: string; id: number } };
-  jobStatuses: BasicTable[];
-};
-
-export default function AdminJobEdit({ job, jobStatuses }: AdminJobEditProps) {
+export default function AdminJobEdit({ job, jobStatuses }: AdminJob) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);

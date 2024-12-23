@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { SetStateAction } from "react";
+import { BasicTable } from "./db";
 
 type Job = {
   id: number;
@@ -76,13 +77,18 @@ type StepProps = {
 type Route = {
   route: string;
   name: string;
-  subRoutes?: { name: string; route: string }[];
+  subRoutes?: Subroute[];
+};
+
+type Subroute = {
+  name: string;
+  route: string;
 };
 
 type AccordionProps = {
   name: string;
   route?: string;
-  subRoutes?: { name: string; route: string }[];
+  subRoutes?: Subroute[];
   toggleMenu?: () => void;
   handleOnClick?: () => void;
 };
@@ -90,7 +96,7 @@ type AccordionProps = {
 type MenuItemProps = {
   children: React.ReactNode;
   href: string;
-  subRoutes?: { name: string; route: string }[];
+  subRoutes?: Subroute[];
 };
 
 type FiltersProps = {
@@ -147,16 +153,18 @@ type Document = {
   file_types: FileType;
 };
 
+type JobApplication = {
+  id: number;
+  role_name: string;
+  reference_number: string;
+};
+
 type Application = {
   id: number;
   created_at: string;
   updated_at: string;
   application_status: { name: string };
-  jobs: {
-    id: number;
-    role_name: string;
-    reference_number: string;
-  };
+  jobs: JobApplication;
 };
 
 type DocumentCardProps = {
@@ -164,6 +172,16 @@ type DocumentCardProps = {
   onDownload?: (document: Document) => void;
   onDelete?: (document: Document) => void;
   onPreview?: (document: Document) => void;
+};
+
+type AdminJob = {
+  job: Job & {
+    job_status: { name: string; id: number };
+    user_applications: {
+      users: { id: number; first_name: string; last_name: string };
+    };
+  };
+  jobStatuses: BasicTable[];
 };
 
 export {
@@ -188,4 +206,5 @@ export {
   type ProfileTab,
   type DocumentCardProps,
   type Application,
+  type AdminJob,
 };
