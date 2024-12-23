@@ -162,6 +162,50 @@ export default function AdminJobEdit({ job, jobStatuses }: AdminJob) {
           </Form>
         </Card>
       </div>
+      {/* Applications */}
+      <div className="container mx-auto p-4 max-w-4xl">
+        <Card>
+          <Title level={2} className="mb-6">
+            Job Applications
+          </Title>
+          {job.user_applications.length ? (
+            <div className="space-y-4">
+              {job.user_applications.map((application) => (
+                <Card
+                  key={application.users.id}
+                  size="small"
+                  className="bg-gray-50"
+                >
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <span className="font-medium">
+                        {application.users.first_name}{" "}
+                        {application.users.last_name}
+                      </span>
+                    </div>
+                    <div>
+                      {/* <Button
+                        type="link"
+                        onClick={() =>
+                          router.push(
+                            `/admin/applications/${application.users.id}`
+                          )
+                        }
+                      >
+                        View Application
+                      </Button> */}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-gray-500 text-center py-8">
+              No applications received yet
+            </div>
+          )}
+        </Card>
+      </div>
     </SectionLoading>
   );
 }

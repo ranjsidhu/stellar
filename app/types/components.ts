@@ -179,7 +179,7 @@ type AdminJob = {
     job_status: { name: string; id: number };
     user_applications: {
       users: { id: number; first_name: string; last_name: string };
-    };
+    }[];
   };
   jobStatuses: BasicTable[];
 };
