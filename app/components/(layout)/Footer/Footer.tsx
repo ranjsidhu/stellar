@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { Socials } from "@/app/components";
 import { routes } from "@/app/constants";
 import styles from "./Footer.module.css";
+import { CopyrightSocials } from "./static";
 
 export default function Footer() {
   return (
@@ -19,20 +21,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <Socials className={styles.footerSocials} />
-
-        <div className={styles.footerLegal}>
-          <p>
-            Company Registration Number: 15228068 | All rights reserved Stellar
-            Recruitment
-          </p>
-          <p>
-            Copyright &copy;{" "}
-            <a href={`mailto:${process.env.NEXT_PUBLIC_DEV_EMAIL}`}>
-              Ranj Sidhu 2024
-            </a>
-          </p>
-        </div>
+        <CopyrightSocials />
       </div>
     </div>
   );
