@@ -8,17 +8,17 @@ import PageLayout from "./(layout)/PageLayout";
 
 // DISPLAY
 import Button from "./(display)/Button/Button";
-import HeaderButtons from "./(display)/HeaderButtons/HeaderButtons";
-import SectionLoading from "./(display)/SectionLoading/SectionLoading";
+import HeaderButtons from "./(display)/HeaderButtons";
+import SectionLoading from "./(display)/SectionLoading";
 import Layout from "./(layout)/Layout";
 import NotFound from "./(display)/NotFound/NotFound";
 import Values from "./(display)/Values";
 import Socials from "./(display)/Socials/Socials";
-import Accordion from "./(display)/Accordion/Accordion";
-import Homepage from "./(display)/Hompeage/Homepage";
-import LatestJobs from "./(display)/LatestJobs/LatestJobs";
-import Notification from "./(display)/Notification/Notification";
-import { notify } from "./(display)/Notification/Notification";
+import Accordion from "./(display)/Accordion";
+import Homepage from "./(display)/Homepage";
+import LatestJobs from "./(display)/LatestJobs";
+import Notification from "./(display)/Notification";
+import { notify } from "./(display)/Notification";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
