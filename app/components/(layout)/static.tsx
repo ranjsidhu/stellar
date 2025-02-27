@@ -13,7 +13,7 @@ const socials = [
   },
   {
     name: "Facebook",
-    url: "https://www.facebook.com/share/19mnvxTJP2/?mibextid=wwXIfr",
+    url: "https://www.facebook.com",
     icon: facebook,
   },
 ];
