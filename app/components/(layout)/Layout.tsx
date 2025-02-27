@@ -1,4 +1,4 @@
-import { Footer, Header, Redirect, Notification } from "../..";
+import { Footer, Header, Redirect, Notification } from "..";
 
 export default async function Layout({
   children,

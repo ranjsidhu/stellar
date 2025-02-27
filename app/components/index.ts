@@ -1,16 +1,16 @@
 /* eslint-disable import/no-unused-modules */
 // LAYOUT
-import Footer from "./(layout)/Footer/Footer";
-import Hamburger from "./(layout)/Hamburger/Hamburger";
-import Header from "./(layout)/Header/Header";
-import Navbar from "./(layout)/Navbar/Navbar";
-import PageLayout from "./(layout)/PageLayout/PageLayout";
+import Footer from "./(layout)/Footer";
+import Hamburger from "./(layout)/Hamburger";
+import Header from "./(layout)/Header";
+import Navbar from "./(layout)/Navbar";
+import PageLayout from "./(layout)/PageLayout";
 
 // DISPLAY
 import Button from "./(display)/Button/Button";
 import HeaderButtons from "./(display)/HeaderButtons/HeaderButtons";
 import SectionLoading from "./(display)/SectionLoading/SectionLoading";
-import Layout from "./(layout)/Layout/Layout";
+import Layout from "./(layout)/Layout";
 import NotFound from "./(display)/NotFound/NotFound";
 import Values from "./(display)/Values/Values";
 import Socials from "./(display)/Socials/Socials";
