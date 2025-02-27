@@ -8,9 +8,11 @@ export default function Hamburger({
   toggleMenu,
 }: HamburgerProps) {
   return (
-    <div
-      className="hidden lg:!hidden md:inline-flex h-[30px] flex-col justify-between items-start cursor-pointer"
+    <button
+      className="flex flex-col justify-between items-start h-[30px] w-[40px] lg:hidden cursor-pointer bg-transparent border-0"
       onClick={toggleMenu}
+      aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+      aria-expanded={isMobileMenuOpen}
     >
       <div
         className={`w-10 h-1 bg-yellow-400 transition-transform duration-400
@@ -32,6 +34,6 @@ export default function Hamburger({
               : ""
           }`}
       />
-    </div>
+    </button>
   );
 }
