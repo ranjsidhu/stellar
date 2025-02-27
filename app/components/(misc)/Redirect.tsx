@@ -7,7 +7,7 @@ import { createClient } from "@/app/utils/supabase/client";
 import { setSession } from "@/app/redux/features/Auth";
 import { getUserEmail, setItem, getUserRole } from "@/app/utils/storage";
 import { ADMIN_CARDS } from "@/app/constants/admin";
-import { notify } from "../(display)/Notification/Notification";
+import { notify } from "../(display)/Notification";
 import { updateDetails } from "./serveractions";
 
 export default function Redirect() {
