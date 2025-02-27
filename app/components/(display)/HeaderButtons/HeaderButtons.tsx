@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { clearSession } from "@/app/redux/features/Auth";
 import { Button } from "@/app/components";
 import { getUserRole } from "@/app/utils/storage";
-import styles from "./HeaderButtons.module.css";
 
 export default function HeaderButtons() {
   const router = useRouter();
@@ -58,7 +57,7 @@ export default function HeaderButtons() {
   };
 
   return (
-    <div className={styles.headerButtons}>
+    <div className="h-[112px] w-full flex justify-end items-center gap-5">
       {session ? <AuthenticatedButtons /> : <UnauthenticatedButtons />}
     </div>
   );

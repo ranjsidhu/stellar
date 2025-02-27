@@ -1,5 +1,4 @@
 import { Footer, Header, Redirect, Notification } from "../..";
-import styles from "./Layout.module.css";
 
 export default async function Layout({
   children,
@@ -9,11 +8,13 @@ export default async function Layout({
   role: string | undefined | null;
 }) {
   return (
-    <div className={styles.container}>
+    <div className="min-h-screen flex flex-col">
       <Redirect />
       <Notification />
       <Header role={role} />
-      <main className={styles.appChildren}>{children}</main>
+      <main className="flex-1">
+        <div className="container ">{children}</div>
+      </main>
       <Footer />
     </div>
   );

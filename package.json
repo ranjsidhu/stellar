@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -28,6 +28,7 @@
     "cookie": "^1.0.2",
     "dayjs": "^1.11.13",
     "lexical": "^0.21.0",
+    "lucide-react": "^0.476.0",
     "markdown-to-jsx": "^7.7.1",
     "next": "^15.0.1",
     "react": "^18",
