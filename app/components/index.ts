@@ -12,7 +12,7 @@ import HeaderButtons from "./(display)/HeaderButtons/HeaderButtons";
 import SectionLoading from "./(display)/SectionLoading/SectionLoading";
 import Layout from "./(layout)/Layout";
 import NotFound from "./(display)/NotFound/NotFound";
-import Values from "./(display)/Values/Values";
+import Values from "./(display)/Values";
 import Socials from "./(display)/Socials/Socials";
 import Accordion from "./(display)/Accordion/Accordion";
 import Homepage from "./(display)/Hompeage/Homepage";

@@ -13,7 +13,7 @@ export default async function Layout({
       <Notification />
       <Header role={role} />
       <main className="flex-1">
-        <div className="container ">{children}</div>
+        <div>{children}</div>
       </main>
       <Footer />
     </div>
