@@ -1,27 +1,14 @@
-import Image from "next/image";
 import Referrals from "./Referrals";
-import referralImage from "@/app/assets/stock/refer.jpg";
+import { Hero } from "@/app/components";
 
 export default function ReferralsPage() {
   return (
     <div className="w-full flex flex-col items-center">
-      {/* Hero Section */}
-      <div className="relative w-full h-60 md:h-80 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00150f]/70 to-[#00150f]/80 z-10"></div>
-        <Image
-          src={referralImage}
-          alt="Recommend a Friend"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="z-20 text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-wider drop-shadow-lg">
-            Recommend a Friend
-          </h2>
-        </div>
-      </div>
+      <Hero
+        imageUrl="/images/refer.jpg"
+        placeholderUrl="/images/refer-placeholder.jpg"
+        title="Referrals"
+      />
 
       {/* Introduction with Incentive Cards */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">

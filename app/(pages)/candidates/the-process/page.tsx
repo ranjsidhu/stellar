@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { StepProps } from "@/app/types";
 import { processSteps } from "@/app/constants";
-import processImage from "@/app/assets/stock/process.jpg";
+import { Hero } from "@/app/components";
 
 const Step = ({ title, index, description }: StepProps) => {
   return (
@@ -28,23 +27,11 @@ const Step = ({ title, index, description }: StepProps) => {
 export default function TheProcess() {
   return (
     <section className="w-full">
-      {/* Hero Section */}
-      <div className="relative w-full h-60 md:h-80 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0  z-10"></div>
-        <Image
-          src={processImage}
-          alt="Application Process"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="z-20 text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-wider drop-shadow-lg">
-            Application and Interview Process
-          </h2>
-        </div>
-      </div>
+      <Hero
+        imageUrl="/images/process.jpg"
+        placeholderUrl="/images/process-placeholder.jpg"
+        title="Application and Interview Process"
+      />
 
       {/* Content Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Values } from "@/app/components";
 import { aboutUsText } from "@/app/constants";
-import aboutUsImage from "@/app/assets/stock/aboutus.jpg";
+import { Hero } from "@/app/components";
 
 export const metadata: Metadata = {
   title:
@@ -19,22 +18,11 @@ export const metadata: Metadata = {
 export default function AboutUsPage() {
   return (
     <section className="flex flex-col items-center w-full">
-      {/* Hero Section */}
-      <div className="relative w-full h-80 md:h-96 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-10"></div>
-        <Image
-          src={aboutUsImage}
-          alt="About Us Hero"
-          fill
-          priority
-          quality={100}
-          className="object-cover"
-          sizes="100vw"
-        />
-        <h2 className="text-4xl md:text-5xl font-bold text-white z-20 tracking-wider shadow-text">
-          About Us
-        </h2>
-      </div>
+      <Hero
+        imageUrl="/images/aboutus.jpg"
+        placeholderUrl="/images/aboutus-placeholder.jpg"
+        title="About Us"
+      />
 
       {/* Mission Statement Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -130,7 +118,6 @@ export default function AboutUsPage() {
           </div>
         </div>
 
-        {/* Values Section - Using the redesigned Values component */}
         <div className="w-full">
           <h3 className="text-3xl font-bold text-center text-[#00150f] mb-4">
             Our Values
