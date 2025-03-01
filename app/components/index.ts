@@ -19,6 +19,7 @@ import Homepage from "./(display)/Homepage";
 import LatestJobs from "./(display)/LatestJobs";
 import Notification from "./(display)/Notification";
 import { notify } from "./(display)/Notification";
+import { Hero } from "./(display)/Hero";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
@@ -74,4 +75,5 @@ export {
   notify,
   PageLayout,
   AdminConfigCard,
+  Hero,
 };
