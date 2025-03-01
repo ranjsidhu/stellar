@@ -1,5 +1,6 @@
 // import Image from "next/image";
 // import contactImage from "@/app/assets/stock/contact.jpg"; // You'll need to add an appropriate image
+import ContactUsForm from "./ContactUsForm";
 
 export default function ContactUsPage() {
   return (
@@ -152,81 +153,7 @@ export default function ContactUsPage() {
               <h4 className="text-xl font-bold text-[#00150f] mb-6">
                 Send Us a Message
               </h4>
-
-              <form className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00150f] focus:border-transparent"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00150f] focus:border-transparent"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00150f] focus:border-transparent"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00150f] focus:border-transparent"
-                    required
-                  ></textarea>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-3 bg-[#00150f] text-white font-medium rounded-md hover:bg-[#00150f]/90 hover:text-[#DAA520] transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
+              <ContactUsForm />
             </div>
           </div>
         </div>
