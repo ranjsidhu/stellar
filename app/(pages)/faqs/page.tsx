@@ -1,7 +1,5 @@
-import Image from "next/image";
-import { Accordion } from "@/app/components";
+import { Accordion, Hero } from "@/app/components";
 import { faqs } from "../../constants";
-import faqImage from "@/app/assets/stock/FAQ.jpg";
 import Link from "next/link";
 
 const items = faqs.map((faq) => {
@@ -14,23 +12,11 @@ const items = faqs.map((faq) => {
 export default function FAQsPage() {
   return (
     <section className="w-full">
-      {/* Hero Section */}
-      <div className="relative w-full h-60 md:h-80 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-10"></div>
-        <Image
-          src={faqImage}
-          alt="Frequently Asked Questions"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="z-20 text-center px-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-wider drop-shadow-lg">
-            Frequently Asked Questions
-          </h2>
-        </div>
-      </div>
+      <Hero
+        imageUrl="/images/FAQ.jpg"
+        placeholderUrl="/images/FAQ-placeholder.jpg"
+        title="Frequently Asked Questions"
+      />
 
       {/* FAQs Section */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
