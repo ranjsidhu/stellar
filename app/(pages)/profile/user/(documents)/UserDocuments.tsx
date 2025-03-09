@@ -81,7 +81,7 @@ export default function UserDocuments() {
           <FileUpload route="cv" onSuccess={onSuccess} />
         </div>
       </div>
-      {userDocuments.length && (
+      {userDocuments.length > 0 && (
         <div className="space-y-4 mt-5">
           <h2 className="text-lg font-medium text-gray-900 mb-4">
             Your Documents

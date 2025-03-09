@@ -1,13 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { MobileAccordion } from "@/app/components";
 import { routes, authRoutes } from "@/app/constants";
 import { MobileMenuProps } from "@/app/types";
 import { clearSession } from "@/app/redux/features/Auth";
+import { getUserRole } from "@/app/utils/storage";
 import { X } from "lucide-react";
 
 export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
+  const [userRole, setUserRole] = useState("");
   const dispatch = useAppDispatch();
 
   const signOut = async () => {
@@ -17,6 +20,11 @@ export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
       window.location.href = "/";
     });
   };
+
+  useEffect(() => {
+    const userRole = getUserRole();
+    setUserRole(userRole);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 bg-[#00150f] flex flex-col overflow-hidden animate-[fadeIn_150ms_ease-in]">
@@ -54,7 +62,21 @@ export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
             ))}
 
           {role === "authenticated" && (
-            <MobileAccordion name="Sign out" handleOnClick={signOut} />
+            <>
+              <MobileAccordion
+                name="Profile"
+                route="/profile"
+                toggleMenu={toggleMenu}
+              />
+              {userRole === "Admin" && (
+                <MobileAccordion
+                  name="Admin"
+                  route="/admin"
+                  toggleMenu={toggleMenu}
+                />
+              )}
+              <MobileAccordion name="Sign out" handleOnClick={signOut} />
+            </>
           )}
         </nav>
       </div>
