@@ -12,8 +12,8 @@ export default async function Layout({
       <Redirect />
       <Notification />
       <Header role={role} />
-      <main className="flex-1">
-        <div>{children}</div>
+      <main className="flex-1 flex items-center justify-center">
+        {children}
       </main>
       <Footer />
     </div>
