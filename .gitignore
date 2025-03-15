@@ -39,3 +39,7 @@ next-env.d.ts
 
 .htaccess
 .htaccess.*
+
+.scannerwork
+.sonarlint
+.vscode
