@@ -23,7 +23,7 @@ export default function Homepage() {
       >
         {/* Search Component */}
         <div className="w-11/12 md:w-2/3 lg:w-1/2 mt-8 bg-emerald-950/90 p-6 rounded-xl shadow-2xl backdrop-blur animate-slideUp">
-          <Search source="home" />
+          <Search />
         </div>
       </Hero>
 
