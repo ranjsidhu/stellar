@@ -1,6 +1,5 @@
 "use client";
 
-import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
@@ -18,10 +17,10 @@ const initialEditData = {
 export default function AdminConfigEdit({
   table,
   id,
-}: {
+}: Readonly<{
   table: string;
   id: number;
-}) {
+}>) {
   const [editData, setEditData] = useState<BasicTable>({
     ...initialEditData,
   });
@@ -67,7 +66,6 @@ export default function AdminConfigEdit({
         .catch((error: any) => notify("error", "Error", error.message))
         .finally(() => {
           setLoading(false);
-          revalidateTag(table);
         });
     } catch (error: any) {
       notify("error", "Error", error.message);
