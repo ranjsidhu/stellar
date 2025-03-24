@@ -17,6 +17,10 @@ export default function Redirect() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const adminRoutes = [...ADMIN_CARDS.map((card) => card.route), "/admin"];
+    const isAdminRoute = pathname.includes("/admin");
+    const isAuthPage = pathname === "/login" || pathname === "/register";
+
     const checkAndUpdateRole = async (email: string, previousRole: string) => {
       const userdetails = await updateDetails(email);
       if (!userdetails.success || !userdetails.data) return null;
@@ -32,10 +36,6 @@ export default function Redirect() {
     };
 
     const handleRouting = (session: any, role: string | null) => {
-      const adminRoutes = [...ADMIN_CARDS.map((card) => card.route), "/admin"];
-      const isAuthPage = pathname === "/login" || pathname === "/register";
-      const isAdminRoute = pathname.includes("/admin");
-
       if (isAuthPage && session) {
         router.push("/");
         return;
@@ -51,6 +51,7 @@ export default function Redirect() {
 
     const validateSession = async () => {
       const email = getUserEmail();
+      if (!email && isAdminRoute) router.push("/");
       if (!email) return;
 
       try {
