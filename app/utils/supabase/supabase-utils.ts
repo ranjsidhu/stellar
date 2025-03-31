@@ -7,5 +7,5 @@ export async function getRole() {
   const {
     data: { user },
   } = await client.auth.getUser();
-  return user?.role || null;
+  return user?.role ?? null;
 }

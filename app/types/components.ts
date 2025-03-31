@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { SetStateAction } from "react";
+import React, { SetStateAction } from "react";
 import { BasicTable } from "./db";
 
 type Job = {
@@ -142,6 +142,10 @@ interface ProfileTab {
   icon: React.ReactNode;
 }
 
+type ComponentChildren = Readonly<{
+  children: React.ReactNode;
+}>;
+
 type FileType = {
   name: string;
 };
@@ -184,6 +188,12 @@ type AdminJob = {
   jobStatuses: BasicTable[];
 };
 
+type AuthenticatedButtonsType = {
+  role: string;
+};
+
+type SectionLoadingProps = { loading: boolean; children: React.ReactNode };
+
 export {
   type Job,
   type Testimonial,
@@ -207,4 +217,7 @@ export {
   type DocumentCardProps,
   type Application,
   type AdminJob,
+  type ComponentChildren,
+  type AuthenticatedButtonsType,
+  type SectionLoadingProps,
 };

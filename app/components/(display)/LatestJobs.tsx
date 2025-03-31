@@ -32,7 +32,9 @@ export default function LatestJobs() {
 
       <SectionLoading loading={isLoading}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 h-auto md:h-[450px]">
-          {jobs && jobs.map((job) => <LatestJobCard key={job.id} job={job} />)}
+          {jobs?.map((job) => (
+            <LatestJobCard key={job.id} job={job} />
+          ))}
         </div>
       </SectionLoading>
     </section>

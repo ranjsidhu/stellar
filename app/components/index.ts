@@ -17,9 +17,10 @@ import Socials from "./(display)/Socials/Socials";
 import Accordion from "./(display)/Accordion";
 import Homepage from "./(display)/Homepage";
 import LatestJobs from "./(display)/LatestJobs";
-import Notification from "./(display)/Notification";
-import { notify } from "./(display)/Notification";
+import Notification, { notify } from "./(display)/Notification";
 import { Hero } from "./(display)/Hero";
+import AuthenticatedButtons from "./AuthenticatedButtons";
+import UnauthenticatedButtons from "./UnauthenticatedButtons";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
@@ -76,4 +77,6 @@ export {
   PageLayout,
   AdminConfigCard,
   Hero,
+  AuthenticatedButtons,
+  UnauthenticatedButtons,
 };

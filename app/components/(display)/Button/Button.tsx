@@ -8,7 +8,11 @@ type ButtonProps = {
 
 const defaultClick = () => {};
 
-export default function Button({ type, children, onClick }: ButtonProps) {
+export default function Button({
+  type,
+  children,
+  onClick,
+}: Readonly<ButtonProps>) {
   return (
     <button className={styles[type]} onClick={onClick || defaultClick}>
       {children}

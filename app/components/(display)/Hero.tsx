@@ -23,7 +23,7 @@ export const Hero = ({
   blurDataUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3C/filter%3E%3Crect width='8' height='5' fill='%23f3f4f6' filter='url(%23b)'/%3E%3C/svg%3E",
   overlay = true,
   children,
-}: HeroProps) => {
+}: Readonly<HeroProps>) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (

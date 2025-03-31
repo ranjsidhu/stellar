@@ -10,7 +10,7 @@ type AccordionProps = {
   }[];
 };
 
-export default function Accordion({ items }: AccordionProps) {
+export default function Accordion({ items }: Readonly<AccordionProps>) {
   const accordionItems = items.map((item, index) => {
     return {
       key: index,

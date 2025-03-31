@@ -30,6 +30,9 @@ import {
   DocumentCardProps,
   Application,
   AdminJob,
+  ComponentChildren,
+  AuthenticatedButtonsType,
+  SectionLoadingProps,
 } from "./components";
 
 import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
@@ -67,4 +70,7 @@ export {
   type DocumentCardProps,
   type Application,
   type AdminJob,
+  type ComponentChildren,
+  type AuthenticatedButtonsType,
+  type SectionLoadingProps,
 };
