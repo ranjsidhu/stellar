@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import type { AccordionProps } from "@/app/types";
+import type { MobileAccordionProps } from "@/app/types";
 
 export default function MobileAccordion({
   name,
@@ -12,7 +12,7 @@ export default function MobileAccordion({
   subRoutes,
   toggleMenu,
   handleOnClick,
-}: Readonly<AccordionProps>) {
+}: Readonly<MobileAccordionProps>) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 

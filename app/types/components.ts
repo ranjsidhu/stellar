@@ -85,7 +85,7 @@ type Subroute = {
   route: string;
 };
 
-type AccordionProps = {
+type MobileAccordionProps = {
   name: string;
   route?: string;
   subRoutes?: Subroute[];
@@ -192,7 +192,7 @@ type AuthenticatedButtonsType = {
   role: string;
 };
 
-type SectionLoadingProps = { loading: boolean; children: React.ReactNode };
+type SectionLoadingProps = { loading: boolean } & ComponentChildren;
 
 type DeleteModalProps = {
   modalOpen: boolean;
@@ -203,6 +203,23 @@ type DeleteModalProps = {
   refreshTableData: () => void;
   table: string;
 };
+
+type ButtonProps = {
+  type: "primary" | "submit";
+  onClick?: () => void;
+};
+
+type AccordionProps = {
+  items: ({
+    label: string;
+  } & ComponentChildren)[];
+};
+
+type HeaderProps = { role: string | undefined | null };
+
+type LayoutProps = {
+  role: string | undefined | null;
+} & ComponentChildren;
 
 export {
   type Job,
@@ -215,7 +232,7 @@ export {
   type SearchProps,
   type StepProps,
   type Route,
-  type AccordionProps,
+  type MobileAccordionProps,
   type FiltersProps,
   type LatestJobCardProps,
   type MobileMenuProps,
@@ -231,4 +248,8 @@ export {
   type AuthenticatedButtonsType,
   type SectionLoadingProps,
   type DeleteModalProps,
+  type ButtonProps,
+  type AccordionProps,
+  type HeaderProps,
+  type LayoutProps,
 };

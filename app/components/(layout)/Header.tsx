@@ -5,8 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { DARK } from "@/app/assets";
 import { Hamburger, Navbar, HeaderButtons, MobileMenu } from "@/app/components";
+import type { HeaderProps } from "@/app/types";
 
-export default function Header({ role }: { role: string | undefined | null }) {
+export default function Header({ role }: Readonly<HeaderProps>) {
   const pathname = usePathname();
   const router = useRouter();
   const hideOn = ["/login", "/register"];

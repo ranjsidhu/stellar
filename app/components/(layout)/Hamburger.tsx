@@ -6,7 +6,7 @@ type HamburgerProps = {
 export default function Hamburger({
   isMobileMenuOpen,
   toggleMenu,
-}: HamburgerProps) {
+}: Readonly<HamburgerProps>) {
   return (
     <button
       className="flex flex-col justify-between items-start h-[30px] w-[40px] lg:hidden cursor-pointer bg-transparent border-0"

@@ -18,7 +18,7 @@ import {
   SearchProps,
   StepProps,
   Route,
-  AccordionProps,
+  MobileAccordionProps,
   FiltersProps,
   LatestJobCardProps,
   MobileMenuProps,
@@ -34,6 +34,10 @@ import {
   AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
+  ButtonProps,
+  AccordionProps,
+  HeaderProps,
+  LayoutProps,
 } from "./components";
 
 import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
@@ -55,7 +59,7 @@ export {
   type SearchProps,
   type StepProps,
   type Route,
-  type AccordionProps,
+  type MobileAccordionProps,
   type FiltersProps,
   type LatestJobCardProps,
   type MobileMenuProps,
@@ -75,4 +79,8 @@ export {
   type AuthenticatedButtonsType,
   type SectionLoadingProps,
   type DeleteModalProps,
+  type ButtonProps,
+  type AccordionProps,
+  type HeaderProps,
+  type LayoutProps,
 };
