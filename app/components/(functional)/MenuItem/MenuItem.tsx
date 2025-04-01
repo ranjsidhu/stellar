@@ -6,21 +6,25 @@ import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import type { MenuItemProps } from "@/app/types";
 
-export default function MenuItem({ children, href, subRoutes }: MenuItemProps) {
+export default function MenuItem({
+  children,
+  href,
+  subRoutes,
+}: Readonly<MenuItemProps>) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const isActive = !subRoutes && pathname === href;
 
   return (
-    <div
+    <button
       className="relative h-full group"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
       onFocus={() => setIsOpen(true)}
       onBlur={() => setIsOpen(false)}
     >
-      <button
+      <div
         className={`h-full px-3 py-2 bg-transparent flex items-center gap-1 text-base font-medium rounded-md transition duration-200
           ${
             isActive
@@ -46,7 +50,7 @@ export default function MenuItem({ children, href, subRoutes }: MenuItemProps) {
             )}
           </span>
         )}
-      </button>
+      </div>
 
       {subRoutes && (
         <div
@@ -72,6 +76,6 @@ export default function MenuItem({ children, href, subRoutes }: MenuItemProps) {
           </ul>
         </div>
       )}
-    </div>
+    </button>
   );
 }

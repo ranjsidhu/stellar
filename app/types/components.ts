@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { SetStateAction } from "react";
+import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
 
 type Job = {
@@ -85,7 +85,7 @@ type Subroute = {
   route: string;
 };
 
-type AccordionProps = {
+type MobileAccordionProps = {
   name: string;
   route?: string;
   subRoutes?: Subroute[];
@@ -142,6 +142,10 @@ interface ProfileTab {
   icon: React.ReactNode;
 }
 
+type ComponentChildren = Readonly<{
+  children: React.ReactNode;
+}>;
+
 type FileType = {
   name: string;
 };
@@ -167,6 +171,13 @@ type Application = {
   jobs: JobApplication;
 };
 
+type ApplicationCardProps = {
+  application: Application;
+  onWithdraw: () => void;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 type DocumentCardProps = {
   document: Document;
   onDownload?: (document: Document) => void;
@@ -184,6 +195,45 @@ type AdminJob = {
   jobStatuses: BasicTable[];
 };
 
+type AuthenticatedButtonsType = {
+  role: string;
+};
+
+type SectionLoadingProps = { loading: boolean } & ComponentChildren;
+
+type DeleteModalProps = {
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmLoading: boolean;
+  setConfirmLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
+  refreshTableData: () => void;
+  table: string;
+};
+
+type ButtonProps = {
+  type: "primary" | "submit";
+  onClick?: () => void;
+};
+
+type AccordionProps = {
+  items: ({
+    label: string;
+  } & ComponentChildren)[];
+};
+
+type HeaderProps = { role: string | undefined | null };
+
+type LayoutProps = {
+  role: string | undefined | null;
+} & ComponentChildren;
+
+type WithdrawModalProps = {
+  application: Application;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -195,7 +245,7 @@ export {
   type SearchProps,
   type StepProps,
   type Route,
-  type AccordionProps,
+  type MobileAccordionProps,
   type FiltersProps,
   type LatestJobCardProps,
   type MobileMenuProps,
@@ -207,4 +257,14 @@ export {
   type DocumentCardProps,
   type Application,
   type AdminJob,
+  type ComponentChildren,
+  type AuthenticatedButtonsType,
+  type SectionLoadingProps,
+  type DeleteModalProps,
+  type ButtonProps,
+  type AccordionProps,
+  type HeaderProps,
+  type LayoutProps,
+  type ApplicationCardProps,
+  type WithdrawModalProps,
 };

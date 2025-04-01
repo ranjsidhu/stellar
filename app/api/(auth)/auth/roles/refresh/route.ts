@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (error) throw new Error(error.message);
-    if (!data || !data.roles) throw new Error("Role not found");
+    if (!data?.roles) throw new Error("Role not found");
 
     return NextResponse.json({ ...data });
   } catch (error: any) {

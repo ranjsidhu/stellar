@@ -1,12 +1,10 @@
 import { Footer, Header, Redirect, Notification } from "..";
+import type { LayoutProps } from "@/app/types";
 
 export default async function Layout({
   children,
   role,
-}: {
-  children: React.ReactNode;
-  role: string | undefined | null;
-}) {
+}: Readonly<LayoutProps>) {
   return (
     <div className="min-h-screen flex flex-col">
       <Redirect />

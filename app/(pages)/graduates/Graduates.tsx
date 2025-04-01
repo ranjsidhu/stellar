@@ -35,9 +35,11 @@ export default function Graduates() {
   useEffect(() => {
     const fetchUniLevels = async () => {
       try {
-        fetch("/api/university_levels", { cache: "force-cache" })
-          .then((res) => res.json())
-          .then((data) => setUniLevels(data.response));
+        const response = await fetch("/api/university_levels", {
+          cache: "force-cache",
+        });
+        const data = await response.json();
+        setUniLevels(data.response);
       } catch (error: any) {
         console.error(error.message);
       }
@@ -46,7 +48,7 @@ export default function Graduates() {
     fetchUniLevels();
   }, []);
 
-  const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
+  const handleSubmit: FormProps<FieldType>["onFinish"] = (values) => {
     setLoading(true);
     try {
       fetch("/api/graduates", {

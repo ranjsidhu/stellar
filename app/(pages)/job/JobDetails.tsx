@@ -21,12 +21,10 @@ export default function JobDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
-      await fetch(`/api/jobs/reference/${reference}`).then((data) =>
-        data.json().then((res) => {
-          setJobDetails(res.response);
-          setLoading(false);
-        })
-      );
+      const details = await fetch(`/api/jobs/reference/${reference}`);
+      const parsedDetails = await details.json();
+      setJobDetails(parsedDetails.response);
+      setLoading(false);
     };
     fetchDetails();
   }, [reference]);

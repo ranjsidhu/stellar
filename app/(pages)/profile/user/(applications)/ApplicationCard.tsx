@@ -1,21 +1,13 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import { Card, Button, Tag } from "antd";
 import { ClockCircleOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Application } from "@/app/types";
+import { ApplicationCardProps } from "@/app/types";
 import { getStatusColor } from "@/app/constants";
 import WithdrawModal from "./WithdrawModal";
-
-type ApplicationCardProps = {
-  application: Application;
-  onWithdraw: () => void;
-  isModalOpen: boolean;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-};
 
 dayjs.extend(relativeTime);
 
@@ -24,7 +16,7 @@ export default function ApplicationCard({
   onWithdraw,
   isModalOpen,
   setIsModalOpen,
-}: ApplicationCardProps) {
+}: Readonly<ApplicationCardProps>) {
   const router = useRouter();
   const canWithdraw =
     application.application_status.name.toLowerCase() === "submitted";

@@ -8,6 +8,6 @@ type TableProps<T> = {
   rows: T[];
 };
 
-export default function Table<T>({ columns, rows }: TableProps<T>) {
+export default function Table<T>({ columns, rows }: Readonly<TableProps<T>>) {
   return <AntdTable columns={columns} dataSource={rows} />;
 }

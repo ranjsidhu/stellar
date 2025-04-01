@@ -62,7 +62,7 @@ export default function TheProcess() {
           <div className="py-6">
             {processSteps.map(({ step, description }, index) => (
               <Step
-                key={index}
+                key={step}
                 title={step}
                 description={description}
                 index={index}

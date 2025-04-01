@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Select, Form, FormProps, Typography, Button } from "antd";
 import { notify, PageLayout, SectionLoading } from "@/app/components";
-import { BasicTable, UserDocumentType } from "@/app/types";
+import { UserDocumentType, JobApplyProps } from "@/app/types";
 import { getUserId } from "@/app/utils/storage";
 
 export default function JobApply({
@@ -11,12 +11,7 @@ export default function JobApply({
   status,
   title,
   description,
-}: {
-  id: string;
-  status: BasicTable;
-  title: string;
-  description: string;
-}) {
+}: Readonly<JobApplyProps>) {
   const [form] = Form.useForm();
   const { Item } = Form;
   const { Title, Paragraph, Text } = Typography;
@@ -45,41 +40,48 @@ export default function JobApply({
     fetchUserDocuments();
   }, []);
 
-  const handleSubmit: FormProps["onFinish"] = async (values) => {
-    try {
-      setLoading(true);
-      const user_id = getUserId();
-      const checkResponse = await fetch(
-        `/api/user_applications/${user_id}/${id}`
-      );
-      const checkData = await checkResponse.json();
-      if (checkData.applied) {
-        notify("warning", "Error", "You have already applied for this job");
-        return;
-      }
+  const handleSubmit: FormProps["onFinish"] = (values) => {
+    setLoading(true);
+    const user_id = getUserId();
 
-      fetch("/api/user_applications", {
-        method: "POST",
-        body: JSON.stringify({
-          ...values,
-          user_id,
-          job_id: Number(id),
-          application_status_id: status.id,
-        }),
-      }).then((res) =>
-        res.json().then(() => {
+    // Check if user already applied
+    fetch(`/api/user_applications/${user_id}/${id}`)
+      .then((checkResponse) => checkResponse.json())
+      .then((checkData) => {
+        if (checkData.applied) {
+          notify("warning", "Error", "You have already applied for this job");
+          setLoading(false);
+          return;
+        }
+
+        // Submit application
+        return fetch("/api/user_applications", {
+          method: "POST",
+          body: JSON.stringify({
+            ...values,
+            user_id,
+            job_id: Number(id),
+            application_status_id: status.id,
+          }),
+        });
+      })
+      .then((res) => {
+        if (!res) return; // Early return if previous condition failed
+        return res.json();
+      })
+      .then((data) => {
+        if (data) {
           notify("success", "Success", "Application submitted successfully!");
-        })
-      );
-    } catch (error) {
-      notify(
-        "error",
-        "Error",
-        "An error occurred while sending the application"
-      );
-    } finally {
-      setLoading(false);
-    }
+        }
+      })
+      .catch(() =>
+        notify(
+          "error",
+          "Error",
+          "An error occurred while sending the application"
+        )
+      )
+      .finally(() => setLoading(false));
   };
 
   return (

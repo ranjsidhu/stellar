@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { SearchProps } from "@/app/types";
+import { notify } from "@/app/components";
 import styles from "./Search.module.css";
 
-export default function Search({ source }: SearchProps) {
+export default function Search() {
   const router = useRouter();
   const pathname = usePathname();
   const [search, setSearch] = useState("");
@@ -22,14 +22,7 @@ export default function Search({ source }: SearchProps) {
   }, [router, search, pathname]);
 
   let placeholder = "";
-  switch (source) {
-    case "home":
-      placeholder = "Search for a position...";
-      break;
-    default:
-      placeholder = "Search for a position...";
-      break;
-  }
+  placeholder = "Search for a position...";
 
   return (
     <div className={styles.searchWrapper}>
@@ -45,9 +38,15 @@ export default function Search({ source }: SearchProps) {
             setSearch(target.value);
           }}
         />
-        <i
+        <button
           className={`fa fa-search ${styles.searchIcon}`}
-          onClick={() => router.push(`/jobs?search=${search}`)}
+          onClick={() => {
+            if (!search) {
+              notify("warning", "Warning", "Please enter a search term");
+              return;
+            }
+            router.push(`/jobs?search=${search}`);
+          }}
         />
       </div>
     </div>

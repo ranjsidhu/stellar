@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Pagination, PaginationProps } from "antd";
 import { CircularProgress } from "@mui/material";
 import { useFetch } from "@/app/hooks";
@@ -9,6 +10,8 @@ import { JobCard, Filters } from "../../components";
 import styles from "./Jobs.module.css";
 
 export default function Jobs() {
+  const params = useSearchParams();
+  const searchQuery = params.get("search");
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [displayJobs, setDisplayJobs] = useState<Job[]>([]);
@@ -16,14 +19,16 @@ export default function Jobs() {
   const { data: currentJobs, isLoading } = useFetch<Job>(`/jobs/${page}`);
 
   useEffect(() => {
-    setDisplayJobs(currentJobs);
-  }, [currentJobs]);
+    if (!searchQuery) {
+      setDisplayJobs(currentJobs);
+    }
+  }, [currentJobs, searchQuery]);
 
   useEffect(() => {
     const getCount = async () => {
-      await fetch("/api/jobs/count").then((data) =>
-        data.json().then((res) => setTotal(res.response))
-      );
+      const countResponse = await fetch("/api/jobs/count");
+      const parsedCount = await countResponse.json();
+      setTotal(parsedCount.response);
     };
     getCount();
   }, []);

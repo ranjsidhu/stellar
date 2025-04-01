@@ -17,7 +17,7 @@ type LexicalEditorProps = {
 };
 
 // eslint-disable-next-line no-unused-vars
-function EditorContent({ onChange }: { onChange?: (value: string) => void }) {
+function EditorContent({ onChange }: Readonly<LexicalEditorProps>) {
   const [editor] = useLexicalComposerContext();
 
   return (
@@ -45,7 +45,10 @@ function EditorContent({ onChange }: { onChange?: (value: string) => void }) {
 }
 
 // eslint-disable-next-line import/no-unused-modules
-export default function LexicalEditor({ value, onChange }: LexicalEditorProps) {
+export default function LexicalEditor({
+  value,
+  onChange,
+}: Readonly<LexicalEditorProps>) {
   const initialConfig = {
     namespace: "JobDescription",
     theme: {

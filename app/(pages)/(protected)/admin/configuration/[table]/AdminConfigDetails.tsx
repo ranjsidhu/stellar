@@ -13,7 +13,9 @@ import type { BasicTable } from "@/app/types";
 import { calculateHours } from "@/app/utils";
 import styles from "./AdminConfigDetails.module.css";
 
-export default function AdminConfigDetails({ table }: { table: string }) {
+export default function AdminConfigDetails({
+  table,
+}: Readonly<{ table: string }>) {
   const [tableData, setTableData] = useState<BasicTable[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -43,13 +45,13 @@ export default function AdminConfigDetails({ table }: { table: string }) {
   return (
     <PageLayout>
       <SectionLoading loading={loading}>
-        <div
+        <button
           className={styles.adminConfigDetailsAdd}
           onClick={() => router.push(`/admin/configuration/add/${table}`)}
         >
           Add
           <AppstoreAddOutlined className={styles.addIcon} />
-        </div>
+        </button>
         <div className={styles.adminConfigDetailsGrid}>
           {tableData.map(({ name, id, created_at }) => (
             <AdminConfigCard
