@@ -22,7 +22,7 @@ import { updateJob } from "./serveractions";
 const { TextArea } = Input;
 const { Title } = Typography;
 
-export default function AdminJobEdit({ job, jobStatuses }: AdminJob) {
+export default function AdminJobEdit({ job, jobStatuses }: Readonly<AdminJob>) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -35,12 +35,13 @@ export default function AdminJobEdit({ job, jobStatuses }: AdminJob) {
   const handleSubmit: FormProps<Job>["onFinish"] = async (values) => {
     try {
       setLoading(true);
-      const result = await updateJob(job.reference_number, values);
-      if (result.success) {
-        notify("success", "Job Updated", "Job has been updated");
-      } else {
-        notify("error", "Failed to update job", result.error);
-      }
+      updateJob(job.reference_number, values).then((result) => {
+        if (result.success) {
+          notify("success", "Job Updated", "Job has been updated");
+        } else {
+          notify("error", "Failed to update job", result.error);
+        }
+      });
     } catch (error: any) {
       notify("error", "Failed to update job", error.message);
     } finally {

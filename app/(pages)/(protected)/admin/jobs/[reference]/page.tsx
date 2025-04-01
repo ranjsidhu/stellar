@@ -4,9 +4,7 @@ import { fetchJobDetails, fetchStatusOptions } from "./serveractions";
 
 export default async function AdminJobRefPage({
   params,
-}: {
-  params: Promise<{ reference: string }>;
-}) {
+}: Readonly<{ params: Promise<{ reference: string }> }>) {
   const { reference } = await params;
   const jobDetails = await fetchJobDetails(reference);
   const statusOptions = await fetchStatusOptions();

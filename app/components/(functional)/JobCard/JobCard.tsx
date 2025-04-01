@@ -7,8 +7,6 @@ import { calculateHours } from "@/app/utils";
 import Markdown from "markdown-to-jsx";
 import styles from "./JobCard.module.css";
 
-// TODO -  draw comparisons between LatestJobCard for refactoring into a single component
-
 export default function JobCard({ job }: Readonly<JobProps>) {
   const router = useRouter();
 
