@@ -13,15 +13,22 @@ const baseURL =
     ? NEXT_PUBLIC_DEV_API_URL
     : NEXT_PUBLIC_PROD_API_URL;
 
+// Type guard to check if value is a string
+const ensureString = (value: FormDataEntryValue | null): string => {
+  if (value === null) return "";
+  if (typeof value === "string") return value;
+  return "";
+};
+
 export async function POST(req: NextRequest) {
   try {
     const supabase = await createClient();
     const body = await req.formData();
-    const id = body.get("id");
-    const filename = body.get("filename");
+    const id = ensureString(body.get("id"));
+    const filename = ensureString(body.get("filename"));
     const file = body.get("file") as Blob;
-    const type = body.get("type");
-    const user_id = body.get("user_id");
+    const type = ensureString(body.get("type"));
+    const user_id = ensureString(body.get("user_id"));
 
     const fullFilename = `${id}.${type}`;
 
@@ -45,7 +52,7 @@ export async function POST(req: NextRequest) {
     if (response.error) {
       throw new Error(response.error.message);
     }
-    const cv_file_type_id = response.data![0].id;
+    const cv_file_type_id = response.data[0].id;
 
     // Call the user_documents route to update the user's CV
     const userDocumentsResponse = await fetch(`${baseURL}/user_documents`, {
