@@ -19,7 +19,7 @@ export default function Values() {
         <div className="contents lg:col-span-3">
           {aboutUsValues.slice(0, 3).map(({ value, statement }, index) => (
             <div
-              key={index}
+              key={value}
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <div className="h-24 bg-[#00150f] flex items-center justify-center relative">
@@ -49,7 +49,7 @@ export default function Values() {
           <div className="lg:col-span-3 flex justify-center gap-8 w-full">
             {aboutUsValues.slice(3, 5).map(({ value, statement }, index) => (
               <div
-                key={index}
+                key={value}
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full md:w-1/2 lg:max-w-md"
               >
                 <div className="h-24 bg-[#00150f] flex items-center justify-center relative">

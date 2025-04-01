@@ -1,10 +1,9 @@
 import AdminConfigDetails from "./AdminConfigDetails";
+import { PageProps } from "@/app/types";
 
 export default async function AdminConfigDetailPage({
   params,
-}: {
-  params: Promise<{ table: string }>;
-}) {
+}: Readonly<PageProps<"table">>) {
   const { table } = await params;
   return <AdminConfigDetails table={table.replace("-", "_")} />;
 }

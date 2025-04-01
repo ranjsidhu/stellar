@@ -10,7 +10,7 @@ import styles from "./Filters.module.css";
 
 const { Search } = Input;
 
-export default function Filters({ setDisplayJobs }: FiltersProps) {
+export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const [searchLoading, setSearchLoading] = useState(false);
@@ -80,7 +80,7 @@ export default function Filters({ setDisplayJobs }: FiltersProps) {
         ))}
       </Select>
       <Search
-        defaultValue={search || ""}
+        defaultValue={search ?? ""}
         allowClear
         placeholder="Birmingham, £100, Maths etc."
         onChange={searchJobs}

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Values } from "@/app/components";
+import { Values, Hero } from "@/app/components";
 import { aboutUsText } from "@/app/constants";
-import { Hero } from "@/app/components";
 
 export const metadata: Metadata = {
   title:

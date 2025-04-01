@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { notify } from "@/app/components";
 import styles from "./Search.module.css";
 
 export default function Search() {
@@ -37,9 +38,15 @@ export default function Search() {
             setSearch(target.value);
           }}
         />
-        <i
+        <button
           className={`fa fa-search ${styles.searchIcon}`}
-          onClick={() => router.push(`/jobs?search=${search}`)}
+          onClick={() => {
+            if (!search) {
+              notify("warning", "Warning", "Please enter a search term");
+              return;
+            }
+            router.push(`/jobs?search=${search}`);
+          }}
         />
       </div>
     </div>

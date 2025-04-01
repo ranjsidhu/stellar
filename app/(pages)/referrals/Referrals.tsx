@@ -3,18 +3,7 @@
 import { useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
 import { notify } from "@/app/components";
-
-type FieldType = {
-  name: string;
-  contactNumber: string;
-  friend: {
-    name: string;
-    job: string;
-    phone: string;
-    location?: string;
-    email?: string;
-  };
-};
+import { ReferralFieldType } from "@/app/types";
 
 const { Item } = Form;
 
@@ -22,7 +11,7 @@ export default function Referrals() {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
+  const handleSubmit: FormProps<ReferralFieldType>["onFinish"] = (values) => {
     setLoading(true);
     try {
       fetch("/api/referrals", {

@@ -7,7 +7,10 @@ type SocialsProps = {
   pathname?: string;
 };
 
-export default function Socials({ className, pathname }: SocialsProps) {
+export default function Socials({
+  className,
+  pathname,
+}: Readonly<SocialsProps>) {
   const adminRoutes = ADMIN_CARDS.map((card) => card.route);
   const hideOn = [
     ...adminRoutes,

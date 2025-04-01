@@ -35,12 +35,10 @@ export default function UserDocuments() {
 
   const handleDownload = async (doc: DocumentCardProps["document"]) => {
     try {
-      fetch(`/api/bucket/cv/${doc.file_id}`).then((res) => {
-        res.blob().then((data) => {
-          const filename = res.headers.get("X-Filename") || "download.docx";
-          downloadFile(data, filename);
-        });
-      });
+      const res = await fetch(`/api/bucket/cv/${doc.file_id}`);
+      const data = await res.blob();
+      const filename = res.headers.get("X-Filename") ?? "download.docx";
+      downloadFile(data, filename);
     } catch (error) {
       notify("error", "Error", "An error occurred while downloading document");
     }
@@ -48,17 +46,16 @@ export default function UserDocuments() {
 
   const handleDelete = async (doc: DocumentCardProps["document"]) => {
     try {
-      fetch(`/api/bucket/cv/${doc.file_id}`, {
+      const res = await fetch(`/api/bucket/cv/${doc.file_id}`, {
         method: "DELETE",
         body: JSON.stringify({ id: doc.id }),
-      }).then((res) => {
-        if (res.ok) {
-          setUserDocuments((prev) => prev.filter((d) => d.id !== doc.id));
-          notify("success", "Success", "Document deleted successfully");
-        } else {
-          notify("error", "Error", "An error occurred while deleting document");
-        }
       });
+      if (res.ok) {
+        setUserDocuments((prev) => prev.filter((d) => d.id !== doc.id));
+        notify("success", "Success", "Document deleted successfully");
+      } else {
+        notify("error", "Error", "An error occurred while deleting document");
+      }
     } catch (error) {
       notify("error", "Error", "An error occurred while deleting document");
     }

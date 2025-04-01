@@ -2,15 +2,9 @@
 
 import { Collapse } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
+import type { AccordionProps } from "@/app/types";
 
-type AccordionProps = {
-  items: {
-    label: string;
-    children: React.ReactNode;
-  }[];
-};
-
-export default function Accordion({ items }: AccordionProps) {
+export default function Accordion({ items }: Readonly<AccordionProps>) {
   const accordionItems = items.map((item, index) => {
     return {
       key: index,

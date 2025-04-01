@@ -17,7 +17,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     const userDetails = getItem("userDetails");
-    const parsedUserDetails: User | null = userDetails ? userDetails : null;
+    const parsedUserDetails: User | null = userDetails || null;
     if (parsedUserDetails) {
       const { id } = parsedUserDetails;
       const invalidDetails = !id || id === -1 || !parsedUserDetails?.roles;

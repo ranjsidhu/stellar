@@ -44,18 +44,16 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white/90">Quick Links</h3>
             <ul className="space-y-2">
-              {routes
-                .slice(0, Math.ceil(routes.length / 2))
-                .map((route, index) => (
-                  <li key={index}>
-                    <Link
-                      href={route.route}
-                      className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
-                    >
-                      {route.name}
-                    </Link>
-                  </li>
-                ))}
+              {routes.slice(0, Math.ceil(routes.length / 2)).map((route) => (
+                <li key={route.route}>
+                  <Link
+                    href={route.route}
+                    className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
+                  >
+                    {route.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -63,18 +61,16 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white/90">Resources</h3>
             <ul className="space-y-2">
-              {routes
-                .slice(Math.ceil(routes.length / 2))
-                .map((route, index) => (
-                  <li key={index}>
-                    <Link
-                      href={route.route}
-                      className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
-                    >
-                      {route.name}
-                    </Link>
-                  </li>
-                ))}
+              {routes.slice(Math.ceil(routes.length / 2)).map((route) => (
+                <li key={route.route}>
+                  <Link
+                    href={route.route}
+                    className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
+                  >
+                    {route.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
             {/* Contact Email */}

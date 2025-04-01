@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Card, Modal } from "antd";
+import { Card } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { notify } from "@/app/components";
+import DeleteModal from "./DeleteModal";
 import type { AdminConfigCardProps } from "@/app/types";
 
 const { Meta } = Card;
@@ -15,11 +15,11 @@ export default function AdminConfigCard({
   route,
   table,
   refreshTableData,
-}: AdminConfigCardProps) {
+}: Readonly<AdminConfigCardProps>) {
   const [modalOpen, setModalOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const router = useRouter();
-  const id = route.split("/").pop();
+  const id = route.split("/").pop()!;
 
   const actions: React.ReactNode[] = [
     <EditOutlined
@@ -34,47 +34,18 @@ export default function AdminConfigCard({
     />,
   ];
 
-  const DeleteModal = () => {
-    return (
-      <Modal
-        centered
-        title="Are you sure?"
-        okType="danger"
-        okText="Yes"
-        cancelText="No"
-        open={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        confirmLoading={confirmLoading}
-        onOk={() => {
-          setConfirmLoading(true);
-          fetch(`/api/${table}`, {
-            method: "PUT",
-            body: JSON.stringify({ id, is_deleted: true }),
-          })
-            .then(() => {
-              notify(
-                "success",
-                "Success",
-                "Configuration deleted successfully"
-              );
-              refreshTableData();
-            })
-            .catch((error: any) => notify("error", "Error", error.message))
-            .finally(() => {
-              setModalOpen(false);
-              setConfirmLoading(false);
-            });
-        }}
-      >
-        <p>Do you want to delete this configuration?</p>
-      </Modal>
-    );
-  };
-
   return (
     <Card style={{ width: 240, height: 150 }} actions={actions}>
       <Meta title={title} description={description} />
-      <DeleteModal />
+      <DeleteModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        confirmLoading={confirmLoading}
+        setConfirmLoading={setConfirmLoading}
+        id={id}
+        table={table}
+        refreshTableData={refreshTableData}
+      />
     </Card>
   );
 }

@@ -14,7 +14,7 @@ import { notify } from "@/app/components";
 export default function Login() {
   const router = useRouter();
   const params = useSearchParams();
-  const RETURN_URL = params.get("return") || "";
+  const RETURN_URL = params.get("return") ?? "";
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -44,41 +44,35 @@ export default function Login() {
   const handleSubmit: FormProps<{
     email: string;
     password: string;
-  }>["onFinish"] = async (values) => {
+  }>["onFinish"] = (values) => {
     setDisabled(true);
-    try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ ...values }),
-      });
-
-      if (!response.ok) {
-        const json = await response.json();
-        const { message } = json;
-        throw new Error(message);
-      }
-
-      response
-        .json()
-        .then((data) => {
-          setItem("userDetails", data.user);
-          dispatch(setSession(data.session));
-        })
-        .then(() => {
-          router.push(`${RETURN_URL}/`);
-        });
-    } catch (error: any) {
-      if (error.message) {
-        notify("error", "Error", error.message || "An error occurred");
-      } else {
+    fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ ...values }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((json) => {
+            throw new Error(json.message || "Login failed");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setItem("userDetails", data.user);
+        dispatch(setSession(data.session));
+        router.push(`${RETURN_URL}/`);
+      })
+      .catch((error) => {
         notify(
           "error",
           "Error",
           error.message || "An unexpected error occurred"
         );
-      }
-      setDisabled(false);
-    }
+      })
+      .finally(() => {
+        setDisabled(false);
+      });
   };
 
   // Custom styling for Ant Design components
@@ -93,7 +87,7 @@ export default function Login() {
     <div className="min-h-[80vh] w-full flex flex-col justify-center items-center px-4">
       <div className="w-full max-w-md flex flex-col items-center">
         {/* Logo */}
-        <div
+        <button
           className="mb-12 transform hover:scale-105 transition-transform cursor-pointer"
           onClick={() => router.push("/")}
         >
@@ -104,7 +98,7 @@ export default function Login() {
             height={120}
             className="w-auto"
           />
-        </div>
+        </button>
 
         {/* Login Card */}
         <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
