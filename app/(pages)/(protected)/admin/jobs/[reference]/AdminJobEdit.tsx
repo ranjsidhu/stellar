@@ -32,7 +32,7 @@ export default function AdminJobEdit({ job, jobStatuses }: Readonly<AdminJob>) {
     setIsMounted(true);
   }, []);
 
-  const handleSubmit: FormProps<Job>["onFinish"] = async (values) => {
+  const handleSubmit: FormProps<Job>["onFinish"] = (values) => {
     try {
       setLoading(true);
       updateJob(job.reference_number, values).then((result) => {
