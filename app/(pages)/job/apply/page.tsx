@@ -1,14 +1,9 @@
 import JobApply from "./JobApply";
+import { JobApplyPageProps } from "@/app/types";
 
-type Props = {
-  searchParams: Promise<{
-    id: string;
-    title: string;
-    description: string;
-  }>;
-};
-
-export default async function JobApplyPage({ searchParams }: Props) {
+export default async function JobApplyPage({
+  searchParams,
+}: Readonly<JobApplyPageProps>) {
   const { id, title, description } = await searchParams;
 
   const fetchSubmittedStatus = async () => {

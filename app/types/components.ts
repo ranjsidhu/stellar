@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
 
 type Job = {
@@ -171,6 +171,13 @@ type Application = {
   jobs: JobApplication;
 };
 
+type ApplicationCardProps = {
+  application: Application;
+  onWithdraw: () => void;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 type DocumentCardProps = {
   document: Document;
   onDownload?: (document: Document) => void;
@@ -221,6 +228,12 @@ type LayoutProps = {
   role: string | undefined | null;
 } & ComponentChildren;
 
+type WithdrawModalProps = {
+  application: Application;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -252,4 +265,6 @@ export {
   type AccordionProps,
   type HeaderProps,
   type LayoutProps,
+  type ApplicationCardProps,
+  type WithdrawModalProps,
 };

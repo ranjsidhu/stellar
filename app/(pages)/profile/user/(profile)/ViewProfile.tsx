@@ -6,13 +6,9 @@ import {
   MailOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { User } from "@/app/types";
+import { ViewProfileProps } from "@/app/types";
 
 const { Title } = Typography;
-
-type ViewProfileProps = {
-  details: User;
-};
 
 const formatDate = (dateString: Date | string) => {
   return new Date(dateString).toLocaleDateString("en-GB", {
@@ -22,7 +18,7 @@ const formatDate = (dateString: Date | string) => {
   });
 };
 
-export default function ViewProfile({ details }: ViewProfileProps) {
+export default function ViewProfile({ details }: Readonly<ViewProfileProps>) {
   return (
     <>
       <div className="flex flex-col items-center mb-6">

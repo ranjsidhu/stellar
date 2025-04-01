@@ -1,5 +1,3 @@
-// import Image from "next/image";
-// import contactImage from "@/app/assets/stock/contact.jpg"; // You'll need to add an appropriate image
 import ContactUsForm from "./ContactUsForm";
 
 export default function ContactUsPage() {

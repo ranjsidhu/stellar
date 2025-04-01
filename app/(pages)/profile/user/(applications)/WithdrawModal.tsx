@@ -3,21 +3,14 @@
 import { useState } from "react";
 import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Dispatch, SetStateAction } from "react";
-import { Application } from "@/app/types";
+import { WithdrawModalProps } from "@/app/types";
 import { notify } from "@/app/components";
-
-type WithdrawModalProps = {
-  application: Application;
-  isModalOpen: boolean;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-};
 
 export default function WithdrawModal({
   application,
   isModalOpen,
   setIsModalOpen,
-}: WithdrawModalProps) {
+}: Readonly<WithdrawModalProps>) {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   const onOk = () => {

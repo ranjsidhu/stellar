@@ -11,20 +11,30 @@ export default function UpdatePassword() {
   const handleUpdatePassword: FormProps<{
     newPassword: string;
     confirmNewPassword: string;
-  }>["onFinish"] = async (values) => {
+  }>["onFinish"] = (values) => {
     if (values.newPassword !== values.confirmNewPassword) {
       notify("error", "Error", "Passwords do not match");
       return;
     }
+
     const supabase = createClient();
-    const { error } = await supabase.auth.updateUser({
-      password: values.newPassword,
-    });
-    if (!error) {
-      notify("success", "Success", "Password updated successfully");
-    } else {
-      notify("error", "Error", error.message);
-    }
+
+    // Use promise chain instead of async/await
+    supabase.auth
+      .updateUser({
+        password: values.newPassword,
+      })
+      .then(({ error }) => {
+        if (!error) {
+          notify("success", "Success", "Password updated successfully");
+        } else {
+          notify("error", "Error", error.message);
+        }
+      })
+      .catch((unexpectedError) => {
+        notify("error", "Error", "An unexpected error occurred");
+        console.error(unexpectedError);
+      });
   };
 
   return (
