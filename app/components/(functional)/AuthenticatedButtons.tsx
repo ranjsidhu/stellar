@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { clearSession } from "@/app/redux/features/Auth";
 import { Button } from "@/app/components";
-import { AuthenticatedButtonsType } from "../types";
+import { AuthenticatedButtonsType } from "../../types";
 
 export default function AuthenticatedButtons({
   role,

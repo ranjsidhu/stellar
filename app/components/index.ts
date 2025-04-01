@@ -19,8 +19,8 @@ import Homepage from "./(display)/Homepage";
 import LatestJobs from "./(display)/LatestJobs";
 import Notification, { notify } from "./(display)/Notification";
 import { Hero } from "./(display)/Hero";
-import AuthenticatedButtons from "./AuthenticatedButtons";
-import UnauthenticatedButtons from "./UnauthenticatedButtons";
+import AuthenticatedButtons from "./(functional)/AuthenticatedButtons";
+import UnauthenticatedButtons from "./(functional)/UnauthenticatedButtons";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters/Filters";
