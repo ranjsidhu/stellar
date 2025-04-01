@@ -12,7 +12,7 @@ export default function DocumentCard({
   onPreview,
   onDownload,
   onDelete,
-}: DocumentCardProps) {
+}: Readonly<DocumentCardProps>) {
   return (
     <Card className="w-full hover:shadow-lg hover:cursor-pointer transition-shadow duration-300">
       <div className="flex items-start space-x-4">

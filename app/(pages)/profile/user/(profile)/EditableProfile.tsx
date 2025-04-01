@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import {
   Form,
   Input,
@@ -7,42 +6,35 @@ import {
   Avatar,
   Divider,
   FormProps,
-  FormInstance,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { notify } from "@/app/components";
 import { getItem, setItem } from "@/app/utils/storage";
-import type { User } from "@/app/types";
-
-type EditableProfileProps = {
-  details: User;
-  form: FormInstance<User>;
-  setDetails: Dispatch<SetStateAction<User | null>>;
-  setIsEditing: Dispatch<SetStateAction<boolean>>;
-};
+import type { EditableProfileProps, User } from "@/app/types";
 
 export default function EditableProfile({
   details,
   form,
   setDetails,
   setIsEditing,
-}: EditableProfileProps) {
-  const handleSubmit: FormProps<User>["onFinish"] = async (values) => {
+}: Readonly<EditableProfileProps>) {
+  const handleSubmit: FormProps<User>["onFinish"] = (values) => {
     try {
-      const response = await fetch(`/api/users/${details!.id}`, {
+      fetch(`/api/users/${details.id}`, {
         method: "PUT",
         body: JSON.stringify(values),
+      }).then((res) => {
+        if (res.ok) {
+          notify("success", "Success", "Profile updated successfully");
+          const oldDetails = getItem("userDetails");
+          const updatedDetails = { ...oldDetails, ...values };
+          setItem("userDetails", updatedDetails);
+          setDetails(updatedDetails);
+        } else {
+          throw new Error("Failed to update profile");
+        }
       });
-      if (response.ok) {
-        notify("success", "Success", "Profile updated successfully");
-        const oldDetails = getItem("userDetails");
-        const updatedDetails = { ...oldDetails, ...values };
-        setItem("userDetails", updatedDetails);
-        setDetails(updatedDetails);
-      } else {
-        throw new Error("Failed to update profile");
-      }
     } catch (error: any) {
       notify("error", "Error", error.message);
     } finally {

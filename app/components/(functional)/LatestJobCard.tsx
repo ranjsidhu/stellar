@@ -1,15 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import type { LatestJobCardProps } from "@/app/types";
+
 import Markdown from "markdown-to-jsx";
 import { MapPinIcon, PoundSterlingIcon } from "lucide-react";
+import {
+  POverride,
+  TitleOverride,
+  SpanSmallTextOverride,
+  DivSmallTextOverride,
+} from "../(display)/MarkdownOverrides";
+import type { LatestJobCardProps } from "@/app/types";
 
-export default function LatestJobCard({ job }: LatestJobCardProps) {
+export default function LatestJobCard({ job }: Readonly<LatestJobCardProps>) {
   const router = useRouter();
 
   return (
-    <div
+    <button
       onClick={() => router.push(`/job?reference=${job.reference_number}`)}
       className="w-full bg-white rounded-lg shadow-md p-5 text-left text-[#00150f] h-[400px]
         transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-[#00150f] 
@@ -38,61 +45,17 @@ export default function LatestJobCard({ job }: LatestJobCardProps) {
           <Markdown
             options={{
               overrides: {
-                p: {
-                  component: ({ children }) => (
-                    <p className="text-sm">{children}</p>
-                  ),
-                },
-                h1: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                h2: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                h3: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                h4: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                h5: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                h6: {
-                  component: ({ children }) => (
-                    <p className="text-sm font-bold">{children}</p>
-                  ),
-                },
-                a: {
-                  component: ({ children }) => (
-                    <span className="text-sm">{children}</span>
-                  ),
-                },
-                ul: {
-                  component: ({ children }) => (
-                    <div className="text-sm">{children}</div>
-                  ),
-                },
-                ol: {
-                  component: ({ children }) => (
-                    <div className="text-sm">{children}</div>
-                  ),
-                },
-                li: {
-                  component: ({ children }) => (
-                    <span className="text-sm">{children}</span>
-                  ),
-                },
+                p: { component: POverride },
+                h1: { component: TitleOverride },
+                h2: { component: TitleOverride },
+                h3: { component: TitleOverride },
+                h4: { component: TitleOverride },
+                h5: { component: TitleOverride },
+                h6: { component: TitleOverride },
+                a: { component: SpanSmallTextOverride },
+                ul: { component: DivSmallTextOverride },
+                ol: { component: DivSmallTextOverride },
+                li: { component: SpanSmallTextOverride },
               },
             }}
           >
@@ -100,6 +63,6 @@ export default function LatestJobCard({ job }: LatestJobCardProps) {
           </Markdown>
         </div>
       </div>
-    </div>
+    </button>
   );
 }

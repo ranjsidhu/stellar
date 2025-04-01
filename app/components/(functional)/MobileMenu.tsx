@@ -9,7 +9,10 @@ import { clearSession } from "@/app/redux/features/Auth";
 import { getUserRole } from "@/app/utils/storage";
 import { X } from "lucide-react";
 
-export default function MobileMenu({ toggleMenu, role }: MobileMenuProps) {
+export default function MobileMenu({
+  toggleMenu,
+  role,
+}: Readonly<MobileMenuProps>) {
   const [userRole, setUserRole] = useState("");
   const dispatch = useAppDispatch();
 

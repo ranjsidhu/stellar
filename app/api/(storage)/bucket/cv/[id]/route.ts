@@ -33,7 +33,7 @@ export async function GET(
       headers: {
         "Content-Type": contentType,
         "Content-Disposition": `attachment; filename="${id}"`,
-        "Content-Length": fileBuffer!.byteLength.toString(),
+        "Content-Length": fileBuffer.byteLength.toString(),
         "X-Filename": filename,
       },
     });

@@ -1,19 +1,12 @@
-import { Button, FormInstance, Space } from "antd";
+import { Button, Space } from "antd";
 import { EditOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
-import { User } from "@/app/types";
-import { Dispatch, SetStateAction } from "react";
-
-type ProfileActionsProps = {
-  isEditing: boolean;
-  setIsEditing: Dispatch<SetStateAction<boolean>>;
-  form: FormInstance<User>;
-};
+import { ProfileActionsProps } from "@/app/types";
 
 export default function ProfileActions({
   isEditing,
   setIsEditing,
   form,
-}: ProfileActionsProps) {
+}: Readonly<ProfileActionsProps>) {
   const handleCancel = () => {
     form.resetFields();
     setIsEditing(false);

@@ -7,7 +7,7 @@ import { PageLayout, SectionLoading, notify } from "@/app/components";
 import { BasicTable } from "@/app/types";
 import styles from "./AdminConfigAdd.module.css";
 
-export default function AdminConfigAdd({ table }: { table: string }) {
+export default function AdminConfigAdd({ table }: Readonly<{ table: string }>) {
   const [loading, setLoading] = useState<boolean>(false);
   const [form] = Form.useForm();
   const { Item } = Form;

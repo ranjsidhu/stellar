@@ -32,7 +32,7 @@ const updateRole = async (role_id: number, user_id: number) => {
   }
 };
 
-const dropdownOnChange = (value: number | string | any, record: any) => {
+const dropdownOnChange = (value: string, record: any) => {
   const role = roles.find((r) => r.id == value);
   updateRole(
     role ? Number(role.id) : Number(process.env.NEXT_PUBLIC_CANDIDATE_ROLE_ID),

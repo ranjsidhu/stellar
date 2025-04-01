@@ -79,7 +79,7 @@ export default function TestimonialsList() {
               <div className="flex gap-2">
                 {testimonials.map((_, index) => (
                   <button
-                    key={index}
+                    key={_.id}
                     onClick={() => setActiveIndex(index)}
                     className={`w-3 h-3 rounded-full transition-colors ${
                       index === activeIndex
@@ -118,9 +118,9 @@ export default function TestimonialsList() {
               {testimonials
                 .filter((_, idx) => idx !== activeIndex)
                 .slice(0, 3)
-                .map((item, index) => (
-                  <div
-                    key={index}
+                .map((item) => (
+                  <button
+                    key={item.id}
                     className="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#DAA520] hover:shadow-lg transition-shadow cursor-pointer"
                     onClick={() => {
                       // Find the actual index in the original array
@@ -140,7 +140,7 @@ export default function TestimonialsList() {
                     <div className="font-semibold text-[#00150f]">
                       {item?.author || "Stellar Candidate"}
                     </div>
-                  </div>
+                  </button>
                 ))}
             </div>
           </div>

@@ -14,7 +14,10 @@ type FileUploadProps = {
   onSuccess?: (id: number, file_id: string, filename: string) => void;
 };
 
-export default function FileUpload({ route, onSuccess }: FileUploadProps) {
+export default function FileUpload({
+  route,
+  onSuccess,
+}: Readonly<FileUploadProps>) {
   const [fileList, setFileList] = useState<any[]>([]);
 
   const props: UploadProps = {
