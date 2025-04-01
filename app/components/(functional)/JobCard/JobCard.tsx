@@ -9,13 +9,14 @@ import styles from "./JobCard.module.css";
 
 // TODO -  draw comparisons between LatestJobCard for refactoring into a single component
 
-export default function JobCard({ job }: JobProps) {
+export default function JobCard({ job }: Readonly<JobProps>) {
   const router = useRouter();
 
   return (
-    <div
+    <button
       className={styles.jobCard}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         if (window.location.href.includes("/admin/jobs")) {
           router.push(`/admin/jobs/${job.reference_number}`);
           return;
@@ -37,6 +38,6 @@ export default function JobCard({ job }: JobProps) {
           <Markdown>{job.description}</Markdown>
         </p>
       </div>
-    </div>
+    </button>
   );
 }

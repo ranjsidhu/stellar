@@ -5,7 +5,7 @@ export default function AdminCard({
   title,
   description,
   route,
-}: AdminCardProps) {
+}: Readonly<AdminCardProps>) {
   return (
     <Link
       href={route}

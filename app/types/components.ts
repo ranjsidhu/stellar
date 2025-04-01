@@ -194,6 +194,16 @@ type AuthenticatedButtonsType = {
 
 type SectionLoadingProps = { loading: boolean; children: React.ReactNode };
 
+type DeleteModalProps = {
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmLoading: boolean;
+  setConfirmLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
+  refreshTableData: () => void;
+  table: string;
+};
+
 export {
   type Job,
   type Testimonial,
@@ -220,4 +230,5 @@ export {
   type ComponentChildren,
   type AuthenticatedButtonsType,
   type SectionLoadingProps,
+  type DeleteModalProps,
 };

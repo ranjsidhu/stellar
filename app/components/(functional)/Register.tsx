@@ -25,62 +25,63 @@ export default function Register() {
     setFormDob(dateString);
   };
 
-  const handleSubmit: FormProps<RegisterType>["onFinish"] = async (values) => {
+  const handleSubmit: FormProps<RegisterType>["onFinish"] = (values) => {
     if (values.password !== values.confirmPassword) {
       notify("error", "Error", "Passwords do not match");
       return;
     }
 
     setLoading(true);
-    try {
-      let response = await fetch("/api/auth/register", {
-        method: "POST",
-        body: JSON.stringify({
-          first_name: values.first_name,
-          last_name: values.last_name,
-          phone_number: values.phone,
-          email: values.email,
-          password: values.password,
-        }),
-      });
 
-      if (!response.ok) {
-        const json = await response.json();
-        const { message } = json;
-        throw new Error(message);
-      }
+    fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        first_name: values.first_name,
+        last_name: values.last_name,
+        phone_number: values.phone,
+        email: values.email,
+        password: values.password,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((json) => {
+            throw new Error(json.message || "Registration failed");
+          });
+        }
 
-      notify("info", "Registering", "Creating your user profile...");
+        notify("info", "Registering", "Creating your user profile...");
 
-      // Remove passwords
-      // eslint-disable-next-line no-unused-vars
-      const { confirmPassword, password, ...filteredValues } = values;
-      response = await fetch("/api/users", {
-        method: "POST",
-        body: JSON.stringify({ ...filteredValues, dob: formDob }),
-      });
+        // Remove passwords
+        // eslint-disable-next-line no-unused-vars
+        const { confirmPassword, password, ...filteredValues } = values;
 
-      if (!response.ok) {
-        const json = await response.json();
-        const { message } = json;
-        throw new Error(message);
-      }
-
-      response.json().then(() => {
+        return fetch("/api/users", {
+          method: "POST",
+          body: JSON.stringify({ ...filteredValues, dob: formDob }),
+        });
+      })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((json) => {
+            throw new Error(json.message || "Profile creation failed");
+          });
+        }
+        return response.json();
+      })
+      .then(() => {
         router.push("/");
-      });
-    } catch (error: any) {
-      if (error.message) {
-        notify("error", "Error", error.message || "An error occurred");
-      } else {
+      })
+      .catch((error) => {
         notify(
           "error",
           "Error",
           error.message || "An unexpected error occurred"
         );
-      }
-      setLoading(false);
-    }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   // Custom styling for Ant Design components

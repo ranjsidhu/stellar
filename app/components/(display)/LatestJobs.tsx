@@ -13,13 +13,13 @@ export default function LatestJobs() {
   return (
     <section className="w-full max-w-[1440px] px-4 md:px-6 lg:px-8 mb-16">
       <div className="flex items-center justify-between mb-8 md:mb-10">
-        <h2
+        <button
           onClick={() => router.push("/jobs")}
           className="text-[#00150f] text-xl md:text-2xl font-bold uppercase tracking-wide
             hover:cursor-pointer hover:underline hover:underline-offset-4 transition-all duration-200"
         >
           Latest Jobs
-        </h2>
+        </button>
 
         <button
           onClick={() => router.push("/jobs")}

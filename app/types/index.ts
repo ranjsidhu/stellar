@@ -33,6 +33,7 @@ import {
   ComponentChildren,
   AuthenticatedButtonsType,
   SectionLoadingProps,
+  DeleteModalProps,
 } from "./components";
 
 import { JobRequest, UniLevelType, UserDocumentType } from "./requests";
@@ -73,4 +74,5 @@ export {
   type ComponentChildren,
   type AuthenticatedButtonsType,
   type SectionLoadingProps,
+  type DeleteModalProps,
 };

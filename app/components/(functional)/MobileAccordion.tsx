@@ -12,7 +12,7 @@ export default function MobileAccordion({
   subRoutes,
   toggleMenu,
   handleOnClick,
-}: AccordionProps) {
+}: Readonly<AccordionProps>) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
