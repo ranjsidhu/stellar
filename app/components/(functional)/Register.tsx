@@ -69,6 +69,15 @@ export default function Register() {
         }
         return response.json();
       })
+      .then(() =>
+        fetch("/api/signup-email", {
+          method: "POST",
+          body: JSON.stringify({
+            name: `${values.first_name} ${values.last_name}`,
+            email: values.email,
+          }),
+        })
+      )
       .then(() => {
         router.push("/");
       })
