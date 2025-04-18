@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Form, Input, Button, type FormProps } from "antd";
 import { PageLayout, SectionLoading, notify } from "@/app/components";
 import { BasicTable } from "@/app/types";
-import styles from "./AdminConfigAdd.module.css";
 
 export default function AdminConfigAdd({ table }: Readonly<{ table: string }>) {
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,7 +47,7 @@ export default function AdminConfigAdd({ table }: Readonly<{ table: string }>) {
           >
             <Input placeholder="Name of record" disabled={loading} />
           </Item>
-          <div className={styles.flexButtons}>
+          <div className="flex gap-3">
             <Item>
               <Button type="primary" htmlType="submit" disabled={loading}>
                 Save

@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Table, SectionLoading } from "@/app/components";
-import {
-  type GraduatesType,
-  graduatesColumns,
-} from "@/app/constants/tables/graduates";
+import { graduatesColumns } from "@/app/constants/tables/graduates";
+import type { GraduatesType } from "@/app/types";
 import styles from "./AdminGraduates.module.css";
 
 export default function AdminGraduates() {
@@ -18,7 +16,10 @@ export default function AdminGraduates() {
         const res = await fetch("/api/graduates");
         const data = await res.json();
         setGraduates(
-          data.response.map((grad: any) => ({ ...grad, key: grad.id }))
+          data.response.map((grad: GraduatesType) => ({
+            ...grad,
+            key: grad.id,
+          }))
         );
         setLoading(false);
       } catch (error: any) {

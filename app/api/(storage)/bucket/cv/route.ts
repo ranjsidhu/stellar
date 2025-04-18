@@ -80,10 +80,7 @@ export async function POST(req: NextRequest) {
       file_id: userDocumentsData.response[0].file_id,
       filename: userDocumentsData.response[0].filename,
     });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "File upload failed" },
-      { status: 500 }
-    );
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
