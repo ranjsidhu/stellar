@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
 import { notify, PageLayout, SectionLoading } from "@/app/components";
 import type { BasicTable } from "@/app/types";
-import styles from "./AdminConfigEdit.module.css";
 
 const initialEditData = {
   id: null,
@@ -89,7 +88,7 @@ export default function AdminConfigEdit({
           >
             <Input placeholder={editData.name} disabled={!editData.name} />
           </Item>
-          <div className={styles.flexButtons}>
+          <div className="flex gap-3">
             <Item>
               <Button
                 type="primary"

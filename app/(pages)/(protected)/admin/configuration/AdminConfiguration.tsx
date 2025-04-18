@@ -8,7 +8,6 @@ import {
   PageLayout,
   SectionLoading,
 } from "@/app/components";
-import styles from "./AdminConfiguration.module.css";
 
 export default function AdminConfiguration() {
   const [config, setConfig] = useState<ConfigTable[]>([]);
@@ -37,7 +36,7 @@ export default function AdminConfiguration() {
   return (
     <SectionLoading loading={loading}>
       <PageLayout>
-        <div className={styles.adminConfigWrapper}>
+        <div className="flex justify-between items-center h-full mx-auto">
           {config.length > 0 &&
             config.map((card) => (
               <AdminCard

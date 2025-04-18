@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { client, create } from "../../utils/db-client";
-import { GraduatesType } from "@/app/constants/tables/graduates";
+import { GraduatesType } from "@/app/types";
 
 export async function GET() {
   try {
