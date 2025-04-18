@@ -1,17 +1,3 @@
-export type GraduatesType = {
-  id: number;
-  full_name: string;
-  contact_number: string;
-  email: string;
-  course: string;
-  institution: string;
-  in_progress: boolean;
-  estimated_completion_date: string;
-  university_levels: { name: string };
-  created_at: Date | string;
-  updated_at: Date | string;
-};
-
 const graduatesColumns = [
   {
     title: "Date Added",
