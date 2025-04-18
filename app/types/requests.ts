@@ -21,4 +21,18 @@ type UserDocumentType = {
   id: number;
 };
 
-export { type JobRequest, type UniLevelType, type UserDocumentType };
+type GraduatesType = {
+  id: number;
+  full_name: string;
+  contact_number: string;
+  email: string;
+  course: string;
+  institution: string;
+  in_progress: boolean;
+  estimated_completion_date: string;
+  university_levels: { name: string };
+  created_at: Date | string;
+  updated_at: Date | string;
+};
+
+export type { JobRequest, UniLevelType, UserDocumentType, GraduatesType };

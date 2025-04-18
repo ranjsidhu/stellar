@@ -11,7 +11,6 @@ import {
 import { AppstoreAddOutlined } from "@ant-design/icons";
 import type { BasicTable } from "@/app/types";
 import { calculateHours } from "@/app/utils";
-import styles from "./AdminConfigDetails.module.css";
 
 export default function AdminConfigDetails({
   table,
@@ -46,13 +45,13 @@ export default function AdminConfigDetails({
     <PageLayout>
       <SectionLoading loading={loading}>
         <button
-          className={styles.adminConfigDetailsAdd}
+          className="flex justify-end w-full hover:cursor-pointer"
           onClick={() => router.push(`/admin/configuration/add/${table}`)}
         >
           Add
-          <AppstoreAddOutlined className={styles.addIcon} />
+          <AppstoreAddOutlined className="px-2.5" />
         </button>
-        <div className={styles.adminConfigDetailsGrid}>
+        <div className="grid grid-cols-4 gap-5 py-5 place-items-center">
           {tableData.map(({ name, id, created_at }) => (
             <AdminConfigCard
               key={id}
