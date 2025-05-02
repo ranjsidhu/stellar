@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { notify } from "@/app/components";
-import styles from "./Search.module.css";
+import "./fa.css";
 
 export default function Search() {
   const router = useRouter();
@@ -25,21 +25,21 @@ export default function Search() {
   placeholder = "Search for a position...";
 
   return (
-    <div className={styles.searchWrapper}>
-      <p className={styles.searchStatement}>
+    <div className="flex flex-col w-full opacity-100">
+      <p className="text-white text-center p-2.5">
         Search current jobs for your next role
       </p>
-      <div className={styles.searchBox}>
+      <div className="flex justify-center items-center h-full">
         <input
           placeholder={placeholder}
-          className={styles.searchBoxInput}
+          className="border border-[#00150f] rounded-[20px] p-2.5 w-[55%] text-base"
           value={search}
           onChange={({ target }) => {
             setSearch(target.value);
           }}
         />
         <button
-          className={`fa fa-search ${styles.searchIcon}`}
+          className="fa fa-search text-[#ffd700] hover:cursor-pointer"
           onClick={() => {
             if (!search) {
               notify("warning", "Warning", "Please enter a search term");

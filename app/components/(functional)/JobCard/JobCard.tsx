@@ -12,7 +12,7 @@ export default function JobCard({ job }: Readonly<JobProps>) {
 
   return (
     <button
-      className={styles.jobCard}
+      className="flex flex-col gap-1 text-left p-7.5 rounded-lg"
       onClick={(e) => {
         e.preventDefault();
         if (window.location.href.includes("/admin/jobs")) {

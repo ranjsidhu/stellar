@@ -6,7 +6,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import { Layout, Analytics, StoreProvider } from "./components";
 import { getRole } from "./utils/supabase/supabase-utils";
-import { type ComponentChildren } from "./types";
+import { ComponentChildren } from "./types";
 import "./globals.css";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });

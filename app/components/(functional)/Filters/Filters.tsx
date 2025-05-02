@@ -6,7 +6,6 @@ import { Select, Input } from "antd";
 import { useFetch } from "@/app/hooks";
 import { JobLocation, FiltersProps } from "@/app/types";
 import { pluralise } from "@/app/utils";
-import styles from "./Filters.module.css";
 
 const { Search } = Input;
 
@@ -62,17 +61,17 @@ export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
   }, [search, searchJobs]);
 
   return (
-    <div className={styles.jobsFilters}>
+    <div className="flex gap-[50px] md:flex-col md:gap-5">
       <Select
         allowClear
         showSearch
-        className={styles.filtersSelect}
+        className="w-[450px]"
         placeholder="Search by location"
         onChange={getJobsByLocation}
       >
         {locations.map((location) => (
           <Select.Option key={location.location}>
-            <div className={styles.filtersSelectOption}>
+            <div className="flex justify-between">
               <p>{location.location}</p>
               <p>{pluralise(location.location_count, "job")}</p>
             </div>

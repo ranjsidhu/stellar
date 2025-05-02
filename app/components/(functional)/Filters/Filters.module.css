@@ -3,15 +3,6 @@
   gap: 50px;
 }
 
-.filtersSelect {
-  width: 450px;
-}
-
-.filtersSelectOption {
-  display: flex;
-  justify-content: space-between;
-}
-
 @media screen and (max-width: 877px) {
   .jobsFilters {
     display: flex;
