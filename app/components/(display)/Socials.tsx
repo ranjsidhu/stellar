@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { socials } from "@/app/constants";
 import { ADMIN_CARDS } from "@/app/constants/admin";
-
-type SocialsProps = {
-  className: string | undefined;
-  pathname?: string;
-};
+import type { SocialsProps } from "@/app/types";
 
 export default function Socials({
   className,

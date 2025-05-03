@@ -7,7 +7,6 @@ import { DrawingPinIcon } from "@radix-ui/react-icons";
 import { Typography, Button } from "antd";
 import Markdown from "markdown-to-jsx";
 import { Job } from "../../types";
-import styles from "./JobDetails.module.css";
 
 const { Title, Paragraph } = Typography;
 
@@ -31,20 +30,20 @@ export default function JobDetails() {
 
   return (
     <Suspense>
-      <div className={styles.jobDetailsWrapper}>
+      <div className="flex flex-col justify-start items-start w-full max-w-[1440px] mt-0 mb-0 ml-auto mr-auto p-14">
         {loading && <CircularProgress />}
         {!loading && jobDetails && (
           <div>
             <Title level={1}>{jobDetails.role_name}</Title>
             <Paragraph
-              className={styles.jobDetailsText}
+              className="!text-base"
               copyable={{ text: window.location.href }}
             >
               Reference number: {jobDetails.reference_number}
             </Paragraph>
 
-            <Paragraph className={styles.jobDetailsText}>
-              <DrawingPinIcon className={styles.jobLocationIcon} />
+            <Paragraph className="!text-base">
+              <DrawingPinIcon className="-rotate-45" />
               {jobDetails.location} |{"  "}
               <strong>{jobDetails.salary_range}</strong>
             </Paragraph>
@@ -52,7 +51,7 @@ export default function JobDetails() {
             <br />
 
             <Title level={3}>Job description</Title>
-            <Paragraph className={styles.jobDetailsText}>
+            <Paragraph className="!text-base">
               <Markdown>{jobDetails.description}</Markdown>
             </Paragraph>
             <Button

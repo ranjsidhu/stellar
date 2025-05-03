@@ -7,13 +7,13 @@ import Navbar from "./(layout)/Navbar";
 import PageLayout from "./(layout)/PageLayout";
 
 // DISPLAY
-import Button from "./(display)/Button/Button";
+import Button from "./(display)/Button";
 import HeaderButtons from "./(display)/HeaderButtons";
 import SectionLoading from "./(display)/SectionLoading";
 import Layout from "./(layout)/Layout";
-import NotFound from "./(display)/NotFound/NotFound";
+import NotFound from "./(display)/NotFound";
 import Values from "./(display)/Values";
-import Socials from "./(display)/Socials/Socials";
+import Socials from "./(display)/Socials";
 import Accordion from "./(display)/Accordion";
 import Homepage from "./(display)/Homepage";
 import LatestJobs from "./(display)/LatestJobs";
@@ -23,18 +23,18 @@ import AuthenticatedButtons from "./(functional)/AuthenticatedButtons";
 import UnauthenticatedButtons from "./(functional)/UnauthenticatedButtons";
 
 // FUNCTIONAL
-import Filters from "./(functional)/Filters/Filters";
+import Filters from "./(functional)/Filters";
 import LatestJobCard from "./(functional)/LatestJobCard";
-import JobCard from "./(functional)/JobCard/JobCard";
+import JobCard from "./(functional)/JobCard";
 import MobileMenu from "./(functional)/MobileMenu";
 import MobileAccordion from "./(functional)/MobileAccordion";
-import MenuItem from "./(functional)/MenuItem/MenuItem";
-import Search from "./(functional)/Search/Search";
+import MenuItem from "./(functional)/MenuItem";
+import Search from "./(functional)/Search";
 import Login from "./(functional)/Login";
 import Register from "./(functional)/Register";
 import FileUpload from "./(functional)/FileUpload";
 import AdminCard from "./(functional)/AdminCard";
-import Table from "./(functional)/Table/Table";
+import Table from "./(functional)/Table";
 import AdminConfigCard from "./(functional)/AdminConfigCard";
 
 // MISC
