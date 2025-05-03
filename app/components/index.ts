@@ -23,9 +23,9 @@ import AuthenticatedButtons from "./(functional)/AuthenticatedButtons";
 import UnauthenticatedButtons from "./(functional)/UnauthenticatedButtons";
 
 // FUNCTIONAL
-import Filters from "./(functional)/Filters/Filters";
+import Filters from "./(functional)/Filters";
 import LatestJobCard from "./(functional)/LatestJobCard";
-import JobCard from "./(functional)/JobCard/JobCard";
+import JobCard from "./(functional)/JobCard";
 import MobileMenu from "./(functional)/MobileMenu";
 import MobileAccordion from "./(functional)/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem";
