@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Table, SectionLoading } from "@/app/components";
 import { graduatesColumns } from "@/app/constants/tables/graduates";
 import type { GraduatesType } from "@/app/types";
-import styles from "./AdminGraduates.module.css";
 
 export default function AdminGraduates() {
   const [graduates, setGraduates] = useState<GraduatesType[]>([]);
@@ -32,7 +31,7 @@ export default function AdminGraduates() {
   }, []);
 
   return (
-    <div className={styles.adminGraduatesWrapper}>
+    <div className="flex justify-center items-center h-full w-[95%] mx-auto">
       <SectionLoading loading={loading}>
         <Table columns={graduatesColumns} rows={graduates || []} />
       </SectionLoading>
