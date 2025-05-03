@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 /* eslint-disable no-unused-vars */
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
@@ -234,37 +235,43 @@ type WithdrawModalProps = {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export {
-  type Job,
-  type Testimonial,
-  type JobLocation,
-  type JobProps,
-  type NotificationType,
-  type RegisterType,
-  type User,
-  type SearchProps,
-  type StepProps,
-  type Route,
-  type MobileAccordionProps,
-  type FiltersProps,
-  type LatestJobCardProps,
-  type MobileMenuProps,
-  type MenuItemProps,
-  type AdminCardProps,
-  type ConfigTable,
-  type AdminConfigCardProps,
-  type ProfileTab,
-  type DocumentCardProps,
-  type Application,
-  type AdminJob,
-  type ComponentChildren,
-  type AuthenticatedButtonsType,
-  type SectionLoadingProps,
-  type DeleteModalProps,
-  type ButtonProps,
-  type AccordionProps,
-  type HeaderProps,
-  type LayoutProps,
-  type ApplicationCardProps,
-  type WithdrawModalProps,
+type SocialsProps = {
+  className: string | undefined;
+  pathname?: string;
+};
+
+export type {
+  Job,
+  Testimonial,
+  JobLocation,
+  JobProps,
+  NotificationType,
+  RegisterType,
+  User,
+  SearchProps,
+  StepProps,
+  Route,
+  MobileAccordionProps,
+  FiltersProps,
+  LatestJobCardProps,
+  MobileMenuProps,
+  MenuItemProps,
+  AdminCardProps,
+  ConfigTable,
+  AdminConfigCardProps,
+  ProfileTab,
+  DocumentCardProps,
+  Application,
+  AdminJob,
+  ComponentChildren,
+  AuthenticatedButtonsType,
+  SectionLoadingProps,
+  DeleteModalProps,
+  ButtonProps,
+  AccordionProps,
+  HeaderProps,
+  LayoutProps,
+  ApplicationCardProps,
+  WithdrawModalProps,
+  SocialsProps,
 };

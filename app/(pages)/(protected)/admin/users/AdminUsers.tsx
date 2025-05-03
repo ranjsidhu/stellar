@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Table } from "antd";
 import { SectionLoading } from "@/app/components";
 import { ADMIN_USERS_COLUMNS } from "@/app/constants/admin";
-import styles from "./AdminUsers.module.css";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -27,10 +26,10 @@ export default function AdminUsers() {
   }, []);
 
   return (
-    <div className={styles.adminUsersWrapper}>
+    <div className="flex justify-center items-center h-full w-[95%] mx-auto">
       <SectionLoading loading={loading}>
         <Table
-          className={styles.adminUsersTable}
+          className="!w-[800px] !max-w-[1440px]"
           columns={ADMIN_USERS_COLUMNS}
           dataSource={users || []}
         />

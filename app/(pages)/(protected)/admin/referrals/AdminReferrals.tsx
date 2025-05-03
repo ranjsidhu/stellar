@@ -6,7 +6,6 @@ import {
   type ReferralsType,
   referralsColumns,
 } from "@/app/constants/tables/referrals";
-import styles from "./AdminReferrals.module.css";
 
 export default function AdminReferrals() {
   const [referrals, setReferrals] = useState<ReferralsType[]>([]);
@@ -31,7 +30,7 @@ export default function AdminReferrals() {
   }, []);
 
   return (
-    <div className={styles.adminReferralsWrapper}>
+    <div className="flex justify-center items-center h-full w-[95%] mx-auto">
       <SectionLoading loading={loading}>
         <Table columns={referralsColumns} rows={referrals || []} />
       </SectionLoading>

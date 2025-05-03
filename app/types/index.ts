@@ -40,6 +40,7 @@ import {
   LayoutProps,
   ApplicationCardProps,
   WithdrawModalProps,
+  SocialsProps,
 } from "./components";
 
 import {
@@ -110,4 +111,5 @@ export type {
   ViewProfileProps,
   ReferralFieldType,
   GraduatesType,
+  SocialsProps,
 };

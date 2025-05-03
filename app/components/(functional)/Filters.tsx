@@ -6,7 +6,6 @@ import { Select, Input } from "antd";
 import { useFetch } from "@/app/hooks";
 import { JobLocation, FiltersProps } from "@/app/types";
 import { pluralise } from "@/app/utils";
-import styles from "./Filters.module.css";
 
 const { Search } = Input;
 
@@ -62,30 +61,43 @@ export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
   }, [search, searchJobs]);
 
   return (
-    <div className={styles.jobsFilters}>
-      <Select
-        allowClear
-        showSearch
-        className={styles.filtersSelect}
-        placeholder="Search by location"
-        onChange={getJobsByLocation}
-      >
-        {locations.map((location) => (
-          <Select.Option key={location.location}>
-            <div className={styles.filtersSelectOption}>
-              <p>{location.location}</p>
-              <p>{pluralise(location.location_count, "job")}</p>
-            </div>
-          </Select.Option>
-        ))}
-      </Select>
-      <Search
-        defaultValue={search ?? ""}
-        allowClear
-        placeholder="Birmingham, £100, Maths etc."
-        onChange={searchJobs}
-        loading={searchLoading}
-      />
+    <div className="w-full mb-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+        <div className="w-full sm:w-[450px]">
+          <Select
+            allowClear
+            showSearch
+            className="w-full"
+            placeholder="Search by location"
+            onChange={getJobsByLocation}
+            popupMatchSelectWidth={true}
+            getPopupContainer={(trigger) => trigger.parentNode}
+            optionLabelProp="value"
+          >
+            {locations.map((location) => (
+              <Select.Option key={location.location} value={location.location}>
+                <div className="flex justify-between items-center py-1">
+                  <span className="font-medium">{location.location}</span>
+                  <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full ml-4">
+                    {pluralise(location.location_count, "job")}
+                  </span>
+                </div>
+              </Select.Option>
+            ))}
+          </Select>
+        </div>
+
+        <div className="w-full">
+          <Search
+            defaultValue={search ?? ""}
+            allowClear
+            placeholder="Birmingham, £100, Maths etc."
+            onChange={searchJobs}
+            loading={searchLoading}
+            className="w-full"
+          />
+        </div>
+      </div>
     </div>
   );
 }
