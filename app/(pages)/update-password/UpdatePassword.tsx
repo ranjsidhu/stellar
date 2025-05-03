@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { Form, Input, Button, type FormProps } from "antd";
 import { createClient } from "../../utils/supabase/client";
 import { notify } from "@/app/components";
-import styles from "./UpdatePassword.module.css";
+import { LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 const { Item } = Form;
 
 export default function UpdatePassword() {
+  const [loading, setLoading] = useState(false);
+
   const handleUpdatePassword: FormProps<{
     newPassword: string;
     confirmNewPassword: string;
@@ -17,6 +20,7 @@ export default function UpdatePassword() {
       return;
     }
 
+    setLoading(true);
     const supabase = createClient();
 
     // Use promise chain instead of async/await
@@ -34,51 +38,110 @@ export default function UpdatePassword() {
       .catch((unexpectedError) => {
         notify("error", "Error", "An unexpected error occurred");
         console.error(unexpectedError);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   return (
-    <div className={styles.updatePasswordWrapper}>
-      <Form
-        name="basic"
-        layout="vertical"
-        className={styles.updatePasswordForm}
-        onFinish={handleUpdatePassword}
-        scrollToFirstError
-      >
-        <Item
-          label="New Password"
-          name="newPassword"
-          rules={[{ required: true, message: "Please enter a pasword" }]}
-        >
-          <Input.Password
-            type="password"
-            placeholder="New Password"
-            className={styles.updatePasswordFormTextInput}
-          />
-        </Item>
-        <Item
-          label="Confirm New Password"
-          name="confirmNewPassword"
-          rules={[{ required: true, message: "Please enter a pasword" }]}
-        >
-          <Input.Password
-            type="password"
-            placeholder="New Password"
-            className={styles.updatePasswordFormTextInput}
-          />
-        </Item>
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 py-12 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="w-full max-w-md">
+        {/* Card Container */}
+        <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 border border-gray-100">
+          {/* Header with Icon */}
+          <div className="mb-8 text-center">
+            <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100">
+              <ShieldCheckIcon
+                className="h-8 w-8 text-blue-600"
+                aria-hidden="true"
+              />
+            </div>
+            <h2 className="mt-6 text-2xl font-bold text-gray-900">
+              Update Your Password
+            </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Create a strong password to keep your account secure
+            </p>
+          </div>
 
-        <Item>
-          <Button
-            htmlType="submit"
-            type="primary"
-            className={styles.updatePasswordFormTextInput}
+          {/* Form */}
+          <Form
+            name="updatePassword"
+            layout="vertical"
+            onFinish={handleUpdatePassword}
+            scrollToFirstError
+            className="space-y-6"
           >
-            Update Password
-          </Button>
-        </Item>
-      </Form>
+            <Item
+              label="New Password"
+              name="newPassword"
+              rules={[
+                { required: true, message: "Please enter a password" },
+                { min: 8, message: "Password must be at least 8 characters" },
+              ]}
+            >
+              <Input.Password
+                prefix={
+                  <LockClosedIcon className="h-5 w-5 text-gray-400 mr-1" />
+                }
+                placeholder="Enter your new password"
+                className="rounded-md py-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full"
+              />
+            </Item>
+
+            <Item
+              label="Confirm New Password"
+              name="confirmNewPassword"
+              rules={[
+                { required: true, message: "Please confirm your password" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("newPassword") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("The two passwords do not match")
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password
+                prefix={
+                  <LockClosedIcon className="h-5 w-5 text-gray-400 mr-1" />
+                }
+                placeholder="Confirm your new password"
+                className="rounded-md py-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full"
+              />
+            </Item>
+
+            {/* Password Requirements */}
+            <div className="rounded-md bg-gray-50 p-4">
+              <div className="text-sm text-gray-700">
+                <h4 className="font-medium mb-2">Password requirements:</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>At least 8 characters</li>
+                  <li>Include uppercase and lowercase letters</li>
+                  <li>Include at least one number</li>
+                  <li>Include at least one special character</li>
+                </ul>
+              </div>
+            </div>
+
+            <Item>
+              <Button
+                htmlType="submit"
+                type="primary"
+                loading={loading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Update Password
+              </Button>
+            </Item>
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }
