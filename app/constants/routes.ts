@@ -26,6 +26,8 @@ const routes: Route[] = [
     subRoutes: [
       { name: "The process", route: "/candidates/the-process" },
       { name: "Testimonials", route: "/candidates/testimonials" },
+      { route: "/graduates", name: "Graduates" },
+      { route: "/referrals", name: "Referrals" },
     ],
   },
   {
@@ -33,22 +35,11 @@ const routes: Route[] = [
     name: "Schools",
     subRoutes: [{ name: "Safeguarding", route: "/schools/safeguarding" }],
   },
-  {
-    route: "/graduates",
-    name: "Graduates",
-  },
-  {
-    route: "/referrals",
-    name: "Referrals",
-  },
+
   {
     route: "/contact-us",
     name: "Contact",
   },
-  // {
-  //   route: "/blog",
-  //   name: "Blog",
-  // },
   {
     route: "/faqs",
     name: "FAQs",

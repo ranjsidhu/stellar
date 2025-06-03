@@ -5,9 +5,9 @@ import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import { Layout, Analytics, StoreProvider } from "./components";
-import { getRole } from "./utils/supabase/supabase-utils";
 import { ComponentChildren } from "./types";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
 
 const inter: NextFont = Inter({ subsets: ["latin"] });
 
@@ -34,8 +34,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: ComponentChildren) {
-  const initialRole = await getRole();
-
   return (
     <html lang="en">
       <Analytics />
@@ -49,7 +47,9 @@ export default async function RootLayout({ children }: ComponentChildren) {
             }}
           >
             <AntdRegistry>
-              <Layout role={initialRole}>{children}</Layout>
+              <SessionProvider>
+                <Layout>{children}</Layout>
+              </SessionProvider>
             </AntdRegistry>
           </ConfigProvider>
         </body>

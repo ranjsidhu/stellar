@@ -1,28 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "@/app/redux/hooks";
 import { MobileAccordion } from "@/app/components";
+// eslint-disable-next-line no-unused-vars
 import { routes, authRoutes } from "@/app/constants";
 import { MobileMenuProps } from "@/app/types";
-import { clearSession } from "@/app/redux/features/Auth";
 import { getUserRole } from "@/app/utils/storage";
 import { X } from "lucide-react";
+// import { signOutAction } from "./serveractions";
 
-export default function MobileMenu({
-  toggleMenu,
-  role,
-}: Readonly<MobileMenuProps>) {
+export default function MobileMenu({ toggleMenu }: Readonly<MobileMenuProps>) {
+  // eslint-disable-next-line no-unused-vars
   const [userRole, setUserRole] = useState("");
-  const dispatch = useAppDispatch();
-
-  const signOut = async () => {
-    fetch("/api/auth/signout", { method: "POST" }).then(() => {
-      dispatch(clearSession());
-      window.location.reload();
-      window.location.href = "/";
-    });
-  };
 
   useEffect(() => {
     const userRole = getUserRole();
@@ -54,7 +43,7 @@ export default function MobileMenu({
             />
           ))}
 
-          {(!role || role !== "authenticated") &&
+          {/* {(!role || role !== "authenticated") &&
             authRoutes.map((route) => (
               <MobileAccordion
                 key={route.name}
@@ -62,9 +51,9 @@ export default function MobileMenu({
                 route={route.route}
                 toggleMenu={toggleMenu}
               />
-            ))}
+            ))} */}
 
-          {role === "authenticated" && (
+          {/* {role === "authenticated" && (
             <>
               <MobileAccordion
                 name="Profile"
@@ -78,9 +67,9 @@ export default function MobileMenu({
                   toggleMenu={toggleMenu}
                 />
               )}
-              <MobileAccordion name="Sign out" handleOnClick={signOut} />
+              <MobileAccordion name="Sign out" handleOnClick={signOutAction} />
             </>
-          )}
+          )} */}
         </nav>
       </div>
 

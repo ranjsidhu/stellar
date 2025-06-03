@@ -31,12 +31,10 @@ import {
   Application,
   AdminJob,
   ComponentChildren,
-  AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
   ButtonProps,
   AccordionProps,
-  HeaderProps,
   LayoutProps,
   ApplicationCardProps,
   WithdrawModalProps,
@@ -59,6 +57,8 @@ import {
   ViewProfileProps,
   ReferralFieldType,
 } from "./pages";
+
+import { SignInProps } from "./auth";
 
 export type {
   BaseParams,
@@ -94,12 +94,10 @@ export type {
   Application,
   AdminJob,
   ComponentChildren,
-  AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
   ButtonProps,
   AccordionProps,
-  HeaderProps,
   LayoutProps,
   PageProps,
   JobApplyProps,
@@ -112,4 +110,6 @@ export type {
   ReferralFieldType,
   GraduatesType,
   SocialsProps,
+  // eslint-disable-next-line import/no-unused-modules
+  SignInProps,
 };

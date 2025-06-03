@@ -27,6 +27,7 @@ import Filters from "./(functional)/Filters";
 import LatestJobCard from "./(functional)/LatestJobCard";
 import JobCard from "./(functional)/JobCard";
 import MobileMenu from "./(functional)/MobileMenu";
+import MobileMenuWrapper from "./(functional)/MobileMenuWrapper";
 import MobileAccordion from "./(functional)/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem";
 import Search from "./(functional)/Search";
@@ -54,6 +55,7 @@ export {
   Hamburger,
   HeaderButtons,
   MobileMenu,
+  MobileMenuWrapper,
   SectionLoading,
   JobCard,
   Analytics,

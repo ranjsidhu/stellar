@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
+import { Session } from "next-auth";
 
 type Job = {
   id: number;
@@ -110,7 +111,6 @@ type LatestJobCardProps = {
 
 type MobileMenuProps = {
   toggleMenu: () => void;
-  role: string | null | undefined;
 };
 
 type AdminCardProps = {
@@ -196,10 +196,6 @@ type AdminJob = {
   jobStatuses: BasicTable[];
 };
 
-type AuthenticatedButtonsType = {
-  role: string;
-};
-
 type SectionLoadingProps = { loading: boolean } & ComponentChildren;
 
 type DeleteModalProps = {
@@ -223,11 +219,9 @@ type AccordionProps = {
   } & ComponentChildren)[];
 };
 
-type HeaderProps = { role: string | undefined | null };
-
-type LayoutProps = {
-  role: string | undefined | null;
-} & ComponentChildren;
+type LayoutProps = Readonly<{
+  children: React.ReactNode;
+}>;
 
 type WithdrawModalProps = {
   application: Application;
@@ -264,12 +258,10 @@ export type {
   Application,
   AdminJob,
   ComponentChildren,
-  AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
   ButtonProps,
   AccordionProps,
-  HeaderProps,
   LayoutProps,
   ApplicationCardProps,
   WithdrawModalProps,
