@@ -71,6 +71,22 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-of-service"
+                  className="text-white/70 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block"
+                >
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
 
             {/* Contact Email */}
