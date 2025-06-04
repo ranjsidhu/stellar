@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Profile from "./Profile";
+import AuthWrapper from "@/app/components/(functional)/AuthWrapper";
 
 export const metadata: Metadata = {
   title:
@@ -14,5 +15,9 @@ export const metadata: Metadata = {
 };
 
 export default function ProfilePage() {
-  return <Profile />;
+  return (
+    <AuthWrapper>
+      <Profile />
+    </AuthWrapper>
+  );
 }

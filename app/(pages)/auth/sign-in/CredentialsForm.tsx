@@ -43,6 +43,7 @@ export default function CredentialsForm() {
           Email
         </label>
         <input
+          autoComplete="email"
           type="email"
           id="email"
           name="email"
@@ -63,6 +64,7 @@ export default function CredentialsForm() {
         </label>
         <div className="relative">
           <input
+            autoComplete="current-password"
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"

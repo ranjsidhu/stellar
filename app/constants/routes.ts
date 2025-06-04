@@ -2,8 +2,8 @@ import type { Route } from "../types";
 
 const authRoutes: Route[] = [
   {
-    route: "/login",
-    name: "Login",
+    route: "/auth/sign-in",
+    name: "Sign In",
   },
   {
     route: "/register",

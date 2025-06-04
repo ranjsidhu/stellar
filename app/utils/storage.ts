@@ -9,7 +9,7 @@ const getItem = (key: string) => {
   }
 };
 
-const setItem = (key: string, value: string) => {
+const setItem = (key: string, value: any) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -42,7 +42,7 @@ const getUserRole = () => {
   try {
     const user = getItem("userDetails");
     if (!user) return null;
-    return user?.roles?.name || "Candidate";
+    return user?.roles?.name ? user?.roles?.name : "Candidate";
   } catch (error) {
     console.error(error);
     return "Candidate";

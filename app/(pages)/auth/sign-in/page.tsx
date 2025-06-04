@@ -9,19 +9,18 @@ export const metadata: Metadata = {
   title: "Sign In",
   description: "Sign in to your Stellar Recruitment account",
   alternates: {
-    canonical: "https://stellar-recruitment.co.uk/login/",
+    canonical: "https://stellar-recruitment.co.uk/auth/sign-in/",
     types: {
-      www: "https://www.stellar-recruitment.co.uk/login/",
+      www: "https://www.stellar-recruitment.co.uk/auth/sign-in/",
     },
   },
 };
 
 export default async function LoginPage() {
   const session = await getSession();
-  console.log("🚀 ~ LoginPage ~ session:", session);
 
   if (session) {
-    redirect("/");
+    redirect("/profile");
   }
 
   return (

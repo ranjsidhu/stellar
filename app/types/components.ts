@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
-import { Session } from "next-auth";
 
 type Job = {
   id: number;
@@ -47,23 +46,17 @@ type RegisterType = {
 };
 
 type User = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  dob: Date | string;
+  id: bigint;
+  first_name: string | null;
+  last_name: string | null;
+  dob: Date | null;
   email: string;
-  phone: null | string;
-  first_line_address: string;
-  town: string;
+  phone: string | null;
+  first_line_address: string | null;
+  town: string | null;
   city: string | null;
-  postcode: string;
-  role_id: number;
-  roles: { name: string };
-  last_logged_in: Date | string | null;
-  created_at: Date | string;
-  updated_at: Date | string;
-  is_deleted: boolean | null;
-  deleted_at: Date | string | null;
+  postcode: string | null;
+  roles: { id: bigint; name: string | null } | null;
 };
 
 type SearchProps = {

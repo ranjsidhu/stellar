@@ -2,12 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { DARK } from "@/app/assets";
 import { Navbar, MobileMenuWrapper } from "@/app/components";
-import SignOut from "../(functional)/SignOut";
-import { getSession } from "@/app/utils/session";
 
 export default async function Header() {
-  const session = await getSession();
-
   return (
     <div className="w-screen flex flex-col justify-center items-center bg-[#00150f]">
       <header className="w-[95vw] max-w-7xl h-[180px] lg:h-[220px] mx-auto flex justify-between items-center">
@@ -32,12 +28,6 @@ export default async function Header() {
         <div className="flex items-center lg:hidden">
           <MobileMenuWrapper />
         </div>
-
-        {session?.user && (
-          <div className="flex items-center">
-            <SignOut />
-          </div>
-        )}
       </header>
     </div>
   );
