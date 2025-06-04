@@ -1,10 +1,10 @@
-import { Footer, Header, Redirect, Notification } from "..";
+import { Footer, Header, Notification } from "..";
 import type { LayoutProps } from "@/app/types";
 
 export default async function Layout({ children }: Readonly<LayoutProps>) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Redirect />
+      {/* <Redirect /> */}
       <Notification />
       <Header />
       <main className="flex-1 flex items-center justify-center">

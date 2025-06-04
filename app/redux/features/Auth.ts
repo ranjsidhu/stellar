@@ -24,6 +24,7 @@ const AuthSlice = createSlice({
   },
 });
 
+// eslint-disable-next-line import/no-unused-modules
 export const { clearSession, setSession } = AuthSlice.actions;
 
 export default AuthSlice.reducer;
