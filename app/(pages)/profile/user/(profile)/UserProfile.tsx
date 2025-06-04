@@ -19,7 +19,7 @@ export default function UserProfile() {
   useEffect(() => {
     const findAndSetUserDetails = async () => {
       if (!session?.user?.email) return;
-      const userDetails = await getUserDetails(session?.user?.email as string);
+      const userDetails = await getUserDetails(session?.user?.email);
       setDetails(userDetails);
       setIsLoading(false);
     };

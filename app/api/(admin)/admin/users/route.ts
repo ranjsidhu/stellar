@@ -1,23 +1,32 @@
 import { NextResponse } from "next/server";
-import { client } from "../../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client
-      .from("users")
-      .select(
-        "id, first_name, last_name, role_id, last_logged_in, roles (name)"
-      )
-      .eq("is_deleted", false);
-    if (error) throw new Error(error.message);
+    const users = await prisma.users.findMany({
+      select: {
+        id: true,
+        first_name: true,
+        last_name: true,
+        last_logged_in: true,
+        roles: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
-    const users = data.map((user: any) => ({
-      ...user,
-      role: user.roles.name,
+    const formattedUsers = users.map((user) => ({
+      id: user.id.toString(),
+      first_name: user.first_name,
+      last_name: user.last_name,
+      last_logged_in: user.last_logged_in,
+      role: user?.roles?.name ?? "Candidate",
     }));
 
     return NextResponse.json({
-      response: users,
+      response: formattedUsers,
       message: "Successfully fetched users",
     });
   } catch (error: any) {

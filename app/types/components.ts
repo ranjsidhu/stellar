@@ -47,7 +47,7 @@ type RegisterType = {
 };
 
 type User = {
-  id: bigint;
+  id: number;
   first_name: string | null;
   last_name: string | null;
   dob: Date | null;
@@ -57,7 +57,7 @@ type User = {
   town: string | null;
   city: string | null;
   postcode: string | null;
-  roles: { id: bigint; name: string | null } | null;
+  roles: { id: number; name: string | null } | null;
 };
 
 type SearchProps = {
@@ -234,6 +234,11 @@ type SocialsProps = {
   pathname?: string;
 };
 
+type AuthWrapperProps = Readonly<{
+  children: React.ReactNode;
+  role?: string;
+}>;
+
 export type {
   Job,
   Testimonial,
@@ -267,4 +272,5 @@ export type {
   WithdrawModalProps,
   SocialsProps,
   NavbarProps,
+  AuthWrapperProps,
 };

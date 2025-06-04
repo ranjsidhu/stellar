@@ -40,6 +40,7 @@ import {
   WithdrawModalProps,
   SocialsProps,
   NavbarProps,
+  AuthWrapperProps,
 } from "./components";
 
 import {
@@ -114,4 +115,5 @@ export type {
   // eslint-disable-next-line import/no-unused-modules
   SignInProps,
   NavbarProps,
+  AuthWrapperProps,
 };
