@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,19 +10,14 @@ export async function GET(
     if (!location) {
       throw new Error("The location is undefined");
     }
-    const { data, error } = await client
-      .from("jobs")
-      .select()
-      .eq("location", location)
-      .eq("is_deleted", false)
-      .order("created_at", { ascending: false });
-    if (error) {
-      throw new Error(error.message);
-    }
+    const jobs = await prisma.jobs.findMany({
+      where: { location, is_deleted: false },
+      orderBy: { created_at: "desc" },
+    });
 
     return NextResponse.json({
       message: `Successfully fetched jobs in ${location}`,
-      response: data,
+      response: jobs,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

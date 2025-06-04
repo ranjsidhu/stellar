@@ -10,7 +10,7 @@ datasource db {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model application_status {
-  id                Int              @id @default(autoincrement())
+  id                Int                 @id @default(autoincrement())
   name              String?
   created_at        DateTime?           @default(now()) @db.Timestamptz(6)
   updated_at        DateTime?           @default(now()) @db.Timestamptz(6)
@@ -20,7 +20,7 @@ model application_status {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model config_tables {
-  id          Int    @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   table_name  String?
   ui_name     String?
   description String?
@@ -32,7 +32,7 @@ model config_tables {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model debug_logs {
-  id        Int    @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   log_time  DateTime? @default(now()) @db.Timestamp(6)
   bucket_id String?
   file_name String?
@@ -41,7 +41,7 @@ model debug_logs {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model file_types {
-  id             Int           @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   name           String?
   created_at     DateTime?        @default(now()) @db.Timestamptz(6)
   updated_at     DateTime?        @default(now()) @db.Timestamptz(6)
@@ -51,7 +51,7 @@ model file_types {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model graduates {
-  id                        Int             @id @default(autoincrement())
+  id                        Int                @id @default(autoincrement())
   full_name                 String?
   contact_number            String?
   email                     String?
@@ -68,7 +68,7 @@ model graduates {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model job_status {
-  id         Int    @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String?
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   updated_at DateTime? @default(now()) @db.Timestamptz(6)
@@ -78,23 +78,23 @@ model job_status {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model jobs {
-  id                Int              @id @unique @default(autoincrement())
+  id                Int                 @id @unique @default(autoincrement())
   role_name         String?
   location          String?
   salary_range      String?
-  reference_number  String?
+  reference_number  String?             @unique
   description       String?
   created_at        DateTime            @default(now()) @db.Timestamptz(6)
   updated_at        DateTime?           @default(now()) @db.Timestamptz(6)
   is_deleted        Boolean?            @default(false)
-  status_id         Int?             @default(1)
+  status_id         Int?                @default(1)
   job_status        job_status?         @relation(fields: [status_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jobs_jobs_status_id_fkey")
   user_applications user_applications[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model referrals {
-  id                          Int    @id @default(autoincrement())
+  id                          Int       @id @default(autoincrement())
   referrerName                String?
   referrerContactNumber       String?
   referredFriendName          String?
@@ -109,7 +109,7 @@ model referrals {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model roles {
-  id         Int    @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String?
   label      String?
   created_at DateTime? @default(now()) @db.Timestamptz(6)
@@ -119,7 +119,7 @@ model roles {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model schools {
-  id                        Int    @id @default(autoincrement())
+  id                        Int       @id @default(autoincrement())
   name                      String?
   school_first_line_address String?
   school_town               String?
@@ -135,7 +135,7 @@ model schools {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model testimonials {
-  id          Int    @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   author      String?
   testimonial String?
   created_at  DateTime? @default(now()) @db.Timestamptz(6)
@@ -145,7 +145,7 @@ model testimonials {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model university_levels {
-  id         Int      @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   name       String?
   created_at DateTime?   @default(now()) @db.Timestamptz(6)
   updated_at DateTime?   @default(now()) @db.Timestamptz(6)
@@ -155,10 +155,10 @@ model university_levels {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_applications {
-  id                    Int              @id @default(autoincrement())
+  id                    Int                 @id @default(autoincrement())
   user_id               Int?
   job_id                Int?
-  application_status_id Int?             @default(1)
+  application_status_id Int?                @default(1)
   created_at            DateTime?           @default(now()) @db.Timestamptz(6)
   updated_at            DateTime?           @default(now()) @db.Timestamptz(6)
   is_deleted            Boolean?            @default(false)
@@ -171,7 +171,7 @@ model user_applications {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_documents {
-  id                Int              @id @default(autoincrement())
+  id                Int                 @id @default(autoincrement())
   user_id           Int?
   file_type_id      Int?
   file_id           String?
@@ -186,7 +186,7 @@ model user_documents {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model users {
-  id                 Int              @id @default(autoincrement())
+  id                 Int                 @id @default(autoincrement())
   password           String?
   first_name         String?
   last_name          String?
@@ -197,7 +197,7 @@ model users {
   town               String?
   city               String?
   postcode           String?
-  role_id            Int?             @default(3)
+  role_id            Int?                @default(3)
   last_logged_in     DateTime?           @db.Timestamptz(6)
   created_at         DateTime?           @default(now()) @db.Timestamptz(6)
   updated_at         DateTime?           @default(now()) @db.Timestamptz(6)
