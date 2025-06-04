@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,17 +10,12 @@ export async function GET(
     if (!limit) {
       throw new Error("The limit is undefined");
     }
-    const { data, error } = await client
-      .from("testimonials")
-      .select()
-      .limit(limit);
-    if (error) {
-      throw new Error(error.message);
-    }
-
+    const testimonials = await prisma.testimonials.findMany({
+      take: Number(limit),
+    });
     return NextResponse.json({
       message: `Successfully fetched ${limit} testimonials`,
-      response: data,
+      response: testimonials,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
