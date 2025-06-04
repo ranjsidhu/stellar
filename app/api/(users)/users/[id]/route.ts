@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { update } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function PUT(
   req: NextRequest,
@@ -11,18 +11,13 @@ export async function PUT(
     if (!id) {
       throw new Error("The id is undefined");
     }
-    const { data, error } = await update({
-      body,
-      table: "users",
-      id,
+    const user = await prisma.users.update({
+      where: { id: Number(id) },
+      data: body,
     });
-    if (error) {
-      throw new Error(error.message);
-    }
-
     return NextResponse.json({
       message: "Successfully updated user",
-      response: { ...data },
+      response: user,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

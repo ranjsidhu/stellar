@@ -1,19 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { create } from "@/app/api/utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({
-      body,
-      table: "users",
+    const user = await prisma.users.create({
+      data: body,
     });
-
-    if (error) throw new Error(error.message);
 
     return NextResponse.json({
       message: "Successfully created user",
-      response: data,
+      response: user,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
