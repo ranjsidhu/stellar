@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,29 +10,21 @@ export async function GET(
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }
-    const { data, error } = await client
-      .from("user_applications")
-      .select("id")
-      .eq("user_id", user_id)
-      .eq("job_id", job_id);
+    const userApplication = await prisma.user_applications.findFirst({
+      where: { user_id: Number(user_id), job_id: Number(job_id) },
+    });
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    if (!data.length) {
+    if (!userApplication) {
       return NextResponse.json({
         message: "User has not applied for this job",
         applied: false,
       });
     }
 
-    if (data.length && data[0].id) {
-      return NextResponse.json({
-        message: "User has already applied for this job",
-        applied: true,
-      });
-    }
+    return NextResponse.json({
+      message: "User has already applied for this job",
+      applied: true,
+    });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }

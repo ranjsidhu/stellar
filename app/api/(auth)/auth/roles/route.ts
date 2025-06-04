@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
-import { client } from "../../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client.from("roles").select("*");
-    if (error) throw new Error(error.message);
+    const roles = await prisma.roles.findMany();
 
     return NextResponse.json({
-      response: data,
+      response: roles,
       message: "Successfully fetched roles",
     });
   } catch (error: any) {
