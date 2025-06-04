@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unused-modules */
+
 import { faqs } from "./faqs";
 import { aboutUsText, aboutUsValues } from "./aboutus";
 import { processSteps } from "./candidates";

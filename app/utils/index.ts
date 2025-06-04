@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unused-modules */
+
 import { NotificationInstance } from "antd/es/notification/interface";
 import { NotificationType } from "../types";
 
