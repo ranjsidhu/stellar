@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,17 +10,19 @@ export async function GET(
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }
-    const { data, error } = await client
-      .from("user_documents")
-      .select("id, filename, file_id, file_types(name)")
-      .eq("user_id", user_id);
-    if (error) {
-      throw new Error(error.message);
-    }
-
+    const userDocuments = await prisma.user_documents.findMany({
+      where: { user_id: Number(user_id) },
+      include: { file_types: true },
+    });
+    const formattedData = userDocuments.map((doc) => {
+      return {
+        ...doc,
+        file_types: doc.file_types?.name ?? null,
+      };
+    });
     return NextResponse.json({
       message: "Successfully fetched user documents",
-      response: data,
+      response: formattedData,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
