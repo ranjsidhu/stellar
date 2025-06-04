@@ -1,5 +1,7 @@
 "use client";
 
+// TODO - update mobile menu to add profile, sign in and out
+
 import { useEffect, useState } from "react";
 import { MobileAccordion } from "@/app/components";
 // eslint-disable-next-line no-unused-vars
