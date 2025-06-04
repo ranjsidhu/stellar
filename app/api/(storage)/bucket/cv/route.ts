@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
 
     if (!userDocumentsResponse.ok) {
       const errorData = await userDocumentsResponse.json();
-      throw new Error(errorData.message || "Failed to update user documents");
+      throw new Error(errorData.message ?? "Failed to update user documents");
     }
 
     const userDocumentsData = await userDocumentsResponse.json();
