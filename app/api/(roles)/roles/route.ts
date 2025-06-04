@@ -1,20 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { update, create } from "../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function POST(req: NextRequest) {
   try {
     const { name, label } = await req.json();
-    const { data, error } = await create({
-      body: { name, label },
-      table: "roles",
+    const role = await prisma.roles.create({
+      data: { name, label },
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully created role",
-      response: { ...data },
+      response: role,
     });
   } catch (error: any) {
-    return NextResponse.json({ error });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
@@ -25,18 +23,16 @@ export async function PUT(req: NextRequest) {
       throw new Error("User ID and Role ID are required");
     }
 
-    const { data, error } = await update({
-      body: { role_id },
-      table: "users",
-      id: user_id,
+    const user = await prisma.users.update({
+      where: { id: user_id },
+      data: { role_id },
     });
 
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully updated user role",
-      response: { ...data },
+      response: user,
     });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
