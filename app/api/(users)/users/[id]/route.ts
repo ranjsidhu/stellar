@@ -13,7 +13,7 @@ export async function PUT(
     }
     const user = await prisma.users.update({
       where: { id: Number(id) },
-      data: body,
+      data: { ...body, updated_at: new Date().toISOString() },
     });
     return NextResponse.json({
       message: "Successfully updated user",

@@ -11,12 +11,17 @@ const client = new SESv2Client({
   },
 });
 
-const sendEmail = async (replyTo: string, subject: string, html: string) => {
+const sendEmail = async (
+  replyTo: string,
+  subject: string,
+  html: string,
+  toAddresses?: string[]
+) => {
   try {
     const command = new SendEmailCommand({
       FromEmailAddress: SENDER_EMAIL!,
       Destination: {
-        ToAddresses: [config.adminEmail],
+        ToAddresses: toAddresses || [config.adminEmail],
       },
       ReplyToAddresses: [replyTo],
       FeedbackForwardingEmailAddress: config.adminEmail,

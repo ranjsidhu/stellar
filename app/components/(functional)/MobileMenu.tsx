@@ -9,7 +9,6 @@ export default function MobileMenu({
   session,
   userDetails,
 }: Readonly<MobileMenuProps>) {
-  console.log("🚀 ~ session:", session);
   return (
     <div className="fixed inset-0 z-50 bg-[#00150f] flex flex-col overflow-hidden animate-[fadeIn_150ms_ease-in]">
       <div className="flex justify-between items-center p-4 border-b border-amber-300/30">

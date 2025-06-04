@@ -31,8 +31,6 @@ import MobileMenuWrapper from "./(functional)/MobileMenuWrapper";
 import MobileAccordion from "./(functional)/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem";
 import Search from "./(functional)/Search";
-import Login from "./(functional)/Login";
-import Register from "./(functional)/Register";
 import FileUpload from "./(functional)/FileUpload";
 import AdminCard from "./(functional)/AdminCard";
 import Table from "./(functional)/Table";
@@ -49,8 +47,6 @@ export {
   Search,
   Layout,
   LatestJobs,
-  Login,
-  Register,
   Footer,
   Hamburger,
   HeaderButtons,

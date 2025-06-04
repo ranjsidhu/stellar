@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { Eye, EyeOff, Info } from "lucide-react";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { handleCredentialsSignIn } from "./serveractions";
 
 export default function CredentialsForm() {
@@ -29,8 +31,24 @@ export default function CredentialsForm() {
     }
   };
 
+  const validatePassword = (password: string) => {
+    const hasMinLength = password.length >= 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return (
+      hasMinLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasNumber &&
+      hasSpecialChar
+    );
+  };
+
   const isFormValid = () => {
-    return formData.email && formData.password;
+    return formData.email && validatePassword(formData.password);
   };
 
   return (
@@ -60,7 +78,35 @@ export default function CredentialsForm() {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700 mb-1"
         >
-          Password
+          <span className="flex items-center gap-1">
+            Password
+            <Tooltip.Provider>
+              <Tooltip.Root>
+                <Tooltip.Trigger asChild>
+                  <button type="button" className="inline-flex items-center">
+                    <Info className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                  </button>
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content
+                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-200 max-w-xs"
+                    sideOffset={5}
+                  >
+                    <div className="text-sm text-gray-700 space-y-2">
+                      <p className="font-medium">Password must contain:</p>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>At least 8 characters</li>
+                        <li>Uppercase and lowercase letters</li>
+                        <li>At least one number</li>
+                        <li>At least one special character</li>
+                      </ul>
+                    </div>
+                    <Tooltip.Arrow className="fill-white" />
+                  </Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
+            </Tooltip.Provider>
+          </span>
         </label>
         <div className="relative">
           <input
@@ -95,6 +141,12 @@ export default function CredentialsForm() {
       >
         {isLoading ? "Signing in..." : "Sign in"}
       </button>
+
+      <div className="flex justify-center">
+        <Link href="/auth/forgot-password" className="text-sm text-gray-500">
+          Forgot password?
+        </Link>
+      </div>
     </form>
   );
 }

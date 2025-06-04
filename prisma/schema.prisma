@@ -207,3 +207,12 @@ model users {
   user_documents     user_documents[]
   roles              roles?              @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model password_reset_token {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
