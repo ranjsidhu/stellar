@@ -39,6 +39,7 @@ import {
   ApplicationCardProps,
   WithdrawModalProps,
   SocialsProps,
+  NavbarProps,
 } from "./components";
 
 import {
@@ -112,4 +113,5 @@ export type {
   SocialsProps,
   // eslint-disable-next-line import/no-unused-modules
   SignInProps,
+  NavbarProps,
 };

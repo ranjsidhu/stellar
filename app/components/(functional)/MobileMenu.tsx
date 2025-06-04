@@ -1,25 +1,15 @@
-"use client";
-
-// TODO - update mobile menu to add profile, sign in and out
-
-import { useEffect, useState } from "react";
-import { MobileAccordion } from "@/app/components";
-// eslint-disable-next-line no-unused-vars
-import { routes, authRoutes } from "@/app/constants";
-import { MobileMenuProps } from "@/app/types";
-import { getUserRole } from "@/app/utils/storage";
 import { X } from "lucide-react";
-// import { signOutAction } from "./serveractions";
+import { MobileAccordion } from "@/app/components";
+import { routes } from "@/app/constants";
+import { MobileMenuProps } from "@/app/types";
+import { signOutAction } from "./serveractions";
 
-export default function MobileMenu({ toggleMenu }: Readonly<MobileMenuProps>) {
-  // eslint-disable-next-line no-unused-vars
-  const [userRole, setUserRole] = useState("");
-
-  useEffect(() => {
-    const userRole = getUserRole();
-    setUserRole(userRole);
-  }, []);
-
+export default function MobileMenu({
+  toggleMenu,
+  session,
+  userDetails,
+}: Readonly<MobileMenuProps>) {
+  console.log("🚀 ~ session:", session);
   return (
     <div className="fixed inset-0 z-50 bg-[#00150f] flex flex-col overflow-hidden animate-[fadeIn_150ms_ease-in]">
       <div className="flex justify-between items-center p-4 border-b border-amber-300/30">
@@ -45,33 +35,33 @@ export default function MobileMenu({ toggleMenu }: Readonly<MobileMenuProps>) {
             />
           ))}
 
-          {/* {(!role || role !== "authenticated") &&
-            authRoutes.map((route) => (
-              <MobileAccordion
-                key={route.name}
-                name={route.name}
-                route={route.route}
-                toggleMenu={toggleMenu}
-              />
-            ))} */}
+          {!session?.user && (
+            <MobileAccordion
+              name="Sign in"
+              route="/auth/sign-in"
+              toggleMenu={toggleMenu}
+            />
+          )}
 
-          {/* {role === "authenticated" && (
-            <>
-              <MobileAccordion
-                name="Profile"
-                route="/profile"
-                toggleMenu={toggleMenu}
-              />
-              {userRole === "Admin" && (
-                <MobileAccordion
-                  name="Admin"
-                  route="/admin"
-                  toggleMenu={toggleMenu}
-                />
-              )}
-              <MobileAccordion name="Sign out" handleOnClick={signOutAction} />
-            </>
-          )} */}
+          {userDetails?.roles && userDetails?.roles.name === "Admin" && (
+            <MobileAccordion
+              name="Admin"
+              route="/admin"
+              toggleMenu={toggleMenu}
+            />
+          )}
+
+          {session?.user && (
+            <MobileAccordion
+              name="Profile"
+              route="/profile"
+              toggleMenu={toggleMenu}
+            />
+          )}
+
+          {session?.user && (
+            <MobileAccordion name="Sign out" handleOnClick={signOutAction} />
+          )}
         </nav>
       </div>
 

@@ -1,12 +1,13 @@
+import Link from "next/link";
+import { UserOutlined, FileOutlined } from "@ant-design/icons";
 import { routes } from "@/app/constants";
 import { MenuItem } from "@/app/components";
 import { getSession } from "@/app/utils/session";
-import Link from "next/link";
-import { UserOutlined } from "@ant-design/icons";
+import type { NavbarProps } from "@/app/types";
 import SignOut from "../(functional)/SignOut";
 import SignIn from "../(functional)/SignIn";
 
-export default async function Navbar() {
+export default async function Navbar({ userDetails }: NavbarProps) {
   const session = await getSession();
 
   return (
@@ -27,6 +28,13 @@ export default async function Navbar() {
                 <UserOutlined style={{ color: "#DAA520", fontSize: 24 }} />
               </Link>
             </li>
+            {userDetails?.roles && userDetails?.roles.name === "Admin" && (
+              <li>
+                <Link href="/admin">
+                  <FileOutlined style={{ color: "#DAA520", fontSize: 24 }} />
+                </Link>
+              </li>
+            )}
             <li>
               <SignOut />
             </li>

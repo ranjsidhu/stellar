@@ -2,7 +2,8 @@
 
 import { PrismaClient } from "@/generated/prisma";
 
-const getUserDetails = async (email: string) => {
+const getUserDetails = async (email: string | null | undefined) => {
+  if (!email) return null;
   const prisma = new PrismaClient();
   const userDetails = await prisma.users.findUnique({
     where: { email },

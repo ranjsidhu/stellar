@@ -1,7 +1,7 @@
 import { faqs } from "./faqs";
 import { aboutUsText, aboutUsValues } from "./aboutus";
 import { processSteps } from "./candidates";
-import { authRoutes, routes } from "./routes";
+import { routes } from "./routes";
 import { PROFILE_TABS, getFileIcon, getStatusColor } from "./profile";
 
 const socials = [
@@ -21,7 +21,6 @@ export {
   socials,
   aboutUsText,
   aboutUsValues,
-  authRoutes,
   PROFILE_TABS,
   getFileIcon,
   getStatusColor,

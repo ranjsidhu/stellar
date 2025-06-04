@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { DARK } from "@/app/assets";
 import { Navbar, MobileMenuWrapper } from "@/app/components";
+import { getSession } from "@/app/utils/session";
+import { getUserDetails } from "@/app/(pages)/profile/user/(profile)/serveractions";
 
 export default async function Header() {
+  const session = await getSession();
+  const userDetails = await getUserDetails(session?.user?.email);
+
   return (
     <div className="w-screen flex flex-col justify-center items-center bg-[#00150f]">
       <header className="w-[95vw] max-w-7xl h-[180px] lg:h-[220px] mx-auto flex justify-between items-center">
@@ -22,11 +27,11 @@ export default async function Header() {
         </div>
 
         <div className="h-full mt-auto mb-auto hidden lg:flex flex-col justify-center items-center">
-          <Navbar />
+          <Navbar userDetails={userDetails} />
         </div>
 
         <div className="flex items-center lg:hidden">
-          <MobileMenuWrapper />
+          <MobileMenuWrapper session={session} userDetails={userDetails} />
         </div>
       </header>
     </div>

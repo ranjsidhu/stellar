@@ -1,16 +1,5 @@
 import type { Route } from "../types";
 
-const authRoutes: Route[] = [
-  {
-    route: "/auth/sign-in",
-    name: "Sign In",
-  },
-  {
-    route: "/register",
-    name: "Register",
-  },
-];
-
 const routes: Route[] = [
   {
     route: "/about-us",
@@ -46,4 +35,4 @@ const routes: Route[] = [
   },
 ];
 
-export { authRoutes, routes };
+export { routes };

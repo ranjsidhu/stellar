@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
+import type { Session } from "next-auth";
 
 type Job = {
   id: number;
@@ -104,7 +105,13 @@ type LatestJobCardProps = {
 
 type MobileMenuProps = {
   toggleMenu: () => void;
+  session: Session | null;
+  userDetails: User | null;
 };
+
+type NavbarProps = Readonly<{
+  userDetails: User | null;
+}>;
 
 type AdminCardProps = {
   title: string;
@@ -259,4 +266,5 @@ export type {
   ApplicationCardProps,
   WithdrawModalProps,
   SocialsProps,
+  NavbarProps,
 };
