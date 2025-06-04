@@ -1,12 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { client, create } from "../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client.from("referrals").select("*");
-    if (error) throw new Error(error.message);
+    const referrals = await prisma.referrals.findMany();
     return NextResponse.json({
-      data,
+      message: "Successfully fetched referrals",
+      response: referrals,
     });
   } catch (error: any) {
     return NextResponse.json({ message: error.message });
@@ -16,11 +16,12 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({ body, table: "referrals" });
-    if (error) throw new Error(error.message);
+    const referral = await prisma.referrals.create({
+      data: body,
+    });
     return NextResponse.json({
       message: "Successfully created referral",
-      response: { ...data },
+      response: referral,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
