@@ -110,8 +110,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const dbUser = await prisma.users.upsert({
           where: { email: user.email },
           update: {
-            first_name: user.name?.split(" ")[0] ?? undefined,
-            last_name: user.name?.split(" ")[1] ?? undefined,
+            last_logged_in: new Date().toISOString(),
           },
           create: {
             email: user.email,
