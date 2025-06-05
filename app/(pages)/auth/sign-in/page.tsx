@@ -29,7 +29,11 @@ export default async function LoginPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Welcome</h1>
           <p className="text-gray-600">
-            Sign in to access your Stellar Recruitment account
+            Sign in to access your Stellar Recruitment account.
+          </p>
+          <p className="text-gray-600 mt-5">
+            If you don&apos;t have an account, enter an email address to create
+            an account.
           </p>
         </div>
 

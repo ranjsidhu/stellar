@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Eye, EyeOff, Info } from "lucide-react";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { handleCredentialsSignIn } from "./serveractions";
+import { notify } from "@/app/components";
 
 export default function CredentialsForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,6 +27,9 @@ export default function CredentialsForm() {
     setIsLoading(true);
     try {
       await handleCredentialsSignIn(formData);
+    } catch (error: any) {
+      console.error(error);
+      notify("error", "Login Failed", "Please check your email and password");
     } finally {
       setIsLoading(false);
     }

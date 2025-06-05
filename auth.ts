@@ -47,13 +47,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           },
         });
 
-        // If user exists but has no password (Google sign-in), prevent credentials login
-        if (user && !user.password) {
-          throw new Error(
-            "This account was created with Google. Please sign in with Google."
-          );
-        }
-
         // If user doesn't exist, create a new one with hashed password
         if (!user) {
           const hashedPassword = await hashPassword(typedCredentials.password);
