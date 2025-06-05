@@ -95,9 +95,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (!user.email) return false;
+      if (!user.email) {
+        console.error("Sign in failed: No email provided");
+        return false;
+      }
 
       try {
+        console.log("Attempting to sign in user:", {
+          email: user.email,
+          accountType: account?.type,
+        });
+
         // Upsert user based on email
         const dbUser = await prisma.users.upsert({
           where: { email: user.email },
@@ -116,8 +124,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           },
         });
 
+        console.log("Database operation successful:", { userId: dbUser.id });
+
         // If user exists with Google auth but trying credentials, prevent login
         if (account?.type === "credentials" && !dbUser.password) {
+          console.error(
+            "Sign in failed: User exists with Google auth but attempting credentials login"
+          );
           return false;
         }
 
