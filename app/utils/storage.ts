@@ -1,3 +1,7 @@
+/* eslint-disable import/no-unused-modules */
+
+import { config } from "@/app/utils/config";
+
 const getItem = (key: string) => {
   try {
     const item = localStorage.getItem(key);
@@ -42,7 +46,7 @@ const getUserRole = () => {
   try {
     const user = getItem("userDetails");
     if (!user) return null;
-    return user?.roles?.name ? user?.roles?.name : "Candidate";
+    return user?.roles?.name ?? config.candidateRoleName;
   } catch (error) {
     console.error(error);
     return "Candidate";
