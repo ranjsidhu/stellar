@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
 
+export async function GET() {
+  try {
+    const roles = await prisma.roles.findMany();
+
+    return NextResponse.json({
+      response: roles,
+      message: "Successfully fetched roles",
+    });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message });
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { name, label } = await req.json();

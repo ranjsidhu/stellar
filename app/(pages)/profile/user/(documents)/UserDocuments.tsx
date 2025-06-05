@@ -16,7 +16,7 @@ export default function UserDocuments() {
     const fetchUserDocuments = async () => {
       try {
         setLoading(true);
-        const userId = getUserId();
+        const userId = await getUserId();
         const response = await fetch(`/api/user_documents/${userId}`);
         const data = await response.json();
         setUserDocuments(data.response);

@@ -22,7 +22,7 @@ export default function FileUpload({
 
   const props: UploadProps = {
     fileList,
-    onChange(info) {
+    async onChange(info) {
       setFileList(info.fileList);
 
       if (info.file.status === "done") {
@@ -35,7 +35,13 @@ export default function FileUpload({
         formdata.append("filename", filename);
         formdata.append("file", rawFile);
         formdata.append("type", filename.split(".").pop()!);
-        formdata.append("user_id", getUserId());
+        const user_id = await getUserId();
+        if (!user_id) {
+          notify("error", "File Upload Failed", "Failed to upload file");
+          setFileList([]);
+          return;
+        }
+        formdata.append("user_id", user_id);
 
         fetch(`/api/bucket/${route}`, {
           method: "POST",

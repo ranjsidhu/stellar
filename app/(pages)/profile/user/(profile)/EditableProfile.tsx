@@ -10,7 +10,6 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { notify } from "@/app/components";
-import { getItem, setItem } from "@/app/utils/storage";
 import type { EditableProfileProps, User } from "@/app/types";
 
 export default function EditableProfile({
@@ -27,10 +26,8 @@ export default function EditableProfile({
       }).then((res) => {
         if (res.ok) {
           notify("success", "Success", "Profile updated successfully");
-          const oldDetails = getItem("userDetails");
-          const updatedDetails = { ...oldDetails, ...values };
-          setItem("userDetails", updatedDetails);
-          setDetails(updatedDetails);
+
+          setDetails({ ...values });
         } else {
           throw new Error("Failed to update profile");
         }
