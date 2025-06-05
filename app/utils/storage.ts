@@ -1,63 +1,40 @@
-const getItem = (key: string) => {
+"use server";
+
+/* eslint-disable import/no-unused-modules */
+
+import { config } from "@/app/utils/config";
+import { getSession } from "./session";
+
+const getUserId = async () => {
   try {
-    const item = localStorage.getItem(key);
-    if (!item) return null;
-    return JSON.parse(item);
+    const session = await getSession();
+    return session?.user?.id;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
 
-const setItem = (key: string, value: string) => {
+const getUserRole = async () => {
   try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const removeItem = (key: string) => {
-  try {
-    localStorage.removeItem(key);
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const getUserId = () => {
-  try {
-    const user = getItem("userDetails");
-    if (!user) return null;
-    return user.id;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const getUserRole = () => {
-  try {
-    const user = getItem("userDetails");
-    if (!user) return null;
-    return user?.roles?.name || "Candidate";
+    const session = await getSession();
+    if (!session) return null;
+    return session?.user?.role ?? config.candidateRoleName;
   } catch (error) {
     console.error(error);
     return "Candidate";
   }
 };
 
-const getUserEmail = () => {
+const getUserEmail = async () => {
   try {
-    const user = getItem("userDetails");
-    if (!user) return null;
-    return user.email;
+    const session = await getSession();
+    if (!session) return null;
+    return session?.user?.email;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
 
-export { getItem, setItem, removeItem, getUserId, getUserRole, getUserEmail };
+export { getUserId, getUserRole, getUserEmail };

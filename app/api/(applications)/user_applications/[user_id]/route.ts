@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,21 +10,16 @@ export async function GET(
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }
-    const { data, error } = await client
-      .from("user_applications")
-      .select(
-        "id, created_at, updated_at, jobs(id, role_name, reference_number), application_status(name)"
-      )
-      .eq("user_id", user_id)
-      .eq("is_deleted", false)
-      .order("created_at", { ascending: false });
-    if (error) {
-      throw new Error(error.message);
-    }
-
+    const userApplications = await prisma.user_applications.findMany({
+      where: { user_id: Number(user_id) },
+      include: {
+        jobs: true,
+        application_status: true,
+      },
+    });
     return NextResponse.json({
       message: "Successfully fetched user applications",
-      response: data,
+      response: userApplications,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

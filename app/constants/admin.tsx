@@ -1,4 +1,4 @@
-import { Select } from "antd";
+import { Select, TableColumnsType } from "antd";
 import { AdminCardProps } from "../types";
 import { notify } from "../components";
 
@@ -25,7 +25,10 @@ const updateRole = async (role_id: number, user_id: number) => {
   try {
     await fetch(`/api/roles`, {
       method: "PUT",
-      body: JSON.stringify({ role_id, user_id }),
+      body: JSON.stringify({
+        role_id: Number(role_id),
+        user_id: Number(user_id),
+      }),
     });
   } catch (error: any) {
     console.error("Failed to update user role:", error);
@@ -67,18 +70,18 @@ const ADMIN_CARDS: AdminCardProps[] = [
     description: "View and manage user accounts",
     route: "/admin/users",
   },
+  {
+    title: "Recruiter Dashboard",
+    description: "View and manage recruiter dashboard",
+    route: "/recruiter",
+  },
 ];
 
-const ADMIN_USERS_COLUMNS = [
+const ADMIN_USERS_COLUMNS: TableColumnsType<any> = [
   {
-    title: "First Name",
-    dataIndex: "first_name",
-    key: "first_name",
-  },
-  {
-    title: "Last Name",
-    dataIndex: "last_name",
-    key: "last_name",
+    title: "Full Name",
+    dataIndex: "full_name",
+    key: "full_name",
   },
   {
     title: "Role",

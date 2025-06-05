@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,17 +10,13 @@ export async function GET(
     if (!id) {
       throw new Error("The id is undefined");
     }
-    const { data, error } = await client
-      .from("university_levels")
-      .select()
-      .eq("id", id);
-    if (error) {
-      throw new Error(error.message);
-    }
+    const universityLevel = await prisma.university_levels.findUnique({
+      where: { id: Number(id) },
+    });
 
     return NextResponse.json({
       message: `Successfully fetched university level`,
-      response: data,
+      response: universityLevel,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

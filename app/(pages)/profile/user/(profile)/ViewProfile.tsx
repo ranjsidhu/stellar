@@ -47,7 +47,7 @@ export default function ViewProfile({ details }: Readonly<ViewProfileProps>) {
             </Space>
           }
         >
-          {formatDate(details.dob)}
+          {details.dob ? formatDate(details.dob) : "N/A"}
         </Descriptions.Item>
 
         <Descriptions.Item

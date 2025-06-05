@@ -1,23 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useAppSelector } from "@/app/redux/hooks";
+import { useSession } from "next-auth/react";
 import { AuthenticatedButtons, UnauthenticatedButtons } from "@/app/components";
-import { getUserRole } from "@/app/utils/storage";
 
 export default function HeaderButtons() {
-  const { session } = useAppSelector((state) => state.Auth);
-  const [role, setRole] = useState("");
-
-  useEffect(() => {
-    const userRole = getUserRole();
-    setRole(userRole);
-  }, []);
+  const { data: session } = useSession();
 
   return (
     <div className="h-[112px] w-full flex justify-end items-center gap-5">
       {session ? (
-        <AuthenticatedButtons role={role} />
+        <AuthenticatedButtons role={session.user?.role} />
       ) : (
         <UnauthenticatedButtons />
       )}

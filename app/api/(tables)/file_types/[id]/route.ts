@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,17 +10,16 @@ export async function GET(
     if (!id) {
       throw new Error("The id is undefined");
     }
-    const { data, error } = await client
-      .from("file_types")
-      .select()
-      .eq("id", id);
-    if (error) {
-      throw new Error(error.message);
+    const fileType = await prisma.file_types.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!fileType) {
+      throw new Error("File type not found");
     }
 
     return NextResponse.json({
       message: `Successfully fetched file type`,
-      response: data,
+      response: fileType,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

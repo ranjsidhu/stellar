@@ -8,7 +8,7 @@ export default function UnauthenticatedButtons() {
 
   return (
     <>
-      <Button type="primary" onClick={() => router.push("/login")}>
+      <Button type="primary" onClick={() => router.push("/auth/sign-in")}>
         Login
       </Button>
       <Button type="primary" onClick={() => router.push("/register")}>

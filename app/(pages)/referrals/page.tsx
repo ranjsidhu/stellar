@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Referrals from "./Referrals";
 import { Hero } from "@/app/components";
+
+export const metadata: Metadata = {
+  title: "Referrals",
+  description: "Referrals",
+};
 
 export default function ReferralsPage() {
   return (

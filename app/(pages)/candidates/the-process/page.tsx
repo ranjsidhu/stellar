@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { StepProps } from "@/app/types";
 import { processSteps } from "@/app/constants";
 import { Hero } from "@/app/components";
+
+export const metadata: Metadata = {
+  title: "Application and Interview Process",
+  description: "Application and Interview Process",
+};
 
 const Step = ({ title, index, description }: StepProps) => {
   return (

@@ -1,17 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { client, create, update } from "../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client
-      .from("university_levels")
-      .select("*")
-      .eq("is_deleted", false)
-      .order("id", { ascending: true });
-    if (error) throw new Error(error.message);
+    const universityLevels = await prisma.university_levels.findMany({
+      where: { is_deleted: false },
+      orderBy: { id: "asc" },
+    });
     return NextResponse.json({
       message: "Successfully fetched university levels",
-      response: data,
+      response: universityLevels,
     });
   } catch (error: any) {
     return NextResponse.json({ message: error.message });
@@ -21,11 +19,12 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({ body, table: "university_levels" });
-    if (error) throw new Error(error.message);
+    const universityLevel = await prisma.university_levels.create({
+      data: body,
+    });
     return NextResponse.json({
       message: "Successfully created university level",
-      response: { ...data },
+      response: universityLevel,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -37,15 +36,13 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { id } = body;
     delete body.id;
-    const { data, error } = await update({
-      body,
-      table: "university_levels",
-      id,
+    const universityLevel = await prisma.university_levels.update({
+      where: { id: Number(id) },
+      data: body,
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully updated university level",
-      response: { ...data },
+      response: universityLevel,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

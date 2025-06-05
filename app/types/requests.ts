@@ -23,14 +23,15 @@ type UserDocumentType = {
 
 type GraduatesType = {
   id: number;
-  full_name: string;
-  contact_number: string;
-  email: string;
-  course: string;
-  institution: string;
-  in_progress: boolean;
-  estimated_completion_date: string;
-  university_levels: { name: string };
+  full_name: string | null;
+  contact_number: string | null;
+  email: string | null;
+  course: string | null;
+  institution: string | null;
+  in_progress: boolean | null;
+  university_level_id: number | null;
+  estimated_completion_date: string | null;
+  university_levels: { name: string | null };
   created_at: Date | string;
   updated_at: Date | string;
 };

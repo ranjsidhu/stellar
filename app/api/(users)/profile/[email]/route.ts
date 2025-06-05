@@ -1,23 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/app/utils/supabase/server";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ email: string }> }
 ) {
   try {
-    const supabase = await createClient();
     const { email } = await params;
 
-    const { data, error } = await supabase
-      .from("users")
-      .select()
-      .eq("email", email)
-      .limit(1);
+    const user = await prisma.users.findUnique({
+      where: { email },
+    });
 
-    if (error) throw new Error(error.message);
-
-    return NextResponse.json({ response: data });
+    return NextResponse.json({ response: user });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }

@@ -1,37 +1,27 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/app/redux/hooks";
-import { clearSession } from "@/app/redux/features/Auth";
+import Link from "next/link";
 import { Button } from "@/app/components";
-import { AuthenticatedButtonsType } from "../../types";
+import SignOut from "./SignOut";
+
+interface AuthenticatedButtonsProps {
+  role?: string;
+}
 
 export default function AuthenticatedButtons({
   role,
-}: Readonly<AuthenticatedButtonsType>) {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-
-  const signOut = async () => {
-    await fetch("/api/auth/signout", { method: "POST" });
-    dispatch(clearSession());
-    window.location.reload();
-    window.location.href = "/";
-  };
-
+}: AuthenticatedButtonsProps) {
   return (
     <>
       {role === "Admin" && (
-        <Button type="primary" onClick={() => router.push("/admin")}>
-          Admin
-        </Button>
+        <Link href="/admin">
+          <Button type="primary">Admin</Button>
+        </Link>
       )}
-      <Button type="primary" onClick={() => router.push("/profile")}>
-        Profile
-      </Button>
-      <Button type="primary" onClick={signOut}>
-        Sign Out
-      </Button>
+      <Link href="/profile">
+        <Button type="primary">Profile</Button>
+      </Link>
+      <SignOut />
     </>
   );
 }

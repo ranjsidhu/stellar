@@ -1,17 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { create, client, update, delete_row } from "../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client
-      .from("file_types")
-      .select()
-      .eq("is_deleted", false)
-      .order("id", { ascending: true });
-    if (error) throw new Error(error.message);
+    const fileTypes = await prisma.file_types.findMany({
+      where: { is_deleted: false },
+      orderBy: { id: "asc" },
+    });
     return NextResponse.json({
       message: "Successfully fetched file types",
-      response: data,
+      response: fileTypes,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -21,11 +19,12 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({ body, table: "file_types" });
-    if (error) throw new Error(error.message);
+    const fileType = await prisma.file_types.create({
+      data: body,
+    });
     return NextResponse.json({
       message: "Successfully created file type",
-      response: { ...data },
+      response: fileType,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -37,11 +36,13 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { id } = body;
     delete body.id;
-    const { data, error } = await update({ body, table: "file_types", id });
-    if (error) throw new Error(error.message);
+    const fileType = await prisma.file_types.update({
+      where: { id: Number(id) },
+      data: body,
+    });
     return NextResponse.json({
       message: "Successfully updated file type",
-      response: { ...data },
+      response: fileType,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -52,11 +53,12 @@ export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json();
     const { id } = body;
-    const { data, error } = await delete_row({ table: "file_types", id });
-    if (error) throw new Error(error.message);
+    const fileType = await prisma.file_types.delete({
+      where: { id: Number(id) },
+    });
     return NextResponse.json({
       message: "Successfully deleted file type",
-      response: { ...data },
+      response: fileType,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

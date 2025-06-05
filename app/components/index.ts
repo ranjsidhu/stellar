@@ -27,11 +27,10 @@ import Filters from "./(functional)/Filters";
 import LatestJobCard from "./(functional)/LatestJobCard";
 import JobCard from "./(functional)/JobCard";
 import MobileMenu from "./(functional)/MobileMenu";
+import MobileMenuWrapper from "./(functional)/MobileMenuWrapper";
 import MobileAccordion from "./(functional)/MobileAccordion";
 import MenuItem from "./(functional)/MenuItem";
 import Search from "./(functional)/Search";
-import Login from "./(functional)/Login";
-import Register from "./(functional)/Register";
 import FileUpload from "./(functional)/FileUpload";
 import AdminCard from "./(functional)/AdminCard";
 import Table from "./(functional)/Table";
@@ -40,7 +39,6 @@ import AdminConfigCard from "./(functional)/AdminConfigCard";
 // MISC
 import Analytics from "./(misc)/Analytics";
 import StoreProvider from "./(misc)/StoreProvider";
-import Redirect from "./(misc)/Redirect";
 
 export {
   Header,
@@ -48,12 +46,11 @@ export {
   Search,
   Layout,
   LatestJobs,
-  Login,
-  Register,
   Footer,
   Hamburger,
   HeaderButtons,
   MobileMenu,
+  MobileMenuWrapper,
   SectionLoading,
   JobCard,
   Analytics,
@@ -68,7 +65,6 @@ export {
   LatestJobCard,
   MobileAccordion,
   MenuItem,
-  Redirect,
   FileUpload,
   AdminCard,
   Table,

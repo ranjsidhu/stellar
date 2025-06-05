@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unused-modules */
+
 import DARK from "@/app/assets/logos/Logo_dark.jpg";
 import LIGHT from "@/app/assets/logos/Logo_light.jpg";
 import Accountable from "@/app/assets/about/Accountable.png";

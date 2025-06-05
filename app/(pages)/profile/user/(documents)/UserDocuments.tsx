@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Empty } from "antd";
 import { DocumentCardProps, UserDocumentType } from "@/app/types";
 import { getUserId } from "@/app/utils/storage";
 import { notify, SectionLoading, FileUpload } from "@/app/components";
-import DocumentCard from "./DocumentCard";
 import { downloadFile } from "@/app/utils";
+import DocumentCard from "./DocumentCard";
 
 export default function UserDocuments() {
   const [userDocuments, setUserDocuments] = useState<UserDocumentType[]>([]);
@@ -15,11 +16,12 @@ export default function UserDocuments() {
     const fetchUserDocuments = async () => {
       try {
         setLoading(true);
-        const userId = getUserId();
+        const userId = await getUserId();
         const response = await fetch(`/api/user_documents/${userId}`);
         const data = await response.json();
         setUserDocuments(data.response);
-      } catch (error) {
+      } catch (error: any) {
+        console.error(error.message);
         notify(
           "error",
           "Error",
@@ -39,7 +41,8 @@ export default function UserDocuments() {
       const data = await res.blob();
       const filename = res.headers.get("X-Filename") ?? "download.docx";
       downloadFile(data, filename);
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error.message);
       notify("error", "Error", "An error occurred while downloading document");
     }
   };
@@ -56,7 +59,8 @@ export default function UserDocuments() {
       } else {
         notify("error", "Error", "An error occurred while deleting document");
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error.message);
       notify("error", "Error", "An error occurred while deleting document");
     }
   };
@@ -78,7 +82,7 @@ export default function UserDocuments() {
           <FileUpload route="cv" onSuccess={onSuccess} />
         </div>
       </div>
-      {userDocuments.length > 0 && (
+      {userDocuments?.length > 0 ? (
         <div className="space-y-4 mt-5">
           <h2 className="text-lg font-medium text-gray-900 mb-4">
             Your Documents
@@ -93,6 +97,10 @@ export default function UserDocuments() {
               />
             ))}
           </div>
+        </div>
+      ) : (
+        <div className="mt-5 flex items-center justify-center">
+          <Empty description="No documents found" className="text-gray-500" />
         </div>
       )}
     </SectionLoading>
