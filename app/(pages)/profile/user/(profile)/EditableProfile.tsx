@@ -42,12 +42,20 @@ export default function EditableProfile({
     }
   };
 
+  const handleChange = (changedFields: any) => {
+    setDetails({ ...details, ...changedFields });
+  };
+
   return (
     <Form
       form={form}
       layout="vertical"
-      initialValues={{ ...details, dob: dayjs(details.dob) }}
+      initialValues={{
+        ...details,
+        dob: details.dob ? dayjs(details.dob) : dayjs(),
+      }}
       onFinish={handleSubmit}
+      onValuesChange={handleChange}
     >
       <div className="flex flex-col items-center mb-6">
         <div className="mb-4">
