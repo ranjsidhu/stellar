@@ -1,7 +1,7 @@
 const ADMIN_EMAIL = "admin@stellar-recruitment.co.uk";
-const ADMIN_ROLE_NAME = "Admin";
-const CANDIDATE_ROLE_NAME = "Candidate";
-const RECRUITER_ROLE_NAME = "Recruiter";
+const ADMIN_ROLE_NAME = "Admin" as const;
+const CANDIDATE_ROLE_NAME = "Candidate" as const;
+const RECRUITER_ROLE_NAME = "Recruiter" as const;
 
 export const config = {
   adminEmail: ADMIN_EMAIL,

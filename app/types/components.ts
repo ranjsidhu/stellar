@@ -234,9 +234,11 @@ type SocialsProps = {
   pathname?: string;
 };
 
+type Role = "Admin" | "Recruiter" | "Candidate";
+
 type AuthWrapperProps = Readonly<{
   children: React.ReactNode;
-  role?: string;
+  role?: Role | Role[];
 }>;
 
 export type {
@@ -273,4 +275,5 @@ export type {
   SocialsProps,
   NavbarProps,
   AuthWrapperProps,
+  Role,
 };

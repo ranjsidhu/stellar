@@ -43,6 +43,7 @@ import {
   SocialsProps,
   NavbarProps,
   AuthWrapperProps,
+  Role,
 } from "./components";
 
 import {
@@ -77,7 +78,6 @@ export type {
   NotificationType,
   RegisterType,
   User,
-  // eslint-disable-next-line import/no-unused-modules
   SearchProps,
   StepProps,
   Route,
@@ -114,8 +114,8 @@ export type {
   ReferralFieldType,
   GraduatesType,
   SocialsProps,
-  // eslint-disable-next-line import/no-unused-modules
   SignInProps,
   NavbarProps,
   AuthWrapperProps,
+  Role,
 };

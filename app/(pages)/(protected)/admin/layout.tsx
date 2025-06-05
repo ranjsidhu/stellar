@@ -28,5 +28,5 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: ComponentChildren) {
-  return <AuthWrapper role={config.adminRoleName}>{children}</AuthWrapper>;
+  return <AuthWrapper role={[config.adminRoleName]}>{children}</AuthWrapper>;
 }
