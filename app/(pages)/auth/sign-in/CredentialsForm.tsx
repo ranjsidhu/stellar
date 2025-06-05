@@ -28,8 +28,10 @@ export default function CredentialsForm() {
     try {
       await handleCredentialsSignIn(formData);
     } catch (error: any) {
-      console.error(error);
-      notify("error", "Login Failed", "Please check your email and password");
+      if (!error?.message?.includes("NEXT_REDIRECT")) {
+        console.error(error);
+        notify("error", "Login Failed", "Please check your email and password");
+      }
     } finally {
       setIsLoading(false);
     }
