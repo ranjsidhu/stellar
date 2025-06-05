@@ -43,7 +43,7 @@ export default function AdminConfigEdit({
           },
         });
         const data = await response.json();
-        setEditData(data.response[0]);
+        setEditData(data.response);
       } catch (error: any) {
         notify("error", "Error", error.message);
       } finally {

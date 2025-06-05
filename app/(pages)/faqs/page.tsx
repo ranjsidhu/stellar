@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { Accordion, Hero } from "@/app/components";
 import { faqs } from "../../constants";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions",
+  description: "Frequently Asked Questions",
+};
 
 const items = faqs.map((faq) => {
   return {

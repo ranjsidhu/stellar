@@ -3,9 +3,8 @@ import Profile from "./Profile";
 import AuthWrapper from "@/app/components/(functional)/AuthWrapper";
 
 export const metadata: Metadata = {
-  title:
-    "Leading Educational Recruitment Agency in West Midlands - Stellar Recruitment",
-  description: "Connecting talent with opportuninity in the West Midlands",
+  title: "Profile",
+  description: "Profile",
   alternates: {
     canonical: "https://stellar-recruitment.co.uk/profile",
     types: {

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import TestimonialsList from "./TestimonialsList";
 import { Hero } from "@/app/components";
+
+export const metadata: Metadata = {
+  title: "Testimonials",
+  description: "Testimonials",
+};
 
 export default function TestimonialsPage() {
   return (

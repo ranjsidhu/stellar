@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Graduates from "./Graduates";
 import { Hero } from "@/app/components";
+
+export const metadata: Metadata = {
+  title: "Graduates",
+  description: "Graduates",
+};
 
 export default function GraduatesPage() {
   return (
