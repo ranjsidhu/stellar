@@ -21,6 +21,7 @@ export async function GET() {
       id: user.id.toString(),
       first_name: user.first_name,
       last_name: user.last_name,
+      full_name: `${user.first_name} ${user.last_name}`,
       last_logged_in: user.last_logged_in,
       role: user?.roles?.name ?? "Candidate",
     }));

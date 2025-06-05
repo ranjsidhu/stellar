@@ -3,11 +3,12 @@ import type { Metadata } from "next";
 import { ComponentChildren } from "@/app/types";
 import { config } from "@/app/utils/config";
 import AuthWrapper from "@/app/components/(functional)/AuthWrapper";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Admin Dashboard",
-    template: "%s | Admin Dashboard",
+    default: "Recruiter Dashboard",
+    template: "%s | Recruiter Dashboard",
   },
   description: "Connecting talent with opportunity",
   twitter: {
@@ -20,6 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function AdminLayout({ children }: ComponentChildren) {
-  return <AuthWrapper role={[config.adminRoleName]}>{children}</AuthWrapper>;
+export default async function RecruiterLayout({ children }: ComponentChildren) {
+  return (
+    <AuthWrapper role={[config.recruiterRoleName, config.adminRoleName]}>
+      {children}
+    </AuthWrapper>
+  );
 }
