@@ -1,4 +1,5 @@
 import ContactUsForm from "./ContactUsForm";
+import { config } from "@/app/utils/config";
 
 export default function ContactUsPage() {
   return (
@@ -71,10 +72,10 @@ export default function ContactUsPage() {
                       For enquiries, please contact:
                     </p>
                     <a
-                      href="mailto:admin@stellar-recruitment.co.uk"
+                      href={`mailto:${config.adminEmail}`}
                       className="text-[#00150f] hover:text-[#DAA520] transition-colors"
                     >
-                      admin@stellar-recruitment.co.uk
+                      {config.adminEmail}
                     </a>
                   </div>
                 </div>
