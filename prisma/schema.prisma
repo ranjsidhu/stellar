@@ -8,7 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model application_status {
   id                Int                 @id @default(autoincrement())
   name              String?
@@ -18,7 +17,6 @@ model application_status {
   user_applications user_applications[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model config_tables {
   id          Int       @id @default(autoincrement())
   table_name  String?
@@ -29,8 +27,6 @@ model config_tables {
   updated_at  DateTime? @default(now()) @db.Timestamptz(6)
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model debug_logs {
   id        Int       @id @default(autoincrement())
   log_time  DateTime? @default(now()) @db.Timestamp(6)
@@ -39,7 +35,6 @@ model debug_logs {
   action    String?
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model file_types {
   id             Int              @id @default(autoincrement())
   name           String?
@@ -49,7 +44,6 @@ model file_types {
   user_documents user_documents[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model graduates {
   id                        Int                @id @default(autoincrement())
   full_name                 String?
@@ -66,7 +60,6 @@ model graduates {
   university_levels         university_levels? @relation(fields: [university_level_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model job_status {
   id         Int       @id @default(autoincrement())
   name       String?
@@ -76,7 +69,6 @@ model job_status {
   jobs       jobs[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model jobs {
   id                Int                 @id @unique @default(autoincrement())
   role_name         String?
@@ -92,7 +84,6 @@ model jobs {
   user_applications user_applications[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model referrals {
   id                          Int       @id @default(autoincrement())
   referrerName                String?
@@ -107,7 +98,6 @@ model referrals {
   updated_at                  DateTime? @default(now()) @db.Timestamptz(6)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model roles {
   id         Int       @id @default(autoincrement())
   name       String?
@@ -117,7 +107,6 @@ model roles {
   users      users[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model schools {
   id                        Int       @id @default(autoincrement())
   name                      String?
@@ -133,7 +122,6 @@ model schools {
   is_deleted                Boolean?  @default(false)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model testimonials {
   id          Int       @id @default(autoincrement())
   author      String?
@@ -143,7 +131,6 @@ model testimonials {
   is_deleted  Boolean?  @default(false)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model university_levels {
   id         Int         @id @default(autoincrement())
   name       String?
@@ -153,7 +140,6 @@ model university_levels {
   graduates  graduates[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_applications {
   id                    Int                 @id @default(autoincrement())
   user_id               Int?
@@ -169,7 +155,6 @@ model user_applications {
   users                 users?              @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_documents {
   id                Int                 @id @default(autoincrement())
   user_id           Int?
@@ -184,7 +169,6 @@ model user_documents {
   users             users?              @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model users {
   id                 Int                 @id @default(autoincrement())
   password           String?
