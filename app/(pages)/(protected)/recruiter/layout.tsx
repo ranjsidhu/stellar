@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { ComponentChildren } from "@/app/types";
 import { config } from "@/app/utils/config";
 import AuthWrapper from "@/app/components/(functional)/AuthWrapper";
-import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: {
