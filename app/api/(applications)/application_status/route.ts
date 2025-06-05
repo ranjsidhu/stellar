@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { create, client, update, delete_row } from "../../utils/db-client";
+import { prisma } from "../../utils/prisma-utils";
 
 export async function GET(req: NextRequest) {
   try {
@@ -7,26 +7,22 @@ export async function GET(req: NextRequest) {
     const name = searchParams.get("name");
 
     if (name) {
-      const { data, error } = await client
-        .from("application_status")
-        .select()
-        .eq("name", name)
-        .single();
-      if (error) throw new Error(error.message);
+      const application_status = await prisma.application_status.findFirst({
+        where: { name },
+      });
+      if (!application_status) throw new Error("Application status not found");
       return NextResponse.json({
         message: "Successfully fetched application status",
-        response: data,
+        response: application_status,
       });
     } else {
-      const { data, error } = await client
-        .from("application_status")
-        .select()
-        .eq("is_deleted", false)
-        .order("id", { ascending: true });
-      if (error) throw new Error(error.message);
+      const application_statuses = await prisma.application_status.findMany({
+        where: { is_deleted: false },
+        orderBy: { id: "asc" },
+      });
       return NextResponse.json({
         message: "Successfully fetched application statuses",
-        response: data,
+        response: application_statuses,
       });
     }
   } catch (error: any) {
@@ -37,11 +33,12 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({ body, table: "application_status" });
-    if (error) throw new Error(error.message);
+    const application_status = await prisma.application_status.create({
+      data: { ...body },
+    });
     return NextResponse.json({
       message: "Successfully created application status",
-      response: { ...data },
+      response: { ...application_status },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -53,15 +50,13 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { id } = body;
     delete body.id;
-    const { data, error } = await update({
-      body,
-      table: "application_status",
-      id,
+    const application_status = await prisma.application_status.update({
+      where: { id },
+      data: { ...body },
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully updated application status",
-      response: { ...data },
+      response: { ...application_status },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -72,14 +67,12 @@ export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json();
     const { id } = body;
-    const { data, error } = await delete_row({
-      table: "application_status",
-      id,
+    const application_status = await prisma.application_status.delete({
+      where: { id },
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully deleted application status",
-      response: { ...data },
+      response: { ...application_status },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

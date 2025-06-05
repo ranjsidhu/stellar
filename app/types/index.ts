@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unused-modules */
+
 import {
   BaseParams,
   PatchParams,
@@ -31,16 +33,17 @@ import {
   Application,
   AdminJob,
   ComponentChildren,
-  AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
   ButtonProps,
   AccordionProps,
-  HeaderProps,
   LayoutProps,
   ApplicationCardProps,
   WithdrawModalProps,
   SocialsProps,
+  NavbarProps,
+  AuthWrapperProps,
+  Role,
 } from "./components";
 
 import {
@@ -60,6 +63,8 @@ import {
   ReferralFieldType,
 } from "./pages";
 
+import { SignInProps } from "./auth";
+
 export type {
   BaseParams,
   PatchParams,
@@ -73,7 +78,6 @@ export type {
   NotificationType,
   RegisterType,
   User,
-  // eslint-disable-next-line import/no-unused-modules
   SearchProps,
   StepProps,
   Route,
@@ -94,12 +98,10 @@ export type {
   Application,
   AdminJob,
   ComponentChildren,
-  AuthenticatedButtonsType,
   SectionLoadingProps,
   DeleteModalProps,
   ButtonProps,
   AccordionProps,
-  HeaderProps,
   LayoutProps,
   PageProps,
   JobApplyProps,
@@ -112,4 +114,8 @@ export type {
   ReferralFieldType,
   GraduatesType,
   SocialsProps,
+  SignInProps,
+  NavbarProps,
+  AuthWrapperProps,
+  Role,
 };

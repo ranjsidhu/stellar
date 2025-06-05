@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import { client } from "../../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { count, error } = await client
-      .from("jobs")
-      .select("", { count: "exact", head: true })
-      .eq("is_deleted", false);
-    if (error) throw new Error(error.message);
+    const count = await prisma.jobs.count({
+      where: { is_deleted: false },
+    });
     return NextResponse.json({
       message: "Successfully fetched job count",
       response: count,

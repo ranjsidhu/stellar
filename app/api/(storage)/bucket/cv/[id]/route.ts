@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/app/api/utils/prisma-utils";
 import { createClient } from "@/app/utils/supabase/server";
 
 const { NEXT_PUBLIC_CV_BUCKET } = process.env;
@@ -20,14 +21,12 @@ export async function GET(
     const fileBuffer = await data?.arrayBuffer();
     const contentType = data?.type || "application/octet-stream";
 
-    const { data: userDocsData, error: userDocsError } = await supabase
-      .from("user_documents")
-      .select("filename")
-      .eq("file_id", id);
+    const userDocs = await prisma.user_documents.findFirst({
+      where: { file_id: id },
+      select: { filename: true },
+    });
 
-    if (userDocsError) throw new Error(userDocsError.message);
-
-    const filename = userDocsData?.[0]?.filename || id;
+    const filename = userDocs?.filename ?? id;
 
     return new NextResponse(fileBuffer, {
       headers: {
@@ -51,19 +50,20 @@ export async function DELETE(
     if (!id) throw new Error("No file id provided");
     const { id: dbID } = await req.json();
     const supabase = await createClient();
-    const { error: dbError } = await supabase
-      .from("user_documents")
-      .delete()
-      .eq("id", dbID);
-    if (dbError) throw new Error(dbError.message);
+    const userDoc = await prisma.user_documents.delete({
+      where: { id: dbID },
+    });
     const { error } = await supabase.storage
       .from(NEXT_PUBLIC_CV_BUCKET!)
       .remove([id]);
 
     if (error) throw new Error(error.message);
 
-    return NextResponse.json({ message: "Document deleted successfully" });
+    return NextResponse.json({
+      message: "Document deleted successfully",
+      response: userDoc,
+    });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

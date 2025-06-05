@@ -1,20 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-const { create } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 import { JobRequest } from "@/app/types";
 
 export async function POST(req: NextRequest) {
   try {
     const body: JobRequest = await req.json();
-    const { data, error } = await create({
-      body,
-      table: "jobs",
+    const job = await prisma.jobs.create({
+      data: body,
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully created job",
-      response: data,
+      response: job,
     });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

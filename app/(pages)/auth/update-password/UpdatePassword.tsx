@@ -1,47 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Form, Input, Button, type FormProps } from "antd";
-import { createClient } from "../../utils/supabase/client";
 import { notify } from "@/app/components";
 import { LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { setNewPassword } from "./serveractions";
 
 const { Item } = Form;
 
 export default function UpdatePassword() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/auth/sign-in");
+    }
+  }, [token, router]);
 
   const handleUpdatePassword: FormProps<{
     newPassword: string;
     confirmNewPassword: string;
-  }>["onFinish"] = (values) => {
+  }>["onFinish"] = async (values) => {
     if (values.newPassword !== values.confirmNewPassword) {
       notify("error", "Error", "Passwords do not match");
       return;
     }
 
     setLoading(true);
-    const supabase = createClient();
 
-    // Use promise chain instead of async/await
-    supabase.auth
-      .updateUser({
-        password: values.newPassword,
-      })
-      .then(({ error }) => {
-        if (!error) {
-          notify("success", "Success", "Password updated successfully");
-        } else {
-          notify("error", "Error", error.message);
-        }
-      })
-      .catch((unexpectedError) => {
-        notify("error", "Error", "An unexpected error occurred");
-        console.error(unexpectedError);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (!token) {
+      notify("error", "Error", "Invalid token");
+      return;
+    }
+
+    try {
+      await setNewPassword(values.newPassword, token);
+      notify("success", "Success", "Password updated successfully");
+      router.push("/auth/sign-in");
+    } catch (error: any) {
+      notify("error", "Error", error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

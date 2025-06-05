@@ -3,6 +3,7 @@ import { routes } from "@/app/constants";
 import { CopyrightSocials } from "./static";
 import { FacebookFilled, InstagramFilled } from "@ant-design/icons";
 import { Mail as MailIcon } from "lucide-react";
+import { config } from "@/app/utils/config";
 
 export default function Footer() {
   return (
@@ -93,7 +94,7 @@ export default function Footer() {
             <div className="pt-4">
               <h4 className="text-white/90 font-medium mb-2">Contact Us</h4>
               <a
-                href="mailto:admin@stellar-recruitment.co.uk"
+                href={`mailto:${config.adminEmail}`}
                 className="text-white/70 hover:text-yellow-400 transition-colors flex items-center"
               >
                 <MailIcon className="w-5 h-5 mr-2 text-emerald-400" />

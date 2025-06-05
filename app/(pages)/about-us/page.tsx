@@ -3,9 +3,8 @@ import { Values, Hero } from "@/app/components";
 import { aboutUsText } from "@/app/constants";
 
 export const metadata: Metadata = {
-  title:
-    "Leading Educational Recruitment Agency in West Midlands - Stellar Recruitment",
-  description: "Connecting talent with opportunity in the West Midlands",
+  title: "About Us",
+  description: "About Us",
   alternates: {
     canonical: "https://stellar-recruitment.co.uk",
     types: {

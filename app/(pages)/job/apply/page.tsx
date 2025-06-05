@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import JobApply from "./JobApply";
 import { JobApplyPageProps } from "@/app/types";
+
+export const metadata: Metadata = {
+  title: "Job Application",
+  description: "Job Application",
+};
 
 export default async function JobApplyPage({
   searchParams,

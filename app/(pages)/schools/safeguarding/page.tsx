@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/app/components";
+
+export const metadata: Metadata = {
+  title: "Safeguarding",
+  description: "Safeguarding",
+};
 
 export default function SafeguardingPage() {
   return (

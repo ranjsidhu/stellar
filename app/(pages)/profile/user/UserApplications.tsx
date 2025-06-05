@@ -20,7 +20,8 @@ export default function UserApplications() {
         const response = await fetch(`/api/user_applications/${userId}`);
         const data = await response.json();
         setUserApplications(data.response);
-      } catch (error) {
+      } catch (error: any) {
+        console.error(error.message);
         notify(
           "error",
           "Error",
@@ -34,7 +35,7 @@ export default function UserApplications() {
     fetchUserApplications();
   }, []);
 
-  if (!userApplications.length) {
+  if (!userApplications?.length) {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
         <Empty description="No applications found" className="text-gray-500" />

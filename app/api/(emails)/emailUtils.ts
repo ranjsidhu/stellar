@@ -1,12 +1,7 @@
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { config } from "@/app/utils/config";
 
-const {
-  AWS_REGION,
-  AWS_AK,
-  AWS_SECRET_ACCESS_KEY,
-  SENDER_EMAIL,
-  ADMIN_DESTINATION_EMAIL,
-} = process.env;
+const { AWS_REGION, AWS_AK, AWS_SECRET_ACCESS_KEY, SENDER_EMAIL } = process.env;
 
 const client = new SESv2Client({
   region: AWS_REGION!,
@@ -16,15 +11,20 @@ const client = new SESv2Client({
   },
 });
 
-const sendEmail = async (replyTo: string, subject: string, html: string) => {
+const sendEmail = async (
+  replyTo: string,
+  subject: string,
+  html: string,
+  toAddresses?: string[]
+) => {
   try {
     const command = new SendEmailCommand({
       FromEmailAddress: SENDER_EMAIL!,
       Destination: {
-        ToAddresses: [ADMIN_DESTINATION_EMAIL!],
+        ToAddresses: toAddresses || [config.adminEmail],
       },
       ReplyToAddresses: [replyTo],
-      FeedbackForwardingEmailAddress: ADMIN_DESTINATION_EMAIL!,
+      FeedbackForwardingEmailAddress: config.adminEmail,
       Content: {
         Simple: {
           Subject: {

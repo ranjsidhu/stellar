@@ -1,4 +1,25 @@
+import type { Metadata } from "next";
 import AdminConfigEdit from "./AdminConfigEdit";
+import { PageProps } from "@/app/types";
+
+export async function generateMetadata({
+  params,
+}: Readonly<PageProps<"table">>): Promise<Metadata> {
+  const { table } = await params;
+
+  // Transform table name for display (replace underscores with spaces, capitalize, etc.)
+  const tableDisplayName = table
+    .replace(/-/g, "_")
+    .replace(/_/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return {
+    title: `Edit ${tableDisplayName}`,
+    description: `Edit ${tableDisplayName}`,
+  };
+}
 
 export default async function AdminConfigEditPage({
   params,

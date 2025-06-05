@@ -1,17 +1,16 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { create, client, update, delete_row } from "../../utils/db-client";
+import { prisma } from "../../utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client
-      .from("config_tables")
-      .select()
-      .eq("is_enabled", true)
-      .order("id", { ascending: true });
-    if (error) throw new Error(error.message);
+    const config_tables = await prisma.config_tables.findMany({
+      where: { is_enabled: true },
+      orderBy: { id: "asc" },
+    });
+
     return NextResponse.json({
       message: "Successfully fetched config tables",
-      response: data,
+      response: config_tables,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -21,11 +20,12 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { data, error } = await create({ body, table: "config_tables" });
-    if (error) throw new Error(error.message);
+    const config_table = await prisma.config_tables.create({
+      data: { ...body, is_enabled: true },
+    });
     return NextResponse.json({
       message: "Successfully created config table record",
-      response: { ...data },
+      response: { ...config_table },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -37,15 +37,13 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const { id } = body;
     delete body.id;
-    const { data, error } = await update({
-      body,
-      table: "config_tables",
-      id,
+    const config_table = await prisma.config_tables.update({
+      where: { id },
+      data: { ...body },
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully updated config table record",
-      response: { ...data },
+      response: { ...config_table },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
@@ -56,14 +54,12 @@ export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json();
     const { id } = body;
-    const { data, error } = await delete_row({
-      table: "config_tables",
-      id,
+    const config_table = await prisma.config_tables.delete({
+      where: { id },
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({
       message: "Successfully deleted config table record",
-      response: { ...data },
+      response: { ...config_table },
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

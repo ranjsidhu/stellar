@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-const { client } = require("@/app/api/utils/db-client");
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET(
   req: NextRequest,
@@ -10,17 +10,16 @@ export async function GET(
     if (!id) {
       throw new Error("The id is undefined");
     }
-    const { data, error } = await client
-      .from("application_status")
-      .select()
-      .eq("id", id);
-    if (error) {
-      throw new Error(error.message);
+    const application_status = await prisma.application_status.findUnique({
+      where: { id: parseInt(id) },
+    });
+    if (!application_status) {
+      throw new Error("Application status not found");
     }
 
     return NextResponse.json({
       message: `Successfully fetched application status`,
-      response: data,
+      response: application_status,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
