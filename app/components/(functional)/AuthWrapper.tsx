@@ -13,8 +13,13 @@ export default async function AuthWrapper({
   }
 
   const userDetails = await getUserDetails(session.user.email);
+  const userRole = userDetails?.roles?.name;
 
-  if (role && !role.includes(userDetails?.roles?.name as Role)) {
+  if (!userRole) {
+    redirect("/");
+  }
+
+  if (role && !role.includes(userRole as Role)) {
     redirect("/");
   }
 

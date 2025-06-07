@@ -1,10 +1,9 @@
 "use server";
 
-import { PrismaClient } from "@/generated/prisma";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 const getUserDetails = async (email: string | null | undefined) => {
   if (!email) return null;
-  const prisma = new PrismaClient();
   const userDetails = await prisma.users.findUnique({
     where: { email },
     select: {
