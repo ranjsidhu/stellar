@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import CredentialsForm from "./CredentialsForm";
 import { handleGoogleSignIn } from "./serveractions";
@@ -62,25 +63,25 @@ export default async function LoginPage() {
                 height={20}
                 className="w-5 h-5"
               />
-              Sign in with Google
+              Continue with Google
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600">
             By signing in, you agree to our{" "}
-            <a
+            <Link
               href="/terms-of-service"
               className="text-yellow-400 hover:text-yellow-500"
             >
               Terms of Service
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
+            <Link
               href="/privacy-policy"
               className="text-yellow-400 hover:text-yellow-500"
             >
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
       </div>
