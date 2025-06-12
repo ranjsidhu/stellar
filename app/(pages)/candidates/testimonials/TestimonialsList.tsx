@@ -24,7 +24,7 @@ export default function TestimonialsList() {
   return (
     <div className="w-full">
       <SectionLoading loading={isLoading}>
-        {testimonials.length > 0 && (
+        {testimonials?.length > 0 ? (
           <div className="relative">
             {/* Featured Testimonial */}
             <div className="bg-white rounded-lg shadow-lg p-8 md:p-10 mb-8 relative overflow-hidden">
@@ -144,6 +144,8 @@ export default function TestimonialsList() {
                 ))}
             </div>
           </div>
+        ) : (
+          <></>
         )}
       </SectionLoading>
     </div>

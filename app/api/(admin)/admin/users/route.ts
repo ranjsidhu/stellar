@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
+import { withAdminProtection } from "@/app/api/utils/routeProtection";
 
-export async function GET() {
+async function handler() {
   try {
     const users = await prisma.users.findMany({
       select: {
@@ -34,3 +35,5 @@ export async function GET() {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
+
+export const GET = withAdminProtection(handler);

@@ -1,8 +1,6 @@
 "use server";
 
 /* eslint-disable import/no-unused-modules */
-
-import { config } from "@/app/utils/config";
 import { getSession } from "./session";
 
 const getUserId = async () => {
@@ -12,17 +10,6 @@ const getUserId = async () => {
   } catch (error) {
     console.error(error);
     return null;
-  }
-};
-
-const getUserRole = async () => {
-  try {
-    const session = await getSession();
-    if (!session) return null;
-    return session?.user?.role ?? config.candidateRoleName;
-  } catch (error) {
-    console.error(error);
-    return "Candidate";
   }
 };
 
@@ -37,4 +24,4 @@ const getUserEmail = async () => {
   }
 };
 
-export { getUserId, getUserRole, getUserEmail };
+export { getUserId, getUserEmail };

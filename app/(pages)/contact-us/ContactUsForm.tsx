@@ -29,6 +29,7 @@ export default function ContactUsForm(): React.ReactElement {
       notify("success", "Message sent", "We will get back to you soon!");
       form.resetFields();
     } catch (error: any) {
+      console.error(error);
       notify("error", "An error occurred", "Please try again later.");
     } finally {
       setLoading(false);
