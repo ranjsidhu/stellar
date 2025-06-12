@@ -13,6 +13,7 @@ function useFetch<T>(url: string) {
           await response.json();
         setData(result.response);
       } catch (error) {
+        console.error(error);
         return;
       } finally {
         setIsLoading(false);

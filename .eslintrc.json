@@ -14,5 +14,12 @@
       }
     ]
   },
-  "plugins": ["import"]
+  "plugins": ["import"],
+  "parserOptions": {
+    "ecmaVersion": 2024,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
 }

@@ -6,50 +6,58 @@ type SignInCallbackParams = {
   account: Account | null | undefined;
 };
 
-const signInCallback = async ({ user, account }: SignInCallbackParams) => {
-  if (!user.email) {
-    console.error("Sign in failed: No email provided");
-    return false;
-  }
-
+export async function signInCallback({ user }: SignInCallbackParams) {
   try {
-    console.log("Attempting to sign in user:", {
-      email: user.email,
-      accountType: account?.type,
+    if (!user?.email) {
+      console.error("No email provided");
+      return false;
+    }
+
+    // Check if user exists
+    const dbUser = await prisma.users.findUnique({
+      where: { email: user.email },
+      include: {
+        roles: true,
+      },
     });
 
-    // Upsert user based on email
-    const dbUser = await prisma.users.upsert({
-      where: { email: user.email },
-      update: {
-        last_logged_in: new Date().toISOString(),
-      },
-      create: {
+    if (dbUser) {
+      const role = dbUser.roles?.name;
+      console.log("Existing user found:", {
+        id: dbUser.id,
+        email: dbUser.email,
+        role,
+      });
+      return true;
+    }
+
+    // Create new user with default role (Candidate)
+    const newUser = await prisma.users.create({
+      data: {
         email: user.email,
         first_name: user.name?.split(" ")[0] ?? "",
         last_name: user.name?.split(" ")[1] ?? "",
-        role_id: 3,
+        roles: {
+          connect: {
+            id: 3, // Candidate role ID
+          },
+        },
       },
       include: {
         roles: true,
       },
     });
 
-    console.log("Database operation successful:", { userId: dbUser.id });
-
-    // If user exists with Google auth but trying credentials, prevent login
-    if (account?.type === "credentials" && !dbUser.password) {
-      console.error(
-        "Sign in failed: User exists with Google auth but attempting credentials login"
-      );
-      return false;
-    }
+    const role = newUser.roles?.name;
+    console.log("New user created:", {
+      id: newUser.id,
+      email: newUser.email,
+      role,
+    });
 
     return true;
   } catch (error) {
-    console.error("Error in signIn callback:", error);
+    console.error("Error in signInCallback:", error);
     return false;
   }
-};
-
-export { signInCallback };
+}

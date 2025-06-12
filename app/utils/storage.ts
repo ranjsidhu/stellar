@@ -1,7 +1,7 @@
 "use server";
 
 /* eslint-disable import/no-unused-modules */
-
+import { prisma } from "../api/utils/prisma-utils";
 import { config } from "@/app/utils/config";
 import { getSession } from "./session";
 
@@ -19,7 +19,19 @@ const getUserRole = async () => {
   try {
     const session = await getSession();
     if (!session) return null;
-    return session?.user?.role ?? config.candidateRoleName;
+    const user = await prisma.users.findUnique({
+      where: {
+        email: session.user.email,
+      },
+      select: {
+        roles: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+    return user?.roles?.name ?? config.candidateRoleName;
   } catch (error) {
     console.error(error);
     return "Candidate";

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Space, Avatar, Divider, Descriptions, Typography } from "antd";
 import {
   CalendarOutlined,
@@ -7,6 +8,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { ViewProfileProps } from "@/app/types";
+import { useSession } from "next-auth/react";
 
 const { Title } = Typography;
 
@@ -19,18 +21,30 @@ const formatDate = (dateString: Date | string) => {
 };
 
 export default function ViewProfile({ details }: Readonly<ViewProfileProps>) {
+  const { data: session } = useSession();
+
   return (
     <>
       <div className="flex flex-col items-center mb-6">
         <div className="mb-4">
-          <Avatar
-            size={96}
-            icon={<UserOutlined style={{ color: "#00150f" }} />}
-            style={{
-              backgroundColor: "gold",
-              fontSize: "48px",
-            }}
-          />
+          {session?.user?.image ? (
+            <Image
+              className="rounded-full"
+              src={session.user.image}
+              alt="Profile"
+              width={96}
+              height={96}
+            />
+          ) : (
+            <Avatar
+              size={96}
+              icon={<UserOutlined style={{ color: "#00150f" }} />}
+              style={{
+                backgroundColor: "gold",
+                fontSize: "48px",
+              }}
+            />
+          )}
         </div>
 
         <Title level={3} className="m-0">
