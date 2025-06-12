@@ -8,7 +8,6 @@ import PageLayout from "./(layout)/PageLayout";
 
 // DISPLAY
 import Button from "./(display)/Button";
-import HeaderButtons from "./(display)/HeaderButtons";
 import SectionLoading from "./(display)/SectionLoading";
 import Layout from "./(layout)/Layout";
 import NotFound from "./(display)/NotFound";
@@ -19,8 +18,6 @@ import Homepage from "./(display)/Homepage";
 import LatestJobs from "./(display)/LatestJobs";
 import Notification, { notify } from "./(display)/Notification";
 import { Hero } from "./(display)/Hero";
-import AuthenticatedButtons from "./(functional)/AuthenticatedButtons";
-import UnauthenticatedButtons from "./(functional)/UnauthenticatedButtons";
 
 // FUNCTIONAL
 import Filters from "./(functional)/Filters";
@@ -48,7 +45,6 @@ export {
   LatestJobs,
   Footer,
   Hamburger,
-  HeaderButtons,
   MobileMenu,
   MobileMenuWrapper,
   SectionLoading,
@@ -73,6 +69,4 @@ export {
   PageLayout,
   AdminConfigCard,
   Hero,
-  AuthenticatedButtons,
-  UnauthenticatedButtons,
 };

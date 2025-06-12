@@ -27,6 +27,7 @@ export default function JobApply({
         const data = await response.json();
         setUserDocuments(data.response);
       } catch (error) {
+        console.error(error);
         notify(
           "error",
           "Error",

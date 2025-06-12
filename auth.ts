@@ -4,6 +4,18 @@ import Credentials from "next-auth/providers/credentials";
 import { authorizeUsers } from "./app/utils/authorizeUsers";
 import { signInCallback } from "./app/utils/signInCallback";
 
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      name: string;
+      image?: string;
+      role: string;
+    };
+  }
+}
+
 // eslint-disable-next-line import/no-unused-modules
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -38,17 +50,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return await signInCallback({ user, account });
     },
     async session({ session, token }) {
-      if (session.user && token.sub) {
-        session.user.id = token.sub;
-        (session.user as any).role = token.role as string;
+      if (session.user) {
+        session.user.id = token.sub as string;
       }
       return session;
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = (user as any).role?.toString();
-      }
+    async jwt({ token }) {
       return token;
     },
   },
