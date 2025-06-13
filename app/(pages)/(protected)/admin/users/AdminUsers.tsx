@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Table } from "antd";
-import { SectionLoading } from "@/app/components";
-import { ADMIN_USERS_COLUMNS } from "@/app/constants/admin";
+import { SectionLoading, UserCard } from "@/app/components";
+import { UserRole } from "@/app/types";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -25,14 +24,26 @@ export default function AdminUsers() {
     fetchAdminUsers();
   }, []);
 
+  const handleRoleChange = (id: number, newRole: string) => {
+    setUsers((prevUsers: any) =>
+      prevUsers.map((user: any) =>
+        user.id === id ? { ...user, role: newRole } : user
+      )
+    );
+  };
+
   return (
-    <div className="flex justify-center items-center h-full w-[95%] mx-auto">
+    <div className="w-full max-w-3xl mx-auto px-2 py-4">
       <SectionLoading loading={loading}>
-        <Table
-          className="!w-[800px] !max-w-[1440px]"
-          columns={ADMIN_USERS_COLUMNS}
-          dataSource={users || []}
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {users?.map((user: UserRole) => (
+            <UserCard
+              key={user.id}
+              user={user}
+              onRoleChange={handleRoleChange}
+            />
+          ))}
+        </div>
       </SectionLoading>
     </div>
   );

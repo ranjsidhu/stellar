@@ -30,7 +30,7 @@
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.49.1",
     "@upstash/redis": "^1.35.0",
-    "antd": "^5.24.2",
+    "antd": "^5.26.0",
     "cookie": "^1.0.2",
     "dayjs": "^1.11.13",
     "lexical": "^0.21.0",

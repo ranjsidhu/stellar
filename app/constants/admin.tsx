@@ -1,4 +1,3 @@
-import { Select, TableColumnsType } from "antd";
 import { AdminCardProps } from "../types";
 import { notify } from "../components";
 
@@ -35,7 +34,12 @@ const updateRole = async (role_id: number, user_id: number) => {
   }
 };
 
-const dropdownOnChange = (value: string, record: any) => {
+const dropdownOnChange = (
+  value: string,
+  record: any,
+  // eslint-disable-next-line no-unused-vars
+  onSuccess?: (newRole: string) => void
+) => {
   const role = roles.find((r) => r.id == value);
   updateRole(
     role ? Number(role.id) : Number(process.env.NEXT_PUBLIC_CANDIDATE_ROLE_ID),
@@ -43,6 +47,7 @@ const dropdownOnChange = (value: string, record: any) => {
   )
     .then(() => {
       notify("success", "Role Updated", "User role has been updated");
+      if (onSuccess && role) onSuccess(role.label);
     })
     .catch(() => {
       notify("error", "Role Update Failed", "Failed to update user role");
@@ -77,27 +82,4 @@ const ADMIN_CARDS: AdminCardProps[] = [
   },
 ];
 
-const ADMIN_USERS_COLUMNS: TableColumnsType<any> = [
-  {
-    title: "Full Name",
-    dataIndex: "full_name",
-    key: "full_name",
-  },
-  {
-    title: "Role",
-    dataIndex: "role",
-    key: "role",
-    render: (role: string, record: any) => {
-      return (
-        <Select
-          defaultValue={roles.find((r) => r.label === record.role)?.label}
-          style={{ width: "100%" }}
-          options={roles}
-          onChange={(value) => dropdownOnChange(value, record)}
-        />
-      );
-    },
-  },
-];
-
-export { ADMIN_CARDS, ADMIN_USERS_COLUMNS };
+export { ADMIN_CARDS, dropdownOnChange, roles };

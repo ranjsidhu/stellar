@@ -36,19 +36,21 @@ export default function AdminConfiguration() {
   return (
     <SectionLoading loading={loading}>
       <PageLayout>
-        <div className="flex justify-between items-center h-full mx-auto">
-          {config.length > 0 &&
-            config.map((card) => (
-              <AdminCard
-                key={card.id}
-                route={`/admin/configuration/${card.table_name.replace(
-                  "_",
-                  "-"
-                )}`}
-                title={card.ui_name}
-                description={card.description}
-              />
-            ))}
+        <div className="flex items-center justify-center h-full w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {config.length > 0 &&
+              config.map((card) => (
+                <AdminCard
+                  key={card.id}
+                  route={`/admin/configuration/${card.table_name.replace(
+                    "_",
+                    "-"
+                  )}`}
+                  title={card.ui_name}
+                  description={card.description}
+                />
+              ))}
+          </div>
         </div>
       </PageLayout>
     </SectionLoading>
