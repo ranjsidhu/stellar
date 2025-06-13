@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageLayout } from "@/app/components";
 
 export const metadata: Metadata = {
   title: "Recruiter Dashboard",
@@ -6,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function RecruiterPage() {
-  return <div>Placeholder page for recruiter</div>;
+  return (
+    <PageLayout>
+      <div>Placeholder page for recruiter</div>
+    </PageLayout>
+  );
 }

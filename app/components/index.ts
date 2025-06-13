@@ -32,6 +32,7 @@ import FileUpload from "./(functional)/FileUpload";
 import AdminCard from "./(functional)/AdminCard";
 import Table from "./(functional)/Table";
 import AdminConfigCard from "./(functional)/AdminConfigCard";
+import UserCard from "./(functional)/UserCard";
 
 // MISC
 import Analytics from "./(misc)/Analytics";
@@ -69,4 +70,5 @@ export {
   PageLayout,
   AdminConfigCard,
   Hero,
+  UserCard,
 };

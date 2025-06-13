@@ -3,6 +3,7 @@
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
 import type { Session } from "next-auth";
+import { users } from "../../generated/prisma";
 
 type Job = {
   id: number;
@@ -58,6 +59,16 @@ type User = {
   city: string | null;
   postcode: string | null;
   roles: { id: number; name: string | null } | null;
+};
+
+type UserRole = {
+  id: users["id"];
+  first_name: users["first_name"];
+  last_name: users["last_name"];
+  full_name: string;
+  email: users["email"];
+  last_logged_in: users["last_logged_in"];
+  role: string;
 };
 
 type SearchProps = {
@@ -241,6 +252,11 @@ type AuthWrapperProps = Readonly<{
   role?: Role | Role[];
 }>;
 
+type UserCardProps = Readonly<{
+  user: UserRole;
+  onRoleChange: (id: number, newRole: string) => void;
+}>;
+
 export type {
   Job,
   Testimonial,
@@ -276,4 +292,6 @@ export type {
   NavbarProps,
   AuthWrapperProps,
   Role,
+  UserRole,
+  UserCardProps,
 };
