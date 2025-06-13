@@ -44,6 +44,8 @@ import {
   NavbarProps,
   AuthWrapperProps,
   Role,
+  UserRole,
+  UserCardProps,
 } from "./components";
 
 import {
@@ -118,4 +120,6 @@ export type {
   NavbarProps,
   AuthWrapperProps,
   Role,
+  UserRole,
+  UserCardProps,
 };

@@ -9,12 +9,16 @@ async function handler() {
         id: true,
         first_name: true,
         last_name: true,
+        email: true,
         last_logged_in: true,
         roles: {
           select: {
             name: true,
           },
         },
+      },
+      orderBy: {
+        first_name: "asc",
       },
     });
 
@@ -23,6 +27,7 @@ async function handler() {
       first_name: user.first_name,
       last_name: user.last_name,
       full_name: `${user.first_name} ${user.last_name}`,
+      email: user.email,
       last_logged_in: user.last_logged_in,
       role: user?.roles?.name ?? "Candidate",
     }));
