@@ -12,10 +12,14 @@ export default function Jobs() {
   const params = useSearchParams();
   const searchQuery = params.get("search");
   const [currentPage, setCurrentPage] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState<number | undefined>(0);
   const [displayJobs, setDisplayJobs] = useState<Job[]>([]);
   const [page, setPage] = useState(1);
-  const { data: currentJobs, isLoading } = useFetch<Job>(`/jobs/${page}`);
+  const {
+    data: currentJobs,
+    isLoading,
+    count,
+  } = useFetch<Job>(`/jobs/${page}`);
 
   useEffect(() => {
     if (!searchQuery) {
@@ -24,13 +28,10 @@ export default function Jobs() {
   }, [currentJobs, searchQuery]);
 
   useEffect(() => {
-    const getCount = async () => {
-      const countResponse = await fetch("/api/jobs/count");
-      const parsedCount = await countResponse.json();
-      setTotal(parsedCount.response);
-    };
-    getCount();
-  }, []);
+    if (!searchQuery) {
+      setTotal(count ?? 0);
+    }
+  }, [count, searchQuery]);
 
   const onPaginationChange: PaginationProps["onChange"] = (newPage) => {
     setPage(newPage);
@@ -50,14 +51,13 @@ export default function Jobs() {
           <div className="space-y-8">
             {/* Filter Section */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <Filters setDisplayJobs={setDisplayJobs} />
+              <Filters setDisplayJobs={setDisplayJobs} setTotal={setTotal} />
             </div>
 
             {/* Results Count */}
             <div className="flex items-center justify-between">
               <p className="text-gray-700 font-medium">
-                Found <span className="font-bold">{displayJobs.length}</span>{" "}
-                jobs
+                Found <span className="font-bold">{total}</span> jobs
               </p>
               <div className="hidden md:block">
                 <Pagination

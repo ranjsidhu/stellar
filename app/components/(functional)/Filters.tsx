@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Select, Input } from "antd";
 import { useFetch } from "@/app/hooks";
@@ -9,7 +9,10 @@ import { pluralise } from "@/app/utils";
 
 const { Search } = Input;
 
-export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
+export default function Filters({
+  setDisplayJobs,
+  setTotal,
+}: Readonly<FiltersProps>) {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const [searchLoading, setSearchLoading] = useState(false);
@@ -18,27 +21,28 @@ export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
   const resetFilters = useCallback(async () => {
     setSearchLoading(false);
     await fetch(`/api/jobs/1`).then((data) =>
-      data.json().then((res) => setDisplayJobs(res.response))
+      data.json().then((res) => {
+        setDisplayJobs(res.response);
+        setTotal(res.count);
+      })
     );
-  }, [setDisplayJobs]);
+  }, [setDisplayJobs, setTotal]);
 
   const getJobsByLocation = async (location: string) => {
     if (!location) {
       resetFilters();
     } else {
       await fetch(`/api/jobs/locations/${location}`).then((data) =>
-        data.json().then((res) => setDisplayJobs(res.response))
+        data.json().then((res) => {
+          setDisplayJobs(res.response);
+          setTotal(res.count);
+        })
       );
     }
   };
 
   const searchJobs = useCallback(
-    async ({
-      target,
-    }: {
-      target: (EventTarget & HTMLInputElement) | { value: string };
-    }) => {
-      const query = target.value;
+    async (query: string) => {
       if (query.length === 0) {
         resetFilters();
       } else if (query.length >= 3 || search) {
@@ -46,19 +50,14 @@ export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
         await fetch(`/api/jobs/keywords/${query}`).then((data) =>
           data.json().then((res) => {
             setDisplayJobs(res.response);
+            setTotal(res.count);
             setSearchLoading(false);
           })
         );
       }
     },
-    [resetFilters, search, setDisplayJobs]
+    [resetFilters, search, setDisplayJobs, setTotal]
   );
-
-  useEffect(() => {
-    if (search) {
-      searchJobs({ target: { value: search } });
-    }
-  }, [search, searchJobs]);
 
   return (
     <div className="w-full mb-8">
@@ -92,7 +91,7 @@ export default function Filters({ setDisplayJobs }: Readonly<FiltersProps>) {
             defaultValue={search ?? ""}
             allowClear
             placeholder="Birmingham, £100, Maths etc."
-            onChange={searchJobs}
+            onSearch={searchJobs}
             loading={searchLoading}
             className="w-full"
           />
