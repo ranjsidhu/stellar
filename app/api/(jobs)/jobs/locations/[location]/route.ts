@@ -15,9 +15,14 @@ export async function GET(
       orderBy: { created_at: "desc" },
     });
 
+    const count = await prisma.jobs.count({
+      where: { location, is_deleted: false },
+    });
+
     return NextResponse.json({
       message: `Successfully fetched jobs in ${location}`,
       response: jobs,
+      count,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

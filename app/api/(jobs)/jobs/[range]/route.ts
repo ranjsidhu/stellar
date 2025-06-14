@@ -18,9 +18,14 @@ export async function GET(
       take: 10,
     });
 
+    const count = await prisma.jobs.count({
+      where: { is_deleted: false },
+    });
+
     return NextResponse.json({
       message: `Successfully fetched ${jobs.length} jobs`,
       response: jobs,
+      count,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
