@@ -108,6 +108,7 @@ type MenuItemProps = {
 
 type FiltersProps = {
   setDisplayJobs: React.Dispatch<SetStateAction<Job[]>>;
+  setTotal: React.Dispatch<SetStateAction<number | undefined>>;
 };
 
 type LatestJobCardProps = {

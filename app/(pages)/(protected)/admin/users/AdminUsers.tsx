@@ -19,12 +19,14 @@ export default function AdminUsers() {
   const [searchInput, setSearchInput] = useState("");
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const { data: currentUsers, isLoading } = useFetch<UserRole>(
     `/admin/users/${currentPage}`
   );
 
   useEffect(() => {
     setUsers(currentUsers?.map((user: any) => ({ ...user, key: user.id })));
+    setTotal(currentUsers?.length);
   }, [currentUsers]);
 
   const handleRoleChange = (id: number, newRole: string) => {
@@ -46,6 +48,7 @@ export default function AdminUsers() {
       .then((res) => res.json())
       .then((data) => {
         setUsers(data.response);
+        setTotal(data.count);
       })
       .catch(() => {
         setUsers([]);
@@ -56,8 +59,8 @@ export default function AdminUsers() {
     if (role === "" || !role) {
       const data = await fetch(`/api/admin/users/${currentPage}`);
       const res = await data.json();
-      console.log("🚀 ~ handleSearch ~ res:", res);
       setUsers(res.response);
+      setTotal(res.count);
       return;
     }
     setCurrentPage(1);
@@ -66,6 +69,7 @@ export default function AdminUsers() {
       .then((res) => res.json())
       .then((data) => {
         setUsers(data.response);
+        setTotal(data.count);
       })
       .catch(() => {
         setUsers([]);
@@ -95,8 +99,17 @@ export default function AdminUsers() {
         />
       </div>
       <SectionLoading loading={isLoading}>
+        {users?.length === 0 && (
+          <div className="flex justify-center items-center h-full">
+            <p className="text-gray-500">No users found</p>
+          </div>
+        )}
+
+        <p className="text-gray-700 font-medium mb-4">
+          Total results found: {total}
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {users.map((user: UserRole) => (
+          {users?.map((user: UserRole) => (
             <UserCard
               key={user.id}
               user={user}
@@ -107,7 +120,7 @@ export default function AdminUsers() {
         <div className="mt-6 flex justify-center">
           <Pagination
             current={currentPage}
-            total={users.length}
+            total={total}
             onChange={(page) => setCurrentPage(page)}
             showSizeChanger={false}
           />

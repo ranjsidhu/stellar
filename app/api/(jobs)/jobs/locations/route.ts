@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
-import { client } from "../../../utils/db-client";
+import { prisma } from "@/app/api/utils/prisma-utils";
 
 export async function GET() {
   try {
-    const { data, error } = await client.rpc("getdistinctlocations");
+    const data = await prisma.jobs.groupBy({
+      by: ["location"],
+      _count: {
+        location: true,
+      },
+    });
 
-    if (error) throw new Error(error.message);
+    const formattedData = data.map((item) => ({
+      location: item.location,
+      location_count: item._count.location,
+    }));
 
     return NextResponse.json({
       messasge: "Successfully retrieved job locations",
-      response: data,
+      response: formattedData,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

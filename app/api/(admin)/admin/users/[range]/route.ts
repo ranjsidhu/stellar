@@ -29,6 +29,8 @@ async function handler(req: NextRequest) {
       take: 10,
     });
 
+    const count = await prisma.users.count();
+
     const formattedUsers = users.map((user) => ({
       id: user.id.toString(),
       first_name: user.first_name,
@@ -42,6 +44,7 @@ async function handler(req: NextRequest) {
     return NextResponse.json({
       message: `Successfully fetched ${users.length} users`,
       response: formattedUsers,
+      count,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

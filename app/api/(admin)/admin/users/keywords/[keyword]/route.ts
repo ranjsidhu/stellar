@@ -36,6 +36,16 @@ async function handler(req: NextRequest) {
       take: 10,
     });
 
+    const count = await prisma.users.count({
+      where: {
+        OR: [
+          { first_name: { contains: keyword, mode: "insensitive" } },
+          { last_name: { contains: keyword, mode: "insensitive" } },
+          { email: { contains: keyword, mode: "insensitive" } },
+        ],
+      },
+    });
+
     const formattedUsers = users.map((user) => ({
       id: user.id.toString(),
       first_name: user.first_name,
@@ -49,6 +59,7 @@ async function handler(req: NextRequest) {
     return NextResponse.json({
       message: `Successfully fetched ${users.length} users`,
       response: formattedUsers,
+      count,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
