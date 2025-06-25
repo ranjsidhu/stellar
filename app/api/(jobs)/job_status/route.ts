@@ -17,7 +17,7 @@ export const GET = async () => {
   }
 }
 
-const POST = async (req: NextRequest) => {
+const postHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const job_status = await prisma.job_status.create({
@@ -32,7 +32,7 @@ const POST = async (req: NextRequest) => {
   }
 }
 
-const PUT = async (req: NextRequest) => {
+const putHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const { id } = body;
@@ -50,7 +50,7 @@ const PUT = async (req: NextRequest) => {
   }
 }
 
-const DELETE = async (req: NextRequest) => {
+const deleteHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const { id } = body;
@@ -67,6 +67,6 @@ const DELETE = async (req: NextRequest) => {
 }
 
 
-export const POST = withAdminOrRecruiterProtection(POST);
-export const PUT = withAdminOrRecruiterProtection(PUT);
-export const DELETE = withAdminOrRecruiterProtection(DELETE);
+export const POST = withAdminOrRecruiterProtection(postHandler);
+export const PUT = withAdminOrRecruiterProtection(putHandler);
+export const DELETE = withAdminOrRecruiterProtection(deleteHandler);
