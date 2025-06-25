@@ -126,6 +126,7 @@ export async function checkValidSession() {
 export function removeUndefined(obj: Object) {
   return Object.fromEntries(
     Object.entries(obj).filter(
+      // eslint-disable-next-line no-unused-vars
       ([_, value]) => value !== undefined && value !== null && value !== ""
     )
   );
