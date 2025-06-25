@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
 import { withAdminOrRecruiterProtection } from "@/app/api/utils/routeProtection";
 
-export const  GET = withAdminOrRecruiterProtection(async (
+export const GET = withAdminOrRecruiterProtection(async (
   req: NextRequest,
   { params }: { params: Promise<{ reference: string }> }
 ) => {
