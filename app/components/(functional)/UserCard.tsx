@@ -1,4 +1,3 @@
-// app/components/(functional)/UserCard.tsx
 import { Select } from "antd";
 import { roles, dropdownOnChange } from "@/app/constants/admin";
 import { UserCardProps } from "@/app/types";

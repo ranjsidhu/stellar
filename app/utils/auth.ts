@@ -83,3 +83,42 @@ export async function checkRecruiterAccess(): Promise<RoleCheckResult> {
 export async function checkAdminOrRecruiterAccess(): Promise<RoleCheckResult> {
   return checkUserRole([config.adminRoleName, config.recruiterRoleName]);
 }
+
+export async function checkValidSession() {
+  const session = await getSession();
+  if (!session?.user?.email) {
+    return {
+      isAuthorized: false,
+      response: NextResponse.json(
+        { error: "Unauthorized: No session found" },
+        { status: 401 }
+      ),
+    };
+  }
+
+  const user = await prisma.users.findUnique({
+    where: {
+      email: session.user.email,
+    },
+    select: {
+      id: true,
+      roles: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  if (!user?.roles?.name) {
+    return {
+      isAuthorized: false,
+      response: NextResponse.json(
+        { error: "Unauthorized: User not found or has no role" },
+        { status: 401 }
+      ),
+    };
+  }
+
+  return { isAuthorized: true, id: user.id }
+}
