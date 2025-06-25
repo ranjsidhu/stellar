@@ -1,8 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../utils/prisma-utils";
+import { withAdminOrRecruiterProtection } from "../../utils/routeProtection";
 
-export async function GET() {
-  try {
+export const GET = async () => {
+  try  {
     const job_statuses = await prisma.job_status.findMany({
       where: { is_deleted: false },
       orderBy: { id: "asc" },
@@ -16,7 +17,7 @@ export async function GET() {
   }
 }
 
-export async function POST(req: NextRequest) {
+const postHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const job_status = await prisma.job_status.create({
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function PUT(req: NextRequest) {
+const putHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const { id } = body;
@@ -49,7 +50,7 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-export async function DELETE(req: NextRequest) {
+const deleteHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const { id } = body;
@@ -64,3 +65,8 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: error.message });
   }
 }
+
+
+export const POST = withAdminOrRecruiterProtection(postHandler);
+export const PUT = withAdminOrRecruiterProtection(putHandler);
+export const DELETE = withAdminOrRecruiterProtection(deleteHandler);

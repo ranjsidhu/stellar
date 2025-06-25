@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
+import { withAdminOrRecruiterProtection } from "@/app/api/utils/routeProtection";
 
 export async function GET(
   req: NextRequest,
@@ -11,11 +12,6 @@ export async function GET(
       where: { reference_number: reference },
       include: {
         job_status: true,
-        user_applications: {
-          include: {
-            users: true,
-          },
-        },
       },
     });
     if (!job) throw new Error("Job not found");
@@ -28,10 +24,10 @@ export async function GET(
   }
 }
 
-export async function PUT(
+export const PUT = withAdminOrRecruiterProtection(async (
   req: NextRequest,
   { params }: { params: Promise<{ reference: string }> }
-) {
+) => {
   try {
     const { reference } = await params;
     const body = await req.json();
@@ -46,12 +42,12 @@ export async function PUT(
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-}
+})
 
-export async function DELETE(
+export const DELETE = withAdminOrRecruiterProtection(async (
   req: NextRequest,
   { params }: { params: Promise<{ reference: string }> }
-) {
+) => {
   try {
     const { reference } = await params;
     const job = await prisma.jobs.delete({
@@ -64,4 +60,4 @@ export async function DELETE(
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-}
+})

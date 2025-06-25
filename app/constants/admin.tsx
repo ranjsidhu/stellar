@@ -22,7 +22,7 @@ const roles = [
 
 const updateRole = async (role_id: number, user_id: number) => {
   try {
-    await fetch(`/api/roles`, {
+    await fetch(`/api/admin/roles`, {
       method: "PUT",
       body: JSON.stringify({
         role_id: Number(role_id),
