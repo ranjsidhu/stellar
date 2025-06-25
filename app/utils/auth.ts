@@ -101,6 +101,7 @@ export async function checkValidSession() {
       email: session.user.email,
     },
     select: {
+      id: true,
       roles: {
         select: {
           name: true,
