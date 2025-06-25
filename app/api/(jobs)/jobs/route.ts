@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
 import { JobRequest } from "@/app/types";
+import { withAdminOrRecruiterProtection } from "../../utils/routeProtection";
 
-export async function POST(req: NextRequest) {
+export const POST = withAdminOrRecruiterProtection(async (req: NextRequest) => {
   try {
     const body: JobRequest = await req.json();
     const job = await prisma.jobs.create({
@@ -16,3 +17,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+)

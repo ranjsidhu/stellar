@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
+import { withAdminProtection } from "@/app/api/utils/routeProtection";
 
-export async function GET(
+export const GET = withAdminProtection(async (
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+) => {
   try {
     const { id } = await params;
     if (!id) {
@@ -24,4 +25,4 @@ export async function GET(
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
-}
+});
