@@ -120,5 +120,13 @@ export async function checkValidSession() {
     };
   }
 
-  return { isAuthorized: true, id: user.id }
+  return { isAuthorized: true, id: user.id };
+}
+
+export function removeUndefined(obj: Object) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(
+      ([_, value]) => value !== undefined && value !== null && value !== ""
+    )
+  );
 }
