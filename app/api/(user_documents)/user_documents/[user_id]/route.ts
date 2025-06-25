@@ -15,7 +15,7 @@ export async function GET(
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }
-    if (user_id !== res.id) {
+    if (Number(user_id) !== res.id) {
       return NextResponse.json(
         {
           isAuthorized: false,
