@@ -9,7 +9,7 @@ export async function GET(
   try {
     const res = await checkValidSession();
     if (!res.isAuthorized) {
-      return res;
+      return res.response;
     }
     const { user_id } = await params;
     if (!user_id) {
@@ -23,7 +23,7 @@ export async function GET(
             error: "Unauthorized: User ID does not match session",
           },
         },
-        { status: 401 }
+        { status: 403 }
       );
     }
 
