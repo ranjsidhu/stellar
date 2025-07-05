@@ -3,17 +3,29 @@ import { getSession } from "./session";
 import { prisma } from "../api/utils/prisma-utils";
 import { config } from "./config";
 
-type AuthResult = {
-  isAuthorized: boolean;
-  response: NextResponse | null;
-  user?: { id: number; role: string };
-};
+type AuthResult =
+  | {
+      isAuthorized: false;
+      response: NextResponse;
+      user?: never;
+    }
+  | {
+      isAuthorized: true;
+      response: null;
+      user: { id: number; role: string };
+    };
 
-type UserValidationResult = {
-  isAuthorized: boolean;
-  response: NextResponse | null;
-  userId?: number;
-};
+type UserValidationResult =
+  | {
+      isAuthorized: false;
+      response: NextResponse;
+      userId?: never;
+    }
+  | {
+      isAuthorized: true;
+      response: null;
+      userId: number;
+    };
 
 async function getAuthenticatedUser(): Promise<AuthResult> {
   try {
@@ -75,20 +87,23 @@ async function checkUserRole(allowedRoles: string[]): Promise<AuthResult> {
     }
 
     const isAuthorized = allowedRoles.includes(authResult.user.role);
-    return {
-      isAuthorized,
-      user: authResult.user,
-      response: isAuthorized
-        ? null
-        : NextResponse.json(
-            {
-              error: `Unauthorized: ${allowedRoles.join(
-                " or "
-              )} access required`,
-            },
-            { status: 403 }
-          ),
-    };
+    if (isAuthorized) {
+      return {
+        isAuthorized: true as const,
+        user: authResult.user,
+        response: null,
+      };
+    } else {
+      return {
+        isAuthorized: false as const,
+        response: NextResponse.json(
+          {
+            error: `Unauthorized: ${allowedRoles.join(" or ")} access required`,
+          },
+          { status: 403 }
+        ),
+      };
+    }
   } catch (error) {
     console.error("Auth check error:", error);
     return {
@@ -127,7 +142,7 @@ export async function validateUserIdMatch(
 ): Promise<UserValidationResult> {
   const authResult = await getAuthenticatedUser();
 
-  if (!authResult.isAuthorized || !authResult.user) {
+  if (!authResult.isAuthorized) {
     return {
       isAuthorized: false,
       response: authResult.response,
