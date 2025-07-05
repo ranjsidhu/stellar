@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const application_status = await prisma.application_status.create({
-      data: { ...body },
+      data: { name: body.name },
     });
     return NextResponse.json({
       message: "Successfully created application status",
@@ -52,7 +52,7 @@ export async function PUT(req: NextRequest) {
     delete body.id;
     const application_status = await prisma.application_status.update({
       where: { id },
-      data: { ...body },
+      data: { name: body.name },
     });
     return NextResponse.json({
       message: "Successfully updated application status",

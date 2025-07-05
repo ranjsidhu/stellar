@@ -29,6 +29,9 @@ export default function AdminConfigDetails({
       setLoading(true);
       try {
         const response = await fetch(`/api/${table}`);
+        if (!response.ok) {
+          router.push("/not-found");
+        }
         const data = await response.json();
         setTableData(data.response);
       } catch (error: any) {
@@ -39,7 +42,7 @@ export default function AdminConfigDetails({
     };
 
     fetchTableData();
-  }, [table, tableData.length]);
+  }, [table, tableData.length, router]);
 
   return (
     <PageLayout>
@@ -52,16 +55,17 @@ export default function AdminConfigDetails({
           <AppstoreAddOutlined className="px-2.5" />
         </button>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {tableData.map(({ name, id, created_at }) => (
-            <AdminConfigCard
-              key={id}
-              title={name}
-              route={`/${table.replace("_", "-")}/${id}`}
-              description={calculateHours(created_at, "Created")}
-              table={table}
-              refreshTableData={refreshTableData}
-            />
-          ))}
+          {tableData.length > 0 &&
+            tableData.map(({ name, id, created_at }) => (
+              <AdminConfigCard
+                key={id}
+                title={name}
+                route={`/${table.replace("_", "-")}/${id}`}
+                description={calculateHours(created_at, "Created")}
+                table={table}
+                refreshTableData={refreshTableData}
+              />
+            ))}
         </div>
       </SectionLoading>
     </PageLayout>

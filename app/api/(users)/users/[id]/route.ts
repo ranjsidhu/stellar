@@ -1,31 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
-import { checkValidSession, removeUndefined } from "@/app/utils/auth";
+import { removeUndefined, validateUserIdMatch } from "@/app/utils/auth";
 
 export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const res = await checkValidSession();
-    if (!res.isAuthorized) {
-      return res.response;
-    }
     const { id } = await params;
-    if (!id) {
-      throw new Error("The id is undefined");
+    const validation = await validateUserIdMatch(id);
+    if (!validation.isAuthorized) {
+      return validation.response;
     }
-    if (Number(id) !== res.id) {
-      return NextResponse.json(
-        {
-          isAuthorized: false,
-          response: {
-            error: "Unauthorized: User ID does not match session",
-          },
-        },
-        { status: 403 }
-      );
-    }
+
     const body = await req.json();
     if (!id) {
       throw new Error("The id is undefined");

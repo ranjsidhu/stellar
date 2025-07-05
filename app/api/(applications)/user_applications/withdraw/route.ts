@@ -6,6 +6,9 @@ export async function PUT(req: NextRequest) {
     // Find the status of Withdrawn
     const body = await req.json();
     const { id } = body;
+    if (!id) {
+      throw new Error("The id is undefined");
+    }
     delete body.id;
     const supabase = await createClient();
     const { data: statusData, error: statusError } = await supabase

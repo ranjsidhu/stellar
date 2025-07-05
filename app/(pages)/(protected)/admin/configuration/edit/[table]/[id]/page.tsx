@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import AdminConfigEdit from "./AdminConfigEdit";
 import { PageProps } from "@/app/types";
 
@@ -25,5 +26,10 @@ export default async function AdminConfigEditPage({
   params,
 }: Readonly<{ params: Promise<{ table: string; id: number }> }>) {
   const { table, id } = await params;
+
+  if (!table || !id) {
+    redirect("/admin/configuration");
+  }
+
   return <AdminConfigEdit table={table.replace("-", "_")} id={id} />;
 }
