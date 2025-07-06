@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, Info } from "lucide-react";
-import * as Tooltip from "@radix-ui/react-tooltip";
+import { Eye, EyeOff } from "lucide-react";
 import { handleCredentialsSignIn } from "./serveractions";
 import { notify } from "@/app/components";
 
@@ -84,35 +83,7 @@ export default function CredentialsForm() {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700 mb-1"
         >
-          <span className="flex items-center gap-1">
-            Password
-            <Tooltip.Provider>
-              <Tooltip.Root>
-                <Tooltip.Trigger asChild>
-                  <button type="button" className="inline-flex items-center">
-                    <Info className="w-4 h-4 text-gray-400 hover:text-gray-600" />
-                  </button>
-                </Tooltip.Trigger>
-                <Tooltip.Portal>
-                  <Tooltip.Content
-                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-200 max-w-xs"
-                    sideOffset={5}
-                  >
-                    <div className="text-sm text-gray-700 space-y-2">
-                      <p className="font-medium">Password must contain:</p>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>At least 8 characters</li>
-                        <li>Uppercase and lowercase letters</li>
-                        <li>At least one number</li>
-                        <li>At least one special character</li>
-                      </ul>
-                    </div>
-                    <Tooltip.Arrow className="fill-white" />
-                  </Tooltip.Content>
-                </Tooltip.Portal>
-              </Tooltip.Root>
-            </Tooltip.Provider>
-          </span>
+          <span className="flex items-center gap-1">Password</span>
         </label>
         <div className="relative">
           <input
@@ -137,6 +108,15 @@ export default function CredentialsForm() {
               <Eye className="w-5 h-5" />
             )}
           </button>
+        </div>
+        <div className="mt-2 text-sm text-gray-600">
+          <p className="font-medium mb-1">Password must contain:</p>
+          <ul className="list-disc list-inside space-y-0.5">
+            <li>At least 8 characters</li>
+            <li>Uppercase and lowercase letters</li>
+            <li>At least one number</li>
+            <li>At least one special character</li>
+          </ul>
         </div>
       </div>
 

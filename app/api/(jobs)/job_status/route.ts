@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../utils/prisma-utils";
 import { withAdminOrRecruiterProtection } from "../../utils/routeProtection";
+import { removeUndefined } from "@/app/utils/auth";
 
 export const GET = async () => {
-  try  {
+  try {
     const job_statuses = await prisma.job_status.findMany({
       where: { is_deleted: false },
       orderBy: { id: "asc" },
@@ -15,13 +16,13 @@ export const GET = async () => {
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
-}
+};
 
 const postHandler = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const job_status = await prisma.job_status.create({
-      data: { ...body },
+      data: { name: body.name },
     });
     return NextResponse.json({
       message: "Successfully created job status",
@@ -30,7 +31,7 @@ const postHandler = async (req: NextRequest) => {
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
-}
+};
 
 const putHandler = async (req: NextRequest) => {
   try {
@@ -39,7 +40,7 @@ const putHandler = async (req: NextRequest) => {
     delete body.id;
     const job_status = await prisma.job_status.update({
       where: { id },
-      data: { ...body },
+      data: removeUndefined({ name: body.name }),
     });
     return NextResponse.json({
       message: "Successfully updated job status",
@@ -48,7 +49,7 @@ const putHandler = async (req: NextRequest) => {
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
-}
+};
 
 const deleteHandler = async (req: NextRequest) => {
   try {
@@ -64,8 +65,7 @@ const deleteHandler = async (req: NextRequest) => {
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
-}
-
+};
 
 export const POST = withAdminOrRecruiterProtection(postHandler);
 export const PUT = withAdminOrRecruiterProtection(putHandler);

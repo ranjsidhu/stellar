@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JobApply from "./JobApply";
+import AuthWrapper from "@/app/components/(functional)/AuthWrapper";
 import { JobApplyPageProps } from "@/app/types";
 
 export const metadata: Metadata = {
@@ -24,6 +25,13 @@ export default async function JobApplyPage({
   const status = await fetchSubmittedStatus();
 
   return (
-    <JobApply id={id} status={status} title={title} description={description} />
+    <AuthWrapper>
+      <JobApply
+        id={id}
+        status={status}
+        title={title}
+        description={description}
+      />
+    </AuthWrapper>
   );
 }

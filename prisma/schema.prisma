@@ -5,12 +5,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DIRECT_URL")
 }
 
 model application_status {
   id                Int                 @id @default(autoincrement())
-  name              String?
+  name              String
   created_at        DateTime?           @default(now()) @db.Timestamptz(6)
   updated_at        DateTime?           @default(now()) @db.Timestamptz(6)
   is_deleted        Boolean?            @default(false)
@@ -19,9 +19,9 @@ model application_status {
 
 model config_tables {
   id          Int       @id @default(autoincrement())
-  table_name  String?
-  ui_name     String?
-  description String?
+  table_name  String
+  ui_name     String
+  description String
   is_enabled  Boolean?  @default(true)
   created_at  DateTime? @default(now()) @db.Timestamptz(6)
   updated_at  DateTime? @default(now()) @db.Timestamptz(6)
@@ -62,7 +62,7 @@ model graduates {
 
 model job_status {
   id         Int       @id @default(autoincrement())
-  name       String?
+  name       String
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   updated_at DateTime? @default(now()) @db.Timestamptz(6)
   is_deleted Boolean?  @default(false)
@@ -142,12 +142,12 @@ model university_levels {
 
 model user_applications {
   id                    Int                 @id @default(autoincrement())
-  user_id               Int?
-  job_id                Int?
+  user_id               Int
+  job_id                Int
   application_status_id Int?                @default(1)
-  created_at            DateTime?           @default(now()) @db.Timestamptz(6)
-  updated_at            DateTime?           @default(now()) @db.Timestamptz(6)
-  is_deleted            Boolean?            @default(false)
+  created_at            DateTime           @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime           @default(now()) @db.Timestamptz(6)
+  is_deleted            Boolean            @default(false)
   user_document_id      Int?
   application_status    application_status? @relation(fields: [application_status_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   jobs                  jobs?               @relation(fields: [job_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_applications_jobs_id_fkey")
