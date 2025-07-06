@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
+import { validateUserIdMatch } from "@/app/utils/auth";
 
 export async function GET(
   req: NextRequest,
@@ -7,9 +8,20 @@ export async function GET(
 ) {
   try {
     const { user_id, job_id } = await params;
+
     if (!user_id) {
       throw new Error("The user_id is undefined");
     }
+
+    const validation = await validateUserIdMatch(user_id);
+    if (!validation.isAuthorized) {
+      return validation.response;
+    }
+
+    if (!job_id) {
+      throw new Error("The job_id is undefined");
+    }
+
     const userApplication = await prisma.user_applications.findFirst({
       where: { user_id: Number(user_id), job_id: Number(job_id) },
     });

@@ -100,8 +100,8 @@ export default function JobApply({
           >
             <Select
               placeholder="Please choose an academic level"
-              disabled={!userDocuments.length}
-              options={userDocuments.map((level) => ({
+              disabled={!userDocuments?.length}
+              options={userDocuments?.map((level) => ({
                 ...level,
                 value: level.id,
                 label: level.filename,

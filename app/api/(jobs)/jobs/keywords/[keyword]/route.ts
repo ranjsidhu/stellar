@@ -8,6 +8,10 @@ export async function GET(
   try {
     const { keyword } = await params;
 
+    if (!keyword) {
+      throw new Error("The keyword is undefined");
+    }
+
     const WHERE_CLAUSE = [
       { role_name: { contains: keyword, mode: "insensitive" as const } },
       { location: { contains: keyword, mode: "insensitive" as const } },
