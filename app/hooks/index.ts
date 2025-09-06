@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unused-modules */
+/* -disable import/no-unused-modules */
 
 import { useFetch } from "./useFetch";
 

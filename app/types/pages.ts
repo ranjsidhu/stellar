@@ -5,7 +5,7 @@ import { FormInstance } from "antd";
 
 // Generic route parameter type
 type RouteParams<T extends string> = {
-  // eslint-disable-next-line no-unused-vars
+  // -disable-next-line no-unused-vars
   [K in T]: string;
 };
 

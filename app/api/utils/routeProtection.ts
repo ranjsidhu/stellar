@@ -6,7 +6,7 @@ import {
 } from "@/app/utils/auth";
 import { getSession } from "@/app/utils/session";
 
-// eslint-disable-next-line no-unused-vars
+// -disable-next-line no-unused-vars
 type RouteHandler = (req: NextRequest, context?: any) => Promise<NextResponse>;
 
 export function withUserProtection(handler: RouteHandler): RouteHandler {

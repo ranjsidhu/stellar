@@ -131,7 +131,7 @@ export async function checkAdminOrRecruiterAccess(): Promise<AuthResult> {
 export function removeUndefined(obj: Record<string, any>) {
   return Object.fromEntries(
     Object.entries(obj).filter(
-      // eslint-disable-next-line no-unused-vars
+      // -disable-next-line no-unused-vars
       ([_, value]) => value !== undefined && value !== null && value !== ""
     )
   );

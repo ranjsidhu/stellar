@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unused-modules */
 import type { Metadata } from "next";
 import { ComponentChildren } from "@/app/types";
 import { config } from "@/app/utils/config";

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unused-modules */
+/* -disable import/no-unused-modules */
 
 import DARK from "@/app/assets/logos/Logo_dark.jpg";
 import LIGHT from "@/app/assets/logos/Logo_light.jpg";
