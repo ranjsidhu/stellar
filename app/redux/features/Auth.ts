@@ -19,7 +19,7 @@ const AuthSlice = createSlice({
   },
 });
 
-// eslint-disable-next-line import/no-unused-modules
+// -disable-next-line import/no-unused-modules
 export const { setSession } = AuthSlice.actions;
 
 export default AuthSlice.reducer;
