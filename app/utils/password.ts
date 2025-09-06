@@ -3,12 +3,11 @@
  */
 
 // Convert string to ArrayBuffer
-function stringToBuffer(str: string): Uint8Array {
-  return new TextEncoder().encode(str);
+function stringToBuffer(str: string): any {
+  return new TextEncoder().encode(str).buffer;
 }
 
 // Convert ArrayBuffer to string
-// -disable-next-line no-unused-vars
 function _bufferToString(buffer: ArrayBuffer): string {
   return new TextDecoder().decode(buffer);
 }

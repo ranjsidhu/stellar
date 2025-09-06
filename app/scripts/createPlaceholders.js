@@ -67,4 +67,4 @@ async function createPlaceholders() {
   }
 }
 
-createPlaceholders();
+module.exports = { createPlaceholders };

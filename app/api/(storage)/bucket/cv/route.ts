@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/api/utils/prisma-utils";
-import { createClient } from "@/app/utils/supabase/server";
+import { createClient } from "@/app/utils/server";
 
 const { NEXT_PUBLIC_CV_BUCKET } = process.env;
 
