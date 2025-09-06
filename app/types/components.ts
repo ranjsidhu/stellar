@@ -1,5 +1,5 @@
-/* eslint-disable import/no-unused-modules */
-/* eslint-disable no-unused-vars */
+/* -disable import/no-unused-modules */
+/* -disable no-unused-vars */
 import React, { SetStateAction, Dispatch } from "react";
 import { BasicTable } from "./db";
 import type { Session } from "next-auth";

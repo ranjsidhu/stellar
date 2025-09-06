@@ -37,7 +37,7 @@ const updateRole = async (role_id: number, user_id: number) => {
 const dropdownOnChange = (
   value: string,
   record: any,
-  // eslint-disable-next-line no-unused-vars
+  // -disable-next-line no-unused-vars
   onSuccess?: (newRole: string) => void
 ) => {
   const role = roles.find((r) => r.id == value);

@@ -12,11 +12,11 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 
 type LexicalEditorProps = {
   value?: string;
-  // eslint-disable-next-line no-unused-vars
+  // -disable-next-line no-unused-vars
   onChange?: (value: string) => void;
 };
 
-// eslint-disable-next-line no-unused-vars
+// -disable-next-line no-unused-vars
 function EditorContent({ onChange }: Readonly<LexicalEditorProps>) {
   const [editor] = useLexicalComposerContext();
 
@@ -44,7 +44,7 @@ function EditorContent({ onChange }: Readonly<LexicalEditorProps>) {
   );
 }
 
-// eslint-disable-next-line import/no-unused-modules
+// -disable-next-line import/no-unused-modules
 export default function LexicalEditor({
   value,
   onChange,

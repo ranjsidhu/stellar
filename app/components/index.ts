@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unused-modules */
+/* -disable import/no-unused-modules */
 // LAYOUT
 import Footer from "./(layout)/Footer";
 import Hamburger from "./(layout)/Hamburger";

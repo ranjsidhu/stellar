@@ -1,6 +1,6 @@
 "use server";
 
-/* eslint-disable import/no-unused-modules */
+/* -disable import/no-unused-modules */
 import { getSession } from "./session";
 
 const getUserId = async () => {

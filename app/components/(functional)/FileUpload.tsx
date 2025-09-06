@@ -10,7 +10,7 @@ import { notify } from "@/app/components";
 
 type FileUploadProps = {
   route: string;
-  // eslint-disable-next-line no-unused-vars
+  // -disable-next-line no-unused-vars
   onSuccess?: (id: number, file_id: string, filename: string) => void;
 };
 

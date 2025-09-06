@@ -8,8 +8,8 @@ function stringToBuffer(str: string): Uint8Array {
 }
 
 // Convert ArrayBuffer to string
-// eslint-disable-next-line no-unused-vars
-function bufferToString(buffer: ArrayBuffer): string {
+// -disable-next-line no-unused-vars
+function _bufferToString(buffer: ArrayBuffer): string {
   return new TextDecoder().decode(buffer);
 }
 
