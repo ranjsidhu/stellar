@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unused-modules */
 import type { Metadata } from "next";
 import { NextFont } from "next/dist/compiled/@next/font";
 import { Inter } from "next/font/google";

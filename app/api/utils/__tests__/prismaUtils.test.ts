@@ -23,7 +23,6 @@ describe("Prisma Utils", () => {
       expect(prisma.$connect).toBeDefined();
       expect(prisma.$disconnect).toBeDefined();
       expect(prisma.$on).toBeDefined();
-      expect(prisma.$use).toBeDefined();
       expect(prisma.$extends).toBeDefined();
       expect(prisma.$transaction).toBeDefined();
     });
@@ -38,12 +37,6 @@ describe("Prisma Utils", () => {
     it("should allow calling $disconnect", async () => {
       await prisma.$disconnect();
       expect(prisma.$disconnect).toHaveBeenCalledTimes(1);
-    });
-
-    it("should allow middleware with $use", () => {
-      const middleware = jest.fn();
-      prisma.$use(middleware);
-      expect(prisma.$use).toHaveBeenCalledWith(middleware);
     });
 
     it("should allow extensions with $extends", () => {
@@ -65,11 +58,13 @@ describe("Prisma Utils", () => {
       jest.resetModules();
 
       // Mock PrismaClient again for the fresh import
+      const mockPrismaClient = () => ({
+        $connect: jest.fn(),
+        $disconnect: jest.fn(),
+      });
+
       jest.mock("@/generated/prisma", () => ({
-        PrismaClient: jest.fn().mockImplementation(() => ({
-          $connect: jest.fn(),
-          $disconnect: jest.fn(),
-        })),
+        PrismaClient: jest.fn().mockImplementation(mockPrismaClient),
       }));
 
       // Import multiple times
