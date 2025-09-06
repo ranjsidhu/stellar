@@ -3,7 +3,7 @@
  */
 
 // Convert string to ArrayBuffer
-function stringToBuffer(str: string): ArrayBuffer {
+function stringToBuffer(str: string): any {
   return new TextEncoder().encode(str).buffer;
 }
 
