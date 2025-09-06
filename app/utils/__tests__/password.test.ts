@@ -22,7 +22,9 @@ describe("password utils", () => {
     it("returns a base64 string combining salt and hash", async () => {
       // Arrange: mock importKey and deriveBits to return dummy values
       mockCryptoSubtle.importKey.mockResolvedValue("mockKey");
-      const fakeHashBuffer = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]).buffer;
+      const fakeHashBuffer = new ArrayBuffer(8);
+      const fakeHashView = new Uint8Array(fakeHashBuffer);
+      fakeHashView.set([1, 2, 3, 4, 5, 6, 7, 8]);
       mockCryptoSubtle.deriveBits.mockResolvedValue(fakeHashBuffer);
 
       // Act
@@ -37,7 +39,7 @@ describe("password utils", () => {
       // Check mocks called correctly
       expect(mockCryptoSubtle.importKey).toHaveBeenCalledWith(
         "raw",
-        expect.any(Uint8Array),
+        expect.any(ArrayBuffer), // Changed from Uint8Array to ArrayBuffer
         "PBKDF2",
         false,
         ["deriveBits"]
