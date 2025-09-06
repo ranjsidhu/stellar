@@ -30,7 +30,7 @@
     "dist/types/**/*.ts",
     "app/scripts/createPlaceholders.js",
     "jest.setup.ts",
-    "jest.config.ts",
+    "jest.config.js",
     "__mocks__/**/*",
     "app/scripts/__tests__/createPlaceholder.test.js"
   ],
