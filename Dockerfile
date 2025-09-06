@@ -16,6 +16,15 @@ RUN npm ci
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+ARG NEXT_PUBLIC_DB_URL
+ARG NEXT_PUBLIC_DB_API_ANON_KEY
+
+ENV NEXT_PUBLIC_DB_URL=$NEXT_PUBLIC_DB_URL
+ENV NEXT_PUBLIC_DB_API_ANON_KEY=$NEXT_PUBLIC_DB_API_ANON_KEY
+ENV NODE_ENV=production
+
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/generated ./generated
 COPY . .
@@ -27,7 +36,7 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+
 
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 

@@ -40,3 +40,6 @@ jobs:
           load: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          args:
+            - NEXT_PUBLIC_DB_URL=${NEXT_PUBLIC_DB_URL}
+            - NEXT_PUBLIC_DB_API_ANON_KEY=${NEXT_PUBLIC_DB_API_ANON_KEY}
