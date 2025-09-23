@@ -22,7 +22,7 @@ const CopyrightSocials = () => (
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
       <div className="text-gray-400 text-sm text-center">
-        <p>Company Registration Number: 15228068</p>
+        <p>Company Registration Number: 16725435</p>
         <p>All rights reserved</p>
         <Link
           href="https://ranjsidhu.dev"
